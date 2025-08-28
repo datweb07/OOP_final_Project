@@ -33,7 +33,7 @@
             this.chkShowPassword_SignIn = new System.Windows.Forms.CheckBox();
             this.lblSignUp = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSignIn = new System.Windows.Forms.Button();
+            this.btnSignIn = new customButton.Design();
             this.txtUserNameSignIn = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -112,7 +112,10 @@
             // btnSignIn
             // 
             this.btnSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnSignIn.BorderRadius = 29;
+            this.btnSignIn.BorderSize = 0;
             this.btnSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSignIn.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnSignIn.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSignIn.Location = new System.Drawing.Point(145, 346);
@@ -120,6 +123,7 @@
             this.btnSignIn.Size = new System.Drawing.Size(272, 29);
             this.btnSignIn.TabIndex = 7;
             this.btnSignIn.Text = "SIGN IN";
+            this.btnSignIn.TextClor = System.Drawing.SystemColors.Control;
             this.btnSignIn.UseVisualStyleBackColor = false;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
@@ -192,6 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1100, 620);
             this.Controls.Add(this.lblCloseSignIn);
             this.Controls.Add(this.panel1);
@@ -215,7 +220,7 @@
         private System.Windows.Forms.TextBox txtUserNameSignIn;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Button btnSignIn;
+        private customButton.Design btnSignIn;
         private System.Windows.Forms.Label lblSignUp;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chkShowPassword_SignIn;
