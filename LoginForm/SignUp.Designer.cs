@@ -37,6 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblSignIn = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnSignUp = new customButton.Design();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelPasswordLine = new System.Windows.Forms.Panel();
@@ -51,7 +52,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.btnSignUp = new customButton.Design();
             this.ellipseControlSignUp = new customButton.EllipseControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -161,6 +161,26 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Already have account?";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSignUp
+            // 
+            this.btnSignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnSignUp.BorderRadius = 29;
+            this.btnSignUp.BorderSize = 0;
+            this.btnSignUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignUp.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignUp.ForeColor = System.Drawing.Color.White;
+            this.btnSignUp.Location = new System.Drawing.Point(184, 478);
+            this.btnSignUp.Name = "btnSignUp";
+            this.btnSignUp.Size = new System.Drawing.Size(272, 40);
+            this.btnSignUp.TabIndex = 6;
+            this.btnSignUp.Text = "SIGN UP";
+            this.btnSignUp.TextClor = System.Drawing.Color.White;
+            this.btnSignUp.UseVisualStyleBackColor = false;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
+            this.btnSignUp.MouseEnter += new System.EventHandler(this.btnSignUp_MouseEnter);
+            this.btnSignUp.MouseLeave += new System.EventHandler(this.btnSignUp_MouseLeave);
             // 
             // pictureBox3
             // 
@@ -316,26 +336,6 @@
             this.pictureBox5.TabIndex = 5;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // btnSignUp
-            // 
-            this.btnSignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSignUp.BorderRadius = 29;
-            this.btnSignUp.BorderSize = 0;
-            this.btnSignUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignUp.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignUp.ForeColor = System.Drawing.Color.White;
-            this.btnSignUp.Location = new System.Drawing.Point(184, 478);
-            this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(272, 40);
-            this.btnSignUp.TabIndex = 6;
-            this.btnSignUp.Text = "SIGN UP";
-            this.btnSignUp.TextClor = System.Drawing.Color.White;
-            this.btnSignUp.UseVisualStyleBackColor = false;
-            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
-            this.btnSignUp.MouseEnter += new System.EventHandler(this.btnSignUp_MouseEnter);
-            this.btnSignUp.MouseLeave += new System.EventHandler(this.btnSignUp_MouseLeave);
             // 
             // ellipseControlSignUp
             // 

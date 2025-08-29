@@ -49,5 +49,11 @@ namespace OOP_finalProject
         {
             this.Close();
         }
+
+        private void btnAdmin_Click_1(object sender, EventArgs e)
+        {
+            SignIn signIn = new SignIn();
+            signIn.Show();
+        }
     }
 }
