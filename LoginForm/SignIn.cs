@@ -88,5 +88,56 @@ namespace OOP_finalProject.LoginForm
             }
             else txtPasswordSignIn.UseSystemPasswordChar = false;
         }
+
+        // Các phương thức mới được thêm vào
+        private void lblSignUp_MouseEnter(object sender, EventArgs e)
+        {
+            lblSignUp.ForeColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void lblSignUp_MouseLeave(object sender, EventArgs e)
+        {
+            lblSignUp.ForeColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void txtUserNameSignIn_Enter(object sender, EventArgs e)
+        {
+            panel2.BackColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void txtUserNameSignIn_Leave(object sender, EventArgs e)
+        {
+            panel2.BackColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void txtPasswordSignIn_Enter(object sender, EventArgs e)
+        {
+            panel3.BackColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void txtPasswordSignIn_Leave(object sender, EventArgs e)
+        {
+            panel3.BackColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void btnSignIn_MouseEnter(object sender, EventArgs e)
+        {
+            btnSignIn.BackColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void btnSignIn_MouseLeave(object sender, EventArgs e)
+        {
+            btnSignIn.BackColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void lblUsername_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

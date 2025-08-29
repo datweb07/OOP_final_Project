@@ -58,6 +58,18 @@
     <Compile Include="LoginForm\SignIn.Designer.cs">
       <DependentUpon>SignIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm\SignInAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm\SignInAdmin.Designer.cs">
+      <DependentUpon>SignInAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm\SignInEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm\SignInEmployee.Designer.cs">
+      <DependentUpon>SignInEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm\SignUp.cs">
       <SubType>Form</SubType>
     </Compile>

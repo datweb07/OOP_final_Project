@@ -27,7 +27,6 @@ namespace OOP_finalProject.LoginForm
                 txtPasswordSignUp.UseSystemPasswordChar = true;
             }
             else txtPasswordSignUp.UseSystemPasswordChar = false;
-
         }
 
         private void lblSignIn_Click(object sender, EventArgs e)
@@ -78,7 +77,6 @@ namespace OOP_finalProject.LoginForm
                                     sqlCommand1.Parameters.AddWithValue("@password", txtPasswordSignUp.Text.Trim());
                                     sqlCommand1.Parameters.AddWithValue("@date", date);
 
-
                                     sqlCommand1.ExecuteNonQuery();
                                     MessageBox.Show("Sign up successfully", "Success message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -99,8 +97,63 @@ namespace OOP_finalProject.LoginForm
                 {
                     sqlConnection.Close();
                 }
-
             }
+        }
+
+        // Các phương thức mới được thêm vào
+        private void lblSignIn_MouseEnter(object sender, EventArgs e)
+        {
+            lblSignIn.ForeColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void lblSignIn_MouseLeave(object sender, EventArgs e)
+        {
+            lblSignIn.ForeColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void txtNameSignUp_Enter(object sender, EventArgs e)
+        {
+            panelNameLine.BackColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void txtNameSignUp_Leave(object sender, EventArgs e)
+        {
+            panelNameLine.BackColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void txtEmailSignUp_Enter(object sender, EventArgs e)
+        {
+            panelEmailLine.BackColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void txtEmailSignUp_Leave(object sender, EventArgs e)
+        {
+            panelEmailLine.BackColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void txtPasswordSignUp_Enter(object sender, EventArgs e)
+        {
+            panelPasswordLine.BackColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void txtPasswordSignUp_Leave(object sender, EventArgs e)
+        {
+            panelPasswordLine.BackColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void btnSignUp_MouseEnter(object sender, EventArgs e)
+        {
+            btnSignUp.BackColor = Color.FromArgb(52, 152, 219);
+        }
+
+        private void btnSignUp_MouseLeave(object sender, EventArgs e)
+        {
+            btnSignUp.BackColor = Color.FromArgb(41, 128, 185);
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
