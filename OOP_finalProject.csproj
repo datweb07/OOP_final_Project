@@ -46,12 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Customer.cs" />
+    <Compile Include="Base\Employee.cs" />
+    <Compile Include="Base\Product.cs" />
+    <Compile Include="Base\Store.cs" />
     <Compile Include="CornerRadiusForm\Design.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CornerRadiusForm\EllipseControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Customers\RegularCustomer.cs" />
+    <Compile Include="Customers\VIPCustomer.cs" />
+    <Compile Include="Employees\Cashier.cs" />
+    <Compile Include="Employees\Manager.cs" />
+    <Compile Include="Employees\Stocker.cs" />
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +79,11 @@
     <Compile Include="MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="Products\BeverageProduct.cs" />
+    <Compile Include="Products\ClothingProduct.cs" />
+    <Compile Include="Products\ElectronicProduct.cs" />
+    <Compile Include="Products\FoodProduct.cs" />
+    <Compile Include="Products\HouseholdProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LoginForm\SignIn.resx">
