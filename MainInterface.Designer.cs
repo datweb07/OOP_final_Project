@@ -48,29 +48,28 @@ namespace OOP_finalProject
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(47, 66);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 100);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(439, 461);
+            this.pictureBox1.Size = new System.Drawing.Size(400, 400);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // lblInstruction
             // 
-            this.lblInstruction.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblInstruction.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblInstruction.Location = new System.Drawing.Point(118, 47);
+            this.lblInstruction.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblInstruction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.lblInstruction.Location = new System.Drawing.Point(100, 20);
             this.lblInstruction.Name = "lblInstruction";
-            this.lblInstruction.Size = new System.Drawing.Size(230, 30);
+            this.lblInstruction.Size = new System.Drawing.Size(280, 40);
             this.lblInstruction.TabIndex = 8;
-            this.lblInstruction.Text = "Chọn chế độ đăng nhập";
+            this.lblInstruction.Text = "Chào mừng bạn!";
             this.lblInstruction.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox5
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(1058, 12);
@@ -83,13 +82,13 @@ namespace OOP_finalProject
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.lblInstruction);
             this.panel1.Controls.Add(this.btnEmployee);
             this.panel1.Controls.Add(this.btnAdmin);
-            this.panel1.Location = new System.Drawing.Point(526, 202);
+            this.panel1.Location = new System.Drawing.Point(500, 200);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(470, 159);
+            this.panel1.Size = new System.Drawing.Size(500, 200);
             this.panel1.TabIndex = 10;
             // 
             // btnEmployee
@@ -100,31 +99,32 @@ namespace OOP_finalProject
             this.btnEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEmployee.FlatAppearance.BorderSize = 0;
             this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmployee.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
+            this.btnEmployee.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.btnEmployee.ForeColor = System.Drawing.Color.White;
-            this.btnEmployee.Location = new System.Drawing.Point(273, 94);
+            this.btnEmployee.Location = new System.Drawing.Point(270, 100);
             this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Size = new System.Drawing.Size(180, 50);
+            this.btnEmployee.Size = new System.Drawing.Size(200, 55);
             this.btnEmployee.TabIndex = 7;
-            this.btnEmployee.Text = "EMPLOYEE";
+            this.btnEmployee.Text = "ĐĂNG KÝ";
             this.btnEmployee.TextClor = System.Drawing.Color.White;
             this.btnEmployee.UseVisualStyleBackColor = false;
+            this.btnEmployee.Click += new System.EventHandler(this.btnEmployee_Click_1);
             // 
             // btnAdmin
             // 
-            this.btnAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.btnAdmin.BorderRadius = 29;
             this.btnAdmin.BorderSize = 0;
             this.btnAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdmin.FlatAppearance.BorderSize = 0;
             this.btnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdmin.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
+            this.btnAdmin.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.btnAdmin.ForeColor = System.Drawing.Color.White;
-            this.btnAdmin.Location = new System.Drawing.Point(15, 94);
+            this.btnAdmin.Location = new System.Drawing.Point(30, 100);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(180, 50);
+            this.btnAdmin.Size = new System.Drawing.Size(200, 55);
             this.btnAdmin.TabIndex = 6;
-            this.btnAdmin.Text = "ADMIN";
+            this.btnAdmin.Text = "ĐĂNG NHẬP";
             this.btnAdmin.TextClor = System.Drawing.Color.White;
             this.btnAdmin.UseVisualStyleBackColor = false;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click_1);
@@ -138,7 +138,7 @@ namespace OOP_finalProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1104, 614);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
@@ -153,6 +153,7 @@ namespace OOP_finalProject
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
 

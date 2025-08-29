@@ -11,32 +11,9 @@ namespace OOP_finalProject
             InitializeComponent();
         }
 
-        private void BtnAdmin_Click(object sender, EventArgs e)
-        {
-            // Mở form đăng nhập Admin
-            SignInAdmin signInAdmin = new SignInAdmin();
-            signInAdmin.Show();
-            this.Hide(); // Ẩn form hiện tại
-        }
-
-        private void BtnEmployee_Click(object sender, EventArgs e)
-        {
-            // Mở form đăng nhập Employee
-            SignInEmployee signInEmployee = new SignInEmployee();
-            signInEmployee.Show();
-            this.Hide(); // Ẩn form hiện tại
-        }
-
         private void lblCloseSignIn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            // Có thể thêm chức năng hiển thị thông tin về ứng dụng
-            MessageBox.Show("G_D - General Development\nHệ thống quản lý", "Thông tin",
-                          MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Phương thức để hiển thị lại MainInterface khi người dùng đóng form đăng nhập
@@ -54,6 +31,12 @@ namespace OOP_finalProject
         {
             SignIn signIn = new SignIn();
             signIn.Show();
+        }
+
+        private void btnEmployee_Click_1(object sender, EventArgs e)
+        {
+            SignUp signUp = new SignUp();
+            signUp.Show();
         }
     }
 }
