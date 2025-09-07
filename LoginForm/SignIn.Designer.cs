@@ -36,14 +36,14 @@
             this.chkShowPassword_SignIn = new System.Windows.Forms.CheckBox();
             this.lblSignUp = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSignIn = new customButton.Design();
             this.txtUserNameSignIn = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPasswordSignIn = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ellipseControlSignIn = new customButton.EllipseControl();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.btnSignIn = new customButton.Design();
+            this.ellipseControlSignIn = new customButton.EllipseControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -135,31 +135,13 @@
             this.label1.Text = "Don\'t have an account?";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnSignIn
-            // 
-            this.btnSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSignIn.BorderRadius = 29;
-            this.btnSignIn.BorderSize = 0;
-            this.btnSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignIn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignIn.ForeColor = System.Drawing.Color.White;
-            this.btnSignIn.Location = new System.Drawing.Point(145, 375);
-            this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(272, 40);
-            this.btnSignIn.TabIndex = 7;
-            this.btnSignIn.Text = "SIGN IN";
-            this.btnSignIn.TextClor = System.Drawing.Color.White;
-            this.btnSignIn.UseVisualStyleBackColor = false;
-            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
-            // 
             // txtUserNameSignIn
             // 
             this.txtUserNameSignIn.BackColor = System.Drawing.Color.White;
             this.txtUserNameSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUserNameSignIn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserNameSignIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtUserNameSignIn.Location = new System.Drawing.Point(145, 192);
+            this.txtUserNameSignIn.Location = new System.Drawing.Point(142, 192);
             this.txtUserNameSignIn.Multiline = true;
             this.txtUserNameSignIn.Name = "txtUserNameSignIn";
             this.txtUserNameSignIn.Size = new System.Drawing.Size(272, 29);
@@ -194,7 +176,7 @@
             this.txtPasswordSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPasswordSignIn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPasswordSignIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPasswordSignIn.Location = new System.Drawing.Point(148, 292);
+            this.txtPasswordSignIn.Location = new System.Drawing.Point(142, 292);
             this.txtPasswordSignIn.Multiline = true;
             this.txtPasswordSignIn.Name = "txtPasswordSignIn";
             this.txtPasswordSignIn.PasswordChar = '•';
@@ -211,11 +193,6 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // ellipseControlSignIn
-            // 
-            this.ellipseControlSignIn.CornerRadius = 30;
-            this.ellipseControlSignIn.TargetControl = this;
-            // 
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
@@ -228,6 +205,29 @@
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // btnSignIn
+            // 
+            this.btnSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnSignIn.BorderRadius = 29;
+            this.btnSignIn.BorderSize = 0;
+            this.btnSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignIn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignIn.ForeColor = System.Drawing.Color.White;
+            this.btnSignIn.Location = new System.Drawing.Point(145, 375);
+            this.btnSignIn.Name = "btnSignIn";
+            this.btnSignIn.Size = new System.Drawing.Size(272, 40);
+            this.btnSignIn.TabIndex = 7;
+            this.btnSignIn.Text = "SIGN IN";
+            this.btnSignIn.TextClor = System.Drawing.Color.White;
+            this.btnSignIn.UseVisualStyleBackColor = false;
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
+            // 
+            // ellipseControlSignIn
+            // 
+            this.ellipseControlSignIn.CornerRadius = 30;
+            this.ellipseControlSignIn.TargetControl = this;
             // 
             // SignIn
             // 

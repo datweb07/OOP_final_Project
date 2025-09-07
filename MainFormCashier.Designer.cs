@@ -41,6 +41,7 @@ namespace OOP_finalProject
             this.btnInvoiceList = new System.Windows.Forms.Button();
             this.btnOrderList = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
+            this.btnAccount = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlRightContent = new System.Windows.Forms.Panel();
@@ -100,7 +101,7 @@ namespace OOP_finalProject
             this.pnlMenuContainer.BackColor = System.Drawing.Color.DodgerBlue;
             this.pnlMenuContainer.Controls.Add(this.btnInvoiceList);
             this.pnlMenuContainer.Controls.Add(this.btnOrderList);
-            this.pnlMenuContainer.Controls.Add(this.btnOrder);
+            this.pnlMenuContainer.Controls.Add(this.btnAccount);
             this.pnlMenuContainer.Controls.Add(this.btnExit);
             this.pnlMenuContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMenuContainer.Location = new System.Drawing.Point(0, 52);
@@ -118,7 +119,7 @@ namespace OOP_finalProject
             this.btnInvoiceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInvoiceList.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnInvoiceList.ForeColor = System.Drawing.Color.White;
-            this.btnInvoiceList.Location = new System.Drawing.Point(9, 10);
+            this.btnInvoiceList.Location = new System.Drawing.Point(9, 312);
             this.btnInvoiceList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInvoiceList.Name = "btnInvoiceList";
             this.btnInvoiceList.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -136,7 +137,7 @@ namespace OOP_finalProject
             this.btnOrderList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderList.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnOrderList.ForeColor = System.Drawing.Color.White;
-            this.btnOrderList.Location = new System.Drawing.Point(9, 48);
+            this.btnOrderList.Location = new System.Drawing.Point(9, 350);
             this.btnOrderList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrderList.Name = "btnOrderList";
             this.btnOrderList.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -154,7 +155,7 @@ namespace OOP_finalProject
             this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrder.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnOrder.ForeColor = System.Drawing.Color.White;
-            this.btnOrder.Location = new System.Drawing.Point(9, 86);
+            this.btnOrder.Location = new System.Drawing.Point(9, 369);
             this.btnOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -163,6 +164,24 @@ namespace OOP_finalProject
             this.btnOrder.Text = "🛒 Tạo Đơn Hàng";
             this.btnOrder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrder.UseVisualStyleBackColor = false;
+            // 
+            // btnAccount
+            // 
+            this.btnAccount.BackColor = System.Drawing.Color.Transparent;
+            this.btnAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAccount.FlatAppearance.BorderSize = 0;
+            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnAccount.ForeColor = System.Drawing.Color.White;
+            this.btnAccount.Location = new System.Drawing.Point(9, 388);
+            this.btnAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAccount.Name = "btnAccount";
+            this.btnAccount.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnAccount.Size = new System.Drawing.Size(228, 34);
+            this.btnAccount.TabIndex = 12;
+            this.btnAccount.Text = "👤 Tài Khoản";
+            this.btnAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAccount.UseVisualStyleBackColor = false;
             // 
             // btnExit
             // 
@@ -264,7 +283,7 @@ namespace OOP_finalProject
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             // 
-            // MainFormCashier
+            // MainFormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -273,7 +292,7 @@ namespace OOP_finalProject
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(877, 460);
-            this.Name = "MainFormCashier";
+            this.Name = "MainFormAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hệ Thống Quản Lý Bán Hàng Siêu Thị";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -304,9 +323,12 @@ namespace OOP_finalProject
         private ToolStripStatusLabel lblStatus;
         private ToolStripStatusLabel lblTime;
         private System.Windows.Forms.Timer timer1;
+
+        // Menu buttons
         private Button btnInvoiceList;
         private Button btnOrderList;
         private Button btnOrder;
+        private Button btnAccount;
         private Button btnExit;
     }
 }

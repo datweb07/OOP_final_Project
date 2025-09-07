@@ -35,30 +35,30 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblSignIn = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnSignUp = new customButton.Design();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelPasswordLine = new System.Windows.Forms.Panel();
             this.chkShowPasswordSignUp = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPasswordSignUp = new System.Windows.Forms.TextBox();
+            this.lblSignIn = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnSignUp = new customButton.Design();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.cboRole = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelEmailLine = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEmailSignUp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cboRole = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.ellipseControlSignUp = new customButton.EllipseControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -71,7 +71,7 @@
             this.txtNameSignUp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNameSignUp.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNameSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtNameSignUp.Location = new System.Drawing.Point(36, 44);
+            this.txtNameSignUp.Location = new System.Drawing.Point(33, 45);
             this.txtNameSignUp.Multiline = true;
             this.txtNameSignUp.Name = "txtNameSignUp";
             this.txtNameSignUp.Size = new System.Drawing.Size(272, 29);
@@ -137,6 +137,63 @@
             this.panel2.Size = new System.Drawing.Size(591, 595);
             this.panel2.TabIndex = 2;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.panelPasswordLine);
+            this.panel4.Controls.Add(this.chkShowPasswordSignUp);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.txtPasswordSignUp);
+            this.panel4.Location = new System.Drawing.Point(148, 348);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(311, 124);
+            this.panel4.TabIndex = 4;
+            // 
+            // panelPasswordLine
+            // 
+            this.panelPasswordLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panelPasswordLine.Location = new System.Drawing.Point(36, 76);
+            this.panelPasswordLine.Name = "panelPasswordLine";
+            this.panelPasswordLine.Size = new System.Drawing.Size(272, 1);
+            this.panelPasswordLine.TabIndex = 3;
+            // 
+            // chkShowPasswordSignUp
+            // 
+            this.chkShowPasswordSignUp.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkShowPasswordSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
+            this.chkShowPasswordSignUp.Location = new System.Drawing.Point(182, 82);
+            this.chkShowPasswordSignUp.Name = "chkShowPasswordSignUp";
+            this.chkShowPasswordSignUp.Size = new System.Drawing.Size(126, 24);
+            this.chkShowPasswordSignUp.TabIndex = 2;
+            this.chkShowPasswordSignUp.Text = "Show password";
+            this.chkShowPasswordSignUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkShowPasswordSignUp.UseVisualStyleBackColor = true;
+            this.chkShowPasswordSignUp.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(32, 15);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 29);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Password";
+            // 
+            // txtPasswordSignUp
+            // 
+            this.txtPasswordSignUp.BackColor = System.Drawing.Color.White;
+            this.txtPasswordSignUp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPasswordSignUp.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPasswordSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPasswordSignUp.Location = new System.Drawing.Point(33, 48);
+            this.txtPasswordSignUp.Multiline = true;
+            this.txtPasswordSignUp.Name = "txtPasswordSignUp";
+            this.txtPasswordSignUp.PasswordChar = '•';
+            this.txtPasswordSignUp.Size = new System.Drawing.Size(272, 29);
+            this.txtPasswordSignUp.TabIndex = 0;
+            this.txtPasswordSignUp.Enter += new System.EventHandler(this.txtPasswordSignUp_Enter);
+            this.txtPasswordSignUp.Leave += new System.EventHandler(this.txtPasswordSignUp_Leave);
+            // 
             // lblSignIn
             // 
             this.lblSignIn.BackColor = System.Drawing.Color.White;
@@ -195,62 +252,17 @@
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
             // 
-            // panel4
+            // cboRole
             // 
-            this.panel4.Controls.Add(this.panelPasswordLine);
-            this.panel4.Controls.Add(this.chkShowPasswordSignUp);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.txtPasswordSignUp);
-            this.panel4.Location = new System.Drawing.Point(148, 348);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(311, 124);
-            this.panel4.TabIndex = 4;
-            // 
-            // panelPasswordLine
-            // 
-            this.panelPasswordLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.panelPasswordLine.Location = new System.Drawing.Point(36, 76);
-            this.panelPasswordLine.Name = "panelPasswordLine";
-            this.panelPasswordLine.Size = new System.Drawing.Size(272, 1);
-            this.panelPasswordLine.TabIndex = 3;
-            // 
-            // chkShowPasswordSignUp
-            // 
-            this.chkShowPasswordSignUp.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowPasswordSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
-            this.chkShowPasswordSignUp.Location = new System.Drawing.Point(182, 82);
-            this.chkShowPasswordSignUp.Name = "chkShowPasswordSignUp";
-            this.chkShowPasswordSignUp.Size = new System.Drawing.Size(126, 24);
-            this.chkShowPasswordSignUp.TabIndex = 2;
-            this.chkShowPasswordSignUp.Text = "Show password";
-            this.chkShowPasswordSignUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkShowPasswordSignUp.UseVisualStyleBackColor = true;
-            this.chkShowPasswordSignUp.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(32, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 29);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Password";
-            // 
-            // txtPasswordSignUp
-            // 
-            this.txtPasswordSignUp.BackColor = System.Drawing.Color.White;
-            this.txtPasswordSignUp.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPasswordSignUp.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPasswordSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPasswordSignUp.Location = new System.Drawing.Point(36, 47);
-            this.txtPasswordSignUp.Multiline = true;
-            this.txtPasswordSignUp.Name = "txtPasswordSignUp";
-            this.txtPasswordSignUp.PasswordChar = '•';
-            this.txtPasswordSignUp.Size = new System.Drawing.Size(272, 29);
-            this.txtPasswordSignUp.TabIndex = 0;
-            this.txtPasswordSignUp.Enter += new System.EventHandler(this.txtPasswordSignUp_Enter);
-            this.txtPasswordSignUp.Leave += new System.EventHandler(this.txtPasswordSignUp_Leave);
+            this.cboRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboRole.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.cboRole.Items.AddRange(new object[] {
+            "admin",
+            "seller"});
+            this.cboRole.Location = new System.Drawing.Point(476, 426);
+            this.cboRole.Name = "cboRole";
+            this.cboRole.Size = new System.Drawing.Size(99, 28);
+            this.cboRole.TabIndex = 9;
             // 
             // pictureBox2
             // 
@@ -297,7 +309,7 @@
             this.txtEmailSignUp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEmailSignUp.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmailSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtEmailSignUp.Location = new System.Drawing.Point(36, 51);
+            this.txtEmailSignUp.Location = new System.Drawing.Point(33, 51);
             this.txtEmailSignUp.Multiline = true;
             this.txtEmailSignUp.Name = "txtEmailSignUp";
             this.txtEmailSignUp.Size = new System.Drawing.Size(272, 29);
@@ -315,18 +327,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Sign Up";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboRole
-            // 
-            this.cboRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRole.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.cboRole.Items.AddRange(new object[] {
-            "admin",
-            "seller"});
-            this.cboRole.Location = new System.Drawing.Point(476, 426);
-            this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(99, 28);
-            this.cboRole.TabIndex = 9;
             // 
             // pictureBox4
             // 
@@ -373,9 +373,9 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

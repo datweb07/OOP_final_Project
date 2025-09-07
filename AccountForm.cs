@@ -7,11 +7,15 @@ namespace OOP_finalProject
 {
     public partial class AccountForm : Form
     {
+        private Label sessionDurationLabel;
+        private Timer sessionTimer;
+
         public AccountForm()
         {
             InitializeComponent();
             InitializeCustomComponents();
             LoadAccountInfo();
+            StartSessionTimer();
         }
 
         private void InitializeCustomComponents()
@@ -32,7 +36,6 @@ namespace OOP_finalProject
 
         private void CreateAccountControls()
         {
-            // Main container
             Panel mainPanel = new Panel
             {
                 Dock = DockStyle.Fill,
@@ -46,11 +49,11 @@ namespace OOP_finalProject
                 Text = "THÔNG TIN TÀI KHOẢN",
                 Font = new Font("Segoe UI", 24, FontStyle.Bold),
                 ForeColor = Color.FromArgb(52, 73, 94),
-                AutoSize = true,
+                AutoSize = false,
+                Size = new Size(720, 50),
                 Location = new Point(40, 40)
             };
 
-            // Account info container
             Panel infoContainer = new Panel
             {
                 Location = new Point(40, 100),
@@ -95,10 +98,10 @@ namespace OOP_finalProject
             // Login time
             CreateInfoRow(infoContainer, "Thời gian đăng nhập:", UserSession.LoginTime.ToString("dd/MM/yyyy HH:mm:ss"), leftMargin, startY + labelSpacing * 3);
 
-            // Session duration
+            // Session duration - lưu reference để cập nhật sau
             TimeSpan sessionDuration = DateTime.Now - UserSession.LoginTime;
             string durationText = $"{sessionDuration.Hours:D2}:{sessionDuration.Minutes:D2}:{sessionDuration.Seconds:D2}";
-            CreateInfoRow(infoContainer, "Thời gian hoạt động:", durationText, leftMargin, startY + labelSpacing * 4);
+            sessionDurationLabel = CreateInfoRowWithReference(infoContainer, "Thời gian hoạt động:", durationText, leftMargin, startY + labelSpacing * 4);
 
             // Action buttons
             Panel buttonPanel = new Panel
@@ -108,27 +111,13 @@ namespace OOP_finalProject
                 BackColor = Color.Transparent
             };
 
-            Button btnChangePassword = new Button
-            {
-                Text = "🔒 Đổi mật khẩu",
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                ForeColor = Color.White,
-                BackColor = Color.FromArgb(52, 152, 219),
-                Location = new Point(0, 10),
-                Size = new Size(160, 40),
-                FlatStyle = FlatStyle.Flat,
-                Cursor = Cursors.Hand
-            };
-            btnChangePassword.FlatAppearance.BorderSize = 0;
-            btnChangePassword.Click += BtnChangePassword_Click;
-
             Button btnLogout = new Button
             {
                 Text = "🚪 Đăng xuất",
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
                 ForeColor = Color.White,
                 BackColor = Color.FromArgb(231, 76, 60),
-                Location = new Point(180, 10),
+                Location = new Point((buttonPanel.Width - 140) / 2, 10),
                 Size = new Size(140, 40),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand
@@ -136,30 +125,12 @@ namespace OOP_finalProject
             btnLogout.FlatAppearance.BorderSize = 0;
             btnLogout.Click += BtnLogout_Click;
 
-            Button btnRefresh = new Button
-            {
-                Text = "🔄 Làm mới",
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                ForeColor = Color.White,
-                BackColor = Color.FromArgb(46, 204, 113),
-                Location = new Point(340, 10),
-                Size = new Size(140, 40),
-                FlatStyle = FlatStyle.Flat,
-                Cursor = Cursors.Hand
-            };
-            btnRefresh.FlatAppearance.BorderSize = 0;
-            btnRefresh.Click += BtnRefresh_Click;
 
-            // Add hover effects
-            AddButtonHoverEffect(btnChangePassword, Color.FromArgb(52, 152, 219));
             AddButtonHoverEffect(btnLogout, Color.FromArgb(231, 76, 60));
-            AddButtonHoverEffect(btnRefresh, Color.FromArgb(46, 204, 113));
 
             // Add controls to containers
             infoContainer.Controls.Add(avatarPanel);
-            buttonPanel.Controls.Add(btnChangePassword);
             buttonPanel.Controls.Add(btnLogout);
-            buttonPanel.Controls.Add(btnRefresh);
 
             mainPanel.Controls.Add(titleLabel);
             mainPanel.Controls.Add(infoContainer);
@@ -177,7 +148,8 @@ namespace OOP_finalProject
                 ForeColor = Color.FromArgb(52, 73, 94),
                 Location = new Point(x, y),
                 Size = new Size(150, 25),
-                TextAlign = ContentAlignment.MiddleLeft
+                TextAlign = ContentAlignment.MiddleLeft,
+                AutoSize = false
             };
 
             Label lblValue = new Label
@@ -187,11 +159,42 @@ namespace OOP_finalProject
                 ForeColor = Color.FromArgb(85, 85, 85),
                 Location = new Point(x + 160, y),
                 Size = new Size(300, 25),
-                TextAlign = ContentAlignment.MiddleLeft
+                TextAlign = ContentAlignment.MiddleLeft,
+                AutoSize = false
             };
 
             container.Controls.Add(lblTitle);
             container.Controls.Add(lblValue);
+        }
+
+        private Label CreateInfoRowWithReference(Panel container, string label, string value, int x, int y)
+        {
+            Label lblTitle = new Label
+            {
+                Text = label,
+                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                ForeColor = Color.FromArgb(52, 73, 94),
+                Location = new Point(x, y),
+                Size = new Size(150, 25),
+                TextAlign = ContentAlignment.MiddleLeft,
+                AutoSize = false
+            };
+
+            Label lblValue = new Label
+            {
+                Text = value,
+                Font = new Font("Segoe UI", 12),
+                ForeColor = Color.FromArgb(85, 85, 85),
+                Location = new Point(x + 160, y),
+                Size = new Size(300, 25),
+                TextAlign = ContentAlignment.MiddleLeft,
+                AutoSize = false
+            };
+
+            container.Controls.Add(lblTitle);
+            container.Controls.Add(lblValue);
+
+            return lblValue; // Trả về label value để cập nhật sau
         }
 
         private void AddButtonHoverEffect(Button button, Color originalColor)
@@ -210,13 +213,6 @@ namespace OOP_finalProject
             }
         }
 
-        private void BtnChangePassword_Click(object sender, EventArgs e)
-        {
-            // Mở form đổi mật khẩu (có thể tạo sau)
-            MessageBox.Show("Chức năng đổi mật khẩu sẽ được triển khai trong tương lai!",
-                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void BtnLogout_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -233,31 +229,15 @@ namespace OOP_finalProject
                 // Đóng tất cả forms và quay về form đăng nhập
                 foreach (Form form in Application.OpenForms.Cast<Form>().ToArray())
                 {
-                    if (form.Name != "LoginForm") // Giả sử form đăng nhập có tên là LoginForm
+                    if (form.Name != "MainInterface") // Giả sử form đăng nhập có tên là LoginForm
                     {
                         form.Hide();
                     }
                 }
 
-                // Hiển thị form đăng nhập (bạn cần tạo instance mới hoặc show form có sẵn)
-                MessageBox.Show("Đăng xuất thành công!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Application.Exit(); // Hoặc có thể thoát ứng dụng
+                MessageBox.Show("Đăng xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void BtnRefresh_Click(object sender, EventArgs e)
-        {
-            // Refresh lại thông tin hiển thị
-            this.Controls.Clear();
-            CreateAccountControls();
-            MessageBox.Show("Thông tin đã được làm mới!", "Thông báo",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        // Timer để cập nhật thời gian hoạt động (optional)
-        private Timer sessionTimer;
 
         private void StartSessionTimer()
         {
@@ -269,24 +249,11 @@ namespace OOP_finalProject
 
         private void RefreshSessionDuration()
         {
-            // Cập nhật thời gian hoạt động trong session
-            TimeSpan sessionDuration = DateTime.Now - UserSession.LoginTime;
-            string durationText = $"{sessionDuration.Hours:D2}:{sessionDuration.Minutes:D2}:{sessionDuration.Seconds:D2}";
-
-            // Tìm và cập nhật label thời gian hoạt động
-            foreach (Control control in this.Controls)
+            if (sessionDurationLabel != null)
             {
-                if (control is Panel mainPanel)
-                {
-                    foreach (Control subControl in mainPanel.Controls)
-                    {
-                        if (subControl is Panel infoContainer)
-                        {
-                            // Tìm label thời gian hoạt động và cập nhật
-                            // Logic cập nhật có thể được triển khai ở đây
-                        }
-                    }
-                }
+                TimeSpan sessionDuration = DateTime.Now - UserSession.LoginTime;
+                string durationText = $"{sessionDuration.Hours:D2}:{sessionDuration.Minutes:D2}:{sessionDuration.Seconds:D2}";
+                sessionDurationLabel.Text = durationText;
             }
         }
 

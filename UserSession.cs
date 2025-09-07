@@ -7,7 +7,6 @@ namespace OOP_finalProject
         public static string Username { get; set; }
         public static string Role { get; set; }
         public static DateTime LoginTime { get; set; }
-        public static string FullName { get; set; }
         public static string Email { get; set; }
 
         // Method để set thông tin user khi đăng nhập thành công
@@ -15,7 +14,6 @@ namespace OOP_finalProject
         {
             Username = username;
             Role = role;
-            FullName = string.IsNullOrEmpty(fullName) ? username : fullName;
             Email = email;
             LoginTime = DateTime.Now;
         }
@@ -25,7 +23,6 @@ namespace OOP_finalProject
         {
             Username = string.Empty;
             Role = string.Empty;
-            FullName = string.Empty;
             Email = string.Empty;
             LoginTime = DateTime.MinValue;
         }
@@ -39,7 +36,7 @@ namespace OOP_finalProject
         // Method để lấy tên hiển thị
         public static string GetDisplayName()
         {
-            return string.IsNullOrEmpty(FullName) ? Username : FullName;
+            return Username;
         }
 
         // Method để lấy role hiển thị bằng tiếng Việt
@@ -52,7 +49,7 @@ namespace OOP_finalProject
                 case "seller":
                     return "Nhân viên bán hàng";
                 case "manager":
-                    return "Quản lý";
+                    return "Quản lý";   // Có thể không cần
                 default:
                     return Role ?? "Không xác định";
             }

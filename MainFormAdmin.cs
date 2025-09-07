@@ -1,7 +1,4 @@
-﻿using OOP_finalProject;
-using OOP_finalProject.Products;
-using System;
-using System.Data.SqlClient;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 

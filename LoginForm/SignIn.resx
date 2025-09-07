@@ -68441,16 +68441,10 @@
         f6Tju7ICZe1FP8ke5hbSFC36Rmk9Sv3MsbIsoz9ex//Z
 </value>
   </data>
-  <metadata name="ellipseControlSignIn.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>100</value>
-  </metadata>
   <data name="pictureBox5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAACkGSURBVHhe7d1f
+        DAAACwwBP0AiyAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAACkGSURBVHhe7d1f
         qKXVff/xjyQK8c+FOMhAB8JIGnLRhkJobqZTbMVeFFvphbmw/yPUCwmFEDBgQSTeaBOobS8qJKIUDb9U
         IVT6R0sxgkqgpYXYgFIo1jYhJJommKiDtvnxnfWcGc9nrZk5c5717P191n5fvL4cn33O3p+1Xeu7njln
         72frJz/5ibCfpCOSTki6TdL9kh6W9ISkpyS9IOlFSa9Iek3SKUnxQwDOLdZJrJdYN7F+Yh3Feop1Fesr
@@ -68629,4 +68623,10 @@
         7gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="ellipseControlSignIn.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>100</value>
+  </metadata>
 </root>
