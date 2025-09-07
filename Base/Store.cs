@@ -10,6 +10,5 @@ namespace OOP_finalProject.Base
     public class Store
     {
 
-
     }
 }

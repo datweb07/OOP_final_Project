@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OOP_finalProject.LoginForm
@@ -24,7 +19,7 @@ namespace OOP_finalProject.LoginForm
         {
             if (txtUserNameSignIn.Text == "" || txtPasswordSignIn.Text == "")
             {
-                MessageBox.Show("Please fill in the required fields", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -34,30 +29,64 @@ namespace OOP_finalProject.LoginForm
                     {
                         sqlConnection.Open();
 
-                        String selectData = "SELECT * FROM admin WHERE username = @username AND password = @password";
+                        //String selectData = "SELECT * FROM admin WHERE username = @username AND password = @password";
+                        //using (SqlCommand cmd = new SqlCommand(selectData, sqlConnection))
+                        //{
+                        //    cmd.Parameters.AddWithValue("@username", txtUserNameSignIn.Text);
+                        //    cmd.Parameters.AddWithValue("@password", txtPasswordSignIn.Text);
+                        //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        //    DataTable dataTable = new DataTable();
+                        //    adapter.Fill(dataTable);
+                        //    if (dataTable.Rows.Count >= 1)
+                        //    {
+                        //        MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //        MainForm mainForm = new MainForm();
+                        //        mainForm.Show();
+                        //        this.Hide();
+                        //    }
+                        //    else
+                        //    {
+                        //        MessageBox.Show("Tên người dùng hoặc mật khẩu không chính xác", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //    }
+                        //}
+
+                        String selectData = "SELECT role FROM users WHERE username = @username AND password = @password";
                         using (SqlCommand cmd = new SqlCommand(selectData, sqlConnection))
                         {
                             cmd.Parameters.AddWithValue("@username", txtUserNameSignIn.Text);
                             cmd.Parameters.AddWithValue("@password", txtPasswordSignIn.Text);
-                            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                            DataTable dataTable = new DataTable();
-                            adapter.Fill(dataTable);
-                            if (dataTable.Rows.Count >= 1)
+
+                            object result = cmd.ExecuteScalar(); // Lấy ra giá trị role (nếu có)
+
+                            if (result != null)
                             {
-                                MessageBox.Show("Sign in successfully", "Success message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                MainInterface frmMainInterface = new MainInterface();
-                                frmMainInterface.Show();
+                                string role = result.ToString();
+
+                                if (role == "admin")
+                                {
+                                    MessageBox.Show("Đăng nhập thành công với quyền Admin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MainFormAdmin mainFormAdmin = new MainFormAdmin();
+                                    mainFormAdmin.Show();
+                                }
+                                else if (role == "seller")
+                                {
+                                    MessageBox.Show("Đăng nhập thành công với quyền Seller", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MainFormSeller mainFormSeller = new MainFormSeller();
+                                    mainFormSeller.Show();
+                                }
+
                                 this.Hide();
                             }
                             else
                             {
-                                MessageBox.Show("Username or password is incorrect", "Error message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Tên người dùng hoặc mật khẩu không chính xác", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
+
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error connecting to database: " + ex.Message, "Error message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Lỗi kết nối tới cơ sở dữ liệu: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     finally
                     {

@@ -48,39 +48,44 @@ namespace OOP_finalProject.LoginForm
                 try
                 {
                     sqlConnection.Open();
-                    String checkUserName = "SELECT * FROM admin WHERE username = '" + txtNameSignUp.Text.Trim() + "'";
+                    String checkUserName = "SELECT * FROM users WHERE username = @username";
 
                     using (SqlCommand sqlCommand = new SqlCommand(checkUserName, sqlConnection))
                     {
+                        sqlCommand.Parameters.AddWithValue("@username", txtNameSignUp.Text.Trim());
+
                         SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
                         if (dataTable.Rows.Count >= 1)
                         {
-                            MessageBox.Show("This username is already taken, please choose another one", "Error message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Tên người dùng đã tồn tại, chọn tên khác", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else
                         {
-                            if (txtNameSignUp.Text == "" || txtPasswordSignUp.Text == "" || txtEmailSignUp.Text == "")
+                            if (txtNameSignUp.Text == "" || txtPasswordSignUp.Text == "" || txtEmailSignUp.Text == "" || cboRole.SelectedIndex == -1)
                             {
-                                MessageBox.Show("Please fill in all fields", "Error message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Vui lòng điền đầy đủ thông tin và chọn role", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else
                             {
-                                string insertData = "INSERT INTO admin (email, username, password, date_created) VALUES (@email, @username, @password, @date)";
+                                string insertData = "INSERT INTO users (email, username, password, role, date_created) " +
+                                                    "VALUES (@email, @username, @password, @role, @date)";
                                 DateTime date = DateTime.Today;
+
                                 using (SqlCommand sqlCommand1 = new SqlCommand(insertData, sqlConnection))
                                 {
                                     sqlCommand1.Parameters.AddWithValue("@email", txtEmailSignUp.Text.Trim());
                                     sqlCommand1.Parameters.AddWithValue("@username", txtNameSignUp.Text.Trim());
                                     sqlCommand1.Parameters.AddWithValue("@password", txtPasswordSignUp.Text.Trim());
+                                    sqlCommand1.Parameters.AddWithValue("@role", cboRole.SelectedItem.ToString());
                                     sqlCommand1.Parameters.AddWithValue("@date", date);
 
                                     sqlCommand1.ExecuteNonQuery();
-                                    MessageBox.Show("Sign up successfully", "Success message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show("Đăng ký thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    //change form
+                                    // Chuyển về form đăng nhập
                                     SignIn frmSignIn = new SignIn();
                                     frmSignIn.Show();
                                     this.Hide();
@@ -91,7 +96,7 @@ namespace OOP_finalProject.LoginForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error connecting to database: " + ex.Message, "Error message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Lỗi kết nối tới cơ sở dữ liệu: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 finally
                 {
@@ -99,6 +104,7 @@ namespace OOP_finalProject.LoginForm
                 }
             }
         }
+
 
         // Các phương thức mới được thêm vào
         private void lblSignIn_MouseEnter(object sender, EventArgs e)

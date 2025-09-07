@@ -50,6 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtEmailSignUp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cboRole = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.ellipseControlSignUp = new customButton.EllipseControl();
@@ -120,11 +121,12 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.lblSignIn);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.btnSignUp);
             this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.cboRole);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label2);
@@ -314,6 +316,18 @@
             this.label2.Text = "Sign Up";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cboRole
+            // 
+            this.cboRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboRole.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.cboRole.Items.AddRange(new object[] {
+            "admin",
+            "seller"});
+            this.cboRole.Location = new System.Drawing.Point(476, 426);
+            this.cboRole.Name = "cboRole";
+            this.cboRole.Size = new System.Drawing.Size(99, 28);
+            this.cboRole.TabIndex = 9;
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
@@ -397,5 +411,7 @@
         private System.Windows.Forms.Panel panelEmailLine;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.ComboBox cboRole;
+
     }
 }
