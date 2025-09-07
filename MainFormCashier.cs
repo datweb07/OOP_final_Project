@@ -1,23 +1,24 @@
-﻿using OOP_finalProject;
-using OOP_finalProject.Products;
-using System;
-using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
-    public partial class MainFormAdmin : Form
+    public partial class MainFormCashier : Form
     {
         private Form currentForm = null;
         private Button currentActiveButton = null;
-        private DashboardForm dashboardForm = null;
 
-        public MainFormAdmin()
+        public MainFormCashier()
         {
             InitializeComponent();
             SetupMenuEvents();
-            UpdateWelcomeMessage(); // Cập nhật message chào mừng với tên user
         }
 
         private void SetupMenuEvents()
@@ -35,32 +36,6 @@ namespace OOP_finalProject
             // Special hover effects cho Exit button
             btnExit.MouseEnter += ExitButton_MouseEnter;
             btnExit.MouseLeave += ExitButton_MouseLeave;
-
-            // Setup click events cho các buttons
-            btnDashboard.Click += btnDashboard_Click;
-            btnCustomer.Click += btnCustomer_Click;
-            btnManager.Click += btnManager_Click;
-            btnSeller.Click += btnSeller_Click;
-            btnProduct.Click += btnProduct_Click;
-            btnBeverage.Click += btnBeverage_Click;
-            btnFood.Click += btnFood_Click;
-            btnHouseHold.Click += btnHouseHold_Click;
-            btnInvoiceList.Click += btnInvoiceList_Click;
-            btnOrderList.Click += btnOrderList_Click;
-            btnAccount.Click += btnAccount_Click; // Thêm sự kiện cho nút Account
-            btnExit.Click += btnExit_Click;
-        }
-
-        private void UpdateWelcomeMessage()
-        {
-            if (UserSession.IsLoggedIn())
-            {
-                lblWelcome.Text = $"Chào mừng {UserSession.GetDisplayName()} ({UserSession.GetRoleDisplayName()})";
-            }
-            else
-            {
-                lblWelcome.Text = "Chào mừng đến với hệ thống quản lý bán hàng siêu thị";
-            }
         }
 
         #region Menu Button Hover Effects
@@ -68,14 +43,14 @@ namespace OOP_finalProject
         {
             Button btn = sender as Button;
             if (btn != currentActiveButton)
-                btn.BackColor = Color.FromArgb(74, 98, 120);
+                btn.BackColor = Color.FromArgb(24, 116, 205); // đậm hơn DodgerBlue
         }
 
         private void MenuButton_MouseLeave(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             if (btn != currentActiveButton)
-                btn.BackColor = Color.Transparent;
+                btn.BackColor = Color.DodgerBlue; // trở về màu nền chính
         }
 
         private void ExitButton_MouseEnter(object sender, EventArgs e)
@@ -143,30 +118,102 @@ namespace OOP_finalProject
                 currentActiveButton = null;
             }
 
-            // Tạo hoặc sử dụng lại DashboardForm
-            if (dashboardForm == null || dashboardForm.IsDisposed)
-            {
-                dashboardForm = new DashboardForm();
-            }
-
-            // Load dashboard form vào panel
-            currentForm = dashboardForm;
-            dashboardForm.TopLevel = false;
-            dashboardForm.FormBorderStyle = FormBorderStyle.None;
-            dashboardForm.Dock = DockStyle.Fill;
-
-            pnlContentArea.Controls.Add(dashboardForm);
+            // Create dashboard content
+            CreateDashboardContent();
 
             // Update header
-            UpdateWelcomeMessage(); // Sử dụng message chào mừng với tên user
+            lblWelcome.Text = "Dashboard - Tổng quan hệ thống";
             lblStatus.Text = "Đang xem Dashboard";
+        }
 
-            dashboardForm.Show();
+        private void CreateDashboardContent()
+        {
+            Panel dashboardPanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.White,
+                Padding = new Padding(30)
+            };
+
+            Label welcomeLabel = new Label
+            {
+                Text = "🏪 CHÀO MỪNG ĐÉN VỚI HỆ THỐNG QUẢN LÝ BÁN HÀNG SIÊU THỊ",
+                Font = new Font("Segoe UI", 18, FontStyle.Bold),
+                ForeColor = Color.FromArgb(52, 73, 94),
+                AutoSize = false,
+                Size = new Size(800, 60),
+                Location = new Point(0, 20),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            Label instructionLabel = new Label
+            {
+                Text = "Chọn chức năng từ menu bên trái để bắt đầu làm việc",
+                Font = new Font("Segoe UI", 14),
+                ForeColor = Color.FromArgb(127, 140, 141),
+                AutoSize = false,
+                Size = new Size(600, 40),
+                Location = new Point(100, 100),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            // Add some statistics cards (placeholder)
+            Panel statsPanel = new Panel
+            {
+                Location = new Point(50, 180),
+                Size = new Size(800, 200),
+                BackColor = Color.Transparent
+            };
+
+            // Quick stats cards
+            AddStatsCard(statsPanel, "👥 Khách Hàng", "1,234", Color.FromArgb(52, 152, 219), 0);
+            AddStatsCard(statsPanel, "📦 Sản Phẩm", "567", Color.FromArgb(46, 204, 113), 200);
+            AddStatsCard(statsPanel, "🛒 Đơn Hàng", "89", Color.FromArgb(241, 196, 15), 400);
+            AddStatsCard(statsPanel, "💰 Doanh Thu", "1.2M", Color.FromArgb(231, 76, 60), 600);
+
+            dashboardPanel.Controls.Add(welcomeLabel);
+            dashboardPanel.Controls.Add(instructionLabel);
+            dashboardPanel.Controls.Add(statsPanel);
+
+            pnlContentArea.Controls.Add(dashboardPanel);
+        }
+
+        private void AddStatsCard(Panel parent, string title, string value, Color color, int x)
+        {
+            Panel card = new Panel
+            {
+                Location = new Point(x, 0),
+                Size = new Size(180, 120),
+                BackColor = color,
+                Margin = new Padding(10)
+            };
+
+            Label titleLabel = new Label
+            {
+                Text = title,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.White,
+                Location = new Point(10, 15),
+                AutoSize = true
+            };
+
+            Label valueLabel = new Label
+            {
+                Text = value,
+                Font = new Font("Segoe UI", 24, FontStyle.Bold),
+                ForeColor = Color.White,
+                Location = new Point(10, 45),
+                AutoSize = true
+            };
+
+            card.Controls.Add(titleLabel);
+            card.Controls.Add(valueLabel);
+            parent.Controls.Add(card);
         }
         #endregion
 
         #region Event Handlers
-        private void MainFormAdmin_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             lblStatus.Text = "Hệ thống đã sẵn sàng";
             LoadDashboard(); // Load dashboard mặc định
@@ -183,48 +230,6 @@ namespace OOP_finalProject
             LoadDashboard();
         }
 
-        // Quản lý khách hàng
-        private void btnCustomer_Click(object sender, EventArgs e)
-        {
-            LoadForm(new CustomerForm(), "👥 Quản Lý Khách Hàng", btnCustomer);
-        }
-
-        // Quản lý nhân viên quản lý
-        private void btnManager_Click(object sender, EventArgs e)
-        {
-            LoadForm(new ManagerForm(), "👨‍💼 Quản Lý Nhân Viên Quản Lý", btnManager);
-        }
-
-        // Quản lý nhân viên bán hàng
-        private void btnSeller_Click(object sender, EventArgs e)
-        {
-            LoadForm(new CashierForm(), "👨‍💻 Quản Lý Nhân Viên Bán Hàng", btnSeller);
-        }
-
-        // Quản lý sản phẩm
-        private void btnProduct_Click(object sender, EventArgs e)
-        {
-            LoadForm(new ProductForm(), "📦 Quản Lý Sản Phẩm", btnProduct);
-        }
-
-        // Quản lý đồ uống
-        private void btnBeverage_Click(object sender, EventArgs e)
-        {
-            LoadForm(new DrinkForm(), "🥤 Quản Lý Đồ Uống", btnBeverage);
-        }
-
-        // Quản lý thực phẩm
-        private void btnFood_Click(object sender, EventArgs e)
-        {
-            LoadForm(new FoodForm(), "🍔 Quản Lý Thực Phẩm", btnFood);
-        }
-
-        // Quản lý đồ gia dụng
-        private void btnHouseHold_Click(object sender, EventArgs e)
-        {
-            LoadForm(new HouseholdProductForm(), "🏠 Quản Lý Đồ Gia Dụng", btnHouseHold);
-        }
-
         // Danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
@@ -237,17 +242,10 @@ namespace OOP_finalProject
             LoadForm(new ListOrderForm(), "📝 Danh Sách Đơn Hàng", btnOrderList);
         }
 
-        // Hiển thị thông tin tài khoản
-        private void btnAccount_Click(object sender, EventArgs e)
+        // Tạo đơn hàng
+        private void btnOrder_Click(object sender, EventArgs e)
         {
-            if (!UserSession.IsLoggedIn())
-            {
-                MessageBox.Show("Không có thông tin người dùng đăng nhập!", "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            LoadForm(new AccountForm(), "👤 Thông Tin Tài Khoản", btnAccount);
+            LoadForm(new NewOrderForm(), "🛒 Tạo Đơn Hàng Mới", btnOrder);
         }
 
         // Thoát ứng dụng
@@ -262,20 +260,11 @@ namespace OOP_finalProject
 
             if (result == DialogResult.Yes)
             {
-                // Clear user session
-                UserSession.ClearUserInfo();
-
                 // Đóng tất cả forms con
                 if (currentForm != null)
                 {
                     currentForm.Close();
                     currentForm.Dispose();
-                }
-
-                if (dashboardForm != null && !dashboardForm.IsDisposed)
-                {
-                    dashboardForm.Close();
-                    dashboardForm.Dispose();
                 }
 
                 Application.Exit();

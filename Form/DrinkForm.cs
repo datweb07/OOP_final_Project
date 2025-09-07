@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
-    public partial class MainFormSeller : Form
+    public partial class DrinkForm : Form
     {
-        public MainFormSeller()
+        public DrinkForm()
         {
             InitializeComponent();
         }
