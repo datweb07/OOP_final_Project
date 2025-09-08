@@ -13,7 +13,7 @@ namespace OOP_finalProject.LoginForm
             InitializeComponent();
         }
 
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\THANH DAT\OneDrive\ドキュメント\signInData.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|data.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
