@@ -85,7 +85,7 @@ namespace OOP_finalProject
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlRightContent);
-            this.splitContainer1.Size = new System.Drawing.Size(1162, 578);
+            this.splitContainer1.Size = new System.Drawing.Size(1162, 642);
             this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
@@ -99,7 +99,7 @@ namespace OOP_finalProject
             this.pnlLeftSidebar.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlLeftSidebar.Name = "pnlLeftSidebar";
-            this.pnlLeftSidebar.Size = new System.Drawing.Size(280, 578);
+            this.pnlLeftSidebar.Size = new System.Drawing.Size(280, 642);
             this.pnlLeftSidebar.TabIndex = 0;
             // 
             // pnlMenuContainer
@@ -123,7 +123,7 @@ namespace OOP_finalProject
             this.pnlMenuContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMenuContainer.Name = "pnlMenuContainer";
             this.pnlMenuContainer.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            this.pnlMenuContainer.Size = new System.Drawing.Size(280, 526);
+            this.pnlMenuContainer.Size = new System.Drawing.Size(280, 590);
             this.pnlMenuContainer.TabIndex = 1;
             // 
             // btnDashboard
@@ -332,7 +332,7 @@ namespace OOP_finalProject
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(9, 495);
+            this.btnExit.Location = new System.Drawing.Point(9, 426);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -365,7 +365,7 @@ namespace OOP_finalProject
             this.pnlRightContent.Location = new System.Drawing.Point(0, 0);
             this.pnlRightContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlRightContent.Name = "pnlRightContent";
-            this.pnlRightContent.Size = new System.Drawing.Size(881, 578);
+            this.pnlRightContent.Size = new System.Drawing.Size(881, 642);
             this.pnlRightContent.TabIndex = 0;
             // 
             // pnlContentArea
@@ -376,7 +376,7 @@ namespace OOP_finalProject
             this.pnlContentArea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContentArea.Name = "pnlContentArea";
             this.pnlContentArea.Padding = new System.Windows.Forms.Padding(18, 15, 18, 15);
-            this.pnlContentArea.Size = new System.Drawing.Size(881, 511);
+            this.pnlContentArea.Size = new System.Drawing.Size(881, 575);
             this.pnlContentArea.TabIndex = 1;
             // 
             // lblWelcome
@@ -399,7 +399,7 @@ namespace OOP_finalProject
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus,
             this.lblTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 556);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 620);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
             this.statusStrip1.Size = new System.Drawing.Size(881, 22);
@@ -428,7 +428,7 @@ namespace OOP_finalProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1162, 578);
+            this.ClientSize = new System.Drawing.Size(1162, 642);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

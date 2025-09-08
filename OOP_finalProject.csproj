@@ -46,31 +46,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountForm.cs">
+    <Compile Include="EntityForm\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccountForm.Designer.cs">
+    <Compile Include="EntityForm\AccountForm.Designer.cs">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\Customer.cs" />
     <Compile Include="Base\Employee.cs" />
     <Compile Include="Base\Product.cs" />
-    <Compile Include="DashboardForm.cs">
+    <Compile Include="EntityForm\DashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DashboardForm.Designer.cs">
+    <Compile Include="EntityForm\DashboardForm.Designer.cs">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\DrinkForm.cs">
+    <Compile Include="EntityForm\DrinkForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\DrinkForm.Designer.cs">
+    <Compile Include="EntityForm\DrinkForm.Designer.cs">
       <DependentUpon>DrinkForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\CashierForm.cs">
+    <Compile Include="EntityForm\CashierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\CashierForm.Designer.cs">
+    <Compile Include="EntityForm\CashierForm.Designer.cs">
       <DependentUpon>CashierForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CornerRadiusForm\Design.cs">
@@ -79,10 +79,10 @@
     <Compile Include="CornerRadiusForm\EllipseControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Form\CustomerForm.cs">
+    <Compile Include="EntityForm\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\CustomerForm.Designer.cs">
+    <Compile Include="EntityForm\CustomerForm.Designer.cs">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Customers\RegularCustomer.cs" />
@@ -90,28 +90,28 @@
     <Compile Include="Employees\Cashier.cs" />
     <Compile Include="Employees\Manager.cs" />
     <Compile Include="Employees\Stocker.cs" />
-    <Compile Include="Form\FoodForm.cs">
+    <Compile Include="EntityForm\FoodForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FoodForm.Designer.cs">
+    <Compile Include="EntityForm\FoodForm.Designer.cs">
       <DependentUpon>FoodForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\HouseholdProductForm.cs">
+    <Compile Include="EntityForm\HouseholdProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\HouseholdProductForm.Designer.cs">
+    <Compile Include="EntityForm\HouseholdProductForm.Designer.cs">
       <DependentUpon>HouseholdProductForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ListInvoiceForm.cs">
+    <Compile Include="EntityForm\ListInvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ListInvoiceForm.Designer.cs">
+    <Compile Include="EntityForm\ListInvoiceForm.Designer.cs">
       <DependentUpon>ListInvoiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ListOrderForm.cs">
+    <Compile Include="EntityForm\ListOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ListOrderForm.Designer.cs">
+    <Compile Include="EntityForm\ListOrderForm.Designer.cs">
       <DependentUpon>ListOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm\SignIn.cs">
@@ -126,40 +126,40 @@
     <Compile Include="LoginForm\SignUp.Designer.cs">
       <DependentUpon>SignUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainFormAdmin.cs">
+    <Compile Include="MainForm\MainFormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainFormAdmin.Designer.cs">
+    <Compile Include="MainForm\MainFormAdmin.Designer.cs">
       <DependentUpon>MainFormAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\MainInterface.cs">
+    <Compile Include="EntityForm\MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\MainInterface.Designer.cs">
+    <Compile Include="EntityForm\MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\NewOrderForm.cs">
+    <Compile Include="EntityForm\NewOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\NewOrderForm.Designer.cs">
+    <Compile Include="EntityForm\NewOrderForm.Designer.cs">
       <DependentUpon>NewOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ManagerForm.cs">
+    <Compile Include="EntityForm\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ManagerForm.Designer.cs">
+    <Compile Include="EntityForm\ManagerForm.Designer.cs">
       <DependentUpon>ManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ProductForm.cs">
+    <Compile Include="EntityForm\ProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ProductForm.Designer.cs">
+    <Compile Include="EntityForm\ProductForm.Designer.cs">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainFormCashier.cs">
+    <Compile Include="MainForm\MainFormCashier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainFormCashier.Designer.cs">
+    <Compile Include="MainForm\MainFormCashier.Designer.cs">
       <DependentUpon>MainFormCashier.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\BeverageProduct.cs" />
@@ -170,10 +170,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserSession.cs" />
-    <EmbeddedResource Include="AccountForm.resx">
+    <EmbeddedResource Include="EntityForm\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DashboardForm.resx">
+    <EmbeddedResource Include="EntityForm\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm\SignIn.resx">
@@ -182,13 +182,13 @@
     <EmbeddedResource Include="LoginForm\SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\MainInterface.resx">
+    <EmbeddedResource Include="EntityForm\MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainFormAdmin.resx">
+    <EmbeddedResource Include="MainForm\MainFormAdmin.resx">
       <DependentUpon>MainFormAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainFormCashier.resx">
+    <EmbeddedResource Include="MainForm\MainFormCashier.resx">
       <DependentUpon>MainFormCashier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -200,7 +200,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
