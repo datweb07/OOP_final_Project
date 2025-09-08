@@ -43,17 +43,6 @@ namespace OOP_finalProject
                 Padding = new Padding(40)
             };
 
-            // Title
-            Label titleLabel = new Label
-            {
-                Text = "THÔNG TIN TÀI KHOẢN",
-                Font = new Font("Segoe UI", 24, FontStyle.Bold),
-                ForeColor = Color.FromArgb(52, 73, 94),
-                AutoSize = false,
-                Size = new Size(720, 50),
-                Location = new Point(40, 40)
-            };
-
             Panel infoContainer = new Panel
             {
                 Location = new Point(40, 100),
@@ -132,7 +121,6 @@ namespace OOP_finalProject
             infoContainer.Controls.Add(avatarPanel);
             buttonPanel.Controls.Add(btnLogout);
 
-            mainPanel.Controls.Add(titleLabel);
             mainPanel.Controls.Add(infoContainer);
             mainPanel.Controls.Add(buttonPanel);
 

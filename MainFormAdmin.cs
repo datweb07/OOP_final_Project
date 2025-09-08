@@ -15,6 +15,7 @@ namespace OOP_finalProject
             InitializeComponent();
             SetupMenuEvents();
             UpdateWelcomeMessage(); // Cập nhật message chào mừng với tên user
+            LoadDashboard(); // Tự động mở Dashboard sau khi đăng nhập
         }
 
         private void SetupMenuEvents()
@@ -56,7 +57,7 @@ namespace OOP_finalProject
             }
             else
             {
-                lblWelcome.Text = "Chào mừng đến với hệ thống quản lý bán hàng siêu thị";
+                lblWelcome.Text = "🏠 Dashboard";
             }
         }
 
@@ -166,7 +167,6 @@ namespace OOP_finalProject
         private void MainFormAdmin_Load(object sender, EventArgs e)
         {
             lblStatus.Text = "Hệ thống đã sẵn sàng";
-            LoadDashboard(); // Load dashboard mặc định
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -250,12 +250,7 @@ namespace OOP_finalProject
         // Thoát ứng dụng
         private void btnExit_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(
-                "Bạn có chắc chắn muốn thoát khỏi ứng dụng?",
-                "Quản Lý Bán Hàng Siêu Thị - Xác Nhận Thoát",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2);
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát khỏi ứng dụng?", "Quản Lý Bán Hàng Siêu Thị - Xác Nhận Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (result == DialogResult.Yes)
             {
@@ -285,11 +280,7 @@ namespace OOP_finalProject
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                DialogResult result = MessageBox.Show(
-                    "Bạn có chắc chắn muốn thoát khỏi ứng dụng?",
-                    "Xác Nhận Thoát",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát khỏi ứng dụng?", "Xác Nhận Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.No)
                 {

@@ -40,9 +40,9 @@ namespace OOP_finalProject
             this.pnlMenuContainer = new System.Windows.Forms.Panel();
             this.btnInvoiceList = new System.Windows.Forms.Button();
             this.btnOrderList = new System.Windows.Forms.Button();
-            this.btnOrder = new System.Windows.Forms.Button();
             this.btnAccount = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlRightContent = new System.Windows.Forms.Panel();
             this.pnlContentArea = new System.Windows.Forms.Panel();
@@ -78,7 +78,7 @@ namespace OOP_finalProject
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlRightContent);
-            this.splitContainer1.Size = new System.Drawing.Size(1162, 578);
+            this.splitContainer1.Size = new System.Drawing.Size(1187, 646);
             this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
@@ -92,7 +92,7 @@ namespace OOP_finalProject
             this.pnlLeftSidebar.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlLeftSidebar.Name = "pnlLeftSidebar";
-            this.pnlLeftSidebar.Size = new System.Drawing.Size(280, 578);
+            this.pnlLeftSidebar.Size = new System.Drawing.Size(280, 646);
             this.pnlLeftSidebar.TabIndex = 0;
             // 
             // pnlMenuContainer
@@ -103,12 +103,13 @@ namespace OOP_finalProject
             this.pnlMenuContainer.Controls.Add(this.btnOrderList);
             this.pnlMenuContainer.Controls.Add(this.btnAccount);
             this.pnlMenuContainer.Controls.Add(this.btnExit);
+            this.pnlMenuContainer.Controls.Add(this.btnOrder);
             this.pnlMenuContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMenuContainer.Location = new System.Drawing.Point(0, 52);
             this.pnlMenuContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMenuContainer.Name = "pnlMenuContainer";
             this.pnlMenuContainer.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            this.pnlMenuContainer.Size = new System.Drawing.Size(280, 526);
+            this.pnlMenuContainer.Size = new System.Drawing.Size(280, 594);
             this.pnlMenuContainer.TabIndex = 1;
             // 
             // btnInvoiceList
@@ -119,7 +120,7 @@ namespace OOP_finalProject
             this.btnInvoiceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInvoiceList.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnInvoiceList.ForeColor = System.Drawing.Color.White;
-            this.btnInvoiceList.Location = new System.Drawing.Point(9, 312);
+            this.btnInvoiceList.Location = new System.Drawing.Point(9, 48);
             this.btnInvoiceList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInvoiceList.Name = "btnInvoiceList";
             this.btnInvoiceList.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -137,7 +138,7 @@ namespace OOP_finalProject
             this.btnOrderList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderList.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnOrderList.ForeColor = System.Drawing.Color.White;
-            this.btnOrderList.Location = new System.Drawing.Point(9, 350);
+            this.btnOrderList.Location = new System.Drawing.Point(9, 89);
             this.btnOrderList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrderList.Name = "btnOrderList";
             this.btnOrderList.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -147,24 +148,6 @@ namespace OOP_finalProject
             this.btnOrderList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrderList.UseVisualStyleBackColor = false;
             // 
-            // btnOrder
-            // 
-            this.btnOrder.BackColor = System.Drawing.Color.Transparent;
-            this.btnOrder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrder.FlatAppearance.BorderSize = 0;
-            this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrder.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnOrder.ForeColor = System.Drawing.Color.White;
-            this.btnOrder.Location = new System.Drawing.Point(9, 369);
-            this.btnOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnOrder.Size = new System.Drawing.Size(228, 34);
-            this.btnOrder.TabIndex = 12;
-            this.btnOrder.Text = "🛒 Tạo Đơn Hàng";
-            this.btnOrder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrder.UseVisualStyleBackColor = false;
-            // 
             // btnAccount
             // 
             this.btnAccount.BackColor = System.Drawing.Color.Transparent;
@@ -173,7 +156,7 @@ namespace OOP_finalProject
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnAccount.ForeColor = System.Drawing.Color.White;
-            this.btnAccount.Location = new System.Drawing.Point(9, 388);
+            this.btnAccount.Location = new System.Drawing.Point(9, 127);
             this.btnAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -191,7 +174,7 @@ namespace OOP_finalProject
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(9, 495);
+            this.btnExit.Location = new System.Drawing.Point(9, 538);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -200,6 +183,24 @@ namespace OOP_finalProject
             this.btnExit.Text = "🚪 Thoát";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.UseVisualStyleBackColor = false;
+            // 
+            // btnOrder
+            // 
+            this.btnOrder.BackColor = System.Drawing.Color.Transparent;
+            this.btnOrder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrder.FlatAppearance.BorderSize = 0;
+            this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrder.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnOrder.ForeColor = System.Drawing.Color.White;
+            this.btnOrder.Location = new System.Drawing.Point(9, 10);
+            this.btnOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnOrder.Size = new System.Drawing.Size(228, 34);
+            this.btnOrder.TabIndex = 12;
+            this.btnOrder.Text = "🛒 Tạo Đơn Hàng";
+            this.btnOrder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrder.UseVisualStyleBackColor = false;
             // 
             // lblTitle
             // 
@@ -224,7 +225,7 @@ namespace OOP_finalProject
             this.pnlRightContent.Location = new System.Drawing.Point(0, 0);
             this.pnlRightContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlRightContent.Name = "pnlRightContent";
-            this.pnlRightContent.Size = new System.Drawing.Size(881, 578);
+            this.pnlRightContent.Size = new System.Drawing.Size(906, 646);
             this.pnlRightContent.TabIndex = 0;
             // 
             // pnlContentArea
@@ -235,7 +236,7 @@ namespace OOP_finalProject
             this.pnlContentArea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContentArea.Name = "pnlContentArea";
             this.pnlContentArea.Padding = new System.Windows.Forms.Padding(18, 15, 18, 15);
-            this.pnlContentArea.Size = new System.Drawing.Size(881, 511);
+            this.pnlContentArea.Size = new System.Drawing.Size(906, 579);
             this.pnlContentArea.TabIndex = 1;
             // 
             // lblWelcome
@@ -247,7 +248,7 @@ namespace OOP_finalProject
             this.lblWelcome.Location = new System.Drawing.Point(0, 0);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.lblWelcome.Size = new System.Drawing.Size(881, 45);
+            this.lblWelcome.Size = new System.Drawing.Size(906, 45);
             this.lblWelcome.TabIndex = 0;
             this.lblWelcome.Text = "Chào mừng đến với hệ thống quản lý bán hàng siêu thị";
             this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -258,10 +259,10 @@ namespace OOP_finalProject
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus,
             this.lblTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 556);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 624);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(881, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(906, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -274,7 +275,7 @@ namespace OOP_finalProject
             // lblTime
             // 
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(814, 17);
+            this.lblTime.Size = new System.Drawing.Size(839, 17);
             this.lblTime.Spring = true;
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -283,16 +284,16 @@ namespace OOP_finalProject
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             // 
-            // MainFormAdmin
+            // MainFormCashier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1162, 578);
+            this.ClientSize = new System.Drawing.Size(1187, 646);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(877, 460);
-            this.Name = "MainFormAdmin";
+            this.Name = "MainFormCashier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hệ Thống Quản Lý Bán Hàng Siêu Thị";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

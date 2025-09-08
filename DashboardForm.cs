@@ -34,7 +34,7 @@ namespace OOP_finalProject
             // Welcome label
             Label welcomeLabel = new Label
             {
-                Text = "🏪 CHÀO MỪNG ĐÉN VỚI HỆ THỐNG QUẢN LÝ BÁN HÀNG SIÊU THỊ",
+                Text = "CHÀO MỪNG ĐẾN VỚI HỆ THỐNG QUẢN LÝ BÁN HÀNG SIÊU THỊ",
                 Font = new Font("Segoe UI", 18, FontStyle.Bold),
                 ForeColor = Color.FromArgb(52, 73, 94),
                 AutoSize = false,
