@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
 
 namespace OOP_finalProject.LoginForm
@@ -13,68 +14,8 @@ namespace OOP_finalProject.LoginForm
             InitializeComponent();
         }
 
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|data.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\THANH DAT\source\repos\OOP_finalProject\data.mdf;Integrated Security = True; Connect Timeout = 30");
         //SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\signInData.mdf;Integrated Security=True;Connect Timeout=30");
-        //private void btnSignIn_Click(object sender, EventArgs e)
-        //{
-        //    if (txtUserNameSignIn.Text == "" || txtPasswordSignIn.Text == "")
-        //    {
-        //        MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //    }
-        //    else
-        //    {
-        //        if (sqlConnection.State != ConnectionState.Open)
-        //        {
-        //            try
-        //            {
-        //                sqlConnection.Open();
-
-        //                String selectData = "SELECT role FROM users WHERE username = @username AND password = @password";
-        //                using (SqlCommand cmd = new SqlCommand(selectData, sqlConnection))
-        //                {
-        //                    cmd.Parameters.AddWithValue("@username", txtUserNameSignIn.Text);
-        //                    cmd.Parameters.AddWithValue("@password", txtPasswordSignIn.Text);
-
-        //                    object result = cmd.ExecuteScalar(); // Lấy ra giá trị role (nếu có)
-
-        //                    if (result != null)
-        //                    {
-        //                        string role = result.ToString();
-
-        //                        if (role == "admin")
-        //                        {
-        //                            MessageBox.Show("Đăng nhập thành công với quyền Admin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //                            MainFormAdmin mainFormAdmin = new MainFormAdmin();
-        //                            mainFormAdmin.Show();
-        //                        }
-        //                        else if (role == "seller")
-        //                        {
-        //                            MessageBox.Show("Đăng nhập thành công với quyền Seller", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //                            MainFormCashier mainFormSeller = new MainFormCashier();
-        //                            mainFormSeller.Show();
-        //                        }
-
-        //                        this.Hide();
-        //                    }
-        //                    else
-        //                    {
-        //                        MessageBox.Show("Tên người dùng hoặc mật khẩu không chính xác", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //                    }
-        //                }
-
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                MessageBox.Show("Lỗi kết nối tới cơ sở dữ liệu: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            }
-        //            finally
-        //            {
-        //                sqlConnection.Close();
-        //            }
-
-        //        }
-        //    }
-        //}
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
