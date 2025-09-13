@@ -29,6 +29,12 @@ namespace OOP_finalProject.Base
             Quantity = quantity;
             Category = category;
         }
+
+        public abstract string Info();
+        public string Display
+        {
+            get { return Info(); }
+        }
     }
 
 }

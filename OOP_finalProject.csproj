@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Bill.cs" />
+    <Compile Include="Base\BillDetails.cs" />
     <Compile Include="EntityForm\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +179,8 @@
     <Compile Include="MainForm\MainFormCashier.Designer.cs">
       <DependentUpon>MainFormCashier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderDetails.cs" />
     <Compile Include="Products\BeverageProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
     <Compile Include="Products\ElectronicProduct.cs" />
@@ -246,12 +250,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data.mdf">
+    <Content Include="Data.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data_log.ldf">
+    <Content Include="Data_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>data.mdf</DependentUpon>
+      <DependentUpon>Data.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

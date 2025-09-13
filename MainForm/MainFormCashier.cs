@@ -224,5 +224,10 @@ namespace OOP_finalProject
             base.OnFormClosing(e);
         }
         #endregion
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            LoadForm(new ProductForm(), "📦 Quản Lý Sản Phẩm", btnProduct);
+        }
     }
 }

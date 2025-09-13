@@ -51,6 +51,7 @@ namespace OOP_finalProject
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -99,6 +100,7 @@ namespace OOP_finalProject
             // 
             this.pnlMenuContainer.AutoScroll = true;
             this.pnlMenuContainer.BackColor = System.Drawing.Color.DodgerBlue;
+            this.pnlMenuContainer.Controls.Add(this.btnProduct);
             this.pnlMenuContainer.Controls.Add(this.btnInvoiceList);
             this.pnlMenuContainer.Controls.Add(this.btnOrderList);
             this.pnlMenuContainer.Controls.Add(this.btnAccount);
@@ -156,7 +158,7 @@ namespace OOP_finalProject
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnAccount.ForeColor = System.Drawing.Color.White;
-            this.btnAccount.Location = new System.Drawing.Point(9, 127);
+            this.btnAccount.Location = new System.Drawing.Point(9, 165);
             this.btnAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -174,7 +176,7 @@ namespace OOP_finalProject
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(9, 165);
+            this.btnExit.Location = new System.Drawing.Point(9, 203);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -284,6 +286,25 @@ namespace OOP_finalProject
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             // 
+            // btnProduct
+            // 
+            this.btnProduct.BackColor = System.Drawing.Color.Transparent;
+            this.btnProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProduct.FlatAppearance.BorderSize = 0;
+            this.btnProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProduct.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnProduct.ForeColor = System.Drawing.Color.White;
+            this.btnProduct.Location = new System.Drawing.Point(9, 127);
+            this.btnProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProduct.Name = "btnProduct";
+            this.btnProduct.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnProduct.Size = new System.Drawing.Size(228, 34);
+            this.btnProduct.TabIndex = 15;
+            this.btnProduct.Text = "📦 Sản Phẩm";
+            this.btnProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProduct.UseVisualStyleBackColor = false;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
+            // 
             // MainFormCashier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -331,5 +352,6 @@ namespace OOP_finalProject
         private Button btnOrder;
         private Button btnAccount;
         private Button btnExit;
+        private Button btnProduct;
     }
 }
