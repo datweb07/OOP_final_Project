@@ -94,7 +94,12 @@
   <ItemGroup>
     <Compile Include="Base\Bill.cs" />
     <Compile Include="Base\BillDetails.cs" />
-    <Compile Include="CustomerData.cs" />
+    <Compile Include="Data\BillData.cs" />
+    <Compile Include="Data\CashierData.cs" />
+    <Compile Include="Data\ClothingProductData.cs" />
+    <Compile Include="Data\DrinkProductData.cs" />
+    <Compile Include="Data\CustomerData.cs" />
+    <Compile Include="Data\ElectronicProductData.cs" />
     <Compile Include="EntityForm\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,8 +168,9 @@
     <Compile Include="EntityForm\ListOrderForm.Designer.cs">
       <DependentUpon>ListOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FoodData.cs" />
-    <Compile Include="GetPath.cs" />
+    <Compile Include="Data\FoodProductData.cs" />
+    <Compile Include="GetPath\GetPath.cs" />
+    <Compile Include="Data\HouseholdProductData.cs" />
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,14 +221,16 @@
     </Compile>
     <Compile Include="Base\Order.cs" />
     <Compile Include="Base\OrderDetails.cs" />
-    <Compile Include="Products\BeverageProduct.cs" />
+    <Compile Include="Data\ManagerData.cs" />
+    <Compile Include="Data\OrderData.cs" />
+    <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
     <Compile Include="Products\ElectronicProduct.cs" />
     <Compile Include="Products\FoodProduct.cs" />
     <Compile Include="Products\HouseholdProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserSession.cs" />
+    <Compile Include="UserManagement\UserSession.cs" />
     <EmbeddedResource Include="EntityForm\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,7 +277,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="LoginForm\PictureSignIn\" />
     <Folder Include="LoginForm\PictureSignUp\" />
   </ItemGroup>

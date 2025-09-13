@@ -7,24 +7,24 @@ using System.Text.Json;
 
 namespace OOP_finalProject
 {
-    public class FoodData
+    public class ClothingProductData
     {
-        private string pathJson = Path.Combine(GetPath.path, nameof(FoodProduct) + ".json");
+        private string pathJson = Path.Combine(GetPath.path, nameof(ClothingProduct) + ".json");
         JsonSerializerOptions options = new JsonSerializerOptions
         {
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             WriteIndented = true
         };
 
-        public List<FoodProduct> GetData()
+        public List<ClothingProduct> GetData()
         {
             if (File.Exists(pathJson))
             {
                 try
                 {
                     string jsonString = File.ReadAllText(pathJson, Encoding.UTF8);
-                    List<FoodProduct> foodProducts = JsonSerializer.Deserialize<List<FoodProduct>>(jsonString, options);
-                    return foodProducts;
+                    List<ClothingProduct> clothingProducts = JsonSerializer.Deserialize<List<ClothingProduct>>(jsonString, options);
+                    return clothingProducts;
                 }
                 catch (Exception ex)
                 {
@@ -32,10 +32,10 @@ namespace OOP_finalProject
 
                 }
             }
-            return new List<FoodProduct>();
+            return new List<ClothingProduct>();
         }
 
-        public void SaveData(List<FoodProduct> foodProducts)
+        public void SaveData(List<ClothingProduct> clothingProducts)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace OOP_finalProject
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                string jsonString = JsonSerializer.Serialize(foodProducts, options);
+                string jsonString = JsonSerializer.Serialize(clothingProducts, options);
 
                 File.WriteAllText(pathJson, jsonString, Encoding.UTF8);
             }

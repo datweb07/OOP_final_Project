@@ -9,7 +9,6 @@ namespace OOP_finalProject
         public static DateTime LoginTime { get; set; }
         public static string Email { get; set; }
 
-        // Method để set thông tin user khi đăng nhập thành công
         public static void SetUserInfo(string username, string role, string fullName = "", string email = "")
         {
             Username = username;
@@ -18,7 +17,7 @@ namespace OOP_finalProject
             LoginTime = DateTime.Now;
         }
 
-        // Method để clear thông tin khi đăng xuất
+        // clear thông tin khi đăng xuất
         public static void ClearUserInfo()
         {
             Username = string.Empty;
@@ -27,19 +26,18 @@ namespace OOP_finalProject
             LoginTime = DateTime.MinValue;
         }
 
-        // Method để kiểm tra user có đăng nhập không
+        // kiểm tra user có đăng nhập không
         public static bool IsLoggedIn()
         {
             return !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Role);
         }
 
-        // Method để lấy tên hiển thị
         public static string GetDisplayName()
         {
             return Username;
         }
 
-        // Method để lấy role hiển thị bằng tiếng Việt
+        // role
         public static string GetRoleDisplayName()
         {
             switch (Role?.ToLower())
