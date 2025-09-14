@@ -6,7 +6,10 @@ namespace OOP_finalProject.Employees
     [Serializable]
     public class Manager : Employee
     {
-        public Manager(string id, string name, string email, string phoneNumber, string position) : base(id, name, email, phoneNumber, position)
+        public Manager(string id, string name, string gender, string phoneNumber, string address) : base(id, name, gender, phoneNumber, address)
+        {
+        }
+        public Manager()
         {
         }
     }

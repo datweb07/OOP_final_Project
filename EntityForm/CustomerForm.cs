@@ -53,32 +53,32 @@ namespace OOP_finalProject
 
         //private void btnSave_Click(object sender, System.EventArgs e)
         //{
-        //    //string id = txtCode.Text.Trim();
-        //    //string name = txtName.Text.Trim();
-        //    //string phone = txtPhone.Text.Trim();
-        //    //string address = txtAddress.Text.Trim();
-        //    //string type = rdoMale.Checked ? "Nam" : "Nữ";
-        //    //if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name))
-        //    //{
-        //    //    MessageBox.Show("Mã và Tên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    //    return;
-        //    //}
-        //    //Customer existingCustomer = customers.Find(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
-        //    //if (existingCustomer != null)
-        //    //{
-        //    //    existingCustomer.Name = name;
-        //    //    existingCustomer.PhoneNumber = phone;
-        //    //    existingCustomer.Address = address;
-        //    //    existingCustomer.Type = type;
-        //    //}
-        //    //else
-        //    //{
-        //    //    Customer newCustomer = new Customer(id, name, phone, address, type);
-        //    //    customers.Add(newCustomer);
-        //    //}
-        //    //customerData.SaveData(customers);
-        //    //DisplayGrid();
-        //    //MessageBox.Show("Lưu thông tin khách hàng thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    string id = txtCode.Text.Trim();
+        //    string name = txtName.Text.Trim();
+        //    string phone = txtPhone.Text.Trim();
+        //    string address = txtAddress.Text.Trim();
+        //    string gender = rdoMale.Checked ? "Nam" : "Nữ";
+        //    if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name))
+        //    {
+        //        MessageBox.Show("Mã và Tên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return;
+        //    }
+        //    Customer existingCustomer = customers.Find(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
+        //    if (existingCustomer != null)
+        //    {
+        //        existingCustomer.Name = name;
+        //        existingCustomer.PhoneNumber = phone;
+        //        existingCustomer.Address = address;
+        //        existingCustomer.Gender = gender;
+        //    }
+        //    else
+        //    {
+        //        Customer newCustomer = new Customer(id, name, phone, address, gender);
+        //        customers.Add(newCustomer);
+        //    }
+        //    customerData.SaveData(customers);
+        //    DisplayGrid();
+        //    MessageBox.Show("Lưu thông tin khách hàng thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
         //}
