@@ -6,7 +6,7 @@ namespace OOP_finalProject.Customers
     [Serializable]
     public class RegularCustomer : Customer
     {
-        public RegularCustomer(string id, string name, string email, string phoneNumber, string address, string type) : base(id, name, email, phoneNumber, address, type)
+        public RegularCustomer(string id, string name, string gender, string phoneNumber, string address) : base(id, name, gender, phoneNumber, address)
         {
         }
     }

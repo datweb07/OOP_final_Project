@@ -18,6 +18,7 @@ namespace OOP_finalProject
 
         public List<Customer> GetData()
         {
+            Console.WriteLine("Đường dẫn JSON: " + pathJson);
             if (File.Exists(pathJson))
             {
                 try

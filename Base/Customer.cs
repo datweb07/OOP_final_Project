@@ -7,31 +7,34 @@ namespace OOP_finalProject.Base
     {
         private string id;
         private string name;
-        private string email;
+        private string gender;
         private string phoneNumber;
         private string address;
-        private string type;
+        
 
         public string Id { get { return id; } set { id = value; } }
 
         public string Name { get { return name; } set { name = value; } }
-
-        public string Email { get { return email; } set { email = value; } }
+        public string Gender { get { return gender; } set { gender = value; } }
 
         public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
 
         public string Address { get { return address; } set { address = value; } }
 
-        public string Type { get { return type; } set { type = value; } }
+        
 
-        public Customer(string id, string name, string email, string phoneNumber, string address, string type)
+        public Customer(string id, string name, string gender, string phoneNumber, string address)
         {
             Id = id;
             Name = name;
-            Email = email;
+            Gender = gender;
             PhoneNumber = phoneNumber;
             Address = address;
-            Type = type;
+            
+        }
+
+        public Customer()
+        {
         }
     } 
 }
