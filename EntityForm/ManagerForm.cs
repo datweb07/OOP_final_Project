@@ -140,7 +140,7 @@ namespace OOP_finalProject
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
-            Manager Manager = gridData.CurrentRow.DataBoundItem as Manager;
+            Manager Manager = (Manager)gridData.CurrentRow.DataBoundItem;
 
             if (Manager == null)
                 return;

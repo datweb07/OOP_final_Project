@@ -8,7 +8,7 @@ namespace OOP_finalProject.Products
     {
         private string brand;
         public string Brand { get { return brand; } set { brand = value; } }
-        public HouseholdProduct(string id, string name, decimal price, int quantity, string category, string brand) : base(id, name, price, quantity, category)
+        public HouseholdProduct(string id, string name, decimal price, decimal quantity, string brand) : base(id, name, price, quantity)
         {
             Brand = brand;
         }

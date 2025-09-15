@@ -9,5 +9,8 @@ namespace OOP_finalProject.Employees
         public Cashier(string id, string name, string gender, string phoneNumber, string address) : base(id, name, gender, phoneNumber, address)
         {
         }
+        public Cashier()
+        {
+        }
     }
 }

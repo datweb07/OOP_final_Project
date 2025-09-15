@@ -8,13 +8,13 @@ namespace OOP_finalProject.Products
     {
         private bool carbonated;
         public bool Carbonated { get { return carbonated; } set { carbonated = value; } }
-        public DrinkProduct(string id, string name, decimal price, int quantity, string category, bool carbonated) : base(id, name, price, quantity, category)
+        public DrinkProduct(string id, string name, decimal price, decimal quantity, bool carbonated) : base(id, name, price, quantity)
         {
             Carbonated = carbonated;
         }
         public override string Info()
         {
-            return $"Có ga: {Carbonated}";
+            return $"Có gas: {Carbonated}";
         }
     }
 }

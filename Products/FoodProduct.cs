@@ -9,7 +9,7 @@ namespace OOP_finalProject.Products
     {
         private DateTime expirationDate;
         public DateTime ExpirationDate { get { return expirationDate; } set { expirationDate = value; } }
-        public FoodProduct(string id, string name, decimal price, int quantity, string category, DateTime expirationDate) : base(id, name, price, quantity, category)
+        public FoodProduct(string id, string name, decimal price, decimal quantity, DateTime expirationDate) : base(id, name, price, quantity)
         {
             ExpirationDate = expirationDate;
         }
