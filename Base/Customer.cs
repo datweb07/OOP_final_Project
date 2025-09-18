@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Base
 {
     [Serializable]
-    public class Customer
+    public class Customer : ISerializable
     {
         private string id;
         private string name;
@@ -35,6 +36,15 @@ namespace OOP_finalProject.Base
 
         public Customer()
         {
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Id", Id);
+            info.AddValue("Name", Name);
+            info.AddValue("Gender", Gender);
+            info.AddValue("PhoneNumber", PhoneNumber);
+            info.AddValue("Address", Address);
         }
     } 
 }

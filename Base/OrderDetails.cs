@@ -1,8 +1,9 @@
 ﻿using OOP_finalProject.Base;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class OrderDetails
+    public class OrderDetails : ISerializable
     {
         private Product product;
         private int quantity = 0;
@@ -46,6 +47,16 @@ namespace OOP_finalProject
                     return 0;
                 return UnitPrice * Quantity;
             }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Product", Product);
+            info.AddValue("Quantity", Quantity);
+            info.AddValue("ProductId", ProductID);
+            info.AddValue("ProductName", ProductName);
+            info.AddValue("UnitPrice", UnitPrice);
+            info.AddValue("TotalPrice", TotalPrice);
         }
     }
 }

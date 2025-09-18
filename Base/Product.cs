@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO.IsolatedStorage;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Base
 {
     [Serializable]
-    public abstract class Product
+    public abstract class Product : ISerializable
     {
         private string id;
         private string name;
@@ -43,6 +45,16 @@ namespace OOP_finalProject.Base
         {
             get { return Info(); }
         }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Id", Id);
+            info.AddValue("Name", Name);
+            info.AddValue("Price", Price);
+            info.AddValue("Quantity", Quantity);
+        }
+
+        
     }
 
 }

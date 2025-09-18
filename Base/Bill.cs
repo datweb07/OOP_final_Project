@@ -2,11 +2,12 @@
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     [Serializable]
-    public class Bill
+    public class Bill : ISerializable
     {
         private string id;
         private DateTime dateCreated;
@@ -39,5 +40,24 @@ namespace OOP_finalProject
                 return total;
             }
         }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Id", Id);
+            info.AddValue("DateCreated", DateCreated);
+            //info.AddValue("Customer", Customer);
+            //info.AddValue("Cashier", Cashier);
+            info.AddValue("CustomerName", CustomerName);
+            info.AddValue("CashierName", CashierName);
+            info.AddValue("BillDetails", BillDetails);
+            info.AddValue("TotalPrice", TotalPrice);
+        }
+
+        //public Bill(SerializationInfo info, StreamingContext context)
+        //{
+        //    Id = info.GetString("Id");
+        //    DateCreated = info.GetDateTime("DateCreated");
+        //    Customer = info.GetValue("Customer");
+        //}
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
-
+using System.Runtime.Serialization;
 namespace OOP_finalProject
 {
     [Serializable]
-    public class BillDetails
+    public class BillDetails : ISerializable
     {
         private string productId;
         private string productName;
@@ -19,6 +19,15 @@ namespace OOP_finalProject
             {
                 return UnitPrice * Quantity;
             }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("ProductID", ProductID);
+            info.AddValue("ProductName", ProductName);
+            info.AddValue("Quantity", Quantity);
+            info.AddValue("UnitPrice", UnitPrice);
+            info.AddValue("TotalPrice", TotalPrice);
         }
     }
 }
