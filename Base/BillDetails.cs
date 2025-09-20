@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+
 namespace OOP_finalProject
 {
     [Serializable]

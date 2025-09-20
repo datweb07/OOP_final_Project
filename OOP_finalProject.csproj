@@ -232,10 +232,10 @@
     <Compile Include="Base\OrderDetails.cs" />
     <Compile Include="Data\ManagerData.cs" />
     <Compile Include="Data\OrderData.cs" />
-    <Compile Include="OrderForm.cs">
+    <Compile Include="EntityForm\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OrderForm.Designer.cs">
+    <Compile Include="EntityForm\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\DrinkProduct.cs" />
