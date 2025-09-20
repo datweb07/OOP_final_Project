@@ -145,9 +145,14 @@ namespace OOP_finalProject
         }
 
         // Tạo đơn hàng
+        //private void btnOrder_Click(object sender, EventArgs e)
+        //{
+        //    LoadForm(new NewOrderForm(), "🛒 Tạo Đơn Hàng Mới", btnOrder);
+        //}
+
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            LoadForm(new NewOrderForm(), "🛒 Tạo Đơn Hàng Mới", btnOrder);
+            LoadForm(new OrderForm(), "🛒 Tạo Đơn Hàng Mới", btnOrder);
         }
 
         // Hiển thị thông tin tài khoản

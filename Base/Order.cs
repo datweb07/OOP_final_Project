@@ -35,7 +35,7 @@ namespace OOP_finalProject
             }
         }
         public virtual List<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
-        public virtual decimal TotalPrice
+        public virtual decimal SumTotal
         {
             get
             {
@@ -55,7 +55,7 @@ namespace OOP_finalProject
             info.AddValue("CustomerName", CustomerName);
             info.AddValue("CashierName", CashierName);
             info.AddValue("OrderDetails", OrderDetails);
-            info.AddValue("TotalPrice", TotalPrice);
+            info.AddValue("SumTotal", SumTotal);
         }
     }
 }

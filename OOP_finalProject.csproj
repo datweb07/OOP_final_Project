@@ -171,6 +171,15 @@
     <Compile Include="Data\FoodProductData.cs" />
     <Compile Include="GetPath\GetPath.cs" />
     <Compile Include="Data\HouseholdProductData.cs" />
+    <Compile Include="Base\Invoice.cs" />
+    <Compile Include="Base\InvoiceDetails.cs" />
+    <Compile Include="Data\InvoiceData.cs" />
+    <Compile Include="EntityForm\InvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityForm\InvoiceForm.Designer.cs">
+      <DependentUpon>InvoiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +232,12 @@
     <Compile Include="Base\OrderDetails.cs" />
     <Compile Include="Data\ManagerData.cs" />
     <Compile Include="Data\OrderData.cs" />
+    <Compile Include="OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
     <Compile Include="Products\ElectronicProduct.cs" />

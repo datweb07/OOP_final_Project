@@ -6,7 +6,7 @@ namespace OOP_finalProject
     public class OrderDetails : ISerializable
     {
         private Product product;
-        private int quantity = 0;
+        private decimal quantity = 0;
 
         public Product Product { get { return product; } set { product = value; } }
         public string ProductID
@@ -29,7 +29,7 @@ namespace OOP_finalProject
             }
         }
 
-        public int Quantity { get { return quantity; } set { quantity = value; } }
+        public decimal Quantity { get { return quantity; } set { quantity = value; } }
         public decimal UnitPrice
         {
             get
