@@ -2,29 +2,29 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.Json;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     public class ClothingProductData
     {
-        private string pathJson = Path.Combine(GetPath.path, nameof(ClothingProduct) + ".json");
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            WriteIndented = true
-        };
+        private string pathXml = Path.Combine(GetPath.path, nameof(ClothingProduct) + ".xml");
 
         public List<ClothingProduct> GetData()
         {
-            if (File.Exists(pathJson))
+            if (File.Exists(pathXml))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(pathJson, Encoding.UTF8);
-                    List<ClothingProduct> clothingProducts = JsonSerializer.Deserialize<List<ClothingProduct>>(jsonString, options);
-                    return clothingProducts;
+                    // Tạo DataContractSerializer cho List<ClothingProduct>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<ClothingProduct>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<ClothingProduct>
+                        List<ClothingProduct> clothingProducts = (List<ClothingProduct>)serializer.ReadObject(fileStream);
+                        return clothingProducts ?? new List<ClothingProduct>();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -39,14 +39,20 @@ namespace OOP_finalProject
         {
             try
             {
+                // Tạo thư mục nếu chưa tồn tại
                 if (!Directory.Exists(GetPath.path))
                 {
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                string jsonString = JsonSerializer.Serialize(clothingProducts, options);
+                // Tạo DataContractSerializer cho List<ClothingProduct>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<ClothingProduct>));
 
-                File.WriteAllText(pathJson, jsonString, Encoding.UTF8);
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, clothingProducts);
+                }
             }
             catch (Exception ex)
             {

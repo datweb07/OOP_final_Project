@@ -2,30 +2,30 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.Json;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     public class CustomerData
     {
-        private string pathJson = Path.Combine(GetPath.path, nameof(Customer) + ".json");
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            WriteIndented = true
-        };
+        private string pathXml = Path.Combine(GetPath.path, nameof(Customer) + ".xml");
 
         public List<Customer> GetData()
         {
-            Console.WriteLine("Đường dẫn JSON: " + pathJson);
-            if (File.Exists(pathJson))
+            Console.WriteLine("Đường dẫn JSON: " + pathXml);
+            if (File.Exists(pathXml))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(pathJson, Encoding.UTF8);
-                    List<Customer> customers = JsonSerializer.Deserialize<List<Customer>>(jsonString, options);
-                    return customers;
+                    // Tạo DataContractSerializer cho List<Customer>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Customer>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Customer>
+                        List<Customer> customers = (List<Customer>)serializer.ReadObject(fileStream);
+                        return customers ?? new List<Customer>();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -40,14 +40,20 @@ namespace OOP_finalProject
         {
             try
             {
+                // Tạo thư mục nếu chưa tồn tại
                 if (!Directory.Exists(GetPath.path))
                 {
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                string jsonString = JsonSerializer.Serialize(customers, options);
-                
-                File.WriteAllText(pathJson, jsonString, Encoding.UTF8);
+                // Tạo DataContractSerializer cho List<Customer>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Customer>));
+
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, customers);
+                }
             }
             catch (Exception ex)
             {

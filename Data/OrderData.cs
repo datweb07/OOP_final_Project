@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OOP_finalProject.Employees;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
 
@@ -8,22 +10,23 @@ namespace OOP_finalProject
 {
     public class OrderData
     {
-        private string pathJson = Path.Combine(GetPath.path, nameof(Order) + ".json");
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            WriteIndented = true
-        };
+        private string pathXml = Path.Combine(GetPath.path, nameof(Order) + ".xml");
 
         public List<Order> GetData()
         {
-            if (File.Exists(pathJson))
+            if (File.Exists(pathXml))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(pathJson, Encoding.UTF8);
-                    List<Order> orders = JsonSerializer.Deserialize<List<Order>>(jsonString, options);
-                    return orders;
+                    // Tạo DataContractSerializer cho List<Order>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Order>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Order>
+                        List<Order> orders = (List<Order>)serializer.ReadObject(fileStream);
+                        return orders ?? new List<Order>();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -38,14 +41,20 @@ namespace OOP_finalProject
         {
             try
             {
+                // Tạo thư mục nếu chưa tồn tại
                 if (!Directory.Exists(GetPath.path))
                 {
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                string jsonString = JsonSerializer.Serialize(orders, options);
+                // Tạo DataContractSerializer cho List<Order>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Order>));
 
-                File.WriteAllText(pathJson, jsonString, Encoding.UTF8);
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, orders);
+                }
             }
             catch (Exception ex)
             {

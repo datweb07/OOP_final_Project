@@ -2,29 +2,29 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.Json;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     public class CashierData
     {
-        private string pathJson = Path.Combine(GetPath.path, nameof(Cashier) + ".json");
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            WriteIndented = true
-        };
+        private string pathXml = Path.Combine(GetPath.path, nameof(Cashier) + ".xml");
 
         public List<Cashier> GetData()
         {
-            if (File.Exists(pathJson))
+            if (File.Exists(pathXml))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(pathJson, Encoding.UTF8);
-                    List<Cashier> cashiers = JsonSerializer.Deserialize<List<Cashier>>(jsonString, options);
-                    return cashiers;
+                    // Tạo DataContractSerializer cho List<Cashier>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Cashier>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Cashier>
+                        List<Cashier> cashiers = (List<Cashier>)serializer.ReadObject(fileStream);
+                        return cashiers ?? new List<Cashier>();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -39,14 +39,20 @@ namespace OOP_finalProject
         {
             try
             {
+                // Tạo thư mục nếu chưa tồn tại
                 if (!Directory.Exists(GetPath.path))
                 {
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                string jsonString = JsonSerializer.Serialize(cashiers, options);
+                // Tạo DataContractSerializer cho List<Cashier>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Cashier>));
 
-                File.WriteAllText(pathJson, jsonString, Encoding.UTF8);
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, cashiers);
+                }
             }
             catch (Exception ex)
             {

@@ -2,29 +2,29 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.Json;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     public class DrinkProductData
     {
-        private string pathJson = Path.Combine(GetPath.path, nameof(DrinkProduct) + ".json");
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            WriteIndented = true
-        };
+        private string pathXml = Path.Combine(GetPath.path, nameof(DrinkProduct) + ".xml");
 
         public List<DrinkProduct> GetData()
         {
-            if (File.Exists(pathJson))
+            if (File.Exists(pathXml))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(pathJson, Encoding.UTF8);
-                    List<DrinkProduct> drinkProducts = JsonSerializer.Deserialize<List<DrinkProduct>>(jsonString, options);
-                    return drinkProducts;
+                    // Tạo DataContractSerializer cho List<DrinkProduct>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<DrinkProduct>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<DrinkProduct>
+                        List<DrinkProduct> drinkProducts = (List<DrinkProduct>)serializer.ReadObject(fileStream);
+                        return drinkProducts ?? new List<DrinkProduct>();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -39,14 +39,20 @@ namespace OOP_finalProject
         {
             try
             {
+                // Tạo thư mục nếu chưa tồn tại
                 if (!Directory.Exists(GetPath.path))
                 {
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                string jsonString = JsonSerializer.Serialize(drinkProducts, options);
+                // Tạo DataContractSerializer cho List<DrinkProduct>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<DrinkProduct>));
 
-                File.WriteAllText(pathJson, jsonString, Encoding.UTF8);
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, drinkProducts);
+                }
             }
             catch (Exception ex)
             {

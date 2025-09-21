@@ -15,7 +15,7 @@ namespace OOP_finalProject
             {
                 try
                 {
-                    // Taọ DataContractSerializer cho List<Bill>
+                    // Tạo DataContractSerializer cho List<Bill>
                     DataContractSerializer serializer = new DataContractSerializer(typeof(List<Bill>));
 
                     using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))

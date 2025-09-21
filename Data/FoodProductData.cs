@@ -2,29 +2,29 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.Json;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     public class FoodProductData
     {
-        private string pathJson = Path.Combine(GetPath.path, nameof(FoodProduct) + ".json");
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            WriteIndented = true
-        };
+        private string pathXml = Path.Combine(GetPath.path, nameof(FoodProduct) + ".xml");
 
         public List<FoodProduct> GetData()
         {
-            if (File.Exists(pathJson))
+            if (File.Exists(pathXml))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(pathJson, Encoding.UTF8);
-                    List<FoodProduct> foodProducts = JsonSerializer.Deserialize<List<FoodProduct>>(jsonString, options);
-                    return foodProducts;
+                    // Tạo DataContractSerializer cho List<FoodProduct>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<FoodProduct>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<FoodProduct>
+                        List<FoodProduct> foodProducts = (List<FoodProduct>)serializer.ReadObject(fileStream);
+                        return foodProducts ?? new List<FoodProduct>();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -39,14 +39,20 @@ namespace OOP_finalProject
         {
             try
             {
+                // Tạo thư mục nếu chưa tồn tại
                 if (!Directory.Exists(GetPath.path))
                 {
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                string jsonString = JsonSerializer.Serialize(foodProducts, options);
+                // Tạo DataContractSerializer cho List<FoodProduct>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<FoodProduct>));
 
-                File.WriteAllText(pathJson, jsonString, Encoding.UTF8);
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, foodProducts);
+                }
             }
             catch (Exception ex)
             {
