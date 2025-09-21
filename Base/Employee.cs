@@ -23,7 +23,6 @@ namespace OOP_finalProject.Base
         public string Address { get { return address; } set { address = value; } }
 
 
-
         public Employee(string id, string name, string gender, string phoneNumber, string address)
         {
             Id = id;

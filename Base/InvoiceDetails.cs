@@ -1,7 +1,9 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
+    [Serializable]
     public class InvoiceDetails : ISerializable
     {
         private string productId;
@@ -20,9 +22,25 @@ namespace OOP_finalProject
             }
         }
 
+        public InvoiceDetails()
+        {
+        }
+
+        public InvoiceDetails(SerializationInfo info, StreamingContext context)
+        {
+            ProductID = info.GetString("ProductID");
+            ProductName = info.GetString("ProductName");
+            Quantity = info.GetDecimal("Quantity");
+            UnitPrice = info.GetDecimal("UnitPrice");
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            throw new System.NotImplementedException();
+            info.AddValue("ProductID", ProductID);
+            info.AddValue("ProductName", ProductName);
+            info.AddValue("Quantity", Quantity);
+            info.AddValue("UnitPrice", UnitPrice);
+            info.AddValue("TotalPrice", TotalPrice);
         }
     }
 }

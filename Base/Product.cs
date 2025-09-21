@@ -40,6 +40,18 @@ namespace OOP_finalProject.Base
             Quantity = quantity;
         }
 
+        public Product()
+        {
+        }
+
+        public Product(SerializationInfo info, StreamingContext context)
+        {
+            Id = info.GetString("Id");
+            Name = info.GetString("Name");
+            Price = info.GetDecimal("Price");
+            Quantity = info.GetDecimal("Quantity");
+        }
+
         public abstract string Info();
         public string Display
         {
@@ -54,7 +66,7 @@ namespace OOP_finalProject.Base
             info.AddValue("Quantity", Quantity);
         }
 
-        
+
     }
 
 }

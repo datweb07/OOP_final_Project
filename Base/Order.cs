@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
+    [Serializable]
     public class Order : ISerializable
     {
         private string orderId;
@@ -21,7 +22,7 @@ namespace OOP_finalProject
                 if (Customer == null)
                 {
                     return "Không xác định";
-                }   
+                }
                 return Customer.Name;
             }
         }
@@ -49,6 +50,31 @@ namespace OOP_finalProject
                 }
                 return total;
             }
+        }
+
+        public Order()
+        {
+        }
+
+        public Order(SerializationInfo info, StreamingContext context)
+        {
+            OrderId = info.GetString("OrderId");
+            OrderDate = info.GetDateTime("OrderDate");
+
+            string customerName = info.GetString("CustomerName");
+            string cashierName = info.GetString("CashierName");
+
+            if (customerName != "Không xác định")
+            {
+                Customer = new Customer { Name = customerName };
+            }
+
+            if (cashierName != "Không xác định")
+            {
+                Cashier = new Cashier { Name = cashierName };
+            }
+
+            OrderDetails = (List<OrderDetails>)info.GetValue("OrderDetails", typeof(List<OrderDetails>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

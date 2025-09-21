@@ -22,6 +22,18 @@ namespace OOP_finalProject
             }
         }
 
+        public BillDetails()
+        {
+        }
+
+        public BillDetails(SerializationInfo info, StreamingContext context)
+        {
+            ProductID = info.GetString("ProductID");
+            ProductName = info.GetString("ProductName");
+            Quantity = info.GetInt32("Quantity");
+            UnitPrice = info.GetDecimal("UnitPrice");
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("ProductID", ProductID);

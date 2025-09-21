@@ -11,7 +11,7 @@ namespace OOP_finalProject.Base
         private string gender;
         private string phoneNumber;
         private string address;
-        
+
         public string Id { get { return id; } set { id = value; } }
 
         public string Name { get { return name; } set { name = value; } }
@@ -21,7 +21,7 @@ namespace OOP_finalProject.Base
 
         public string Address { get { return address; } set { address = value; } }
 
-        
+
         public Customer(string id, string name, string gender, string phoneNumber, string address)
         {
             Id = id;
@@ -29,11 +29,20 @@ namespace OOP_finalProject.Base
             Gender = gender;
             PhoneNumber = phoneNumber;
             Address = address;
-            
+
         }
 
         public Customer()
         {
+        }
+
+        public Customer(SerializationInfo info, StreamingContext context)
+        {
+            Id = info.GetString("Id");
+            Name = info.GetString("Name");
+            Gender = info.GetString("Gender");
+            PhoneNumber = info.GetString("PhoneNumber");
+            Address = info.GetString("Address");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -44,5 +53,5 @@ namespace OOP_finalProject.Base
             info.AddValue("PhoneNumber", PhoneNumber);
             info.AddValue("Address", Address);
         }
-    } 
+    }
 }

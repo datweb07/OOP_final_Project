@@ -1,8 +1,10 @@
 ﻿using OOP_finalProject.Base;
+using System;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
+    [Serializable]
     public class OrderDetails : ISerializable
     {
         private Product product;
@@ -55,6 +57,16 @@ namespace OOP_finalProject
                 }
                 return UnitPrice * Quantity;
             }
+        }
+
+        public OrderDetails()
+        {
+        }
+
+        public OrderDetails(SerializationInfo info, StreamingContext context)
+        {
+            Product = (Product)info.GetValue("Product", typeof(Product));
+            Quantity = info.GetDecimal("Quantity");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
