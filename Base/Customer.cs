@@ -12,7 +12,6 @@ namespace OOP_finalProject.Base
         private string phoneNumber;
         private string address;
         
-
         public string Id { get { return id; } set { id = value; } }
 
         public string Name { get { return name; } set { name = value; } }
@@ -23,7 +22,6 @@ namespace OOP_finalProject.Base
         public string Address { get { return address; } set { address = value; } }
 
         
-
         public Customer(string id, string name, string gender, string phoneNumber, string address)
         {
             Id = id;

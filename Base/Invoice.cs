@@ -22,8 +22,10 @@ namespace OOP_finalProject
         { 
             get 
             { 
-                if (customer == null) 
+                if (customer == null)
+                {
                     return "Không xác định";
+                }
                 return customer.Name; 
             }
         }
@@ -32,8 +34,10 @@ namespace OOP_finalProject
         { 
             get 
             { 
-                if (cashier == null) 
+                if (cashier == null)
+                {
                     return "Không xác định";
+                } 
                 return cashier.Name; 
             }
         }

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-
 namespace OOP_finalProject
 {
     public class Order : ISerializable
@@ -20,7 +19,9 @@ namespace OOP_finalProject
             get
             {
                 if (Customer == null)
+                {
                     return "Không xác định";
+                }   
                 return Customer.Name;
             }
         }
@@ -30,7 +31,9 @@ namespace OOP_finalProject
             get
             {
                 if (Cashier == null)
+                {
                     return "Không xác định";
+                }
                 return Cashier.Name;
             }
         }

@@ -1,7 +1,8 @@
-﻿
+﻿using System.Runtime.Serialization;
+
 namespace OOP_finalProject
 {
-    public class InvoiceDetails
+    public class InvoiceDetails : ISerializable
     {
         private string productId;
         private string productName;
@@ -17,6 +18,11 @@ namespace OOP_finalProject
             {
                 return UnitPrice * Quantity;
             }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

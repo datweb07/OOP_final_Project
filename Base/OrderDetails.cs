@@ -14,7 +14,9 @@ namespace OOP_finalProject
             get
             {
                 if (Product == null)
+                {
                     return "Không xác định";
+                }
                 return Product.Id;
             }
         }
@@ -24,7 +26,9 @@ namespace OOP_finalProject
             get
             {
                 if (Product == null)
+                {
                     return "Không xác định";
+                }
                 return Product.Name;
             }
         }
@@ -35,7 +39,9 @@ namespace OOP_finalProject
             get
             {
                 if (Product == null)
+                {
                     return 0;
+                }
                 return Product.Price;
             }
         }
@@ -44,7 +50,9 @@ namespace OOP_finalProject
             get
             {
                 if (Product == null)
+                {
                     return 0;
+                }
                 return UnitPrice * Quantity;
             }
         }
