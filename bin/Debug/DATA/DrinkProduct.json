@@ -1,0 +1,26 @@
+[
+  {
+    "Carbonated": true,
+    "Id": "DO001",
+    "Name": "Coca Cola",
+    "Price": 25000,
+    "Quantity": 99,
+    "Info": "Đồ uống. Có gas: True"
+  },
+  {
+    "Carbonated": false,
+    "Id": "DO002",
+    "Name": "Nước ngọt Pepsi",
+    "Price": 15000,
+    "Quantity": 100,
+    "Info": "Đồ uống. Có gas: True"
+  },
+  {
+    "Carbonated": true,
+    "Id": "DO003",
+    "Name": "Nước suối đóng chai",
+    "Price": 10000,
+    "Quantity": 100,
+    "Info": "Đồ uống. Có gas: False"
+  }
+]

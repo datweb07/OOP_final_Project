@@ -1,0 +1,23 @@
+﻿[
+  {
+    "Id": "QL001",
+    "Name": "Hoàng",
+    "Gender": "Nam",
+    "PhoneNumber": "0979777999",
+    "Address": "Hà Nội"
+  },
+  {
+    "Id": "QL002",
+    "Name": "Tuấn",
+    "Gender": "Nam",
+    "PhoneNumber": "0793743234",
+    "Address": "Hà Nội"
+  },
+  {
+    "Id": "QL003",
+    "Name": "Đạt",
+    "Gender": "Nam",
+    "PhoneNumber": "0979777222",
+    "Address": "TP HCM"
+  }
+]
