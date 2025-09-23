@@ -8,7 +8,7 @@ namespace OOP_finalProject
 {
     public class CashierData
     {
-        private string pathXml = Path.Combine(GetPath.path, nameof(Cashier) + ".xml");
+        private string pathXml = Path.Combine(GetPath.path, nameof(Cashier) + ".dat");
 
         public List<Cashier> GetData()
         {

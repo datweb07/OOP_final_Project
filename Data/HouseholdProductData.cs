@@ -1,11 +1,8 @@
-﻿using OOP_finalProject.Employees;
-using OOP_finalProject.Products;
+﻿using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Text.Json;
 
 namespace OOP_finalProject
 {
