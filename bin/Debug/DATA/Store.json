@@ -1,0 +1,13 @@
+{
+  "Name": "Cửa Hàng Tiện Lợi 7-Eleven",
+  "Address": "Hà Nội",
+  "Manager": {
+    "Code": "QL002",
+    "Name": "Tuấn",
+    "Gender": "Nam",
+    "Phone": "0793743234",
+    "Address": "Hà Nội"
+  },
+  "Products": [],
+  "Customers": []
+}
