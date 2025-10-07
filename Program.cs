@@ -1,7 +1,9 @@
 ﻿using OOP_finalProject.Base;
+using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
@@ -27,17 +29,23 @@ namespace OOP_finalProject
                 new Customer("KH003", "Phạm Văn Cường", "Nam", "0923456789", "789 Điện Biên Phủ, Q10, TP.HCM")
             };
 
-            // Đường dẫn file .dat (bạn đổi lại theo GetPath.path nếu muốn)
-            string filePath = "Customer.dat";
+            //// Đường dẫn file .dat (bạn đổi lại theo GetPath.path nếu muốn)
+            //string filePath = Path.Combine(GetPath.path, nameof(Customer) + ".dat");
 
-            // Serialize ra file .dat
-            using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(fs, customers);
-            }
+            //// Serialize ra file .dat
+            //using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Write))
+            //{
+            //    BinaryFormatter bf = new BinaryFormatter();
+            //    bf.Serialize(fs, customers);
+            //}
 
-            Console.WriteLine($"Đã tạo file {filePath} với {customers.Count} khách hàng mẫu!");
+            //Console.WriteLine($"Đã tạo file {filePath} với {customers.Count} khách hàng mẫu!");
+
+            //List<Cashier> cashiers = new List<Cashier>()
+            //{
+            //    new Cashier("NV001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
+            //    new Cashier("NV002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
+            //}; 
         }
     }
 }

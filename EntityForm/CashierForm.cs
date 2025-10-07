@@ -1,6 +1,8 @@
 ﻿using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -18,6 +20,8 @@ namespace OOP_finalProject
         BindingSource _src = new BindingSource();
         private void FormSeller_Load(object sender, EventArgs e)
         {
+            CreateSampleData();
+
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
@@ -26,6 +30,25 @@ namespace OOP_finalProject
             rdoFemale.Checked = false;
             cashiers = cashierData.GetData();
             DisplayInGrid();
+        }
+
+        private void CreateSampleData()
+        {
+            string filePath = Path.Combine(GetPath.path, nameof(Cashier) + ".dat");
+            if (!File.Exists(filePath))
+            {
+                List<Cashier> cashiers = new List<Cashier>()
+            {
+                new Cashier("NV001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
+                new Cashier("NV002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
+            };
+
+                using (FileStream fs = File.Create(filePath))
+                {
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Cashier>));
+                    serializer.WriteObject(fs, cashiers);
+                }
+            }
         }
 
         private void DisplayInGrid()
@@ -140,7 +163,7 @@ namespace OOP_finalProject
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
-            Cashier cashier = (Cashier)gridData.CurrentRow.DataBoundItem;
+            Cashier cashier = gridData.CurrentRow.DataBoundItem as Cashier;
 
             if (cashier == null)
                 return;
@@ -157,5 +180,133 @@ namespace OOP_finalProject
             txtAddress.Text = cashier.Address;
             txtPhone.Text = cashier.PhoneNumber;
         }
+
+
+        //private CashierData cashierData = new CashierData();
+        //private List<Cashier> cashiers = new List<Cashier>();
+
+        //BindingSource source = new BindingSource();
+
+        //public CashierForm()
+        //{
+        //    InitializeComponent();
+        //}
+
+        //private void FormSeller_Load(object sender, System.EventArgs e)
+        //{
+        //    gridData.DataSource = source;
+        //    gridData.AllowUserToAddRows = false;
+        //    gridData.ReadOnly = true;
+
+        //    rdoFemale.Checked = false;
+        //    rdoMale.Checked = true;
+        //    cashiers = cashierData.GetData();
+        //    DisplayGrid();
+        //}
+
+        //private void DisplayGrid()
+        //{
+        //    source.DataSource = cashiers;
+        //    source.ResetBindings(true);
+        //}
+
+        //private void btnRefresh_Click(object sender, System.EventArgs e)
+        //{
+        //    //txtCode.Clear();
+        //    //txtName.Clear();
+        //    //txtPhone.Clear();
+        //    //txtAddress.Clear();
+        //    //rdoFemale.Checked = false;
+        //    //rdoMale.Checked = true;
+        //    txtCode.Text = "";
+        //    txtName.Text = "";
+        //    txtPhone.Text = "";
+        //    txtAddress.Text = "";
+        //    rdoMale.Checked = true;
+        //    rdoFemale.Checked = false;
+        //}
+
+        //private void btnSave_Click(object sender, System.EventArgs e)
+        //{
+        //    string id = txtCode.Text.Trim();
+        //    string name = txtName.Text.Trim();
+        //    string phone = txtPhone.Text.Trim();
+        //    string address = txtAddress.Text.Trim();
+        //    string gender = rdoMale.Checked ? "Nam" : "Nữ";
+        //    if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name))
+        //    {
+        //        MessageBox.Show("Mã và Tên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return;
+        //    }
+        //    Cashier existingCustomer = cashiers.Find(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
+        //    if (existingCustomer != null)
+        //    {
+        //        existingCustomer.Name = name;
+        //        existingCustomer.PhoneNumber = phone;
+        //        existingCustomer.Address = address;
+        //        existingCustomer.Gender = gender;
+        //    }
+        //    else
+        //    {
+        //        Cashier newCustomer = new Cashier(id, name, phone, address, gender);
+        //        cashiers.Add(newCustomer);
+        //    }
+        //    cashierData.SaveData(cashiers);
+        //    DisplayGrid();
+        //    MessageBox.Show("Lưu thông tin khách hàng thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+        //}
+
+        //private void btnDelete_Click(object sender, System.EventArgs e)
+        //{
+        //    if (gridData.CurrentRow != null)
+        //    {
+        //        string id = gridData.CurrentRow.Cells["Id"].Value.ToString();
+        //        Cashier customerToRemove = cashiers.Find(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
+        //        if (customerToRemove != null)
+        //        {
+        //            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng này?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //            if (confirmResult == DialogResult.Yes)
+        //            {
+        //                cashiers.Remove(customerToRemove);
+        //                cashierData.SaveData(cashiers);
+        //                DisplayGrid();
+        //                MessageBox.Show("Xóa khách hàng thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn khách hàng để xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
+        //private void gridData_CellEnter(object sender, DataGridViewCellEventArgs d)
+        //{
+        //    if (gridData.CurrentRow != null || gridData.CurrentRow.IsNewRow)
+        //    {
+        //        return;
+        //    }
+
+        //    Cashier customer = (Cashier)gridData.CurrentRow.DataBoundItem;
+        //    if (customer != null)
+        //    {
+        //        return;
+        //    }
+        //    DisplayCustomer(customer);
+
+        //}
+
+        //private void DisplayCustomer(Cashier customer)
+        //{
+        //    txtCode.Text = customer.Id;
+        //    txtName.Text = customer.Name;
+        //    rdoMale.Checked = customer.Gender == "Nam" ? true : false;
+        //    rdoFemale.Checked = customer.Gender != "Nam" ? true : false;
+        //    txtPhone.Text = customer.PhoneNumber;
+        //    txtAddress.Text = customer.Address;
+        //}
+
     }
 }

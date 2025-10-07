@@ -12,6 +12,39 @@ namespace OOP_finalProject.LoginForm
         public SignIn()
         {
             InitializeComponent();
+            SetPlaceholder(txtUserNameSignIn, "Nhập tên của bạn");
+            SetPlaceholder(txtPasswordSignIn, "Nhập mật khẩu");
+        }
+
+        private void SetPlaceholder(TextBox textBox, string placeholder)
+        {
+            textBox.Text = placeholder;
+            textBox.ForeColor = Color.Gray;
+
+            textBox.Enter += (s, e) =>
+            {
+                if (textBox.Text == placeholder)
+                {
+                    textBox.Text = "";
+                    textBox.ForeColor = Color.Black;
+
+                    // Nếu là ô mật khẩu
+                    if (textBox == txtPasswordSignIn)
+                        textBox.UseSystemPasswordChar = true;
+                }
+            };
+
+            textBox.Leave += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholder;
+                    textBox.ForeColor = Color.Gray;
+
+                    if (textBox == txtPasswordSignIn)
+                        textBox.UseSystemPasswordChar = false;
+                }
+            };
         }
 
         SqlConnection sqlConnection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\THANH DAT\source\repos\OOP_finalProject\Data.mdf;Integrated Security = True; Connect Timeout = 30");
