@@ -207,13 +207,13 @@ namespace OOP_finalProject
         // Quản lý đồ uống
         private void btnBeverage_Click(object sender, EventArgs e)
         {
-            LoadForm(new DrinkForm(), "🥤 Quản Lý Đồ Uống", btnBeverage);
+            LoadForm(new DrinkProductForm(), "🥤 Quản Lý Đồ Uống", btnBeverage);
         }
 
         // Quản lý thực phẩm
         private void btnFood_Click(object sender, EventArgs e)
         {
-            LoadForm(new FoodForm(), "🍔 Quản Lý Thực Phẩm", btnFood);
+            LoadForm(new FoodProductForm(), "🍔 Quản Lý Thực Phẩm", btnFood);
         }
 
         // Quản lý đồ gia dụng
@@ -232,6 +232,11 @@ namespace OOP_finalProject
         private void btnOrderList_Click(object sender, EventArgs e)
         {
             LoadForm(new ListOrderForm(), "📝 Danh Sách Đơn Hàng", btnOrderList);
+        }
+
+        private void btnElectronic_Click(object sender, EventArgs e)
+        {
+            LoadForm(new ElectronicProductForm(), "📝 Quản lý đồ điện tử", btnElectronic);
         }
 
         // Hiển thị thông tin tài khoản
@@ -299,5 +304,7 @@ namespace OOP_finalProject
             base.OnFormClosing(e);
         }
         #endregion
+
+       
     }
 }

@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
-    public partial class DrinkForm : Form
+    public partial class DrinkProductForm : Form
     {
-        public DrinkForm()
+        public DrinkProductForm()
         {
             InitializeComponent();
         }

@@ -101,6 +101,12 @@
     <Compile Include="Data\DrinkProductData.cs" />
     <Compile Include="Data\CustomerData.cs" />
     <Compile Include="Data\ElectronicProductData.cs" />
+    <Compile Include="ElectronicProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElectronicProductForm.Designer.cs">
+      <DependentUpon>ElectronicProductForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntityForm\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,11 +122,11 @@
     <Compile Include="EntityForm\DashboardForm.Designer.cs">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EntityForm\DrinkForm.cs">
+    <Compile Include="EntityForm\DrinkProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EntityForm\DrinkForm.Designer.cs">
-      <DependentUpon>DrinkForm.cs</DependentUpon>
+    <Compile Include="EntityForm\DrinkProductForm.Designer.cs">
+      <DependentUpon>DrinkProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityForm\CashierForm.cs">
       <SubType>Form</SubType>
@@ -145,11 +151,11 @@
     <Compile Include="Employees\Cashier.cs" />
     <Compile Include="Employees\Manager.cs" />
     <Compile Include="Employees\Stocker.cs" />
-    <Compile Include="EntityForm\FoodForm.cs">
+    <Compile Include="EntityForm\FoodProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EntityForm\FoodForm.Designer.cs">
-      <DependentUpon>FoodForm.cs</DependentUpon>
+    <Compile Include="EntityForm\FoodProductForm.Designer.cs">
+      <DependentUpon>FoodProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityForm\HouseholdProductForm.cs">
       <SubType>Form</SubType>
@@ -247,6 +253,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserManagement\UserSession.cs" />
+    <EmbeddedResource Include="ElectronicProductForm.resx">
+      <DependentUpon>ElectronicProductForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityForm\HouseholdProductForm.resx">
+      <DependentUpon>HouseholdProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm\SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
@@ -280,7 +292,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

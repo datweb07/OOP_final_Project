@@ -1,7 +1,9 @@
 ﻿using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 
@@ -18,6 +20,36 @@ namespace OOP_finalProject
         private List<Cashier> cashiers = new List<Cashier>();
 
         BindingSource _src = new BindingSource();
+        // Thêm sự kiện cho các nút mới
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                var filteredCashiers = cashiers.Where(c =>
+                    c.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
+                    c.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
+                    c.PhoneNumber.Contains(txtSearch.Text)).ToList();
+
+                _src.DataSource = filteredCashiers;
+                _src.ResetBindings(true);
+
+                statusLabel.Text = $"Tìm thấy {filteredCashiers.Count} kết quả";
+            }
+            else
+            {
+                DisplayInGrid();
+                statusLabel.Text = "Sẵn sàng";
+            }
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            btnRefresh_Click(null, null);
+            txtCode.Focus();
+            statusLabel.Text = "Nhập thông tin nhân viên mới";
+        }
+
+        // Cập nhật FormSeller_Load
         private void FormSeller_Load(object sender, EventArgs e)
         {
             CreateSampleData();
@@ -26,11 +58,31 @@ namespace OOP_finalProject
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
+            // Tùy chỉnh giao diện DataGridView
+            gridData.BorderStyle = BorderStyle.None;
+            gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
+            gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            gridData.DefaultCellStyle.SelectionBackColor = Color.FromArgb(65, 105, 225);
+            gridData.DefaultCellStyle.SelectionForeColor = Color.White;
+            gridData.BackgroundColor = Color.White;
+            gridData.EnableHeadersVisualStyles = false;
+            gridData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            gridData.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(65, 105, 225);
+            gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
             cashiers = cashierData.GetData();
             DisplayInGrid();
+
+            // Đăng ký sự kiện mới
+            btnSearch.Click += btnSearch_Click;
+            btnAddNew.Click += btnAddNew_Click;
+            txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
         }
+
+
 
         private void CreateSampleData()
         {

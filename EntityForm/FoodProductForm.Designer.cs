@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
-    partial class FoodForm
+    partial class FoodProductForm
     {
         /// <summary>
         /// Required designer variable.

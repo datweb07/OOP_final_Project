@@ -1,9 +1,10 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace OOP_finalProject
 {
-    partial class HouseholdProductForm
+    partial class ElectronicProductForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,32 +40,30 @@ namespace OOP_finalProject
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
-            this.txtQty = new System.Windows.Forms.NumericUpDown();
+            this.txtWarranty = new System.Windows.Forms.TextBox();
+            this.lblWarranty = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
-            this.cboBrand = new System.Windows.Forms.ComboBox();
-            this.lblBrand = new System.Windows.Forms.Label();
-            this.txtPrice = new System.Windows.Forms.NumericUpDown();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.lblCode = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.groupBoxList = new System.Windows.Forms.GroupBox();
-            this.gridData = new System.Windows.Forms.DataGridView();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblId = new System.Windows.Forms.Label();
+            this.groupBoxList = new System.Windows.Forms.GroupBox();
+            this.gridData = new System.Windows.Forms.DataGridView();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAvatar)).BeginInit();
             this.searchPanel.SuspendLayout();
             this.groupBoxInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).BeginInit();
+            this.statusStrip.SuspendLayout();
             this.groupBoxList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
-            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // titlePanel
@@ -75,18 +74,18 @@ namespace OOP_finalProject
             this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.titlePanel.Location = new System.Drawing.Point(0, 0);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(1091, 52);
+            this.titlePanel.Size = new System.Drawing.Size(1101, 52);
             this.titlePanel.TabIndex = 0;
             // 
             // titleLabel
             // 
             this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(60, 9);
+            this.titleLabel.Location = new System.Drawing.Point(60, 16);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(279, 40);
+            this.titleLabel.Size = new System.Drawing.Size(257, 25);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "QUẢN LÝ ĐỒ GIA DỤNG";
+            this.titleLabel.Text = "QUẢN LÝ SẢN PHẨM ĐIỆN TỬ";
             // 
             // pictureAvatar
             // 
@@ -106,7 +105,7 @@ namespace OOP_finalProject
             this.searchPanel.Location = new System.Drawing.Point(0, 52);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Padding = new System.Windows.Forms.Padding(9, 4, 9, 4);
-            this.searchPanel.Size = new System.Drawing.Size(1091, 43);
+            this.searchPanel.Size = new System.Drawing.Size(1101, 43);
             this.searchPanel.TabIndex = 1;
             // 
             // txtSearch
@@ -129,7 +128,6 @@ namespace OOP_finalProject
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // btnAddNew
             // 
@@ -143,91 +141,79 @@ namespace OOP_finalProject
             this.btnAddNew.TabIndex = 2;
             this.btnAddNew.Text = "Thêm mới";
             this.btnAddNew.UseVisualStyleBackColor = false;
-            this.btnAddNew.Click += new System.EventHandler(this.BtnAddNew_Click);
             // 
             // groupBoxInfo
             // 
-            this.groupBoxInfo.Controls.Add(this.txtQty);
+            this.groupBoxInfo.Controls.Add(this.txtWarranty);
+            this.groupBoxInfo.Controls.Add(this.lblWarranty);
+            this.groupBoxInfo.Controls.Add(this.lblId);
+            this.groupBoxInfo.Controls.Add(this.txtQuantity);
             this.groupBoxInfo.Controls.Add(this.lblQuantity);
-            this.groupBoxInfo.Controls.Add(this.cboBrand);
-            this.groupBoxInfo.Controls.Add(this.lblBrand);
             this.groupBoxInfo.Controls.Add(this.txtPrice);
             this.groupBoxInfo.Controls.Add(this.lblPrice);
             this.groupBoxInfo.Controls.Add(this.txtName);
+            this.groupBoxInfo.Controls.Add(this.txtId);
             this.groupBoxInfo.Controls.Add(this.lblName);
-            this.groupBoxInfo.Controls.Add(this.txtCode);
-            this.groupBoxInfo.Controls.Add(this.lblCode);
             this.groupBoxInfo.Controls.Add(this.btnDelete);
             this.groupBoxInfo.Controls.Add(this.btnSave);
             this.groupBoxInfo.Controls.Add(this.btnRefresh);
             this.groupBoxInfo.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.groupBoxInfo.Location = new System.Drawing.Point(10, 108);
             this.groupBoxInfo.Name = "groupBoxInfo";
-            this.groupBoxInfo.Size = new System.Drawing.Size(837, 200);
+            this.groupBoxInfo.Size = new System.Drawing.Size(837, 177);
             this.groupBoxInfo.TabIndex = 2;
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Thông tin sản phẩm";
             // 
-            // txtQty
+            // txtWarranty
             // 
-            this.txtQty.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtQty.Location = new System.Drawing.Point(529, 82);
-            this.txtQty.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(171, 25);
-            this.txtQty.TabIndex = 5;
+            this.txtWarranty.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtWarranty.Location = new System.Drawing.Point(119, 127);
+            this.txtWarranty.Name = "txtWarranty";
+            this.txtWarranty.Size = new System.Drawing.Size(138, 25);
+            this.txtWarranty.TabIndex = 7;
+            // 
+            // lblWarranty
+            // 
+            this.lblWarranty.AutoSize = true;
+            this.lblWarranty.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblWarranty.Location = new System.Drawing.Point(17, 127);
+            this.lblWarranty.Name = "lblWarranty";
+            this.lblWarranty.Size = new System.Drawing.Size(75, 19);
+            this.lblWarranty.TabIndex = 6;
+            this.lblWarranty.Text = "Bảo hành:";
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtQuantity.Location = new System.Drawing.Point(414, 75);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(172, 25);
+            this.txtQuantity.TabIndex = 5;
             // 
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblQuantity.Location = new System.Drawing.Point(406, 84);
+            this.lblQuantity.Location = new System.Drawing.Point(323, 78);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(73, 19);
             this.lblQuantity.TabIndex = 4;
             this.lblQuantity.Text = "Số lượng:";
             // 
-            // cboBrand
-            // 
-            this.cboBrand.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cboBrand.FormattingEnabled = true;
-            this.cboBrand.Location = new System.Drawing.Point(147, 132);
-            this.cboBrand.Name = "cboBrand";
-            this.cboBrand.Size = new System.Drawing.Size(172, 25);
-            this.cboBrand.TabIndex = 3;
-            // 
-            // lblBrand
-            // 
-            this.lblBrand.AutoSize = true;
-            this.lblBrand.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblBrand.Location = new System.Drawing.Point(17, 135);
-            this.lblBrand.Name = "lblBrand";
-            this.lblBrand.Size = new System.Drawing.Size(96, 19);
-            this.lblBrand.TabIndex = 2;
-            this.lblBrand.Text = "Thương hiệu:";
-            // 
             // txtPrice
             // 
             this.txtPrice.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPrice.Location = new System.Drawing.Point(148, 82);
-            this.txtPrice.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
+            this.txtPrice.Location = new System.Drawing.Point(78, 75);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(171, 25);
+            this.txtPrice.Size = new System.Drawing.Size(140, 25);
             this.txtPrice.TabIndex = 3;
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblPrice.Location = new System.Drawing.Point(19, 84);
+            this.lblPrice.Location = new System.Drawing.Point(17, 78);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(35, 19);
             this.lblPrice.TabIndex = 2;
@@ -236,7 +222,7 @@ namespace OOP_finalProject
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtName.Location = new System.Drawing.Point(528, 27);
+            this.txtName.Location = new System.Drawing.Point(414, 24);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(172, 25);
             this.txtName.TabIndex = 1;
@@ -245,29 +231,20 @@ namespace OOP_finalProject
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblName.Location = new System.Drawing.Point(406, 30);
+            this.lblName.Location = new System.Drawing.Point(323, 27);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(104, 19);
+            this.lblName.Size = new System.Drawing.Size(57, 19);
             this.lblName.TabIndex = 0;
-            this.lblName.Text = "Tên sản phẩm:";
+            this.lblName.Text = "Tên SP:";
             // 
-            // txtCode
+            // txtId
             // 
-            this.txtCode.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtCode.Location = new System.Drawing.Point(148, 27);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(189, 25);
-            this.txtCode.TabIndex = 1;
-            // 
-            // lblCode
-            // 
-            this.lblCode.AutoSize = true;
-            this.lblCode.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblCode.Location = new System.Drawing.Point(19, 30);
-            this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(102, 19);
-            this.lblCode.TabIndex = 0;
-            this.lblCode.Text = "Mã sản phẩm:";
+            this.txtId.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtId.Location = new System.Drawing.Point(164, 44);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(140, 25);
+            this.txtId.TabIndex = 9;
+            this.txtId.Visible = false;
             // 
             // btnDelete
             // 
@@ -275,13 +252,12 @@ namespace OOP_finalProject
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(691, 171);
+            this.btnDelete.Location = new System.Drawing.Point(677, 142);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(146, 29);
+            this.btnDelete.Size = new System.Drawing.Size(154, 29);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -289,9 +265,9 @@ namespace OOP_finalProject
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(517, 171);
+            this.btnSave.Location = new System.Drawing.Point(502, 142);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(146, 29);
+            this.btnSave.Size = new System.Drawing.Size(154, 29);
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -302,18 +278,48 @@ namespace OOP_finalProject
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(343, 171);
+            this.btnRefresh.Location = new System.Drawing.Point(321, 142);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(146, 29);
+            this.btnRefresh.Size = new System.Drawing.Size(154, 29);
             this.btnRefresh.TabIndex = 8;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = false;
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 582);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
+            this.statusStrip.Size = new System.Drawing.Size(1101, 22);
+            this.statusStrip.TabIndex = 4;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.ForeColor = System.Drawing.Color.White;
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(54, 17);
+            this.statusLabel.Text = "Sẵn sàng";
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblId.Location = new System.Drawing.Point(86, 44);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(55, 19);
+            this.lblId.TabIndex = 8;
+            this.lblId.Text = "Mã SP:";
+            this.lblId.Visible = false;
             // 
             // groupBoxList
             // 
             this.groupBoxList.Controls.Add(this.gridData);
             this.groupBoxList.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.groupBoxList.Location = new System.Drawing.Point(13, 308);
+            this.groupBoxList.Location = new System.Drawing.Point(10, 291);
             this.groupBoxList.Name = "groupBoxList";
             this.groupBoxList.Size = new System.Drawing.Size(837, 260);
             this.groupBoxList.TabIndex = 3;
@@ -330,49 +336,28 @@ namespace OOP_finalProject
             this.gridData.Size = new System.Drawing.Size(831, 236);
             this.gridData.TabIndex = 0;
             // 
-            // statusStrip
-            // 
-            this.statusStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 581);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1091, 22);
-            this.statusStrip.TabIndex = 4;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.ForeColor = System.Drawing.Color.White;
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(54, 17);
-            this.statusLabel.Text = "Sẵn sàng";
-            // 
-            // HouseholdProductForm
+            // ElectronicProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1091, 603);
+            this.ClientSize = new System.Drawing.Size(1101, 604);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.groupBoxList);
             this.Controls.Add(this.groupBoxInfo);
             this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.titlePanel);
-            this.Name = "HouseholdProductForm";
-            this.Text = "QUẢN LÝ ĐỒ GIA DỤNG";
+            this.Name = "ElectronicProductForm";
+            this.Text = "QUẢN LÝ SẢN PHẨM ĐIỆN TỬ";
             this.titlePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureAvatar)).EndInit();
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
             this.groupBoxInfo.ResumeLayout(false);
             this.groupBoxInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).EndInit();
-            this.groupBoxList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.groupBoxList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,24 +370,24 @@ namespace OOP_finalProject
         private Button btnSearch;
         private Button btnAddNew;
         private GroupBox groupBoxInfo;
-        private NumericUpDown txtQty;
+        private TextBox txtWarranty;
+        private Label lblWarranty;
+        private TextBox txtQuantity;
         private Label lblQuantity;
-        private ComboBox cboBrand;
-        private Label lblBrand;
-        private NumericUpDown txtPrice;
+        private TextBox txtPrice;
         private Label lblPrice;
         private TextBox txtName;
         private Label lblName;
-        private TextBox txtCode;
-        private Label lblCode;
+        private TextBox txtId;
         private Button btnDelete;
         private Button btnSave;
         private Button btnRefresh;
-        private GroupBox groupBoxList;
-        private DataGridView gridData;
         private StatusStrip statusStrip;
         private ToolStripStatusLabel statusLabel;
         #endregion
 
+        private Label lblId;
+        private GroupBox groupBoxList;
+        private DataGridView gridData;
     }
 }
