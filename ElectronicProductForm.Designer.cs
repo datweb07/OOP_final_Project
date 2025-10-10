@@ -42,19 +42,19 @@ namespace OOP_finalProject
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
             this.txtWarranty = new System.Windows.Forms.TextBox();
             this.lblWarranty = new System.Windows.Forms.Label();
+            this.lblId = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblId = new System.Windows.Forms.Label();
             this.groupBoxList = new System.Windows.Forms.GroupBox();
             this.gridData = new System.Windows.Forms.DataGridView();
             this.titlePanel.SuspendLayout();
@@ -128,6 +128,7 @@ namespace OOP_finalProject
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // btnAddNew
             // 
@@ -141,6 +142,7 @@ namespace OOP_finalProject
             this.btnAddNew.TabIndex = 2;
             this.btnAddNew.Text = "Thêm mới";
             this.btnAddNew.UseVisualStyleBackColor = false;
+            this.btnAddNew.Click += new System.EventHandler(this.BtnAddNew_Click);
             // 
             // groupBoxInfo
             // 
@@ -182,6 +184,17 @@ namespace OOP_finalProject
             this.lblWarranty.Size = new System.Drawing.Size(75, 19);
             this.lblWarranty.TabIndex = 6;
             this.lblWarranty.Text = "Bảo hành:";
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblId.Location = new System.Drawing.Point(86, 44);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(55, 19);
+            this.lblId.TabIndex = 8;
+            this.lblId.Text = "Mã SP:";
+            this.lblId.Visible = false;
             // 
             // txtQuantity
             // 
@@ -227,6 +240,15 @@ namespace OOP_finalProject
             this.txtName.Size = new System.Drawing.Size(172, 25);
             this.txtName.TabIndex = 1;
             // 
+            // txtId
+            // 
+            this.txtId.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtId.Location = new System.Drawing.Point(164, 44);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(140, 25);
+            this.txtId.TabIndex = 9;
+            this.txtId.Visible = false;
+            // 
             // lblName
             // 
             this.lblName.AutoSize = true;
@@ -236,15 +258,6 @@ namespace OOP_finalProject
             this.lblName.Size = new System.Drawing.Size(57, 19);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Tên SP:";
-            // 
-            // txtId
-            // 
-            this.txtId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtId.Location = new System.Drawing.Point(164, 44);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(140, 25);
-            this.txtId.TabIndex = 9;
-            this.txtId.Visible = false;
             // 
             // btnDelete
             // 
@@ -258,6 +271,7 @@ namespace OOP_finalProject
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -271,6 +285,7 @@ namespace OOP_finalProject
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRefresh
             // 
@@ -284,6 +299,7 @@ namespace OOP_finalProject
             this.btnRefresh.TabIndex = 8;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // statusStrip
             // 
@@ -303,17 +319,6 @@ namespace OOP_finalProject
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(54, 17);
             this.statusLabel.Text = "Sẵn sàng";
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblId.Location = new System.Drawing.Point(86, 44);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(55, 19);
-            this.lblId.TabIndex = 8;
-            this.lblId.Text = "Mã SP:";
-            this.lblId.Visible = false;
             // 
             // groupBoxList
             // 

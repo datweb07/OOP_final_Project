@@ -55,4 +55,47 @@ namespace OOP_finalProject.Base
             info.AddValue("Address", Address);
         }
     }
+
+//    [DataContract]
+//public class Customer
+//{
+//    [DataMember]
+//    public string Id { get; set; }
+//    [DataMember]
+//    public string Name { get; set; }
+//    [DataMember]
+//    public string Gender { get; set; }
+//    [DataMember]
+//    public string PhoneNumber { get; set; }
+//    [DataMember]
+//    public string Address { get; set; }
+
+//    public Customer() { }
+
+//    public Customer(string id, string name, string gender, string phoneNumber, string address)
+//    {
+//        Id = id;
+//        Name = name;
+//        Gender = gender;
+//        PhoneNumber = phoneNumber;
+//        Address = address;
+//    }
+//    public Customer(SerializationInfo info, StreamingContext context)
+//    {
+//        Id = info.GetString("Id");
+//        Name = info.GetString("Name");
+//        Gender = info.GetString("Gender");
+//        PhoneNumber = info.GetString("PhoneNumber");
+//        Address = info.GetString("Address");
+//    }
+
+//    public void GetObjectData(SerializationInfo info, StreamingContext context)
+//    {
+//        info.AddValue("Id", Id);
+//        info.AddValue("Name", Name);
+//        info.AddValue("Gender", Gender);
+//        info.AddValue("PhoneNumber", PhoneNumber);
+//        info.AddValue("Address", Address);
+//    }
+//}
 }
