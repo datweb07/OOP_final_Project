@@ -1,25 +1,60 @@
 ﻿using System;
-using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
+using OOP_finalProject.Interfaces;
 
 namespace OOP_finalProject.Base
 {
     [Serializable]
-    public abstract class Product : ISerializable
+    public abstract class Product : ISerializable, IDisplayable, ICalculable
     {
         private string id;
         private string name;
         private decimal price;
         private decimal quantity;
-        //private string category;
 
-        public string Id { get { return id; } set { id = value; } }
+        public string Id
+        {
+            get { return id; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("ID cannot be null or empty");
+                id = value;
+            }
+        }
 
-        public string Name { get { return name; } set { name = value; } }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Name cannot be null or empty");
+                name = value;
+            }
+        }
 
-        public decimal Price { get { return price; } set { price = value; } }
+        public decimal Price
+        {
+            get { return price; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Price cannot be negative");
+                price = value;
+            }
+        }
 
-        public decimal Quantity { get { return quantity; } set { quantity = value; } }
+        public decimal Quantity
+        {
+            get { return quantity; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Quantity cannot be negative");
+                quantity = value;
+            }
+        }
 
         //public string Category { get { return category; } set { category = value; } }
 
@@ -53,6 +88,30 @@ namespace OOP_finalProject.Base
         }
 
         public abstract string Info();
+
+        public virtual string GetDisplayInfo()
+        {
+            return $"ID: {Id}, Name: {Name}, Price: {Price:C}, Quantity: {Quantity}";
+        }
+
+        public virtual string GetShortInfo()
+        {
+            return $"{Name} - {Price:C}";
+        }
+
+        public virtual decimal CalculateTotal()
+        {
+            return Price * Quantity;
+        }
+
+        public virtual decimal CalculateDiscount(decimal discountPercentage)
+        {
+            if (discountPercentage < 0 || discountPercentage > 100)
+                throw new ArgumentException("Discount percentage must be between 0 and 100");
+
+            return CalculateTotal() * (discountPercentage / 100);
+        }
+
         public string Display
         {
             get { return Info(); }
@@ -65,8 +124,5 @@ namespace OOP_finalProject.Base
             info.AddValue("Price", Price);
             info.AddValue("Quantity", Quantity);
         }
-
-
     }
-
 }

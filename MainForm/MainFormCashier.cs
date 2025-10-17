@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -38,15 +37,15 @@ namespace OOP_finalProject
             btnOrder.Click += btnOrder_Click;
             btnInvoiceList.Click += btnInvoiceList_Click;
             btnOrderList.Click += btnOrderList_Click;
-            btnAccount.Click += btnAccount_Click; 
+            btnAccount.Click += btnAccount_Click;
             btnExit.Click += btnExit_Click;
         }
 
         private void UpdateWelcomeMessage()
         {
-            if (UserSession.IsLoggedIn())
+            if (UserSession.Instance.IsLoggedIn())
             {
-                lblWelcome.Text = $"Chào mừng {UserSession.GetDisplayName()} ({UserSession.GetRoleDisplayName()})";
+                lblWelcome.Text = $"Chào mừng {UserSession.Instance.GetDisplayName()} ({UserSession.Instance.GetRoleDisplayName()})";
             }
             else
             {
@@ -122,7 +121,7 @@ namespace OOP_finalProject
             currentForm.Show();
         }
 
-       
+
         #endregion
 
         #region Event Handlers
@@ -158,7 +157,7 @@ namespace OOP_finalProject
         // Hiển thị thông tin tài khoản
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            if (!UserSession.IsLoggedIn())
+            if (!UserSession.Instance.IsLoggedIn())
             {
                 MessageBox.Show("Không có thông tin người dùng đăng nhập!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -181,7 +180,7 @@ namespace OOP_finalProject
             if (result == DialogResult.Yes)
             {
                 // Clear user session
-                UserSession.ClearUserInfo();
+                UserSession.Instance.ClearUserInfo();
 
                 // Đóng tất cả forms con
                 if (currentForm != null)

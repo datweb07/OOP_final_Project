@@ -1,5 +1,4 @@
 ﻿using OOP_finalProject.Base;
-using System;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Customers

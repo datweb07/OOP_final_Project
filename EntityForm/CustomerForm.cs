@@ -1,10 +1,8 @@
 ﻿using OOP_finalProject.Base;
-using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 
@@ -12,157 +10,6 @@ namespace OOP_finalProject
 {
     public partial class CustomerForm : Form
     {
-        //public CustomerForm()
-        //{
-        //    InitializeComponent();
-        //}
-
-        //private CustomerData customerData = new CustomerData();
-        //private List<Customer> customers = new List<Customer>();
-
-        //BindingSource _src = new BindingSource();
-        //private void FormCustomer_Load(object sender, EventArgs e)
-        //{
-        //    gridData.DataSource = _src;
-        //    gridData.AllowUserToAddRows = false;
-        //    gridData.ReadOnly = true;
-
-        //    rdoMale.Checked = true;
-        //    rdoFemale.Checked = false;
-        //    customers = customerData.GetData();
-        //    DisplayInGrid();
-        //}
-
-        //private void DisplayInGrid()
-        //{
-        //    _src.DataSource = customers;
-        //    _src.ResetBindings(true);
-        //}
-
-        //private void btnRefresh_Click(object sender, EventArgs e)
-        //{
-        //    txtCode.Text = "";
-        //    txtName.Text = "";
-        //    txtPhone.Text = "";
-        //    txtAddress.Text = "";
-        //    rdoMale.Checked = true;
-        //    rdoFemale.Checked = false;
-        //}
-
-        //private void btnSave_Click(object sender, EventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(txtCode.Text))
-        //    {
-        //        MessageBox.Show("Mã khách hàng không được để trống !"
-        //            , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    if (string.IsNullOrEmpty(txtName.Text))
-        //    {
-        //        MessageBox.Show("Tên khách hàng không được để trống !"
-        //            , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    if (string.IsNullOrEmpty(txtPhone.Text))
-        //    {
-        //        MessageBox.Show("Số điện thoại không được để trống !"
-        //            , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    if (string.IsNullOrEmpty(txtAddress.Text))
-        //    {
-        //        MessageBox.Show("Địa chỉ không được để trống !"
-        //            , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    Customer customer = null;
-
-        //    for (int i = 0; i < customers.Count; i++)
-        //    {
-        //        if (customers[i].Id.ToLower() == txtCode.Text.ToLower())
-        //        {
-        //            customer = customers[i];
-        //            break;
-        //        }
-        //    }
-
-        //    if (customer == null)
-        //    {
-        //        customer = new Customer();
-        //        customers.Add(customer);
-        //    }
-
-        //    customer.Id = txtCode.Text;
-        //    customer.PhoneNumber = txtPhone.Text;
-        //    customer.Address = txtAddress.Text;
-        //    customer.Name = txtName.Text;
-        //    customer.Gender = rdoMale.Checked ? "Nam" : "Nữ";
-
-        //    DisplayInGrid();
-
-        //    // save data in database
-        //    customerData.SaveData(customers);
-
-        //    MessageBox.Show("Cập nhật thông tin khách hàng thành công !"
-        //        , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //    return;
-        //}
-
-        //private void btnDelete_Click(object sender, EventArgs e)
-        //{
-        //    Customer customer = null;
-
-        //    for (int i = 0; i < customers.Count; i++)
-        //    {
-        //        if (customers[i].Id.ToLower() == txtCode.Text.ToLower())
-        //        {
-        //            customer = customers[i];
-        //            break;
-        //        }
-        //    }
-
-        //    if (customer != null)
-        //    {
-        //        customers.Remove(customer);
-        //    }
-
-        //    DisplayInGrid();
-
-        //    customerData.SaveData(customers);
-
-
-        //    MessageBox.Show("Xoá thông tin khách hàng thành công !"
-        //        , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //    return;
-        //}
-
-        //private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
-        //        return;
-
-        //    Customer customer = gridData.CurrentRow.DataBoundItem as Customer;
-
-        //    if (customer == null)
-        //        return;
-
-        //    Display(customer);
-        //}
-
-        //public void Display(Customer customer)
-        //{
-        //    txtCode.Text = customer.Id;
-        //    txtName.Text = customer.Name;
-        //    rdoMale.Checked = customer.Gender == "Nam" ? true : false;
-        //    rdoFemale.Checked = customer.Gender != "Nam" ? true : false;
-        //    txtAddress.Text = customer.Address;
-        //    txtPhone.Text = customer.PhoneNumber;
-        //}
-
         public CustomerForm()
         {
             InitializeComponent();
@@ -173,33 +20,33 @@ namespace OOP_finalProject
 
         BindingSource _src = new BindingSource();
         // Thêm sự kiện cho các nút mới
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtSearch.Text))
-            {
-                var filteredCustomers = customers.Where(c =>
-                    c.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    c.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    c.PhoneNumber.Contains(txtSearch.Text)).ToList();
+        //private void btnSearch_Click(object sender, EventArgs e)
+        //{
+        //    if (!string.IsNullOrEmpty(txtSearch.Text))
+        //    {
+        //        var filteredCustomers = customers.Where(c =>
+        //            c.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
+        //            c.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
+        //            c.PhoneNumber.Contains(txtSearch.Text)).ToList();
 
-                _src.DataSource = filteredCustomers;
-                _src.ResetBindings(true);
+        //        _src.DataSource = filteredCustomers;
+        //        _src.ResetBindings(true);
 
-                statusLabel.Text = $"Tìm thấy {filteredCustomers.Count} kết quả";
-            }
-            else
-            {
-                DisplayInGrid();
-                statusLabel.Text = "Sẵn sàng";
-            }
-        }
+        //        statusLabel.Text = $"Tìm thấy {filteredCustomers.Count} kết quả";
+        //    }
+        //    else
+        //    {
+        //        DisplayInGrid();
+        //        statusLabel.Text = "Sẵn sàng";
+        //    }
+        //}
 
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            btnRefresh_Click(null, null);
-            txtCode.Focus();
-            statusLabel.Text = "Nhập thông tin khách hàng mới";
-        }
+        //private void btnAddNew_Click(object sender, EventArgs e)
+        //{
+        //    btnRefresh_Click(null, null);
+        //    txtCode.Focus();
+        //    statusLabel.Text = "Nhập thông tin khách hàng mới";
+        //}
 
         // Cập nhật FormSeller_Load
         private void FormCustomer_Load(object sender, EventArgs e)
@@ -228,10 +75,10 @@ namespace OOP_finalProject
             customers = customerData.GetData();
             DisplayInGrid();
 
-            // Đăng ký sự kiện mới
-            btnSearch.Click += btnSearch_Click;
-            btnAddNew.Click += btnAddNew_Click;
-            txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
+            //// Đăng ký sự kiện mới
+            //btnSearch.Click += btnSearch_Click;
+            //btnAddNew.Click += btnAddNew_Click;
+            //txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
         }
 
 

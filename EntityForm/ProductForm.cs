@@ -25,6 +25,7 @@ namespace OOP_finalProject
         {
             gridData.ReadOnly = true;
             gridData.DataSource = src;
+            gridData.AutoGenerateColumns = false;
             LoadProducts();
         }
 

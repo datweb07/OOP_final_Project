@@ -51,9 +51,9 @@ namespace OOP_finalProject
 
         private void UpdateWelcomeMessage()
         {
-            if (UserSession.IsLoggedIn())
+            if (UserSession.Instance.IsLoggedIn())
             {
-                lblWelcome.Text = $"Chào mừng {UserSession.GetDisplayName()} ({UserSession.GetRoleDisplayName()})";
+                lblWelcome.Text = $"Chào mừng {UserSession.Instance.GetDisplayName()} ({UserSession.Instance.GetRoleDisplayName()})";
             }
             else
             {
@@ -242,7 +242,7 @@ namespace OOP_finalProject
         // Hiển thị thông tin tài khoản
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            if (!UserSession.IsLoggedIn())
+            if (!UserSession.Instance.IsLoggedIn())
             {
                 MessageBox.Show("Không có thông tin người dùng đăng nhập!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -260,7 +260,7 @@ namespace OOP_finalProject
             if (result == DialogResult.Yes)
             {
                 // Clear user session
-                UserSession.ClearUserInfo();
+                UserSession.Instance.ClearUserInfo();
 
                 // Đóng tất cả forms con
                 if (currentForm != null)
@@ -305,6 +305,6 @@ namespace OOP_finalProject
         }
         #endregion
 
-       
+
     }
 }

@@ -101,10 +101,10 @@
     <Compile Include="Data\DrinkProductData.cs" />
     <Compile Include="Data\CustomerData.cs" />
     <Compile Include="Data\ElectronicProductData.cs" />
-    <Compile Include="ElectronicProductForm.cs">
+    <Compile Include="EntityForm\ElectronicProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ElectronicProductForm.Designer.cs">
+    <Compile Include="EntityForm\ElectronicProductForm.Designer.cs">
       <DependentUpon>ElectronicProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityForm\AccountForm.cs">
@@ -150,7 +150,6 @@
     <Compile Include="Customers\VIPCustomer.cs" />
     <Compile Include="Employees\Cashier.cs" />
     <Compile Include="Employees\Manager.cs" />
-    <Compile Include="Employees\Stocker.cs" />
     <Compile Include="EntityForm\FoodProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +186,9 @@
     <Compile Include="EntityForm\InvoiceForm.Designer.cs">
       <DependentUpon>InvoiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IAuthenticatable.cs" />
+    <Compile Include="Interfaces\ICalculable.cs" />
+    <Compile Include="Interfaces\IDisplayable.cs" />
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,8 +254,17 @@
     <Compile Include="Products\HouseholdProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\Store.cs" />
+    <Compile Include="Data\StoreData.cs" />
+    <Compile Include="EntityForm\StoreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityForm\StoreForm.Designer.cs">
+      <DependentUpon>StoreForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingletonTest.cs" />
     <Compile Include="UserManagement\UserSession.cs" />
-    <EmbeddedResource Include="ElectronicProductForm.resx">
+    <EmbeddedResource Include="EntityForm\ElectronicProductForm.resx">
       <DependentUpon>ElectronicProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\AccountForm.resx">
@@ -267,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\HouseholdProductForm.resx">
       <DependentUpon>HouseholdProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityForm\ProductForm.resx">
+      <DependentUpon>ProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm\SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
@@ -292,6 +306,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EntityForm\StoreForm.resx">
+      <DependentUpon>StoreForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

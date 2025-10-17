@@ -76,19 +76,19 @@ namespace OOP_finalProject
             int leftMargin = 200;
 
             // Username
-            CreateInfoRow(infoContainer, "Tên đăng nhập:", UserSession.Username, leftMargin, startY);
+            CreateInfoRow(infoContainer, "Tên đăng nhập:", UserSession.Instance.Username, leftMargin, startY);
 
             // Full name
-            CreateInfoRow(infoContainer, "Họ và tên:", UserSession.GetDisplayName(), leftMargin, startY + labelSpacing);
+            CreateInfoRow(infoContainer, "Họ và tên:", UserSession.Instance.GetDisplayName(), leftMargin, startY + labelSpacing);
 
             // Role
-            CreateInfoRow(infoContainer, "Vai trò:", UserSession.GetRoleDisplayName(), leftMargin, startY + labelSpacing * 2);
+            CreateInfoRow(infoContainer, "Vai trò:", UserSession.Instance.GetRoleDisplayName(), leftMargin, startY + labelSpacing * 2);
 
             // Login time
-            CreateInfoRow(infoContainer, "Thời gian đăng nhập:", UserSession.LoginTime.ToString("dd/MM/yyyy HH:mm:ss"), leftMargin, startY + labelSpacing * 3);
+            CreateInfoRow(infoContainer, "Thời gian đăng nhập:", UserSession.Instance.LoginTime.ToString("dd/MM/yyyy HH:mm:ss"), leftMargin, startY + labelSpacing * 3);
 
             // Session duration - lưu reference để cập nhật sau
-            TimeSpan sessionDuration = DateTime.Now - UserSession.LoginTime;
+            TimeSpan sessionDuration = DateTime.Now - UserSession.Instance.LoginTime;
             string durationText = $"{sessionDuration.Hours:D2}:{sessionDuration.Minutes:D2}:{sessionDuration.Seconds:D2}";
             sessionDurationLabel = CreateInfoRowWithReference(infoContainer, "Thời gian hoạt động:", durationText, leftMargin, startY + labelSpacing * 4);
 
@@ -193,7 +193,7 @@ namespace OOP_finalProject
 
         private void LoadAccountInfo()
         {
-            if (!UserSession.IsLoggedIn())
+            if (!UserSession.Instance.IsLoggedIn())
             {
                 MessageBox.Show("Không có thông tin người dùng!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -212,7 +212,7 @@ namespace OOP_finalProject
             if (result == DialogResult.Yes)
             {
                 // Clear user session
-                UserSession.ClearUserInfo();
+                UserSession.Instance.ClearUserInfo();
 
                 // Đóng tất cả forms và quay về form đăng nhập
                 foreach (Form form in Application.OpenForms.Cast<Form>().ToArray())
@@ -239,7 +239,7 @@ namespace OOP_finalProject
         {
             if (sessionDurationLabel != null)
             {
-                TimeSpan sessionDuration = DateTime.Now - UserSession.LoginTime;
+                TimeSpan sessionDuration = DateTime.Now - UserSession.Instance.LoginTime;
                 string durationText = $"{sessionDuration.Hours:D2}:{sessionDuration.Minutes:D2}:{sessionDuration.Seconds:D2}";
                 sessionDurationLabel.Text = durationText;
             }

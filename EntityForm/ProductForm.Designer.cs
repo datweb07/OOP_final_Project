@@ -31,90 +31,99 @@ namespace OOP_finalProject
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox2 = new GroupBox();
-            gridData = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridData).BeginInit();
-            SuspendLayout();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gridData = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
+            this.SuspendLayout();
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(gridData);
-            groupBox2.Location = new Point(12, 12);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1093, 564);
-            groupBox2.TabIndex = 1;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Danh sách";
+            this.groupBox2.Controls.Add(this.gridData);
+            this.groupBox2.Location = new System.Drawing.Point(9, 8);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(820, 367);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Danh sách";
             // 
             // gridData
             // 
-            gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridData.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            gridData.Dock = DockStyle.Fill;
-            gridData.Location = new Point(3, 23);
-            gridData.Name = "gridData";
-            gridData.RowHeadersWidth = 51;
-            gridData.Size = new Size(1087, 538);
-            gridData.TabIndex = 1;
+            this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
+            this.gridData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridData.Location = new System.Drawing.Point(2, 15);
+            this.gridData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gridData.Name = "gridData";
+            this.gridData.RowHeadersWidth = 51;
+            this.gridData.Size = new System.Drawing.Size(816, 350);
+            this.gridData.TabIndex = 1;
             // 
             // Column1
             // 
-            Column1.DataPropertyName = "Code";
-            Column1.HeaderText = "Mã Hàng";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.Width = 125;
+            this.Column1.DataPropertyName = "Code";
+            this.Column1.HeaderText = "Mã Hàng";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
             // 
             // Column2
             // 
-            Column2.DataPropertyName = "Name";
-            Column2.HeaderText = "Tên Hàng";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.Width = 250;
+            this.Column2.DataPropertyName = "Name";
+            this.Column2.HeaderText = "Tên Hàng";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 250;
             // 
             // Column3
             // 
-            Column3.DataPropertyName = "Qty";
-            Column3.HeaderText = "Số Lượng";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.Width = 125;
+            this.Column3.DataPropertyName = "Qty";
+            this.Column3.HeaderText = "Số Lượng";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
             // 
             // Column4
             // 
-            Column4.DataPropertyName = "Price";
-            Column4.HeaderText = "Đơn Giá";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.Width = 125;
+            this.Column4.DataPropertyName = "Price";
+            this.Column4.HeaderText = "Đơn Giá";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
             // 
             // Column5
             // 
-            Column5.DataPropertyName = "Info";
-            Column5.HeaderText = "Mô Tả (đa hình)";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.Width = 450;
+            this.Column5.DataPropertyName = "Info";
+            this.Column5.HeaderText = "Chi tiết sản phẩm";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 450;
             // 
-            // FormProduct
+            // ProductForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1117, 588);
-            Controls.Add(groupBox2);
-            Name = "FormProduct";
-            Text = "DANH SÁCH SẢN PHẨM";
-            Load += FormProduct_Load;
-            groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gridData).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(838, 382);
+            this.Controls.Add(this.groupBox2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "ProductForm";
+            this.Text = "DANH SÁCH SẢN PHẨM";
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

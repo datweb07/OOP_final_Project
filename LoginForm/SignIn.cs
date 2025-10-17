@@ -2,7 +2,6 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
 
 namespace OOP_finalProject.LoginForm
@@ -12,8 +11,8 @@ namespace OOP_finalProject.LoginForm
         public SignIn()
         {
             InitializeComponent();
-            SetPlaceholder(txtUserNameSignIn, "Nhập tên của bạn");
-            SetPlaceholder(txtPasswordSignIn, "Nhập mật khẩu");
+            //SetPlaceholder(txtUserNameSignIn, "Nhập tên của bạn");
+            //SetPlaceholder(txtPasswordSignIn, "Nhập mật khẩu");
         }
 
         private void SetPlaceholder(TextBox textBox, string placeholder)
@@ -79,7 +78,7 @@ namespace OOP_finalProject.LoginForm
                                     string email = reader["email"]?.ToString() ?? "";
 
                                     // Lưu thông tin user vào session
-                                    UserSession.SetUserInfo(txtUserNameSignIn.Text, role, email);
+                                    UserSession.Instance.SetUserInfo(txtUserNameSignIn.Text, role, email);
 
                                     if (role == "admin")
                                     {

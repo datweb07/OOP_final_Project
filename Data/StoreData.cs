@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class OrderData
+    public class StoreData
     {
-        private string pathXml = Path.Combine(GetPath.path, nameof(Order) + ".xml");
+        private string pathXml = Path.Combine(GetPath.path, nameof(Store) + ".dat");
 
-        public List<Order> GetData()
+        public Store GetData()
         {
             if (File.Exists(pathXml))
             {
                 try
                 {
-                    // Tạo DataContractSerializer cho List<Order>
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Order>));
+                    // Tạo DataContractSerializer cho List<Store>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(Store));
 
                     using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
                     {
-                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Order>
-                        List<Order> orders = (List<Order>)serializer.ReadObject(fileStream);
-                        return orders ?? new List<Order>();
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Store>
+                        Store stores = (Store)serializer.ReadObject(fileStream);
+                        return stores ?? new Store();
                     }
                 }
                 catch (Exception ex)
@@ -31,10 +30,10 @@ namespace OOP_finalProject
 
                 }
             }
-            return new List<Order>();
+            return new Store();
         }
 
-        public void SaveData(List<Order> orders)
+        public void SaveData(Store stores)
         {
             try
             {
@@ -44,13 +43,13 @@ namespace OOP_finalProject
                     Directory.CreateDirectory(GetPath.path);
                 }
 
-                // Tạo DataContractSerializer cho List<Order>
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Order>));
+                // Tạo DataContractSerializer cho List<Store>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(Store));
 
                 using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file XML
-                    serializer.WriteObject(fileStream, orders);
+                    serializer.WriteObject(fileStream, stores);
                 }
             }
             catch (Exception ex)

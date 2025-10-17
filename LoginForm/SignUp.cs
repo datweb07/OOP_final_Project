@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -13,9 +12,9 @@ namespace OOP_finalProject.LoginForm
         {
             InitializeComponent();
 
-            SetPlaceholder(txtNameSignUp, "Nhập tên của bạn");
-            SetPlaceholder(txtEmailSignUp, "example@email.com");
-            SetPlaceholder(txtPasswordSignUp, "Nhập mật khẩu");
+            //SetPlaceholder(txtNameSignUp, "Nhập tên của bạn");
+            //SetPlaceholder(txtEmailSignUp, "example@email.com");
+            //SetPlaceholder(txtPasswordSignUp, "Nhập mật khẩu");
 
         }
 
