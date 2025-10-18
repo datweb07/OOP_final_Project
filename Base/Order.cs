@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
@@ -39,6 +39,10 @@ namespace OOP_finalProject
             }
         }
         public virtual List<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
+        
+        /// <summary>
+        /// Tổng giá trị đơn hàng (chưa giảm giá)
+        /// </summary>
         public virtual decimal SumTotal
         {
             get
@@ -49,6 +53,47 @@ namespace OOP_finalProject
                     total += detail.TotalPrice;
                 }
                 return total;
+            }
+        }
+
+        /// <summary>
+        /// Số tiền được giảm giá (Strategy Pattern)
+        /// </summary>
+        public virtual decimal DiscountAmount
+        {
+            get
+            {
+                if (Customer == null)
+                {
+                    return 0;
+                }
+                return Customer.CalculateDiscount(SumTotal);
+            }
+        }
+
+        /// <summary>
+        /// Tổng giá trị sau khi giảm giá
+        /// </summary>
+        public virtual decimal FinalTotal
+        {
+            get
+            {
+                return SumTotal - DiscountAmount;
+            }
+        }
+
+        /// <summary>
+        /// Phần trăm giảm giá của khách hàng
+        /// </summary>
+        public virtual decimal DiscountPercentage
+        {
+            get
+            {
+                if (Customer == null)
+                {
+                    return 0;
+                }
+                return Customer.GetDiscountPercentage();
             }
         }
 

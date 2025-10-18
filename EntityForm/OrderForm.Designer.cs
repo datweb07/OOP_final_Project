@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -365,5 +365,16 @@ namespace OOP_finalProject
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private Button btnViewInvoice;
+
+        // Strategy Pattern: Discount Display
+        private GroupBox groupBoxDiscount;
+        private Label lblCustomerTypeLabel;
+        private Label lblCustomerType;
+        private Label lblSubTotalLabel;
+        private Label lblSubTotal;
+        private Label lblDiscountLabel;
+        private Label lblDiscount;
+        private Label lblFinalTotalLabel;
+        private Label lblFinalTotal;
     }
 }

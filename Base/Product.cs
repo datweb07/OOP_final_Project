@@ -1,11 +1,12 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using OOP_finalProject.Interfaces;
 
 namespace OOP_finalProject.Base
 {
     [Serializable]
-    public abstract class Product : ISerializable, IDisplayable, ICalculable
+    public abstract class Product : ISerializable, IDisplayable, ICalculable, IProductComponent
     {
         private string id;
         private string name;
@@ -34,7 +35,7 @@ namespace OOP_finalProject.Base
             }
         }
 
-        public decimal Price
+        public virtual decimal Price
         {
             get { return price; }
             set
@@ -123,6 +124,17 @@ namespace OOP_finalProject.Base
             info.AddValue("Name", Name);
             info.AddValue("Price", Price);
             info.AddValue("Quantity", Quantity);
+        }
+
+        // Implement IProductComponent methods
+        public virtual bool IsComposite()
+        {
+            return false; // Sản phẩm đơn lẻ không phải composite
+        }
+
+        public virtual List<IProductComponent> GetChildren()
+        {
+            return new List<IProductComponent>(); // Sản phẩm đơn lẻ không có con
         }
     }
 }

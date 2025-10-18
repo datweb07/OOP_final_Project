@@ -55,6 +55,7 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Pipelines, Version=9.0.0.9, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Pipelines.9.0.9\lib\net462\System.IO.Pipelines.dll</HintPath>
@@ -98,6 +99,7 @@
     <Compile Include="Data\BillData.cs" />
     <Compile Include="Data\CashierData.cs" />
     <Compile Include="Data\ClothingProductData.cs" />
+    <Compile Include="Data\CompositeProductData.cs" />
     <Compile Include="Data\DrinkProductData.cs" />
     <Compile Include="Data\CustomerData.cs" />
     <Compile Include="Data\ElectronicProductData.cs" />
@@ -186,9 +188,24 @@
     <Compile Include="EntityForm\InvoiceForm.Designer.cs">
       <DependentUpon>InvoiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\data\BillData.cs" />
+    <Compile Include="Interfaces\data\CashierData.cs" />
+    <Compile Include="Interfaces\data\ClothingProductData.cs" />
+    <Compile Include="Interfaces\data\CompositeProductData.cs" />
+    <Compile Include="Interfaces\data\CustomerData.cs" />
+    <Compile Include="Interfaces\data\DrinkProductData.cs" />
+    <Compile Include="Interfaces\data\ElectronicProductData.cs" />
+    <Compile Include="Interfaces\data\FoodProductData.cs" />
+    <Compile Include="Interfaces\data\HouseholdProductData.cs" />
+    <Compile Include="Interfaces\data\InvoiceData.cs" />
+    <Compile Include="Interfaces\data\ManagerData.cs" />
+    <Compile Include="Interfaces\data\OrderData.cs" />
+    <Compile Include="Interfaces\data\StoreData.cs" />
     <Compile Include="Interfaces\IAuthenticatable.cs" />
     <Compile Include="Interfaces\ICalculable.cs" />
+    <Compile Include="Interfaces\IDiscountStrategy.cs" />
     <Compile Include="Interfaces\IDisplayable.cs" />
+    <Compile Include="Interfaces\IProductComponent.cs" />
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +264,7 @@
     <Compile Include="EntityForm\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Products\CompositeProduct.cs" />
     <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
     <Compile Include="Products\ElectronicProduct.cs" />
@@ -262,7 +280,8 @@
     <Compile Include="EntityForm\StoreForm.Designer.cs">
       <DependentUpon>StoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SingletonTest.cs" />
+    <Compile Include="Strategies\RegularCustomerDiscountStrategy.cs" />
+    <Compile Include="Strategies\VIPCustomerDiscountStrategy.cs" />
     <Compile Include="UserManagement\UserSession.cs" />
     <EmbeddedResource Include="EntityForm\ElectronicProductForm.resx">
       <DependentUpon>ElectronicProductForm.cs</DependentUpon>

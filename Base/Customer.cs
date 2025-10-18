@@ -1,4 +1,5 @@
-﻿using System;
+using OOP_finalProject.Interfaces;
+using System;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Base
@@ -70,6 +71,9 @@ namespace OOP_finalProject.Base
         [DataMember]
         public string Address { get; set; }
 
+        // Strategy Pattern: Discount Strategy
+        private IDiscountStrategy discountStrategy;
+
         public Customer() { }
 
         public Customer(string id, string name, string gender, string phoneNumber, string address)
@@ -79,6 +83,61 @@ namespace OOP_finalProject.Base
             Gender = gender;
             PhoneNumber = phoneNumber;
             Address = address;
+        }
+
+        /// <summary>
+        /// Thiết lập chiến lược giảm giá cho khách hàng
+        /// </summary>
+        public virtual void SetDiscountStrategy(IDiscountStrategy strategy)
+        {
+            discountStrategy = strategy;
+        }
+
+        /// <summary>
+        /// Lấy chiến lược giảm giá hiện tại
+        /// </summary>
+        public virtual IDiscountStrategy GetDiscountStrategy()
+        {
+            return discountStrategy;
+        }
+
+        /// <summary>
+        /// Tính số tiền giảm giá dựa trên strategy
+        /// </summary>
+        public virtual decimal CalculateDiscount(decimal totalAmount)
+        {
+            if (discountStrategy == null)
+            {
+                return 0; // Không có giảm giá nếu chưa set strategy
+            }
+
+            return discountStrategy.CalculateDiscount(totalAmount);
+        }
+
+        /// <summary>
+        /// Lấy phần trăm giảm giá
+        /// </summary>
+        public virtual decimal GetDiscountPercentage()
+        {
+            if (discountStrategy == null)
+            {
+                return 0;
+            }
+
+            return discountStrategy.GetDiscountPercentage();
+        }
+
+        /// <summary>
+        /// Lấy thông tin về loại giảm giá
+        /// </summary>
+        public virtual string GetDiscountInfo()
+        {
+            if (discountStrategy == null)
+            {
+                return "Không có giảm giá";
+            }
+
+            return discountStrategy.GetDescription();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -32,7 +32,17 @@ namespace OOP_finalProject
             lblCreatedDate.Text = _invoice.DateCreated.ToString("dd/MM/yyyy");
             lblSellerName.Text = _invoice.Cashier.Name;
             lblCustomerName.Text = _invoice.Customer.Name;
+            
+            // Hiển thị thông tin discount (Strategy Pattern)
             lblSumTotal.Text = _invoice.SumTotal.ToString("#,###");
+            
+            // Hiển thị discount nếu có
+            if (_invoice.DiscountPercentage > 0)
+            {
+                lblSumTotal.Text += $"\nGiảm giá ({_invoice.DiscountPercentage}%): -{_invoice.DiscountAmount.ToString("#,###")}";
+                lblSumTotal.Text += $"\nThành tiền: {_invoice.FinalTotal.ToString("#,###")}";
+            }
+            
             src.DataSource = _invoice.InvoiceDetails;
             src.ResetBindings(true);
         }

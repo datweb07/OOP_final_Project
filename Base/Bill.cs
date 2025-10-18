@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
@@ -70,6 +70,10 @@ namespace OOP_finalProject
             } 
         }
         public virtual List<BillDetails> BillDetails { get { return billDetails; } set { billDetails = value; } }
+        
+        /// <summary>
+        /// Tổng giá trị đơn hàng (chưa giảm giá)
+        /// </summary>
         public virtual decimal TotalPrice
         {
             get
@@ -80,6 +84,47 @@ namespace OOP_finalProject
                     total += detail.TotalPrice;
                 }
                 return total;
+            }
+        }
+
+        /// <summary>
+        /// Số tiền được giảm giá (Strategy Pattern)
+        /// </summary>
+        public virtual decimal DiscountAmount
+        {
+            get
+            {
+                if (customer == null)
+                {
+                    return 0;
+                }
+                return customer.CalculateDiscount(TotalPrice);
+            }
+        }
+
+        /// <summary>
+        /// Tổng giá trị sau khi giảm giá
+        /// </summary>
+        public virtual decimal FinalPrice
+        {
+            get
+            {
+                return TotalPrice - DiscountAmount;
+            }
+        }
+
+        /// <summary>
+        /// Phần trăm giảm giá của khách hàng
+        /// </summary>
+        public virtual decimal DiscountPercentage
+        {
+            get
+            {
+                if (customer == null)
+                {
+                    return 0;
+                }
+                return customer.GetDiscountPercentage();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
+using OOP_finalProject.Data;
 using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace OOP_finalProject
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
+        private CompositeProductData compositeProductData = new CompositeProductData();
 
         // Danh sách toàn bộ sản phẩm
         private List<Product> products = new List<Product>();
@@ -35,6 +37,7 @@ namespace OOP_finalProject
             List<DrinkProduct> drinkProducts = drinkProductData.GetData();
             List<FoodProduct> foodProducts = foodProductData.GetData();
             List<HouseholdProduct> householdProducts = householdProductData.GetData();
+            List<CompositeProduct> compositeProducts = compositeProductData.GetData();
 
             for (int i = 0; i < drinkProducts.Count; i++)
             {
@@ -49,6 +52,12 @@ namespace OOP_finalProject
             for (int i = 0; i < householdProducts.Count; i++)
             {
                 products.Add(householdProducts[i]);
+            }
+
+            // Thêm composite products (Combo)
+            for (int i = 0; i < compositeProducts.Count; i++)
+            {
+                products.Add(compositeProducts[i]);
             }
 
             // Gán dữ liệu danh sách tổng quát vào BindingSource để hiển thị ra lưới

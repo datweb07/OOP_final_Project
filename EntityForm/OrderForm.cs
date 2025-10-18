@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
 using OOP_finalProject.Employees;
 using OOP_finalProject.Products;
 using System;
@@ -38,6 +38,10 @@ namespace OOP_finalProject
             LoadProducts();
             LoadSellers();
             LoadCustomers();
+            
+            // Setup event handler for customer selection change
+            cboCustomer.SelectedIndexChanged += cboCustomer_SelectedIndexChanged;
+            
             if (_order == null)
                 _order = new Order();
             else
@@ -49,6 +53,9 @@ namespace OOP_finalProject
                 src.DataSource = _order.OrderDetails;
                 src.ResetBindings(true);
             }
+            
+            // Initial discount display
+            UpdateDiscountDisplay();
         }
 
         private void LoadCustomers()
@@ -299,7 +306,9 @@ namespace OOP_finalProject
 
             src.DataSource = _order.OrderDetails;
             src.ResetBindings(true);
-
+            
+            // Update discount display after adding product
+            UpdateDiscountDisplay();
         }
 
         private void btnDeleteDetail_Click(object sender, EventArgs e)
@@ -332,6 +341,9 @@ namespace OOP_finalProject
 
             src.DataSource = _order.OrderDetails;
             src.ResetBindings(true);
+            
+            // Update discount display after deleting product
+            UpdateDiscountDisplay();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -472,6 +484,46 @@ namespace OOP_finalProject
 
             InvoiceForm frm = new InvoiceForm(invoice);
             frm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Strategy Pattern: Cập nhật hiển thị discount information
+        /// </summary>
+        private void UpdateDiscountDisplay()
+        {
+            if (_order == null)
+                return;
+
+            // Gán customer từ combobox vào order
+            _order.Customer = cboCustomer.SelectedItem as Customer;
+
+            if (_order.Customer == null)
+                return;
+
+            // Lấy thông tin discount
+            decimal subTotal = _order.SumTotal;
+            decimal discount = _order.DiscountAmount;
+            decimal finalTotal = _order.FinalTotal;
+            decimal discountPercent = _order.DiscountPercentage;
+
+            // Hiển thị loại khách hàng
+            string customerType = _order.Customer is OOP_finalProject.Customers.VIPCustomer ? "VIP" : "Regular";
+            string discountInfo = _order.Customer.GetDiscountInfo();
+
+            // Update text trong form title hoặc status
+            this.Text = $"ĐƠN HÀNG - Khách hàng: {customerType} ({discountPercent}% discount)";
+
+            // Hiển thị trong MessageBox khi cần (có thể comment nếu không muốn)
+            // MessageBox.Show($"Tổng: {subTotal:#,###}đ\nGiảm giá: {discount:#,###}đ\nThành tiền: {finalTotal:#,###}đ", 
+            //     "Thông tin đơn hàng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Strategy Pattern: Xử lý khi thay đổi customer
+        /// </summary>
+        private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDiscountDisplay();
         }
     }
 }
