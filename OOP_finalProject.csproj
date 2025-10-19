@@ -103,6 +103,12 @@
     <Compile Include="Data\DrinkProductData.cs" />
     <Compile Include="Data\CustomerData.cs" />
     <Compile Include="Data\ElectronicProductData.cs" />
+    <Compile Include="EntityForm\CompositeProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityForm\CompositeProductForm.Designer.cs">
+      <DependentUpon>CompositeProductForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntityForm\ElectronicProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,19 +194,6 @@
     <Compile Include="EntityForm\InvoiceForm.Designer.cs">
       <DependentUpon>InvoiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\data\BillData.cs" />
-    <Compile Include="Interfaces\data\CashierData.cs" />
-    <Compile Include="Interfaces\data\ClothingProductData.cs" />
-    <Compile Include="Interfaces\data\CompositeProductData.cs" />
-    <Compile Include="Interfaces\data\CustomerData.cs" />
-    <Compile Include="Interfaces\data\DrinkProductData.cs" />
-    <Compile Include="Interfaces\data\ElectronicProductData.cs" />
-    <Compile Include="Interfaces\data\FoodProductData.cs" />
-    <Compile Include="Interfaces\data\HouseholdProductData.cs" />
-    <Compile Include="Interfaces\data\InvoiceData.cs" />
-    <Compile Include="Interfaces\data\ManagerData.cs" />
-    <Compile Include="Interfaces\data\OrderData.cs" />
-    <Compile Include="Interfaces\data\StoreData.cs" />
     <Compile Include="Interfaces\IAuthenticatable.cs" />
     <Compile Include="Interfaces\ICalculable.cs" />
     <Compile Include="Interfaces\IDiscountStrategy.cs" />
@@ -329,6 +322,7 @@
       <DependentUpon>StoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
+    <None Include="oopProperties.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

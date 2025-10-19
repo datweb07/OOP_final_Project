@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -258,5 +258,10 @@ namespace OOP_finalProject
         private Button btnDelete;
         private Button btnSave;
         private Button btnRefresh;
+        private GroupBox groupBoxCustomerType;
+        private RadioButton rbVIP;
+        private RadioButton rbRegular;
+        private Label lblDiscountInfo;
+        private Label lblCustomerTypeTitle;
     }
 }

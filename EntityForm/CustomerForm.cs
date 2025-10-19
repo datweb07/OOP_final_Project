@@ -1,4 +1,5 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
+using OOP_finalProject.Customers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -90,8 +91,10 @@ namespace OOP_finalProject
             {
                 List<Customer> customers = new List<Customer>()
             {
-                new Customer("KH001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
-                new Customer("KH002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
+                new RegularCustomer("KH001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
+                new VIPCustomer("KH002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
+                new RegularCustomer("KH003", "Lê Văn C", "Nam", "0923456789", "789 Trần Hưng Đạo, Q5, TP.HCM"),
+                new VIPCustomer("KH004", "Phạm Thị D", "Nữ", "0934567890", "321 Võ Văn Tần, Q3, TP.HCM"),
             };
 
                 using (FileStream fs = File.Create(filePath))
@@ -161,15 +164,38 @@ namespace OOP_finalProject
 
             if (customer == null)
             {
-                customer = new Customer();
+                // Tạo customer type dựa trên radio button selection
+                if (rbVIP != null && rbVIP.Checked)
+                {
+                    customer = new VIPCustomer(
+                        txtCode.Text,
+                        txtName.Text,
+                        rdoMale.Checked ? "Nam" : "Nữ",
+                        txtPhone.Text,
+                        txtAddress.Text
+                    );
+                }
+                else
+                {
+                    customer = new RegularCustomer(
+                        txtCode.Text,
+                        txtName.Text,
+                        rdoMale.Checked ? "Nam" : "Nữ",
+                        txtPhone.Text,
+                        txtAddress.Text
+                    );
+                }
                 customers.Add(customer);
             }
-
-            customer.Id = txtCode.Text;
-            customer.PhoneNumber = txtPhone.Text;
-            customer.Address = txtAddress.Text;
-            customer.Name = txtName.Text;
-            customer.Gender = rdoMale.Checked ? "Nam" : "Nữ";
+            else
+            {
+                // Update existing customer
+                customer.Id = txtCode.Text;
+                customer.PhoneNumber = txtPhone.Text;
+                customer.Address = txtAddress.Text;
+                customer.Name = txtName.Text;
+                customer.Gender = rdoMale.Checked ? "Nam" : "Nữ";
+            }
 
             DisplayInGrid();
 
@@ -230,6 +256,38 @@ namespace OOP_finalProject
             rdoFemale.Checked = customer.Gender != "Nam" ? true : false;
             txtAddress.Text = customer.Address;
             txtPhone.Text = customer.PhoneNumber;
+            
+            // Display customer type and discount info
+            if (rbVIP != null && rbRegular != null)
+            {
+                if (customer is VIPCustomer)
+                {
+                    rbVIP.Checked = true;
+                    if (lblDiscountInfo != null)
+                    {
+                        lblDiscountInfo.Text = customer.GetDiscountInfo();
+                        lblDiscountInfo.ForeColor = Color.Gold;
+                    }
+                }
+                else if (customer is RegularCustomer)
+                {
+                    rbRegular.Checked = true;
+                    if (lblDiscountInfo != null)
+                    {
+                        lblDiscountInfo.Text = customer.GetDiscountInfo();
+                        lblDiscountInfo.ForeColor = Color.Blue;
+                    }
+                }
+                else
+                {
+                    rbRegular.Checked = true;
+                    if (lblDiscountInfo != null)
+                    {
+                        lblDiscountInfo.Text = "Không có giảm giá";
+                        lblDiscountInfo.ForeColor = Color.Black;
+                    }
+                }
+            }
         }
     }
 }
