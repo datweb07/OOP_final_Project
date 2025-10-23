@@ -137,3 +137,24 @@ datweb07-oop_final_project/
 └── .config/
 └── dotnet-tools.json
 ```
+---
+## Hướng dẫn chạy dự án
+### Bước 1: Download Data storage and processing trong Visual Studio Installer
+<img width="421" height="127" alt="image" src="https://github.com/user-attachments/assets/cd012e13-d656-4eed-a86c-8e464db92c4c" />
+
+### Bước 2: Clone dự án về máy
+```bash
+git clone https://github.com/datweb07/OOP_final_Project.git
+```
+### Bước 3: Cấu hình file Data.mdf
+-  Trong Visual Studio 2022 --> View --> Server Explorer.
+-  Chuột phải vào Data Connections, chọn Add Connection...
+-  Chọn file Data.mdf trong Browse..., chọn Test Connection để kiểm tra kết nối và nhấn OK.
+
+<img width="565" height="528" alt="image" src="https://github.com/user-attachments/assets/5ea024a0-3429-4eb0-a20c-544768fc81b9" />
+
+### Bước 4: Chạy file querry để tạo bảng, lưu trữ dữ liệu
+-  Chuột phải vào file Data.mdf, chọn New Querry.
+-  Vào File Explorer, tìm đến file users.sql (mở bằng Visual Studio Code), copy toàn bộ code rồi paste vào cửa sổ sql trong Visual Studio 2022 và nhấn Execute.
+
+<img width="579" height="263" alt="image" src="https://github.com/user-attachments/assets/9b718fce-461d-40f3-b669-fc66b61f3c66" />
