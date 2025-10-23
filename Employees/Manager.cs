@@ -16,7 +16,7 @@ namespace OOP_finalProject.Employees
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Store cannot be null or empty");
+                    throw new ArgumentException("Cửa hàng không thể để trống hoặc rỗng!");
                 store = value;
             }
         }
@@ -27,7 +27,7 @@ namespace OOP_finalProject.Employees
             set
             {
                 if (value < 0)
-                    throw new ArgumentException("Team size cannot be negative");
+                    throw new ArgumentException("Số lượng nhân viên không thể âm!");
                 teamSize = value;
             }
         }
@@ -38,7 +38,7 @@ namespace OOP_finalProject.Employees
             set
             {
                 if (value < 0)
-                    throw new ArgumentException("Salary cannot be negative");
+                    throw new ArgumentException("Tiền lương không thể âm!");
                 salary = value;
             }
         }
