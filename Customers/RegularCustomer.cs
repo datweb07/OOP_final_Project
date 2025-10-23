@@ -1,5 +1,6 @@
 using OOP_finalProject.Base;
 using OOP_finalProject.Strategies;
+using System;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Customers
@@ -8,7 +9,7 @@ namespace OOP_finalProject.Customers
     /// Regular Customer - Khách hàng thường
     /// Tự động áp dụng RegularCustomerDiscountStrategy (10% discount)
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class RegularCustomer : Customer
     {
         public RegularCustomer() 

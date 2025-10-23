@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -84,23 +85,48 @@ namespace OOP_finalProject
 
 
 
+        //private void CreateSampleData()
+        //{
+        //    string filePath = Path.Combine(GetPath.path, nameof(Customer) + ".dat");
+        //    if (!File.Exists(filePath))
+        //    {
+        //        List<Customer> customers = new List<Customer>()
+        //    {
+        //        new RegularCustomer("KH001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
+        //        new VIPCustomer("KH002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
+        //        new RegularCustomer("KH003", "Lê Văn C", "Nam", "0923456789", "789 Trần Hưng Đạo, Q5, TP.HCM"),
+        //        new VIPCustomer("KH004", "Phạm Thị D", "Nữ", "0934567890", "321 Võ Văn Tần, Q3, TP.HCM"),
+        //    };
+
+        //        using (FileStream fs = File.Create(filePath))
+        //        {
+        //            DataContractSerializer serializer = new DataContractSerializer(typeof(List<Customer>));
+        //            serializer.WriteObject(fs, customers);
+        //        }
+        //    }
+        //}
+
         private void CreateSampleData()
         {
             string filePath = Path.Combine(GetPath.path, nameof(Customer) + ".dat");
-            if (!File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 List<Customer> customers = new List<Customer>()
-            {
-                new RegularCustomer("KH001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
-                new VIPCustomer("KH002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
-                new RegularCustomer("KH003", "Lê Văn C", "Nam", "0923456789", "789 Trần Hưng Đạo, Q5, TP.HCM"),
-                new VIPCustomer("KH004", "Phạm Thị D", "Nữ", "0934567890", "321 Võ Văn Tần, Q3, TP.HCM"),
-            };
+        {
+            new Customer("KH001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
+            new Customer("KH002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
+            new Customer("KH003", "Lê Văn C", "Nam", "0923456789", "789 Trần Hưng Đạo, Q5, TP.HCM"),
+            new Customer("KH004", "Phạm Thị D", "Nữ", "0934567890", "321 Võ Văn Tần, Q3, TP.HCM"),
+        };
+
+                // Tạo CustomerList từ List<Customer>
+                CustomerList customerList = new CustomerList(customers);
 
                 using (FileStream fs = File.Create(filePath))
                 {
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Customer>));
-                    serializer.WriteObject(fs, customers);
+                    // Serialize CustomerList thay vì List<Customer>
+                    NetDataContractSerializer formatter = new NetDataContractSerializer();
+                    formatter.Serialize(fs, customerList);
                 }
             }
         }

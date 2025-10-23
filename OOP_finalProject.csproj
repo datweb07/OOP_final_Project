@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Base\Bill.cs" />
     <Compile Include="Base\BillDetails.cs" />
+    <Compile Include="CustomerList.cs" />
     <Compile Include="Data\BillData.cs" />
     <Compile Include="Data\CashierData.cs" />
     <Compile Include="Data\ClothingProductData.cs" />

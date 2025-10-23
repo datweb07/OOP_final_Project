@@ -238,9 +238,6 @@ namespace OOP_finalProject
             groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
-
-        #endregion
-
         private GroupBox groupBox1;
         private DataGridView gridData;
         private GroupBox groupBox2;
@@ -263,5 +260,8 @@ namespace OOP_finalProject
         private RadioButton rbRegular;
         private Label lblDiscountInfo;
         private Label lblCustomerTypeTitle;
+        #endregion
+
+
     }
 }

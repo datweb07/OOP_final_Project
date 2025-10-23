@@ -367,14 +367,14 @@ namespace OOP_finalProject
         private Button btnViewInvoice;
 
         // Strategy Pattern: Discount Display
-        private GroupBox groupBoxDiscount;
-        private Label lblCustomerTypeLabel;
-        private Label lblCustomerType;
-        private Label lblSubTotalLabel;
-        private Label lblSubTotal;
-        private Label lblDiscountLabel;
-        private Label lblDiscount;
-        private Label lblFinalTotalLabel;
-        private Label lblFinalTotal;
+        //private GroupBox groupBoxDiscount;
+        //private Label lblCustomerTypeLabel;
+        //private Label lblCustomerType;
+        //private Label lblSubTotalLabel;
+        //private Label lblSubTotal;
+        //private Label lblDiscountLabel;
+        //private Label lblDiscount;
+        //private Label lblFinalTotalLabel;
+        //private Label lblFinalTotal;
     }
 }

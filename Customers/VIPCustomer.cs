@@ -1,5 +1,6 @@
 using OOP_finalProject.Base;
 using OOP_finalProject.Strategies;
+using System;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Customers
@@ -8,7 +9,7 @@ namespace OOP_finalProject.Customers
     /// VIP Customer - Khách hàng VIP
     /// Tự động áp dụng VIPCustomerDiscountStrategy (30% discount)
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class VIPCustomer : Customer
     {
         public VIPCustomer() 
