@@ -116,38 +116,30 @@ namespace OOP_finalProject.Base
         // Strategy Pattern: Discount Strategy
         private IDiscountStrategy discountStrategy;
 
-        /// <summary>
-        /// Thiết lập chiến lược giảm giá cho khách hàng
-        /// </summary>
+        // thiết lập chiến lược giảm giá
         public virtual void SetDiscountStrategy(IDiscountStrategy strategy)
         {
             discountStrategy = strategy;
         }
 
-        /// <summary>
-        /// Lấy chiến lược giảm giá hiện tại
-        /// </summary>
+        // lấy chiến lược giảm giá hiện tại
         public virtual IDiscountStrategy GetDiscountStrategy()
         {
             return discountStrategy;
         }
 
-        /// <summary>
-        /// Tính số tiền giảm giá dựa trên strategy
-        /// </summary>
+        // tính số tiền giảm giá dựa trên chiến lược
         public virtual decimal CalculateDiscount(decimal totalAmount)
         {
             if (discountStrategy == null)
             {
-                return 0; // Không có giảm giá nếu chưa set strategy
+                return 0; 
             }
 
             return discountStrategy.CalculateDiscount(totalAmount);
         }
 
-        /// <summary>
-        /// Lấy phần trăm giảm giá
-        /// </summary>
+        // lấy phần trăm giảm giá
         public virtual decimal GetDiscountPercentage()
         {
             if (discountStrategy == null)
@@ -158,9 +150,7 @@ namespace OOP_finalProject.Base
             return discountStrategy.GetDiscountPercentage();
         }
 
-        /// <summary>
-        /// Lấy thông tin về loại giảm giá
-        /// </summary>
+        // lấy thông tin về loại giảm giá
         public virtual string GetDiscountInfo()
         {
             if (discountStrategy == null)

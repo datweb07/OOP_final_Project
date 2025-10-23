@@ -3,19 +3,12 @@ using System;
 
 namespace OOP_finalProject.Strategies
 {
-    /// <summary>
-    /// Concrete Strategy cho khách hàng thường
-    /// Giảm giá 10% trên tổng giá trị đơn hàng
-    /// </summary>
+    // khách hàng thường thì giảm giá 10% trên tổng giá trị đơn hàng
     public class RegularCustomerDiscountStrategy : IDiscountStrategy
     {
-        private const decimal DISCOUNT_PERCENTAGE = 10m;
+        private const decimal discountPercentage = 10m;
 
-        /// <summary>
-        /// Tính số tiền giảm giá cho khách hàng thường (10%)
-        /// </summary>
-        /// <param name="totalAmount">Tổng giá trị đơn hàng</param>
-        /// <returns>Số tiền được giảm</returns>
+        // tính số tiền giảm giá (10%) dựa trên tổng giá trị đơn hàng
         public decimal CalculateDiscount(decimal totalAmount)
         {
             if (totalAmount < 0)
@@ -23,42 +16,31 @@ namespace OOP_finalProject.Strategies
                 throw new ArgumentException("Tổng giá trị đơn hàng không thể âm", nameof(totalAmount));
             }
 
-            return totalAmount * (DISCOUNT_PERCENTAGE / 100);
+            return totalAmount * (discountPercentage / 100);
         }
 
-        /// <summary>
-        /// Lấy phần trăm giảm giá
-        /// </summary>
-        /// <returns>10%</returns>
+        // lấy phần trăm giảm giá
         public decimal GetDiscountPercentage()
         {
-            return DISCOUNT_PERCENTAGE;
+            return discountPercentage;
         }
 
-        /// <summary>
-        /// Lấy tên chiến lược
-        /// </summary>
-        /// <returns>Tên chiến lược</returns>
+        // lấy tên chiến lược
         public string GetStrategyName()
         {
             return "Regular Customer Discount";
         }
 
-        /// <summary>
-        /// Lấy mô tả chiến lược
-        /// </summary>
-        /// <returns>Mô tả chi tiết</returns>
+        // lấy mô tả chiến lược
         public string GetDescription()
         {
-            return $"Khách hàng thường được giảm giá {DISCOUNT_PERCENTAGE}% trên tổng giá trị đơn hàng";
+            return $"Khách hàng thường được giảm giá {discountPercentage}% trên tổng giá trị đơn hàng";
         }
 
-        /// <summary>
-        /// Override ToString để hiển thị thông tin
-        /// </summary>
+        // ghi đè phương thức ToString để hiển thị thông tin chiến lược giảm giá
         public override string ToString()
         {
-            return $"{GetStrategyName()} - {DISCOUNT_PERCENTAGE}%";
+            return $"{GetStrategyName()} - {discountPercentage}%";
         }
     }
 }
