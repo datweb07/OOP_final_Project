@@ -6,14 +6,7 @@
 - Quản lý sản phẩm, khách hàng và hóa đơn
 - Áp dụng các nguyên tắc OOP: Đóng gói, Trừu tượng, Kế thừa và Đa hình
 - Giao diện menu với WinForms  
-
-## Công nghệ
-- C# – Windows Forms App (.NET Framework)  
-- Object-Oriented Programming (OOP)
   
----
-
-
 ## Hướng dẫn chạy dự án
 ### Bước 1: Download Data storage and processing trong Visual Studio Installer
 <img width="421" height="127" alt="image" src="https://github.com/user-attachments/assets/cd012e13-d656-4eed-a86c-8e464db92c4c" />
