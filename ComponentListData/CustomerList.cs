@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace OOP_finalProject
 {
     [Serializable]
-    [KnownType(typeof(Customer))]
+    //[KnownType(typeof(Customer))]
     public class CustomerList : ISerializable
     {
         private List<Customer> customers = new List<Customer>();
-        [DataMember]
+        //[DataMember]
         public List<Customer> Customers { get { return customers; } set { customers = value; } }
         public CustomerList()
         {

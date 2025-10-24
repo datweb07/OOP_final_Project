@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Base\Bill.cs" />
     <Compile Include="Base\BillDetails.cs" />
+    <Compile Include="CashierList.cs" />
     <Compile Include="ComponentListData\CustomerList.cs" />
     <Compile Include="Data\BillData.cs" />
     <Compile Include="Data\CashierData.cs" />
@@ -271,6 +272,9 @@
     <Compile Include="Strategies\RegularCustomerDiscountStrategy.cs" />
     <Compile Include="Strategies\VIPCustomerDiscountStrategy.cs" />
     <Compile Include="UserManagement\UserSession.cs" />
+    <EmbeddedResource Include="EntityForm\CashierForm.resx">
+      <DependentUpon>CashierForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\CompositeProductForm.resx">
       <DependentUpon>CompositeProductForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,4 +1,5 @@
 ﻿using OOP_finalProject.Base;
+using System;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Employees
@@ -36,13 +37,17 @@ namespace OOP_finalProject.Employees
     //    }
     //}
 
-    [DataContract]
-    public class Cashier : Employee
+    [Serializable]
+    public class Cashier : Employee, ISerializable
     {
         public Cashier() { }
 
         public Cashier(string id, string name, string gender, string phoneNumber, string address) : base(id, name, gender, phoneNumber, address) {
             Role = "Cashier";
+        }
+        protected Cashier(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
         }
     }
 }

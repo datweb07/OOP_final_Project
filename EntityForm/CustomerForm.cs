@@ -109,7 +109,7 @@ namespace OOP_finalProject
         private void CreateSampleData()
         {
             string filePath = Path.Combine(GetPath.path, nameof(Customer) + ".dat");
-            if (File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
                 List<Customer> customers = new List<Customer>()
         {
@@ -125,8 +125,8 @@ namespace OOP_finalProject
                 using (FileStream fs = File.Create(filePath))
                 {
                     // Serialize CustomerList thay vì List<Customer>
-                    NetDataContractSerializer formatter = new NetDataContractSerializer();
-                    formatter.Serialize(fs, customerList);
+                    NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+                    netDataContractSerializer.Serialize(fs, customerList);
                 }
             }
         }

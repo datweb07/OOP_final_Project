@@ -14,10 +14,10 @@ namespace OOP_finalProject
         {
             try
             {
-                NetDataContractSerializer formatter = new NetDataContractSerializer();
+                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
-                    formatter.Serialize(fileStream, customerList);
+                    dataContractSerializer.Serialize(fileStream, customerList);
                 }
             }
             catch (Exception ex)

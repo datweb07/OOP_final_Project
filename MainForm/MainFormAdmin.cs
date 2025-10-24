@@ -196,7 +196,7 @@ namespace OOP_finalProject
         // Quản lý nhân viên bán hàng
         private void btnSeller_Click(object sender, EventArgs e)
         {
-            LoadForm(new CashierForm(), "👨‍💻 Quản Lý Nhân Viên Bán Hàng", btnSeller);
+            LoadForm(new CashierForm(), "", btnSeller);
         }
 
         // Quản lý sản phẩm

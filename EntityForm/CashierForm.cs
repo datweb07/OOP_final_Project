@@ -87,18 +87,20 @@ namespace OOP_finalProject
         private void CreateSampleData()
         {
             string filePath = Path.Combine(GetPath.path, nameof(Cashier) + ".dat");
-            if (!File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 List<Cashier> cashiers = new List<Cashier>()
             {
                 new Cashier("NV001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
                 new Cashier("NV002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
             };
+                //  Tạo CashierList từ List<Cashier>
+                CashierList cashierList = new CashierList(cashiers);
 
                 using (FileStream fs = File.Create(filePath))
                 {
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Cashier>));
-                    serializer.WriteObject(fs, cashiers);
+                    NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+                    netDataContractSerializer.Serialize(fs, cashierList);
                 }
             }
         }
@@ -171,6 +173,7 @@ namespace OOP_finalProject
             cashier.Address = txtAddress.Text;
             cashier.Name = txtName.Text;
             cashier.Gender = rdoMale.Checked ? "Nam" : "Nữ";
+            cashier.Role = "Cashier";
 
             DisplayInGrid();
 
