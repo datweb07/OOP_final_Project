@@ -18,7 +18,9 @@ namespace OOP_finalProject.Employees
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("Cửa hàng không thể để trống hoặc rỗng!");
+                }    
                 store = value;
             }
         }
@@ -29,7 +31,9 @@ namespace OOP_finalProject.Employees
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException("Số lượng nhân viên không thể âm!");
+                }
                 teamSize = value;
             }
         }
@@ -40,7 +44,9 @@ namespace OOP_finalProject.Employees
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException("Tiền lương không thể âm!");
+                }
                 salary = value;
             }
         }
@@ -73,33 +79,29 @@ namespace OOP_finalProject.Employees
             return base.GetDisplayInfo() + $", Store: {Store}, Team Size: {TeamSize}";
         }
 
-        public override bool ValidateCredentials(string username, string password)
-        {
-            return base.ValidateCredentials(username, password) &&
-                   !string.IsNullOrWhiteSpace(Store);
-        }
+        //public override bool ValidateCredentials(string username, string password)
+        //{
+        //    return base.ValidateCredentials(username, password) &&
+        //           !string.IsNullOrWhiteSpace(Store);
+        //}
 
-        public void AddTeamMember()
-        {
-            TeamSize++;
-        }
+        //public void AddTeamMember()
+        //{
+        //    TeamSize++;
+        //}
 
-        public void RemoveTeamMember()
-        {
-            if (TeamSize > 0)
-                TeamSize--;
-        }
+        //public void RemoveTeamMember()
+        //{
+        //    if (TeamSize > 0)
+        //        TeamSize--;
+        //}
 
-        public decimal CalculateBonus()
-        {
-            return TeamSize * 1000m;
-        }
+        //public decimal CalculateBonus()
+        //{
+        //    return TeamSize * 1000m;
+        //}
 
-        /// <summary>
-        /// Tính toán số lượng nhân viên dựa trên dữ liệu Cashier
-        /// </summary>
-        /// <param name="cashiers">Danh sách nhân viên bán hàng</param>
-        /// <returns>Số lượng nhân viên được quản lý bởi manager này</returns>
+        // tính số lượng nhân viên bán hàng trong team dựa trên danh sách Cashier
         public int CalculateTeamSizeFromCashiers(List<Cashier> cashiers)
         {
             if (cashiers == null)
@@ -116,10 +118,7 @@ namespace OOP_finalProject.Employees
             return count;
         }
 
-        /// <summary>
-        /// Cập nhật TeamSize dựa trên dữ liệu Cashier
-        /// </summary>
-        /// <param name="cashiers">Danh sách nhân viên bán hàng</param>
+        // update team size từ việc tính toán
         public void UpdateTeamSizeFromCashiers(List<Cashier> cashiers)
         {
             TeamSize = CalculateTeamSizeFromCashiers(cashiers);
