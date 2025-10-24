@@ -38,6 +38,7 @@ namespace OOP_finalProject
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlLeftSidebar = new System.Windows.Forms.Panel();
             this.pnlMenuContainer = new System.Windows.Forms.Panel();
+            this.btnElectronic = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnManager = new System.Windows.Forms.Button();
@@ -58,7 +59,7 @@ namespace OOP_finalProject
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnElectronic = new System.Windows.Forms.Button();
+            this.btnCombo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -107,6 +108,7 @@ namespace OOP_finalProject
             // 
             this.pnlMenuContainer.AutoScroll = true;
             this.pnlMenuContainer.BackColor = System.Drawing.Color.DodgerBlue;
+            this.pnlMenuContainer.Controls.Add(this.btnCombo);
             this.pnlMenuContainer.Controls.Add(this.btnElectronic);
             this.pnlMenuContainer.Controls.Add(this.btnDashboard);
             this.pnlMenuContainer.Controls.Add(this.btnCustomer);
@@ -127,6 +129,25 @@ namespace OOP_finalProject
             this.pnlMenuContainer.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.pnlMenuContainer.Size = new System.Drawing.Size(280, 590);
             this.pnlMenuContainer.TabIndex = 1;
+            // 
+            // btnElectronic
+            // 
+            this.btnElectronic.BackColor = System.Drawing.Color.Transparent;
+            this.btnElectronic.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnElectronic.FlatAppearance.BorderSize = 0;
+            this.btnElectronic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnElectronic.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnElectronic.ForeColor = System.Drawing.Color.White;
+            this.btnElectronic.Location = new System.Drawing.Point(9, 464);
+            this.btnElectronic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnElectronic.Name = "btnElectronic";
+            this.btnElectronic.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnElectronic.Size = new System.Drawing.Size(228, 34);
+            this.btnElectronic.TabIndex = 10;
+            this.btnElectronic.Text = "🏠 Đồ Điện Tử";
+            this.btnElectronic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnElectronic.UseVisualStyleBackColor = false;
+            this.btnElectronic.Click += new System.EventHandler(this.btnElectronic_Click);
             // 
             // btnDashboard
             // 
@@ -334,7 +355,7 @@ namespace OOP_finalProject
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(9, 426);
+            this.btnExit.Location = new System.Drawing.Point(9, 524);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -426,24 +447,24 @@ namespace OOP_finalProject
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             // 
-            // btnElectronic
+            // btnCombo
             // 
-            this.btnElectronic.BackColor = System.Drawing.Color.Transparent;
-            this.btnElectronic.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnElectronic.FlatAppearance.BorderSize = 0;
-            this.btnElectronic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnElectronic.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnElectronic.ForeColor = System.Drawing.Color.White;
-            this.btnElectronic.Location = new System.Drawing.Point(9, 464);
-            this.btnElectronic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnElectronic.Name = "btnElectronic";
-            this.btnElectronic.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnElectronic.Size = new System.Drawing.Size(228, 34);
-            this.btnElectronic.TabIndex = 10;
-            this.btnElectronic.Text = "🏠 Đồ Điện Tử";
-            this.btnElectronic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnElectronic.UseVisualStyleBackColor = false;
-            this.btnElectronic.Click += new System.EventHandler(this.btnElectronic_Click);
+            this.btnCombo.BackColor = System.Drawing.Color.Transparent;
+            this.btnCombo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCombo.FlatAppearance.BorderSize = 0;
+            this.btnCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCombo.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnCombo.ForeColor = System.Drawing.Color.White;
+            this.btnCombo.Location = new System.Drawing.Point(9, 426);
+            this.btnCombo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCombo.Name = "btnCombo";
+            this.btnCombo.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnCombo.Size = new System.Drawing.Size(228, 34);
+            this.btnCombo.TabIndex = 15;
+            this.btnCombo.Text = "Quản lý Combo";
+            this.btnCombo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCombo.UseVisualStyleBackColor = false;
+            this.btnCombo.Click += new System.EventHandler(this.btnCombo_Click);
             // 
             // MainFormAdmin
             // 
@@ -500,5 +521,6 @@ namespace OOP_finalProject
         private Button btnAccount;
         private Button btnExit;
         private Button btnElectronic;
+        private Button btnCombo;
     }
 }

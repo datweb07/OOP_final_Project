@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP_finalProject.EntityForm;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -237,6 +238,11 @@ namespace OOP_finalProject
         private void btnElectronic_Click(object sender, EventArgs e)
         {
             LoadForm(new ElectronicProductForm(), "📝 Quản lý đồ điện tử", btnElectronic);
+        }
+
+        private void btnCombo_Click(object sender, EventArgs e)
+        {
+            LoadForm(new CompositeProductForm(), "📝 Quản lý combo sản phẩm", btnCombo);
         }
 
         // Hiển thị thông tin tài khoản

@@ -224,12 +224,6 @@
     <Compile Include="EntityForm\MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="EntityForm\NewOrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EntityForm\NewOrderForm.Designer.cs">
-      <DependentUpon>NewOrderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="EntityForm\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +271,9 @@
     <Compile Include="Strategies\RegularCustomerDiscountStrategy.cs" />
     <Compile Include="Strategies\VIPCustomerDiscountStrategy.cs" />
     <Compile Include="UserManagement\UserSession.cs" />
+    <EmbeddedResource Include="EntityForm\CompositeProductForm.resx">
+      <DependentUpon>CompositeProductForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\ElectronicProductForm.resx">
       <DependentUpon>ElectronicProductForm.cs</DependentUpon>
     </EmbeddedResource>

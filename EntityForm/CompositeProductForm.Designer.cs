@@ -129,7 +129,6 @@ namespace OOP_finalProject.EntityForm
             this.colPrice.DataPropertyName = "Price";
             this.colPrice.HeaderText = "Giá";
             this.colPrice.Name = "colPrice";
-            this.colPrice.Width = 100;
             // 
             // colProductCount
             // 
@@ -176,7 +175,7 @@ namespace OOP_finalProject.EntityForm
             this.lblSavings.ForeColor = System.Drawing.Color.Green;
             this.lblSavings.Location = new System.Drawing.Point(15, 220);
             this.lblSavings.Name = "lblSavings";
-            this.lblSavings.Size = new System.Drawing.Size(85, 15);
+            this.lblSavings.Size = new System.Drawing.Size(82, 15);
             this.lblSavings.TabIndex = 10;
             this.lblSavings.Text = "Tiết kiệm: 0";
             // 
@@ -187,7 +186,7 @@ namespace OOP_finalProject.EntityForm
             this.lblFinalPrice.ForeColor = System.Drawing.Color.Red;
             this.lblFinalPrice.Location = new System.Drawing.Point(15, 200);
             this.lblFinalPrice.Name = "lblFinalPrice";
-            this.lblFinalPrice.Size = new System.Drawing.Size(127, 15);
+            this.lblFinalPrice.Size = new System.Drawing.Size(120, 15);
             this.lblFinalPrice.TabIndex = 9;
             this.lblFinalPrice.Text = "Giá sau giảm: 0 ₫";
             // 
@@ -196,7 +195,7 @@ namespace OOP_finalProject.EntityForm
             this.lblOriginalPrice.AutoSize = true;
             this.lblOriginalPrice.Location = new System.Drawing.Point(15, 180);
             this.lblOriginalPrice.Name = "lblOriginalPrice";
-            this.lblOriginalPrice.Size = new System.Drawing.Size(66, 13);
+            this.lblOriginalPrice.Size = new System.Drawing.Size(65, 13);
             this.lblOriginalPrice.TabIndex = 8;
             this.lblOriginalPrice.Text = "Giá gốc: 0 ₫";
             // 
@@ -435,7 +434,7 @@ namespace OOP_finalProject.EntityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 586);
+            this.ClientSize = new System.Drawing.Size(966, 586);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
