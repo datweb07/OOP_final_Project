@@ -48,6 +48,8 @@ namespace OOP_finalProject
             btnOrderList.Click += btnOrderList_Click;
             btnAccount.Click += btnAccount_Click; // Thêm sự kiện cho nút Account
             btnExit.Click += btnExit_Click;
+            btnStore.Click += btnStore_Click;
+            btnCombo.Click += btnCombo_Click;
         }
 
         private void UpdateWelcomeMessage()
@@ -243,6 +245,11 @@ namespace OOP_finalProject
         private void btnCombo_Click(object sender, EventArgs e)
         {
             LoadForm(new CompositeProductForm(), "📝 Quản lý combo sản phẩm", btnCombo);
+        }
+
+        private void btnStore_Click(object sender, EventArgs e)
+        {
+            LoadForm(new StoreForm(), "🏬 Quản lý cửa hàng", btnStore);
         }
 
         // Hiển thị thông tin tài khoản

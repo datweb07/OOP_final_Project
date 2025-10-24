@@ -61,6 +61,10 @@ namespace OOP_finalProject
             statusLabel = new ToolStripStatusLabel();
             pictureAvatar = new PictureBox();
 
+            // Thêm controls cho Manager
+            lblManager = new Label();
+            cmbManager = new ComboBox();
+
             // Suspend layout
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridData).BeginInit();
@@ -160,6 +164,8 @@ namespace OOP_finalProject
             groupBox1.Controls.Add(txtCode);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(lblCustomerCode);
+            groupBox1.Controls.Add(cmbManager);
+            groupBox1.Controls.Add(lblManager);
             // 
             // lblCustomerCode
             // 
@@ -246,7 +252,7 @@ namespace OOP_finalProject
             txtAddress.Font = new Font("Segoe UI", 10F);
             txtAddress.Location = new Point(113, 129);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(777, 25);
+            txtAddress.Size = new Size(300, 25);
             txtAddress.TabIndex = 1;
             // 
             // lblPhone
@@ -294,6 +300,25 @@ namespace OOP_finalProject
             btnSave.Text = "Lưu";
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
+            // 
+            // lblManager
+            // 
+            lblManager.AutoSize = true;
+            lblManager.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblManager.Location = new Point(460, 136);
+            lblManager.Name = "lblManager";
+            lblManager.Size = new Size(76, 19);
+            lblManager.TabIndex = 0;
+            lblManager.Text = "Tên Quản lý";
+            // 
+            // cmbManager
+            // 
+            cmbManager.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbManager.Font = new Font("Segoe UI", 10F);
+            cmbManager.Location = new Point(557, 129);
+            cmbManager.Name = "cmbManager";
+            cmbManager.Size = new Size(333, 25);
+            cmbManager.TabIndex = 1;
             // 
             // btnDelete
             // 
@@ -403,5 +428,7 @@ namespace OOP_finalProject
         private TextBox txtAddress;
         private Label label5;
         private TextBox txtCode;
+        private Label lblManager;
+        private ComboBox cmbManager;
     }
 }

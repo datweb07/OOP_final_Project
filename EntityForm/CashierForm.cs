@@ -18,6 +18,8 @@ namespace OOP_finalProject
 
         private CashierData cashierData = new CashierData();
         private List<Cashier> cashiers = new List<Cashier>();
+        private ManagerData managerData = new ManagerData();
+        private List<Manager> managers = new List<Manager>();
 
         BindingSource _src = new BindingSource();
         // Thêm sự kiện cho các nút mới
@@ -52,7 +54,7 @@ namespace OOP_finalProject
         // Cập nhật FormSeller_Load
         private void FormSeller_Load(object sender, EventArgs e)
         {
-            CreateSampleData();
+            CashierData.CreateSampleData();
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
@@ -74,35 +76,14 @@ namespace OOP_finalProject
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
             cashiers = cashierData.GetData();
+            managers = managerData.GetData();
+            LoadManagersToComboBox();
             DisplayInGrid();
 
             // Đăng ký sự kiện mới
             btnSearch.Click += btnSearch_Click;
             btnAddNew.Click += btnAddNew_Click;
             txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
-        }
-
-
-
-        private void CreateSampleData()
-        {
-            string filePath = Path.Combine(GetPath.path, nameof(Cashier) + ".dat");
-            if (File.Exists(filePath))
-            {
-                List<Cashier> cashiers = new List<Cashier>()
-            {
-                new Cashier("NV001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
-                new Cashier("NV002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
-            };
-                //  Tạo CashierList từ List<Cashier>
-                CashierList cashierList = new CashierList(cashiers);
-
-                using (FileStream fs = File.Create(filePath))
-                {
-                    NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-                    netDataContractSerializer.Serialize(fs, cashierList);
-                }
-            }
         }
 
         private void DisplayInGrid()
@@ -117,6 +98,7 @@ namespace OOP_finalProject
             txtName.Text = "";
             txtPhone.Text = "";
             txtAddress.Text = "";
+            cmbManager.SelectedIndex = -1;
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
         }
@@ -151,6 +133,13 @@ namespace OOP_finalProject
                 return;
             }
 
+            if (cmbManager.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn quản lý !"
+                    , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Cashier cashier = null;
 
             for (int i = 0; i < cashiers.Count; i++)
@@ -174,6 +163,7 @@ namespace OOP_finalProject
             cashier.Name = txtName.Text;
             cashier.Gender = rdoMale.Checked ? "Nam" : "Nữ";
             cashier.Role = "Cashier";
+            cashier.ManagerName = cmbManager.SelectedItem.ToString();
 
             DisplayInGrid();
 
@@ -234,6 +224,28 @@ namespace OOP_finalProject
             rdoFemale.Checked = cashier.Gender != "Nam" ? true : false;
             txtAddress.Text = cashier.Address;
             txtPhone.Text = cashier.PhoneNumber;
+
+            // Tìm và chọn manager trong ComboBox
+            for (int i = 0; i < cmbManager.Items.Count; i++)
+            {
+                if (cmbManager.Items[i].ToString() == cashier.ManagerName)
+                {
+                    cmbManager.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Load danh sách managers vào ComboBox
+        /// </summary>
+        private void LoadManagersToComboBox()
+        {
+            cmbManager.Items.Clear();
+            foreach (Manager manager in managers)
+            {
+                cmbManager.Items.Add(manager.Name);
+            }
         }
 
 

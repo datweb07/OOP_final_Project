@@ -60,6 +60,7 @@ namespace OOP_finalProject
             this.lblTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnCombo = new System.Windows.Forms.Button();
+            this.btnStore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,6 +109,7 @@ namespace OOP_finalProject
             // 
             this.pnlMenuContainer.AutoScroll = true;
             this.pnlMenuContainer.BackColor = System.Drawing.Color.DodgerBlue;
+            this.pnlMenuContainer.Controls.Add(this.btnStore);
             this.pnlMenuContainer.Controls.Add(this.btnCombo);
             this.pnlMenuContainer.Controls.Add(this.btnElectronic);
             this.pnlMenuContainer.Controls.Add(this.btnDashboard);
@@ -355,7 +357,7 @@ namespace OOP_finalProject
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(9, 524);
+            this.btnExit.Location = new System.Drawing.Point(9, 546);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -464,7 +466,24 @@ namespace OOP_finalProject
             this.btnCombo.Text = "Quản lý Combo";
             this.btnCombo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCombo.UseVisualStyleBackColor = false;
-            this.btnCombo.Click += new System.EventHandler(this.btnCombo_Click);
+            // 
+            // btnStore
+            // 
+            this.btnStore.BackColor = System.Drawing.Color.Transparent;
+            this.btnStore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStore.FlatAppearance.BorderSize = 0;
+            this.btnStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStore.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnStore.ForeColor = System.Drawing.Color.White;
+            this.btnStore.Location = new System.Drawing.Point(9, 502);
+            this.btnStore.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStore.Name = "btnStore";
+            this.btnStore.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnStore.Size = new System.Drawing.Size(228, 34);
+            this.btnStore.TabIndex = 16;
+            this.btnStore.Text = "Quản lý cửa hàng";
+            this.btnStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStore.UseVisualStyleBackColor = false;
             // 
             // MainFormAdmin
             // 
@@ -522,5 +541,6 @@ namespace OOP_finalProject
         private Button btnExit;
         private Button btnElectronic;
         private Button btnCombo;
+        private Button btnStore;
     }
 }

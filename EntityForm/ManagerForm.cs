@@ -14,10 +14,13 @@ namespace OOP_finalProject
 
         private ManagerData _ManagerDAL = new ManagerData();
         private List<Manager> _Managers = new List<Manager>();
+        private CashierData _CashierDAL = new CashierData();
+        private List<Cashier> _Cashiers = new List<Cashier>();
 
         BindingSource _src = new BindingSource();
         private void FormManager_Load(object sender, EventArgs e)
         {
+            ManagerData.CreateSampleData();
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
@@ -25,6 +28,8 @@ namespace OOP_finalProject
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
             _Managers = _ManagerDAL.GetData();
+            _Cashiers = _CashierDAL.GetData();
+            UpdateAllTeamSizes();
             DisplayInGrid();
         }
 
@@ -40,6 +45,7 @@ namespace OOP_finalProject
             txtName.Text = "";
             txtPhone.Text = "";
             txtAddress.Text = "";
+            txtTeamSize.Text = "0";
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
         }
@@ -102,6 +108,10 @@ namespace OOP_finalProject
             // save data in database
             _ManagerDAL.SaveData(_Managers);
 
+            // Cập nhật team size sau khi lưu
+            UpdateAllTeamSizes();
+            DisplayInGrid();
+
             MessageBox.Show("Cập nhật thông tin quản lý thành công !"
                 , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
@@ -129,6 +139,9 @@ namespace OOP_finalProject
 
             _ManagerDAL.SaveData(_Managers);
 
+            // Cập nhật team size sau khi xóa
+            UpdateAllTeamSizes();
+            DisplayInGrid();
 
             MessageBox.Show("Xoá thông tin quản lý thành công !"
                 , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -156,6 +169,21 @@ namespace OOP_finalProject
             rdoFemale.Checked = Manager.Gender != "Nam" ? true : false;
             txtAddress.Text = Manager.Address;
             txtPhone.Text = Manager.PhoneNumber;
+            txtTeamSize.Text = Manager.TeamSize.ToString();
+        }
+
+        /// <summary>
+        /// Cập nhật team size cho tất cả managers dựa trên dữ liệu cashier
+        /// </summary>
+        private void UpdateAllTeamSizes()
+        {
+            // Reload cashier data để có dữ liệu mới nhất
+            _Cashiers = _CashierDAL.GetData();
+
+            foreach (Manager manager in _Managers)
+            {
+                manager.UpdateTeamSizeFromCashiers(_Cashiers);
+            }
         }
     }
 }

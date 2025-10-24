@@ -9,15 +9,18 @@ namespace OOP_finalProject
     [Serializable]
     public class CashierData
     {
-        private string filePath = Path.Combine(GetPath.path, nameof(Cashier) + ".dat");
+        private static string filePath = Path.Combine(GetPath.path, nameof(Cashier) + ".dat");
 
-        public void WriteObject(CashierList cashierList)
+        public static void WriteObject(CashierList cashierList)
         {
             try
             {
+                // Tạo NetDataContractSerializer
                 NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
+
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
+                    // Ghi dữ liệu vào file
                     dataContractSerializer.Serialize(fileStream, cashierList);
                 }
             }
@@ -36,11 +39,12 @@ namespace OOP_finalProject
                     Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
                     return new CashierList();
                 }
-
+                // Tạo NetDataContractSerializer
                 NetDataContractSerializer serializer = new NetDataContractSerializer();
 
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {
+                    // Đọc dữ liệu từ file và chuyển đổi thành CashierList
                     CashierList cashierList = (CashierList)serializer.Deserialize(fileStream);
                     return cashierList;
                 }
@@ -62,6 +66,22 @@ namespace OOP_finalProject
         {
             CashierList cashierList = new CashierList(cashiers);
             WriteObject(cashierList);
+        }
+
+        public static void CreateSampleData()
+        {
+            if (!File.Exists(filePath))
+            {
+                List<Cashier> cashiers = new List<Cashier>()
+            {
+                new Cashier("NV001", "Nguyễn Văn A", "Nam", "0901234567", "123 Lê Lợi, Q1, TP.HCM"),
+                new Cashier("NV002", "Trần Thị B", "Nữ", "0912345678", "456 Nguyễn Huệ, Q3, TP.HCM"),
+            };
+                //  Tạo CashierList từ List<Cashier>
+                CashierList cashierList = new CashierList(cashiers);
+
+                WriteObject(cashierList);
+            }
         }
     }
 }

@@ -47,6 +47,8 @@ namespace OOP_finalProject
             txtCode = new TextBox();
             label3 = new Label();
             lblCustomerCode = new Label();
+            lblTeamSize = new Label();
+            txtTeamSize = new TextBox();
             groupBox1 = new GroupBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridData).BeginInit();
@@ -199,6 +201,24 @@ namespace OOP_finalProject
             lblCustomerCode.TabIndex = 0;
             lblCustomerCode.Text = "Mã NV";
             // 
+            // lblTeamSize
+            // 
+            lblTeamSize.AutoSize = true;
+            lblTeamSize.Location = new Point(31, 180);
+            lblTeamSize.Name = "lblTeamSize";
+            lblTeamSize.Size = new Size(76, 20);
+            lblTeamSize.TabIndex = 0;
+            lblTeamSize.Text = "Số nhân viên";
+            // 
+            // txtTeamSize
+            // 
+            txtTeamSize.Location = new Point(113, 173);
+            txtTeamSize.Name = "txtTeamSize";
+            txtTeamSize.ReadOnly = true;
+            txtTeamSize.Size = new Size(100, 27);
+            txtTeamSize.TabIndex = 1;
+            txtTeamSize.Text = "0";
+            // 
             // groupBox1
             // 
             groupBox1.Controls.Add(btnDelete);
@@ -215,6 +235,8 @@ namespace OOP_finalProject
             groupBox1.Controls.Add(txtCode);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(lblCustomerCode);
+            groupBox1.Controls.Add(txtTeamSize);
+            groupBox1.Controls.Add(lblTeamSize);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(920, 244);
@@ -256,6 +278,8 @@ namespace OOP_finalProject
         private TextBox txtCode;
         private Label label3;
         private Label lblCustomerCode;
+        private Label lblTeamSize;
+        private TextBox txtTeamSize;
         private GroupBox groupBox1;
     }
 }

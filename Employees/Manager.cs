@@ -1,10 +1,12 @@
 ﻿using OOP_finalProject.Base;
 using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Employees
 {
     [Serializable]
-    public class Manager : Employee
+    public class Manager : Employee, ISerializable
     {
         private string store;
         private int teamSize;
@@ -51,6 +53,11 @@ namespace OOP_finalProject.Employees
             TeamSize = 0;
         }
 
+        protected Manager(SerializationInfo info, StreamingContext context)
+           : base(info, context)
+        {
+        }
+
         public Manager() : base()
         {
             Role = "Manager";
@@ -86,6 +93,36 @@ namespace OOP_finalProject.Employees
         public decimal CalculateBonus()
         {
             return TeamSize * 1000m;
+        }
+
+        /// <summary>
+        /// Tính toán số lượng nhân viên dựa trên dữ liệu Cashier
+        /// </summary>
+        /// <param name="cashiers">Danh sách nhân viên bán hàng</param>
+        /// <returns>Số lượng nhân viên được quản lý bởi manager này</returns>
+        public int CalculateTeamSizeFromCashiers(List<Cashier> cashiers)
+        {
+            if (cashiers == null)
+                return 0;
+
+            int count = 0;
+            foreach (Cashier cashier in cashiers)
+            {
+                if (cashier.ManagerName == this.Name)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        /// <summary>
+        /// Cập nhật TeamSize dựa trên dữ liệu Cashier
+        /// </summary>
+        /// <param name="cashiers">Danh sách nhân viên bán hàng</param>
+        public void UpdateTeamSizeFromCashiers(List<Cashier> cashiers)
+        {
+            TeamSize = CalculateTeamSizeFromCashiers(cashiers);
         }
     }
 }
