@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 
@@ -6,50 +7,44 @@ namespace OOP_finalProject
 {
     public class StoreData
     {
-        private string pathXml = Path.Combine(GetPath.path, nameof(Store) + ".dat");
+        private string filePath = Path.Combine(GetPath.path, nameof(Store) + ".dat");
 
         public Store GetData()
         {
-            if (File.Exists(pathXml))
+            if (File.Exists(filePath))
             {
                 try
                 {
-                    // Tạo DataContractSerializer cho List<Store>
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(Store));
+                    // Tạo DataContractSerializer cho Store
+                    NetDataContractSerializer serializer = new NetDataContractSerializer();
 
-                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                     {
-                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Store>
-                        Store stores = (Store)serializer.ReadObject(fileStream);
-                        return stores ?? new Store();
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành Store
+                        Store store = (Store)serializer.Deserialize(fileStream);
+                        return store ?? new Store();
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Lỗi đọc file: {ex.Message}");
-
                 }
             }
             return new Store();
         }
 
-        public void SaveData(Store stores)
+        public void SaveData(Store store)
         {
             try
             {
-                // Tạo thư mục nếu chưa tồn tại
-                if (!Directory.Exists(GetPath.path))
-                {
-                    Directory.CreateDirectory(GetPath.path);
-                }
+                // Tạo DataContractSerializer cho Store
+                NetDataContractSerializer serializer = new NetDataContractSerializer();
 
-                // Tạo DataContractSerializer cho List<Store>
-                DataContractSerializer serializer = new DataContractSerializer(typeof(Store));
-
-                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file XML
-                    serializer.WriteObject(fileStream, stores);
+                    //serializer.WriteObject(fileStream, store);
+                    serializer.Serialize(fileStream, store);
                 }
             }
             catch (Exception ex)
@@ -57,5 +52,7 @@ namespace OOP_finalProject
                 Console.WriteLine($"Lỗi ghi file: {ex.Message}");
             }
         }
+
+
     }
 }

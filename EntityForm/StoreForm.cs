@@ -48,7 +48,7 @@ namespace OOP_finalProject
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtId.Text))
+            if (string.IsNullOrEmpty(txtId.Text))
             {
                 MessageBox.Show("Mã cửa hàng không được để trống !",
                     "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

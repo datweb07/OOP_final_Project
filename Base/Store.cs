@@ -2,11 +2,12 @@
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     [Serializable]
-    public class Store
+    public class Store : ISerializable
     {
         private string storeId;
         private string storeName;
@@ -21,18 +22,22 @@ namespace OOP_finalProject
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Store ID cannot be null or empty");
+                {
+                    throw new ArgumentException("ID cửa hàng không được để trống hoặc rỗng!");
+                }
                 storeId = value;
             }
         }
 
         public string StoreName
         {
-            get { return storeName; } 
-            set 
-            { 
-                if (string.IsNullOrWhiteSpace(value)) 
-                    throw new ArgumentException("Store name cannot be null or empty"); 
+            get { return storeName; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Tên cửa hàng không được để trống hoặc rỗng!");
+                }
                 storeName = value;
             }
         }
@@ -43,7 +48,9 @@ namespace OOP_finalProject
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Location cannot be null or empty");
+                {
+                    throw new ArgumentException("Địa điểm cửa hàng không được để trống hoặc rỗng!");
+                }
                 location = value;
             }
         }
@@ -54,7 +61,9 @@ namespace OOP_finalProject
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("Manager cannot be null");
+                {
+                    throw new ArgumentNullException("Quản lý không thể rỗng!");
+                }
                 manager = value;
             }
         }
@@ -65,7 +74,9 @@ namespace OOP_finalProject
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("Cashiers list cannot be null");
+                {
+                    throw new ArgumentNullException("Danh sách thu ngân không thể rỗng!");
+                }
                 cashiers = value;
             }
         }
@@ -76,7 +87,9 @@ namespace OOP_finalProject
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("Products list cannot be null");
+                {
+                    throw new ArgumentNullException("Danh sách sản phẩm không thể rỗng!");
+                }
                 products = value;
             }
         }
@@ -93,7 +106,39 @@ namespace OOP_finalProject
 
         public Store()
         {
-        
+            
+        }
+
+        public Store(SerializationInfo info, StreamingContext context)
+        {
+            try
+            {
+                StoreId = info.GetString("StoreId");
+                StoreName = info.GetString("StoreName");
+                Location = info.GetString("Location");
+                Manager = (Manager)info.GetValue("Manager", typeof(Manager));
+                Cashiers = (List<Cashier>)info.GetValue("Cashiers", typeof(List<Cashier>));
+                Products = (List<Product>)info.GetValue("Products", typeof(List<Product>));
+            }
+            catch
+            {
+                StoreId = "";
+                StoreName = "";
+                Location = "";
+                Manager = null;
+                Cashiers = new List<Cashier>();
+                Products = new List<Product>();
+            }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("StoreId", StoreId);
+            info.AddValue("StoreName", StoreName);
+            info.AddValue("Location", Location);
+            info.AddValue("Manager", Manager);
+            info.AddValue("Cashiers", Cashiers);
+            info.AddValue("Products", Products);
         }
     }
 }

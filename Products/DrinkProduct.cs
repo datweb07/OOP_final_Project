@@ -1,10 +1,11 @@
 ﻿using OOP_finalProject.Base;
 using System;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Products
 {
     [Serializable]
-    public class DrinkProduct : Product
+    public class DrinkProduct : Product, ISerializable
     {
         private bool carbonated;
         public bool Carbonated { get { return carbonated; } set { carbonated = value; } }
@@ -15,6 +16,10 @@ namespace OOP_finalProject.Products
         public override string Info()
         {
             return $"Có gas: {Carbonated}";
+        }
+        protected DrinkProduct(SerializationInfo info, StreamingContext context)
+           : base(info, context)
+        {
         }
     }
 }

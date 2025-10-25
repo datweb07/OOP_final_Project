@@ -18,6 +18,7 @@ namespace OOP_finalProject
         BindingSource _src = new BindingSource();
         private void FormBeverage_Load(object sender, EventArgs e)
         {
+            DrinkProductData.CreateSampleData();
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;

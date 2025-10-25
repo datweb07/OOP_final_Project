@@ -105,6 +105,7 @@
     <Compile Include="Data\DrinkProductData.cs" />
     <Compile Include="Data\CustomerData.cs" />
     <Compile Include="Data\ElectronicProductData.cs" />
+    <Compile Include="DrinkProductList.cs" />
     <Compile Include="EntityForm\CompositeProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
