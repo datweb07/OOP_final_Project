@@ -18,6 +18,7 @@ namespace OOP_finalProject
         BindingSource _src = new BindingSource();
         private void FormFood_Load(object sender, EventArgs e)
         {
+            FoodProductData.CreateSampleData();
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
@@ -149,7 +150,13 @@ namespace OOP_finalProject
             txtName.Text = foodProduct.Name;
             txtPrice.Value = foodProduct.Price;
             txtQty.Value = foodProduct.Quantity;
-            dtExpirationDate.Value = foodProduct.ExpirationDate;
+
+            //// Kiểm tra trước khi gán
+            //if (foodProduct.ExpirationDate < dtExpirationDate.MinDate)
+            //    dtExpirationDate.Value = DateTime.Now;
+            //else
+            //    dtExpirationDate.Value = foodProduct.ExpirationDate;
         }
+
     }
 }

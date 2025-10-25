@@ -186,6 +186,7 @@
       <DependentUpon>ListOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\FoodProductData.cs" />
+    <Compile Include="FoodProductList.cs" />
     <Compile Include="GetPath\GetPath.cs" />
     <Compile Include="Data\HouseholdProductData.cs" />
     <Compile Include="Base\Invoice.cs" />
