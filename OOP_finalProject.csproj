@@ -105,7 +105,7 @@
     <Compile Include="Data\DrinkProductData.cs" />
     <Compile Include="Data\CustomerData.cs" />
     <Compile Include="Data\ElectronicProductData.cs" />
-    <Compile Include="DrinkProductList.cs" />
+    <Compile Include="ComponentListData\DrinkProductList.cs" />
     <Compile Include="EntityForm\CompositeProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,7 +186,7 @@
       <DependentUpon>ListOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\FoodProductData.cs" />
-    <Compile Include="FoodProductList.cs" />
+    <Compile Include="ComponentListData\FoodProductList.cs" />
     <Compile Include="GetPath\GetPath.cs" />
     <Compile Include="Data\HouseholdProductData.cs" />
     <Compile Include="Base\Invoice.cs" />
@@ -198,6 +198,7 @@
     <Compile Include="EntityForm\InvoiceForm.Designer.cs">
       <DependentUpon>InvoiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HouseholdProductList.cs" />
     <Compile Include="Interfaces\IAuthenticatable.cs" />
     <Compile Include="Interfaces\ICalculable.cs" />
     <Compile Include="Interfaces\IDiscountStrategy.cs" />
@@ -255,7 +256,7 @@
     <Compile Include="EntityForm\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagerList.cs" />
+    <Compile Include="ComponentListData\ManagerList.cs" />
     <Compile Include="Products\CompositeProduct.cs" />
     <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />

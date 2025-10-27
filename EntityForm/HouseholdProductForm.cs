@@ -19,6 +19,7 @@ namespace OOP_finalProject
         BindingSource _src = new BindingSource();
         private void FormHouseHoldItem_Load(object sender, EventArgs e)
         {
+            HouseholdProductData.CreateSampleData();
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;

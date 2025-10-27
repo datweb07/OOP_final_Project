@@ -118,7 +118,7 @@ namespace OOP_finalProject.Base
             get { return Info(); }
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", Id);
             info.AddValue("Name", Name);
