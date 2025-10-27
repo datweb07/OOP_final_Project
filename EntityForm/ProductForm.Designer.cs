@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -73,7 +73,7 @@ namespace OOP_finalProject
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "Code";
+            this.Column1.DataPropertyName = "Id";
             this.Column1.HeaderText = "Mã Hàng";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -89,7 +89,7 @@ namespace OOP_finalProject
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "Qty";
+            this.Column3.DataPropertyName = "Quantity";
             this.Column3.HeaderText = "Số Lượng";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
@@ -105,7 +105,7 @@ namespace OOP_finalProject
             // 
             // Column5
             // 
-            this.Column5.DataPropertyName = "Info";
+            this.Column5.DataPropertyName = "Display";
             this.Column5.HeaderText = "Chi tiết sản phẩm";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
@@ -120,6 +120,7 @@ namespace OOP_finalProject
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ProductForm";
             this.Text = "DANH SÁCH SẢN PHẨM";
+            this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
             this.ResumeLayout(false);
