@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Products;
+using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -70,6 +70,8 @@ namespace OOP_finalProject
                     "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            // mặc định hết hạn
+            DateTime expirationDateTime = dtExpirationDate.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
 
             FoodProduct foodProduct = null;
 
@@ -91,7 +93,7 @@ namespace OOP_finalProject
             foodProduct.Name = txtName.Text;
             foodProduct.Price = txtPrice.Value;
             foodProduct.Quantity = txtQty.Value;
-            foodProduct.ExpirationDate = dtExpirationDate.Value;
+            foodProduct.ExpirationDate = expirationDateTime;
 
             DisplayInGrid();
 
@@ -151,11 +153,11 @@ namespace OOP_finalProject
             txtPrice.Value = foodProduct.Price;
             txtQty.Value = foodProduct.Quantity;
 
-            //// Kiểm tra trước khi gán
-            //if (foodProduct.ExpirationDate < dtExpirationDate.MinDate)
-            //    dtExpirationDate.Value = DateTime.Now;
-            //else
-            //    dtExpirationDate.Value = foodProduct.ExpirationDate;
+            // Kiểm tra trước khi gán
+            if (foodProduct.ExpirationDate < dtExpirationDate.MinDate || foodProduct.ExpirationDate > dtExpirationDate.MaxDate)
+                dtExpirationDate.Value = DateTime.Now;
+            else
+                dtExpirationDate.Value = foodProduct.ExpirationDate;
         }
 
     }

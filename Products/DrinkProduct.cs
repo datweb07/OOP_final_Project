@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
 using System;
 using System.Runtime.Serialization;
 
@@ -20,6 +20,21 @@ namespace OOP_finalProject.Products
         protected DrinkProduct(SerializationInfo info, StreamingContext context)
            : base(info, context)
         {
+            try
+            {
+                Carbonated = info.GetBoolean("Carbonated");
+            }
+            catch (SerializationException)
+            {
+                // Nếu file cũ không có trường Carbonated, set giá trị mặc định
+                Carbonated = false;
+            }
+        }
+
+        public new void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            info.AddValue("Carbonated", Carbonated);
         }
     }
 }

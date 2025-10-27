@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
 using System;
 using System.Runtime.Serialization;
 
@@ -16,11 +16,26 @@ namespace OOP_finalProject.Products
 
         public override string Info()
         {
-            return $"Ngày hết hạn: {ExpirationDate.ToShortDateString()}";
+            return $"Ngày hết hạn: {ExpirationDate.ToString("dd/MM/yyyy HH:mm")}";
         }
         protected FoodProduct(SerializationInfo info, StreamingContext context)
            : base(info, context)
         {
+            try
+            {
+                ExpirationDate = info.GetDateTime("ExpirationDate");
+            }
+            catch (SerializationException)
+            {
+                // Nếu file cũ không có trường ExpirationDate, set giá trị mặc định
+                ExpirationDate = DateTime.Now.AddDays(30);
+            }
+        }
+
+        public new void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            info.AddValue("ExpirationDate", ExpirationDate);
         }
     }
 }
