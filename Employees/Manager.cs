@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -62,6 +62,18 @@ namespace OOP_finalProject.Employees
         protected Manager(SerializationInfo info, StreamingContext context)
            : base(info, context)
         {
+            try
+            {
+                Store = info.GetString("Store");
+                TeamSize = info.GetInt32("TeamSize");
+                Salary = info.GetDecimal("Salary");
+            }
+            catch
+            {
+                Store = "";
+                TeamSize = 0;
+                Salary = 0;
+            }
         }
 
         public Manager() : base()
@@ -122,6 +134,15 @@ namespace OOP_finalProject.Employees
         public void UpdateTeamSizeFromCashiers(List<Cashier> cashiers)
         {
             TeamSize = CalculateTeamSizeFromCashiers(cashiers);
+        }
+
+        // Override GetObjectData to serialize Manager-specific properties
+        public new void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            info.AddValue("Store", Store);
+            info.AddValue("TeamSize", TeamSize);
+            info.AddValue("Salary", Salary);
         }
     }
 }

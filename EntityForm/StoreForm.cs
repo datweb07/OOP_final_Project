@@ -23,8 +23,9 @@ namespace OOP_finalProject
 
         private void StoreForm_Load(object sender, EventArgs e)
         {
+            ManagerData.CreateSampleData();
             cboManager.DataSource = managerData.GetData();
-            cboManager.ValueMember = "Code";
+            cboManager.ValueMember = "Id";
             cboManager.DisplayMember = "Name";
 
             if (cboManager.Items.Count > 0)

@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
@@ -58,14 +58,7 @@ namespace OOP_finalProject
         public Manager Manager
         {
             get { return manager; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("Quản lý không thể rỗng!");
-                }
-                manager = value;
-            }
+            set { manager = value; }
         }
 
         public List<Cashier> Cashiers
@@ -106,7 +99,8 @@ namespace OOP_finalProject
 
         public Store()
         {
-            
+            //Cashiers = new List<Cashier>();
+            //Products = new List<Product>();
         }
 
         public Store(SerializationInfo info, StreamingContext context)

@@ -1,10 +1,17 @@
-﻿using System.Drawing;
+using OOP_finalProject.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
     public partial class DashboardForm : Form
     {
+        private CustomerData customerData = new CustomerData();
+        private DrinkProductData drinkProductData = new DrinkProductData();
+        private FoodProductData foodProductData = new FoodProductData();
+        private HouseholdProductData householdProductData = new HouseholdProductData();
+        private CompositeProductData compositeProductData = new CompositeProductData();
+
         public DashboardForm()
         {
             // Khởi tạo form thủ công thay vì dùng InitializeComponent()
@@ -62,11 +69,15 @@ namespace OOP_finalProject
                 BackColor = Color.Transparent
             };
 
-            // Add statistics cards
-            AddStatsCard(statsPanel, "👥 Khách Hàng", "1,234", Color.FromArgb(52, 152, 219), 0);
-            AddStatsCard(statsPanel, "📦 Sản Phẩm", "567", Color.FromArgb(46, 204, 113), 200);
-            AddStatsCard(statsPanel, "🛒 Đơn Hàng", "89", Color.FromArgb(241, 196, 15), 400);
-            AddStatsCard(statsPanel, "💰 Doanh Thu", "1.2M", Color.FromArgb(231, 76, 60), 600);
+            // Get real data counts
+            int customerCount = GetCustomerCount();
+            int productCount = GetProductCount();
+
+            // Add statistics cards with real data
+            AddStatsCard(statsPanel, "👥 Khách Hàng", customerCount.ToString(), Color.FromArgb(52, 152, 219), 0);
+            AddStatsCard(statsPanel, "📦 Sản Phẩm", productCount.ToString(), Color.FromArgb(46, 204, 113), 200);
+            AddStatsCard(statsPanel, "🛒 Đơn Hàng", "0", Color.FromArgb(241, 196, 15), 400);
+            AddStatsCard(statsPanel, "💰 Doanh Thu", "0", Color.FromArgb(231, 76, 60), 600);
 
             // Quick actions panel
             Panel quickActionsPanel = CreateQuickActionsPanel();
@@ -194,6 +205,38 @@ namespace OOP_finalProject
             };
 
             return btn;
+        }
+
+        // Method to get customer count
+        private int GetCustomerCount()
+        {
+            try
+            {
+                var customers = customerData.GetData();
+                return customers?.Count ?? 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        // Method to get product count from all product types
+        private int GetProductCount()
+        {
+            try
+            {
+                int count = 0;
+                count += drinkProductData.GetData()?.Count ?? 0;
+                count += foodProductData.GetData()?.Count ?? 0;
+                count += householdProductData.GetData()?.Count ?? 0;
+                count += compositeProductData.GetData()?.Count ?? 0;
+                return count;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         // Method to refresh dashboard data

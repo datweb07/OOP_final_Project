@@ -43,7 +43,6 @@ namespace OOP_finalProject
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file XML
-                    //serializer.WriteObject(fileStream, store);
                     serializer.Serialize(fileStream, store);
                 }
             }
