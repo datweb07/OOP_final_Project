@@ -96,6 +96,12 @@
   <ItemGroup>
     <Compile Include="Base\Bill.cs" />
     <Compile Include="Base\BillDetails.cs" />
+    <Compile Include="ClothingProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClothingProductForm.Designer.cs">
+      <DependentUpon>ClothingProductForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComponentListData\CashierList.cs" />
     <Compile Include="ComponentListData\CustomerList.cs" />
     <Compile Include="Data\BillData.cs" />

@@ -242,6 +242,11 @@ namespace OOP_finalProject
             LoadForm(new ElectronicProductForm(), "📝 Quản lý đồ điện tử", btnElectronic);
         }
 
+        private void btnClothing_Click(object sender, EventArgs e)
+        {
+            LoadForm(new ClothingProductForm(), "📝 Quản lý đồ thời trang", btnClothing);
+        }
+
         private void btnCombo_Click(object sender, EventArgs e)
         {
             LoadForm(new CompositeProductForm(), "📝 Quản lý combo sản phẩm", btnCombo);
