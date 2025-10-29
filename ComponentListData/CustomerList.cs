@@ -2,15 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace OOP_finalProject
 {
     [Serializable]
-    //[KnownType(typeof(Customer))]
     public class CustomerList : ISerializable
     {
         private List<Customer> customers = new List<Customer>();
-        //[DataMember]
         public List<Customer> Customers { get { return customers; } set { customers = value; } }
         public CustomerList()
         {

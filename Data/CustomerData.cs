@@ -1,8 +1,10 @@
 ﻿using OOP_finalProject.Base;
+using OOP_finalProject.Customers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace OOP_finalProject
 {
@@ -14,10 +16,10 @@ namespace OOP_finalProject
         {
             try
             {
-                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
+                XmlSerializer serializer = new XmlSerializer(typeof(CustomerList), new Type[] { typeof(VIPCustomer), typeof(RegularCustomer) });
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
-                    dataContractSerializer.Serialize(fileStream, customerList);
+                    serializer.Serialize(fileStream, customerList);
                 }
             }
             catch (Exception ex)
@@ -36,7 +38,7 @@ namespace OOP_finalProject
                     return new CustomerList();
                 }
 
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
+                XmlSerializer serializer = new XmlSerializer(typeof(CustomerList), new Type[] { typeof(VIPCustomer), typeof(RegularCustomer) });
 
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {

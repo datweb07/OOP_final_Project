@@ -1,6 +1,10 @@
+using OOP_finalProject.Customers;
 using OOP_finalProject.Interfaces;
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using System.Security.Policy;
+using System.Xml.Serialization;
 
 namespace OOP_finalProject.Base
 {
@@ -12,6 +16,7 @@ namespace OOP_finalProject.Base
         private string gender;
         private string phoneNumber;
         private string address;
+        private string customerType;
         public string Id 
         { 
             get 
@@ -87,6 +92,17 @@ namespace OOP_finalProject.Base
                 address = value; 
             } 
         }
+        public virtual string CustomerType 
+        { 
+            get 
+            { 
+                return customerType; 
+            } 
+            set 
+            { 
+                customerType = value; 
+            }
+        }
         public Customer() { }
         public Customer(string id, string name, string gender, string phoneNumber, string address)
         {
@@ -95,6 +111,7 @@ namespace OOP_finalProject.Base
             Gender = gender;
             PhoneNumber = phoneNumber;
             Address = address;
+      
         }
         public Customer(SerializationInfo info, StreamingContext context)
         {
@@ -103,6 +120,7 @@ namespace OOP_finalProject.Base
             Gender = info.GetString("Gender");
             PhoneNumber = info.GetString("PhoneNumber");
             Address = info.GetString("Address");
+            CustomerType = info.GetString("CustomerType");
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -111,6 +129,7 @@ namespace OOP_finalProject.Base
             info.AddValue("Gender", Gender);
             info.AddValue("PhoneNumber", PhoneNumber);
             info.AddValue("Address", Address);
+            info.AddValue("CustomerType", CustomerType);
         }
 
         // Strategy Pattern: Discount Strategy

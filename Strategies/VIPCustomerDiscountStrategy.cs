@@ -34,7 +34,7 @@ namespace OOP_finalProject.Strategies
         // lấy mô tả
         public string GetDescription()
         {
-            return $"Khách hàng VIP được giảm giá {discountPercentage}% trên tổng giá trị đơn hàng";
+            return $"{discountPercentage}% trên tổng giá trị đơn hàng";
         }
 
         // ghi đè phương thức ToString để hiển thị thông tin chiến lược giảm giá
