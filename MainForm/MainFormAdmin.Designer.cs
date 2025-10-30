@@ -38,6 +38,7 @@ namespace OOP_finalProject
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlLeftSidebar = new System.Windows.Forms.Panel();
             this.pnlMenuContainer = new System.Windows.Forms.Panel();
+            this.btnClothing = new System.Windows.Forms.Button();
             this.btnStore = new System.Windows.Forms.Button();
             this.btnCombo = new System.Windows.Forms.Button();
             this.btnElectronic = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@ namespace OOP_finalProject
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnClothing = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -134,6 +134,24 @@ namespace OOP_finalProject
             this.pnlMenuContainer.Size = new System.Drawing.Size(280, 650);
             this.pnlMenuContainer.TabIndex = 1;
             // 
+            // btnClothing
+            // 
+            this.btnClothing.BackColor = System.Drawing.Color.Transparent;
+            this.btnClothing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClothing.FlatAppearance.BorderSize = 0;
+            this.btnClothing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClothing.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnClothing.ForeColor = System.Drawing.Color.White;
+            this.btnClothing.Location = new System.Drawing.Point(9, 386);
+            this.btnClothing.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClothing.Name = "btnClothing";
+            this.btnClothing.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnClothing.Size = new System.Drawing.Size(228, 34);
+            this.btnClothing.TabIndex = 17;
+            this.btnClothing.Text = "👚 Đồ thời trang";
+            this.btnClothing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClothing.UseVisualStyleBackColor = false;
+            // 
             // btnStore
             // 
             this.btnStore.BackColor = System.Drawing.Color.Transparent;
@@ -148,7 +166,7 @@ namespace OOP_finalProject
             this.btnStore.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnStore.Size = new System.Drawing.Size(228, 34);
             this.btnStore.TabIndex = 16;
-            this.btnStore.Text = "Quản lý cửa hàng";
+            this.btnStore.Text = "🏪 Cửa hàng";
             this.btnStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStore.UseVisualStyleBackColor = false;
             // 
@@ -166,7 +184,7 @@ namespace OOP_finalProject
             this.btnCombo.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnCombo.Size = new System.Drawing.Size(228, 34);
             this.btnCombo.TabIndex = 15;
-            this.btnCombo.Text = "Quản lý Combo";
+            this.btnCombo.Text = "💰 Quản lý Combo";
             this.btnCombo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCombo.UseVisualStyleBackColor = false;
             // 
@@ -184,7 +202,7 @@ namespace OOP_finalProject
             this.btnElectronic.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnElectronic.Size = new System.Drawing.Size(228, 34);
             this.btnElectronic.TabIndex = 10;
-            this.btnElectronic.Text = "🏠 Đồ Điện Tử";
+            this.btnElectronic.Text = "💻 Đồ Điện Tử";
             this.btnElectronic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnElectronic.UseVisualStyleBackColor = false;
             this.btnElectronic.Click += new System.EventHandler(this.btnElectronic_Click);
@@ -203,7 +221,7 @@ namespace OOP_finalProject
             this.btnDashboard.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnDashboard.Size = new System.Drawing.Size(228, 34);
             this.btnDashboard.TabIndex = 1;
-            this.btnDashboard.Text = "🏠 Dashboard";
+            this.btnDashboard.Text = "📊 Dashboard";
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.UseVisualStyleBackColor = false;
             // 
@@ -239,7 +257,7 @@ namespace OOP_finalProject
             this.btnManager.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnManager.Size = new System.Drawing.Size(228, 34);
             this.btnManager.TabIndex = 4;
-            this.btnManager.Text = "👨‍💼 Quản Lý";
+            this.btnManager.Text = "👨🏻‍💼 Nhân Viên Quản Lý";
             this.btnManager.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnManager.UseVisualStyleBackColor = false;
             // 
@@ -257,7 +275,7 @@ namespace OOP_finalProject
             this.btnSeller.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnSeller.Size = new System.Drawing.Size(228, 34);
             this.btnSeller.TabIndex = 5;
-            this.btnSeller.Text = "👨‍💻 Nhân Viên Bán Hàng";
+            this.btnSeller.Text = "🛒 Nhân Viên Bán Hàng";
             this.btnSeller.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSeller.UseVisualStyleBackColor = false;
             // 
@@ -401,7 +419,7 @@ namespace OOP_finalProject
             this.btnExit.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnExit.Size = new System.Drawing.Size(228, 34);
             this.btnExit.TabIndex = 14;
-            this.btnExit.Text = "🚪 Thoát";
+            this.btnExit.Text = "➜] Thoát";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.UseVisualStyleBackColor = false;
             // 
@@ -486,24 +504,6 @@ namespace OOP_finalProject
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
-            // 
-            // btnClothing
-            // 
-            this.btnClothing.BackColor = System.Drawing.Color.Transparent;
-            this.btnClothing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClothing.FlatAppearance.BorderSize = 0;
-            this.btnClothing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClothing.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnClothing.ForeColor = System.Drawing.Color.White;
-            this.btnClothing.Location = new System.Drawing.Point(9, 386);
-            this.btnClothing.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClothing.Name = "btnClothing";
-            this.btnClothing.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnClothing.Size = new System.Drawing.Size(228, 34);
-            this.btnClothing.TabIndex = 17;
-            this.btnClothing.Text = "Đồ thời trang";
-            this.btnClothing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClothing.UseVisualStyleBackColor = false;
             // 
             // MainFormAdmin
             // 

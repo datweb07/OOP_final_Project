@@ -60,7 +60,7 @@ namespace OOP_finalProject
             }
             else
             {
-                lblWelcome.Text = "🏠 Dashboard";
+                lblWelcome.Text = "Dashboard";
             }
         }
 
@@ -186,75 +186,75 @@ namespace OOP_finalProject
         // Quản lý khách hàng
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            LoadForm(new CustomerForm(), "👥 Quản Lý Khách Hàng", btnCustomer);
+            LoadForm(new CustomerForm(), "Khách hàng", btnCustomer);
         }
 
         // Quản lý nhân viên quản lý
         private void btnManager_Click(object sender, EventArgs e)
         {
-            LoadForm(new ManagerForm(), "👨‍💼 Quản Lý Nhân Viên Quản Lý", btnManager);
+            LoadForm(new ManagerForm(), "Nhân viên quản lý", btnManager);
         }
 
         // Quản lý nhân viên bán hàng
         private void btnSeller_Click(object sender, EventArgs e)
         {
-            LoadForm(new CashierForm(), "", btnSeller);
+            LoadForm(new CashierForm(), "Nhân viên bán hàng", btnSeller);
         }
 
         // Quản lý sản phẩm
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            LoadForm(new ProductForm(), "📦 Quản Lý Sản Phẩm", btnProduct);
+            LoadForm(new ProductForm(), "Danh sách sản phẩm", btnProduct);
         }
 
         // Quản lý đồ uống
         private void btnBeverage_Click(object sender, EventArgs e)
         {
-            LoadForm(new DrinkProductForm(), "🥤 Quản Lý Đồ Uống", btnBeverage);
+            LoadForm(new DrinkProductForm(), "Đồ uống", btnBeverage);
         }
 
         // Quản lý thực phẩm
         private void btnFood_Click(object sender, EventArgs e)
         {
-            LoadForm(new FoodProductForm(), "🍔 Quản Lý Thực Phẩm", btnFood);
+            LoadForm(new FoodProductForm(), "Thực phẩm", btnFood);
         }
 
         // Quản lý đồ gia dụng
         private void btnHouseHold_Click(object sender, EventArgs e)
         {
-            LoadForm(new HouseholdProductForm(), "🏠 Quản Lý Đồ Gia Dụng", btnHouseHold);
+            LoadForm(new HouseholdProductForm(), "Đồ gia dụng", btnHouseHold);
         }
 
         // Danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
-            LoadForm(new ListInvoiceForm(), "📋 Danh Sách Hóa Đơn", btnInvoiceList);
+            LoadForm(new ListInvoiceForm(), "Danh sách hóa đơn", btnInvoiceList);
         }
 
         // Danh sách đơn hàng
         private void btnOrderList_Click(object sender, EventArgs e)
         {
-            LoadForm(new ListOrderForm(), "📝 Danh Sách Đơn Hàng", btnOrderList);
+            LoadForm(new ListOrderForm(), "Danh sách đơn hàng", btnOrderList);
         }
 
         private void btnElectronic_Click(object sender, EventArgs e)
         {
-            LoadForm(new ElectronicProductForm(), "📝 Quản lý đồ điện tử", btnElectronic);
+            LoadForm(new ElectronicProductForm(), "Đồ điện tử", btnElectronic);
         }
 
         private void btnClothing_Click(object sender, EventArgs e)
         {
-            LoadForm(new ClothingProductForm(), "📝 Quản lý đồ thời trang", btnClothing);
+            LoadForm(new ClothingProductForm(), "Đồ thời trang", btnClothing);
         }
 
         private void btnCombo_Click(object sender, EventArgs e)
         {
-            LoadForm(new CompositeProductForm(), "📝 Quản lý combo sản phẩm", btnCombo);
+            LoadForm(new CompositeProductForm(), "Combo sản phẩm", btnCombo);
         }
 
         private void btnStore_Click(object sender, EventArgs e)
         {
-            LoadForm(new StoreForm(), "🏬 Quản lý cửa hàng", btnStore);
+            LoadForm(new StoreForm(), "Thiết lập cửa hàng", btnStore);
         }
 
         // Hiển thị thông tin tài khoản
@@ -267,7 +267,7 @@ namespace OOP_finalProject
                 return;
             }
 
-            LoadForm(new AccountForm(), "👤 Thông Tin Tài Khoản", btnAccount);
+            LoadForm(new AccountForm(), "👤 Thông tin tài khoản", btnAccount);
         }
 
         // Thoát ứng dụng
