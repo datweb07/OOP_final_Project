@@ -66,15 +66,14 @@ namespace OOP_finalProject
             ManagerList managerList = new ManagerList(managers);
             WriteObject(managerList);
         }
-
         public static void CreateSampleData()
         {
-            if (File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
                 List<Manager> managers = new List<Manager>()
                 {
-                    new Manager("MG001", "Nguyễn Thị Lan", "Nữ", "0901123456", "123 Lê Lợi, Q1, TP.HCM", "Cửa Hàng A"),
-                    new Manager("MG002", "Trần Văn Nam", "Nam", "0912234567", "456 Nguyễn Huệ, Q3, TP.HCM", "Cửa Hàng B"),
+                    new Manager("MG001", "Nguyễn Thị Lan", "Nữ", "0901123456", "123 Lê Lợi, Q1, TP.HCM", "Không có cửa hàng"),
+                    new Manager("MG002", "Trần Văn Nam", "Nam", "0912234567", "456 Nguyễn Huệ, Q3, TP.HCM", "Không có cửa hàng"),
                 };
 
                 ManagerList managerList = new ManagerList(managers);

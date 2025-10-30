@@ -2,7 +2,9 @@ using OOP_finalProject.Base;
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace OOP_finalProject
 {
@@ -12,7 +14,7 @@ namespace OOP_finalProject
         private string storeId;
         private string storeName;
         private string location;
-        private Manager manager;
+        private string managerId; 
         private List<Cashier> cashiers;
         private List<Product> products;
 
@@ -55,10 +57,10 @@ namespace OOP_finalProject
             }
         }
 
-        public Manager Manager
+        public string ManagerId
         {
-            get { return manager; }
-            set { manager = value; }
+            get { return managerId; }
+            set { managerId = value; }
         }
 
         public List<Cashier> Cashiers
@@ -87,20 +89,31 @@ namespace OOP_finalProject
             }
         }
 
-        public Store(string storeId, string storeName, string location, Manager manager)
+        public Store(string storeId, string storeName, string location, string managerId)
         {
             StoreId = storeId;
             StoreName = storeName;
             Location = location;
-            Manager = manager;
+            ManagerId = managerId;
             Cashiers = new List<Cashier>();
             Products = new List<Product>();
         }
 
         public Store()
         {
-            //Cashiers = new List<Cashier>();
-            //Products = new List<Product>();
+            Cashiers = new List<Cashier>();
+            Products = new List<Product>();
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            
+            info.AddValue("StoreId", StoreId);
+            info.AddValue("StoreName", StoreName);
+            info.AddValue("Location", Location);
+            info.AddValue("ManagerId", ManagerId);
+            info.AddValue("Cashiers", Cashiers);
+            info.AddValue("Products", Products);
         }
 
         public Store(SerializationInfo info, StreamingContext context)
@@ -110,7 +123,7 @@ namespace OOP_finalProject
                 StoreId = info.GetString("StoreId");
                 StoreName = info.GetString("StoreName");
                 Location = info.GetString("Location");
-                Manager = (Manager)info.GetValue("Manager", typeof(Manager));
+                ManagerId = info.GetString("ManagerId");
                 Cashiers = (List<Cashier>)info.GetValue("Cashiers", typeof(List<Cashier>));
                 Products = (List<Product>)info.GetValue("Products", typeof(List<Product>));
             }
@@ -119,20 +132,10 @@ namespace OOP_finalProject
                 StoreId = "";
                 StoreName = "";
                 Location = "";
-                Manager = null;
+                ManagerId = "";
                 Cashiers = new List<Cashier>();
                 Products = new List<Product>();
             }
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("StoreId", StoreId);
-            info.AddValue("StoreName", StoreName);
-            info.AddValue("Location", Location);
-            info.AddValue("Manager", Manager);
-            info.AddValue("Cashiers", Cashiers);
-            info.AddValue("Products", Products);
         }
     }
 }

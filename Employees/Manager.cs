@@ -8,20 +8,16 @@ namespace OOP_finalProject.Employees
     [Serializable]
     public class Manager : Employee, ISerializable
     {
-        private string store;
+        private string storeName;
         private int teamSize;
-        private decimal salary;
+        //private decimal salary;
 
         public string Store
         {
-            get { return store; }
+            get { return storeName; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("Cửa hàng không thể để trống hoặc rỗng!");
-                }    
-                store = value;
+                storeName = value;
             }
         }
 
@@ -38,18 +34,18 @@ namespace OOP_finalProject.Employees
             }
         }
 
-        public decimal Salary
-        {
-            get { return salary; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Tiền lương không thể âm!");
-                }
-                salary = value;
-            }
-        }
+        //public decimal Salary
+        //{
+        //    get { return salary; }
+        //    set
+        //    {
+        //        if (value < 0)
+        //        {
+        //            throw new ArgumentException("Tiền lương không thể âm!");
+        //        }
+        //        salary = value;
+        //    }
+        //}
 
         public Manager(string id, string name, string gender, string phoneNumber, string address, string store)
             : base(id, name, gender, phoneNumber, address)
@@ -66,13 +62,13 @@ namespace OOP_finalProject.Employees
             {
                 Store = info.GetString("Store");
                 TeamSize = info.GetInt32("TeamSize");
-                Salary = info.GetDecimal("Salary");
+                //Salary = info.GetDecimal("Salary");
             }
             catch
             {
                 Store = "";
                 TeamSize = 0;
-                Salary = 0;
+                //Salary = 0;
             }
         }
 
@@ -142,7 +138,7 @@ namespace OOP_finalProject.Employees
             base.GetObjectData(info, context);
             info.AddValue("Store", Store);
             info.AddValue("TeamSize", TeamSize);
-            info.AddValue("Salary", Salary);
+            //info.AddValue("Salary", Salary);
         }
     }
 }

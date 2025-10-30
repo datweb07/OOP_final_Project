@@ -96,7 +96,6 @@
   <ItemGroup>
     <Compile Include="Base\Bill.cs" />
     <Compile Include="Base\BillDetails.cs" />
-    <Compile Include="CustomerSerializationBinder.cs" />
     <Compile Include="EntityForm\ClothingProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
