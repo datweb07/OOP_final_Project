@@ -52,11 +52,6 @@ namespace OOP_finalProject
             gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
-            // Cấu hình để gridData rộng hết cỡ
-            gridData.Dock = DockStyle.Fill; // Quan trọng: Fill toàn bộ container
-            gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Các cột tự động fill
-            gridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells; // Tự động điều chỉnh chiều cao hàng
-
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
 
@@ -208,6 +203,9 @@ namespace OOP_finalProject
             rdoFemale.Checked = false;
             rbRegular.Checked = true;
             UpdateDiscountLabelForSelection();
+
+            txtSearch.Text = "";
+            statusLabel.Text = "Đã làm mới dữ liệu";
         }
 
         private void btnSave_Click(object sender, EventArgs e)

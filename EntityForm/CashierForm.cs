@@ -80,10 +80,8 @@ namespace OOP_finalProject
             LoadManagersToComboBox();
             DisplayInGrid();
 
-            // Đăng ký sự kiện mới
-            btnSearch.Click += btnSearch_Click;
-            btnAddNew.Click += btnAddNew_Click;
-            txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
+            // auto tìm kiếm khi gõ
+            //txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
         }
 
         private void DisplayInGrid()
@@ -101,6 +99,9 @@ namespace OOP_finalProject
             cmbManager.SelectedIndex = -1;
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
+
+            txtSearch.Text = "";
+            statusLabel.Text = "Đã làm mới dữ liệu";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -247,133 +248,5 @@ namespace OOP_finalProject
                 cmbManager.Items.Add(manager.Name);
             }
         }
-
-
-        //private CashierData cashierData = new CashierData();
-        //private List<Cashier> cashiers = new List<Cashier>();
-
-        //BindingSource source = new BindingSource();
-
-        //public CashierForm()
-        //{
-        //    InitializeComponent();
-        //}
-
-        //private void FormSeller_Load(object sender, System.EventArgs e)
-        //{
-        //    gridData.DataSource = source;
-        //    gridData.AllowUserToAddRows = false;
-        //    gridData.ReadOnly = true;
-
-        //    rdoFemale.Checked = false;
-        //    rdoMale.Checked = true;
-        //    cashiers = cashierData.GetData();
-        //    DisplayGrid();
-        //}
-
-        //private void DisplayGrid()
-        //{
-        //    source.DataSource = cashiers;
-        //    source.ResetBindings(true);
-        //}
-
-        //private void btnRefresh_Click(object sender, System.EventArgs e)
-        //{
-        //    //txtCode.Clear();
-        //    //txtName.Clear();
-        //    //txtPhone.Clear();
-        //    //txtAddress.Clear();
-        //    //rdoFemale.Checked = false;
-        //    //rdoMale.Checked = true;
-        //    txtCode.Text = "";
-        //    txtName.Text = "";
-        //    txtPhone.Text = "";
-        //    txtAddress.Text = "";
-        //    rdoMale.Checked = true;
-        //    rdoFemale.Checked = false;
-        //}
-
-        //private void btnSave_Click(object sender, System.EventArgs e)
-        //{
-        //    string id = txtCode.Text.Trim();
-        //    string name = txtName.Text.Trim();
-        //    string phone = txtPhone.Text.Trim();
-        //    string address = txtAddress.Text.Trim();
-        //    string gender = rdoMale.Checked ? "Nam" : "Nữ";
-        //    if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name))
-        //    {
-        //        MessageBox.Show("Mã và Tên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-        //    Cashier existingCustomer = cashiers.Find(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
-        //    if (existingCustomer != null)
-        //    {
-        //        existingCustomer.Name = name;
-        //        existingCustomer.PhoneNumber = phone;
-        //        existingCustomer.Address = address;
-        //        existingCustomer.Gender = gender;
-        //    }
-        //    else
-        //    {
-        //        Cashier newCustomer = new Cashier(id, name, phone, address, gender);
-        //        cashiers.Add(newCustomer);
-        //    }
-        //    cashierData.SaveData(cashiers);
-        //    DisplayGrid();
-        //    MessageBox.Show("Lưu thông tin khách hàng thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-        //}
-
-        //private void btnDelete_Click(object sender, System.EventArgs e)
-        //{
-        //    if (gridData.CurrentRow != null)
-        //    {
-        //        string id = gridData.CurrentRow.Cells["Id"].Value.ToString();
-        //        Cashier customerToRemove = cashiers.Find(c => c.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
-        //        if (customerToRemove != null)
-        //        {
-        //            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng này?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        //            if (confirmResult == DialogResult.Yes)
-        //            {
-        //                cashiers.Remove(customerToRemove);
-        //                cashierData.SaveData(cashiers);
-        //                DisplayGrid();
-        //                MessageBox.Show("Xóa khách hàng thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Vui lòng chọn khách hàng để xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-        //private void gridData_CellEnter(object sender, DataGridViewCellEventArgs d)
-        //{
-        //    if (gridData.CurrentRow != null || gridData.CurrentRow.IsNewRow)
-        //    {
-        //        return;
-        //    }
-
-        //    Cashier customer = (Cashier)gridData.CurrentRow.DataBoundItem;
-        //    if (customer != null)
-        //    {
-        //        return;
-        //    }
-        //    DisplayCustomer(customer);
-
-        //}
-
-        //private void DisplayCustomer(Cashier customer)
-        //{
-        //    txtCode.Text = customer.Id;
-        //    txtName.Text = customer.Name;
-        //    rdoMale.Checked = customer.Gender == "Nam" ? true : false;
-        //    rdoFemale.Checked = customer.Gender != "Nam" ? true : false;
-        //    txtPhone.Text = customer.PhoneNumber;
-        //    txtAddress.Text = customer.Address;
-        //}
-
     }
 }

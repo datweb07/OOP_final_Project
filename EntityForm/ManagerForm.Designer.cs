@@ -324,6 +324,8 @@ namespace OOP_finalProject
             // 
             gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridData.Dock = DockStyle.Fill;
+            gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gridData.Location = new Point(3, 23);
             gridData.Name = "gridData";
             gridData.RowHeadersWidth = 51;

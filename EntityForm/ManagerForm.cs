@@ -94,6 +94,9 @@ namespace OOP_finalProject
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
             statusLabel.Text = "Sẵn sàng";
+
+            txtSearch.Text = "";
+            statusLabel.Text = "Đã làm mới dữ liệu";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
