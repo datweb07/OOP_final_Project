@@ -184,7 +184,7 @@ namespace OOP_finalProject
             this.btnCombo.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnCombo.Size = new System.Drawing.Size(228, 34);
             this.btnCombo.TabIndex = 15;
-            this.btnCombo.Text = "💰 Quản lý Combo";
+            this.btnCombo.Text = "🛍️ Quản lý Combo";
             this.btnCombo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCombo.UseVisualStyleBackColor = false;
             // 

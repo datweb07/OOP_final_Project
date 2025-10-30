@@ -300,6 +300,9 @@
     <EmbeddedResource Include="EntityForm\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EntityForm\FoodProductForm.resx">
+      <DependentUpon>FoodProductForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\HouseholdProductForm.resx">
       <DependentUpon>HouseholdProductForm.cs</DependentUpon>
     </EmbeddedResource>
