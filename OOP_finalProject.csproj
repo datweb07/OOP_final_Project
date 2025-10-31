@@ -212,6 +212,7 @@
     <Compile Include="Interfaces\IDiscountStrategy.cs" />
     <Compile Include="Interfaces\IDisplayable.cs" />
     <Compile Include="Interfaces\IProductComponent.cs" />
+    <Compile Include="ComponentListData\InvoiceList.cs" />
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +266,7 @@
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ComponentListData\ManagerList.cs" />
+    <Compile Include="ComponentListData\OrderList.cs" />
     <Compile Include="Products\CompositeProduct.cs" />
     <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
@@ -308,8 +310,14 @@
     <EmbeddedResource Include="EntityForm\HouseholdProductForm.resx">
       <DependentUpon>HouseholdProductForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EntityForm\ListOrderForm.resx">
+      <DependentUpon>ListOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\ManagerForm.resx">
       <DependentUpon>ManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityForm\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>

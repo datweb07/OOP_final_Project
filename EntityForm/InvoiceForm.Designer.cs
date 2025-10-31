@@ -146,7 +146,7 @@ namespace OOP_finalProject
             // 
             // Column1
             // 
-            Column1.DataPropertyName = "ProductCode";
+            Column1.DataPropertyName = "ProductId";
             Column1.HeaderText = "Mã Hàng";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
@@ -164,7 +164,7 @@ namespace OOP_finalProject
             // 
             // Column3
             // 
-            Column3.DataPropertyName = "Qty";
+            Column3.DataPropertyName = "Quantity";
             Column3.HeaderText = "Số Lượng";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
@@ -173,7 +173,7 @@ namespace OOP_finalProject
             // 
             // Column4
             // 
-            Column4.DataPropertyName = "Price";
+            Column4.DataPropertyName = "UnitPrice";
             Column4.HeaderText = "Đơn Giá";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
@@ -182,7 +182,7 @@ namespace OOP_finalProject
             // 
             // Column5
             // 
-            Column5.DataPropertyName = "Total";
+            Column5.DataPropertyName = "TotalPrice";
             Column5.HeaderText = "Thành Tiền";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";

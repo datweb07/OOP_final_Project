@@ -63,7 +63,7 @@ namespace OOP_finalProject
             // 
             // Column1
             // 
-            Column1.DataPropertyName = "Code";
+            Column1.DataPropertyName = "Id";
             Column1.HeaderText = "Mã HĐ";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
@@ -71,7 +71,7 @@ namespace OOP_finalProject
             // 
             // Column2
             // 
-            Column2.DataPropertyName = "CreatedDate";
+            Column2.DataPropertyName = "DateCreated";
             Column2.HeaderText = "Ngày Lập";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
