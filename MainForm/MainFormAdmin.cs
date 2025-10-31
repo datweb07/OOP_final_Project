@@ -50,6 +50,7 @@ namespace OOP_finalProject
             btnExit.Click += btnExit_Click;
             btnStore.Click += btnStore_Click;
             btnCombo.Click += btnCombo_Click;
+            btnClothing.Click += btnClothing_Click;
         }
 
         private void UpdateWelcomeMessage()

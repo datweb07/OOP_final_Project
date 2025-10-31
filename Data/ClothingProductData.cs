@@ -8,7 +8,7 @@ namespace OOP_finalProject
 {
     public class ClothingProductData
     {
-        private static string filePath = Path.Combine(GetPath.path, nameof(ClothingProduct) + ".xml");
+        private static string filePath = Path.Combine(GetPath.path, nameof(ClothingProduct) + ".dat");
 
         public static void WriteObject(ClothingProductList clothingProductList)
         {
@@ -67,13 +67,13 @@ namespace OOP_finalProject
 
         public static void CreateSampleData()
         {
-            if(File.Exists(filePath))
+            if(!File.Exists(filePath))
             {
                 List<ClothingProduct> clothingProducts = new List<ClothingProduct>
             {
-                new ClothingProduct("C001", "Áo Thun Nam", 150000, 50, "M,L,XL"),
-                new ClothingProduct("C002", "Quần Jeans Nữ", 300000, 30, "S,M,L"),
-                new ClothingProduct("C003", "Váy Dạ Hội", 500000, 20, "M,L"),
+                new ClothingProduct("C001", "Áo Thun Nam", 150000, 50, "M"),
+                new ClothingProduct("C002", "Quần Jeans Nữ", 300000, 30, "S"),
+                new ClothingProduct("C003", "Váy Dạ Hội", 500000, 20, "XL"),
             };
                 ClothingProductList clothingProductList = new ClothingProductList(clothingProducts);
                 WriteObject(clothingProductList);
