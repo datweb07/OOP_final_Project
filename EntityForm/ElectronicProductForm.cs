@@ -1,7 +1,6 @@
 ﻿using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,214 +11,449 @@ namespace OOP_finalProject
     public partial class ElectronicProductForm : Form
     {
         public ElectronicProductForm()
-    {
-        InitializeComponent();
-        ApplyTheme();
-    }
-
-    private void ApplyTheme()
-    {
-        this.BackColor = Color.FromArgb(240, 240, 245);
-        this.ForeColor = Color.FromArgb(40, 40, 50);
-        this.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
-    }
-
-    #region Data and Members
-    private ElectronicProductData productData = new ElectronicProductData();
-    private List<ElectronicProduct> products = new List<ElectronicProduct>();
-    private BindingSource _src = new BindingSource();
-    #endregion
-
-    #region Event Handlers
-    private void ElectronicForm_Load(object sender, EventArgs e)
-    {
-        CreateSampleData();
-
-        gridData.DataSource = _src;
-        gridData.AllowUserToAddRows = false;
-        gridData.ReadOnly = true;
-        gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-        // Tùy chỉnh giao diện DataGridView
-        gridData.BorderStyle = BorderStyle.None;
-        gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
-        gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridData.DefaultCellStyle.SelectionBackColor = Color.FromArgb(65, 105, 225);
-        gridData.DefaultCellStyle.SelectionForeColor = Color.White;
-        gridData.BackgroundColor = Color.White;
-        gridData.EnableHeadersVisualStyles = false;
-        gridData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-        gridData.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(65, 105, 225);
-        gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-        gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-
-        products = productData.GetData();
-        DisplayInGrid();
-
-        // Đăng ký sự kiện
-        btnSearch.Click += BtnSearch_Click;
-        btnAddNew.Click += BtnAddNew_Click;
-        txtSearch.TextChanged += (s, _) => BtnSearch_Click(null, null);
-    }
-
-    private void BtnSearch_Click(object sender, EventArgs e)
-    {
-        if (!string.IsNullOrEmpty(txtSearch.Text))
         {
-            var filteredProducts = products.Where(p =>
-                p.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                p.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                p.WarrantyPeriod.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
-
-            _src.DataSource = filteredProducts;
-            _src.ResetBindings(false);
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
+            InitializeComponent();
         }
-        else
+
+        private ElectronicProductData productData = new ElectronicProductData();
+        private List<ElectronicProduct> products = new List<ElectronicProduct>();
+        private List<ElectronicProduct> filteredProducts = new List<ElectronicProduct>();
+
+        BindingSource _src = new BindingSource();
+
+        private void ElectronicForm_Load(object sender, EventArgs e)
         {
+            ElectronicProductData.CreateSampleData();
+            gridData.DataSource = _src;
+            gridData.AllowUserToAddRows = false;
+            gridData.ReadOnly = true;
+
+            // Tùy chỉnh giao diện DataGridView
+            gridData.BorderStyle = BorderStyle.None;
+            gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
+            gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            gridData.DefaultCellStyle.SelectionBackColor = Color.FromArgb(65, 105, 225);
+            gridData.DefaultCellStyle.SelectionForeColor = Color.White;
+            gridData.BackgroundColor = Color.White;
+            gridData.EnableHeadersVisualStyles = false;
+            gridData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            gridData.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(65, 105, 225);
+            gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+
+            // Cấu hình để gridData rộng hết cỡ
+            gridData.Dock = DockStyle.Fill;
+            gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Khởi tạo danh sách bảo hành
+            InitializeWarranty();
+
+            // Thiết lập mặc định
+            cmbSort.SelectedIndex = 0;
+            cmbWarrantyFilter.SelectedIndex = 0;
+
+            products = productData.GetData();
+            filteredProducts = products.ToList();
             DisplayInGrid();
-            statusLabel.Text = "Sẵn sàng";
-        }
-    }
-
-    private void BtnAddNew_Click(object sender, EventArgs e)
-    {
-        ClearInputs();
-        txtId.Focus();
-        statusLabel.Text = "Nhập thông tin sản phẩm mới";
-    }
-
-    private void btnRefresh_Click(object sender, EventArgs e)
-    {
-        ClearInputs();
-    }
-
-    private void btnSave_Click(object sender, EventArgs e)
-    {
-        // --- Validation ---
-        if (string.IsNullOrWhiteSpace(txtId.Text) || string.IsNullOrWhiteSpace(txtName.Text) ||
-            string.IsNullOrWhiteSpace(txtPrice.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text) ||
-            string.IsNullOrWhiteSpace(txtWarranty.Text))
-        {
-            MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
         }
 
-        if (!decimal.TryParse(txtPrice.Text, out decimal price) || price < 0)
+        private void InitializeWarranty()
         {
-            MessageBox.Show("Giá sản phẩm không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            txtPrice.Focus();
-            return;
+            string[] warrantyPeriods = new string[] {
+                "6 tháng", "12 tháng", "18 tháng", "24 tháng",
+                "36 tháng", "48 tháng", "60 tháng"
+            };
+
+            // ComboBox bảo hành cho sản phẩm mới
+            cboWarranty.Items.Clear();
+            cboWarranty.Items.AddRange(warrantyPeriods);
+            cboWarranty.SelectedIndex = 0;
+
+            // ComboBox lọc bảo hành
+            cmbWarrantyFilter.Items.Clear();
+            cmbWarrantyFilter.Items.Add("Tất cả bảo hành");
+            cmbWarrantyFilter.Items.AddRange(warrantyPeriods);
+            cmbWarrantyFilter.SelectedIndex = 0;
         }
 
-        if (!int.TryParse(txtQuantity.Text, out int quantity) || quantity < 0)
+        private void DisplayInGrid()
         {
-            MessageBox.Show("Số lượng sản phẩm không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            txtQuantity.Focus();
-            return;
+            _src.DataSource = filteredProducts;
+            _src.ResetBindings(true);
+            UpdateStatistics();
         }
 
-        // --- Logic ---
-        ElectronicProduct product = products.FirstOrDefault(p => p.Id.Equals(txtId.Text, StringComparison.OrdinalIgnoreCase));
-
-        if (product == null)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
-            product = new ElectronicProduct(txtId.Text, txtName.Text,price, quantity, txtWarranty.Text);
-            products.Add(product);
+            //txtId.Text = "";
+            //txtName.Text = "";
+            //txtPrice.Value = 0;
+            //txtQuantity.Value = 0;
+            //txtSearch.Text = "";
+            //cboWarranty.SelectedIndex = 0;
+            //cmbSort.SelectedIndex = -1;
+            //cmbWarrantyFilter.SelectedIndex = 0;
+            //chkLowStockOnly.Checked = false;
+
+            //filteredProducts = products.ToList();
+            //ApplyFiltersAndSearch();
+            //statusLabel.Text = "Đã làm mới danh sách";
+
+            txtId.Text = "";
+            txtName.Text = "";
+            txtPrice.Value = 0;
+            txtQuantity.Value = 0;
+            txtSearch.Text = "";
+            cboWarranty.SelectedIndex = 0;
+            cmbWarrantyFilter.SelectedIndex = 0;
+            chkLowStockOnly.Checked = false;
+
+
+            cmbSort.SelectedIndex = 0;
+
+            filteredProducts = products.ToList();
+
+
+            DisplayInGrid();
+
+            statusLabel.Text = "Đã làm mới danh sách";
         }
 
-        product.Id = txtId.Text;
-        product.Name = txtName.Text;
-        product.Price = price;
-        product.Quantity = quantity;
-        product.WarrantyPeriod = txtWarranty.Text;
+        //private void btnSave_Click(object sender, EventArgs e)
+        //{
+        //    if (!ValidateInput())
+        //        return;
 
-        // --- Save and Refresh ---
-        productData.SaveData(products);
-        DisplayInGrid();
-        MessageBox.Show("Lưu thông tin sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        statusLabel.Text = $"Đã lưu sản phẩm: {product.Name}";
-    }
+        //    ElectronicProduct product = null;
 
-    private void btnDelete_Click(object sender, EventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(txtId.Text))
+        //    for (int i = 0; i < products.Count; i++)
+        //    {
+        //        if (products[i].Id.ToLower() == txtId.Text.ToLower())
+        //        {
+        //            product = products[i];
+        //            break;
+        //        }
+        //    }
+
+        //    if (product == null)
+        //    {
+        //        product = new ElectronicProduct(
+        //            txtId.Text,
+        //            txtName.Text,
+        //            txtPrice.Value,
+        //            txtQuantity.Value,
+        //            (string)cboWarranty.SelectedItem);
+        //        products.Add(product);
+        //    }
+        //    else
+        //    {
+        //        product.Name = txtName.Text;
+        //        product.Price = txtPrice.Value;
+        //        product.Quantity = txtQuantity.Value;
+        //        product.WarrantyPeriod = (string)cboWarranty.SelectedItem;
+        //    }
+
+        //    ApplyFiltersAndSearch();
+        //    productData.SaveData(products);
+
+        //    MessageBox.Show("Cập nhật thông tin sản phẩm điện tử thành công !"
+        //        , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        //    statusLabel.Text = "Đã lưu thông tin thành công";
+        //    statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
+        //}
+
+        // fix bug chỗ lưu dữ liệu sau khi thêm mới hoặc cập nhật
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Vui lòng chọn sản phẩm cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
+            if (!ValidateInput())
+                return;
 
-        var productToDelete = products.FirstOrDefault(p => p.Id.Equals(txtId.Text, StringComparison.OrdinalIgnoreCase));
-        if (productToDelete != null)
-        {
-            if (MessageBox.Show($"Bạn có chắc chắn muốn xóa sản phẩm '{productToDelete.Name}'?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            ElectronicProduct product = null;
+
+            for (int i = 0; i < products.Count; i++)
             {
-                products.Remove(productToDelete);
+                if (products[i].Id.ToLower() == txtId.Text.ToLower())
+                {
+                    product = products[i];
+                    break;
+                }
+            }
+
+            if (product == null)
+            {
+
+                product = new ElectronicProduct(
+                    txtId.Text,
+                    txtName.Text,
+                    txtPrice.Value,
+                    txtQuantity.Value,
+                    (string)cboWarranty.SelectedItem);
+                products.Add(product);
+            }
+            else
+            {
+                product.Name = txtName.Text;
+                product.Price = txtPrice.Value;
+                product.Quantity = txtQuantity.Value;
+                product.WarrantyPeriod = (string)cboWarranty.SelectedItem;
+            }
+
+            filteredProducts = products.ToList();
+            DisplayInGrid();
+
+            // Lưu file
+            productData.SaveData(products);
+
+            MessageBox.Show("Cập nhật thông tin sản phẩm điện tử thành công !",
+                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            statusLabel.Text = "Đã lưu thông tin thành công";
+            statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
+        }
+
+
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrEmpty(txtId.Text))
+            {
+                MessageBox.Show("Mã sản phẩm không được để trống !"
+                    , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtId.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                MessageBox.Show("Tên sản phẩm không được để trống !",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtName.Focus();
+                return false;
+            }
+
+            if (txtPrice.Value < 0)
+            {
+                MessageBox.Show("Giá sản phẩm không được bé hơn 0 !",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrice.Focus();
+                return false;
+            }
+
+            if (txtQuantity.Value < 0)
+            {
+                MessageBox.Show("Số lượng sản phẩm không được bé hơn 0 !",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantity.Focus();
+                return false;
+            }
+
+            if (cboWarranty.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn thời gian bảo hành !"
+                   , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboWarranty.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtId.Text))
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm cần xóa!",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc chắn muốn xóa sản phẩm '{txtName.Text}'?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+                return;
+
+            ElectronicProduct product = null;
+
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Id.ToLower() == txtId.Text.ToLower())
+                {
+                    product = products[i];
+                    break;
+                }
+            }
+
+            if (product != null)
+            {
+                products.Remove(product);
+                ApplyFiltersAndSearch();
                 productData.SaveData(products);
-                DisplayInGrid();
-                ClearInputs();
-                MessageBox.Show("Xóa sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                statusLabel.Text = $"Đã xóa sản phẩm: {productToDelete.Name}";
+
+                MessageBox.Show("Xoá thông tin sản phẩm điện tử thành công !"
+                    , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                btnRefresh_Click(null, null);
+                statusLabel.Text = "Đã xóa sản phẩm thành công";
+                statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
             }
         }
-        else
-        {
-            MessageBox.Show("Không tìm thấy sản phẩm để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    }
 
-    private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
-    {
-        if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow) return;
-
-        ElectronicProduct product = gridData.CurrentRow.DataBoundItem as ElectronicProduct;
-        if (product != null)
+        private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+                return;
+
+            ElectronicProduct product = (ElectronicProduct)gridData.CurrentRow.DataBoundItem;
+
+            if (product == null)
+                return;
+
             Display(product);
         }
-    }
-    #endregion
 
-    #region Helper Methods
-    private void CreateSampleData()
-    {
-        string filePath = Path.Combine(GetPath.path, nameof(ElectronicProduct) + ".dat");
-        if (!File.Exists(filePath))
+        public void Display(ElectronicProduct product)
         {
-            List<ElectronicProduct> sampleProducts = new List<ElectronicProduct>
-            {
-                new ElectronicProduct("DT001", "iPhone 15 Pro Max", 32990000, 10, "12 tháng"),
-                new ElectronicProduct("LT002", "MacBook Air M2", 28990000, 5, "12 tháng"),
-                new ElectronicProduct("TK003", "Samsung Galaxy Watch 6", 7990000, 15, "12 tháng")
-            };
-            productData.SaveData(sampleProducts);
+            txtId.Text = product.Id;
+            txtName.Text = product.Name;
+            txtPrice.Value = product.Price;
+            txtQuantity.Value = product.Quantity;
+            cboWarranty.SelectedItem = product.WarrantyPeriod;
         }
-    }
 
-    private void DisplayInGrid()
-    {
-        _src.DataSource = null;
-        _src.DataSource = products;
-        _src.ResetBindings(false);
-    }
+        #region Các chức năng mới
 
-    public void Display(ElectronicProduct product)
-    {
-        txtId.Text = product.Id;
-        txtName.Text = product.Name;
-        txtPrice.Text = product.Price.ToString("N0"); // Hiển thị định dạng số có dấu phẩy
-        txtQuantity.Text = product.Quantity.ToString();
-        txtWarranty.Text = product.WarrantyPeriod;
-    }
+        /// <summary>
+        /// Tìm kiếm sản phẩm
+        /// </summary>
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            ApplyFiltersAndSearch();
+        }
 
-    private void ClearInputs()
-    {
-        txtId.Text = "";
-        txtName.Text = "";
-        txtPrice.Text = "";
-        txtQuantity.Text = "";
-        txtWarranty.Text = "";
-    }
-    #endregion
+        /// <summary>
+        /// Thêm mới sản phẩm
+        /// </summary>
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            btnRefresh_Click(null, null);
+            txtId.Focus();
+            statusLabel.Text = "Nhập thông tin sản phẩm mới";
+        }
+
+        /// <summary>
+        /// Áp dụng tất cả bộ lọc và tìm kiếm
+        /// </summary>
+        private void ApplyFiltersAndSearch()
+        {
+            // Bắt đầu từ danh sách đầy đủ
+            filteredProducts = products.ToList();
+
+            // Áp dụng tìm kiếm
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                filteredProducts = filteredProducts.Where(p =>
+                    p.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
+                    p.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
+                    p.WarrantyPeriod.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+            }
+
+            // Áp dụng lọc bảo hành
+            if (cmbWarrantyFilter.SelectedIndex > 0)
+            {
+                string selectedWarranty = cmbWarrantyFilter.SelectedItem.ToString();
+                filteredProducts = filteredProducts.Where(p => p.WarrantyPeriod == selectedWarranty).ToList();
+            }
+
+            // Áp dụng lọc tồn kho thấp
+            if (chkLowStockOnly.Checked)
+            {
+                filteredProducts = filteredProducts.Where(p => p.Quantity <= 10).ToList();
+            }
+
+            // Áp dụng sắp xếp
+            ApplySorting();
+            
+
+            DisplayInGrid();
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+        }
+
+        /// <summary>
+        /// Áp dụng sắp xếp
+        /// </summary>
+        private void ApplySorting()
+        {
+            if (cmbSort.SelectedIndex == -1) return;
+
+            switch (cmbSort.SelectedIndex)
+            {
+                case 0: // Mã SP (A-Z)
+                    filteredProducts = filteredProducts.OrderBy(p => p.Id).ToList();
+                    break;
+                case 1: // Mã SP (Z-A)
+                    filteredProducts = filteredProducts.OrderByDescending(p => p.Id).ToList();
+                    break;
+                case 2: // Tên SP (A-Z)
+                    filteredProducts = filteredProducts.OrderBy(p => p.Name).ToList();
+                    break;
+                case 3: // Tên SP (Z-A)
+                    filteredProducts = filteredProducts.OrderByDescending(p => p.Name).ToList();
+                    break;
+                case 4: // Giá (Thấp-Cao)
+                    filteredProducts = filteredProducts.OrderBy(p => p.Price).ToList();
+                    break;
+                case 5: // Giá (Cao-Thấp)
+                    filteredProducts = filteredProducts.OrderByDescending(p => p.Price).ToList();
+                    break;
+                case 6: // Số lượng (Thấp-Cao)
+                    filteredProducts = filteredProducts.OrderBy(p => p.Quantity).ToList();
+                    break;
+                case 7: // Số lượng (Cao-Thấp)
+                    filteredProducts = filteredProducts.OrderByDescending(p => p.Quantity).ToList();
+                    break;
+                case 8: // Bảo hành (A-Z)
+                    filteredProducts = filteredProducts.OrderBy(p => p.WarrantyPeriod).ToList();
+                    break;
+                case 9: // Bảo hành (Z-A)
+                    filteredProducts = filteredProducts.OrderByDescending(p => p.WarrantyPeriod).ToList();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Cập nhật thống kê
+        /// </summary>
+        private void UpdateStatistics()
+        {
+            int totalProducts = filteredProducts.Count;
+            decimal totalValue = filteredProducts.Sum(p => p.Price * p.Quantity);
+            int lowStockCount = filteredProducts.Count(p => p.Quantity <= 10);
+            int warrantyCount = filteredProducts.Select(p => p.WarrantyPeriod).Distinct().Count();
+
+            lblTotalProductsValue.Text = totalProducts.ToString();
+            lblTotalValueValue.Text = $"{totalValue:N0} đ";
+            lblLowStockValue.Text = lowStockCount.ToString();
+            lblWarrantyCountValue.Text = warrantyCount.ToString();
+
+            // Đổi màu theo số lượng
+            lblTotalProductsValue.ForeColor = totalProducts > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
+            lblTotalValueValue.ForeColor = totalValue > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
+            lblLowStockValue.ForeColor = lowStockCount > 0 ? Color.Red : Color.FromArgb(46, 204, 113);
+            lblWarrantyCountValue.ForeColor = warrantyCount > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
+        }
+
+        /// <summary>
+        /// Sự kiện khi thay đổi lựa chọn lọc
+        /// </summary>
+        private void FilterChanged(object sender, EventArgs e)
+        {
+            ApplyFiltersAndSearch();
+        }
+
+        #endregion
     }
 }

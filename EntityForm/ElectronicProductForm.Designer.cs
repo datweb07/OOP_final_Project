@@ -1,20 +1,12 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace OOP_finalProject
 {
     partial class ElectronicProductForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -26,373 +18,487 @@ namespace OOP_finalProject
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.titlePanel = new System.Windows.Forms.Panel();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.pictureAvatar = new System.Windows.Forms.PictureBox();
-            this.searchPanel = new System.Windows.Forms.Panel();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnAddNew = new System.Windows.Forms.Button();
-            this.groupBoxInfo = new System.Windows.Forms.GroupBox();
-            this.txtWarranty = new System.Windows.Forms.TextBox();
-            this.lblWarranty = new System.Windows.Forms.Label();
-            this.lblId = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.lblQuantity = new System.Windows.Forms.Label();
-            this.txtPrice = new System.Windows.Forms.TextBox();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.groupBoxList = new System.Windows.Forms.GroupBox();
-            this.gridData = new System.Windows.Forms.DataGridView();
-            this.titlePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAvatar)).BeginInit();
-            this.searchPanel.SuspendLayout();
-            this.groupBoxInfo.SuspendLayout();
-            this.statusStrip.SuspendLayout();
-            this.groupBoxList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // titlePanel
-            // 
-            this.titlePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.titlePanel.Controls.Add(this.titleLabel);
-            this.titlePanel.Controls.Add(this.pictureAvatar);
-            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titlePanel.Location = new System.Drawing.Point(0, 0);
-            this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(1101, 52);
-            this.titlePanel.TabIndex = 0;
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(60, 16);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(257, 25);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "QUẢN LÝ SẢN PHẨM ĐIỆN TỬ";
-            // 
-            // pictureAvatar
-            // 
-            this.pictureAvatar.Location = new System.Drawing.Point(13, 9);
-            this.pictureAvatar.Name = "pictureAvatar";
-            this.pictureAvatar.Size = new System.Drawing.Size(34, 35);
-            this.pictureAvatar.TabIndex = 1;
-            this.pictureAvatar.TabStop = false;
-            // 
-            // searchPanel
-            // 
-            this.searchPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.searchPanel.Controls.Add(this.txtSearch);
-            this.searchPanel.Controls.Add(this.btnSearch);
-            this.searchPanel.Controls.Add(this.btnAddNew);
-            this.searchPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.searchPanel.Location = new System.Drawing.Point(0, 52);
-            this.searchPanel.Name = "searchPanel";
-            this.searchPanel.Padding = new System.Windows.Forms.Padding(9, 4, 9, 4);
-            this.searchPanel.Size = new System.Drawing.Size(1101, 43);
-            this.searchPanel.TabIndex = 1;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSearch.Location = new System.Drawing.Point(13, 10);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(301, 25);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(321, 10);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(69, 23);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddNew.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnAddNew.ForeColor = System.Drawing.Color.White;
-            this.btnAddNew.Location = new System.Drawing.Point(399, 10);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(86, 23);
-            this.btnAddNew.TabIndex = 2;
-            this.btnAddNew.Text = "Thêm mới";
-            this.btnAddNew.UseVisualStyleBackColor = false;
-            this.btnAddNew.Click += new System.EventHandler(this.BtnAddNew_Click);
-            // 
-            // groupBoxInfo
-            // 
-            this.groupBoxInfo.Controls.Add(this.txtWarranty);
-            this.groupBoxInfo.Controls.Add(this.lblWarranty);
-            this.groupBoxInfo.Controls.Add(this.lblId);
-            this.groupBoxInfo.Controls.Add(this.txtQuantity);
-            this.groupBoxInfo.Controls.Add(this.lblQuantity);
-            this.groupBoxInfo.Controls.Add(this.txtPrice);
-            this.groupBoxInfo.Controls.Add(this.lblPrice);
-            this.groupBoxInfo.Controls.Add(this.txtName);
-            this.groupBoxInfo.Controls.Add(this.txtId);
-            this.groupBoxInfo.Controls.Add(this.lblName);
-            this.groupBoxInfo.Controls.Add(this.btnDelete);
-            this.groupBoxInfo.Controls.Add(this.btnSave);
-            this.groupBoxInfo.Controls.Add(this.btnRefresh);
-            this.groupBoxInfo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.groupBoxInfo.Location = new System.Drawing.Point(10, 108);
-            this.groupBoxInfo.Name = "groupBoxInfo";
-            this.groupBoxInfo.Size = new System.Drawing.Size(837, 177);
-            this.groupBoxInfo.TabIndex = 2;
-            this.groupBoxInfo.TabStop = false;
-            this.groupBoxInfo.Text = "Thông tin sản phẩm";
-            // 
-            // txtWarranty
-            // 
-            this.txtWarranty.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtWarranty.Location = new System.Drawing.Point(119, 127);
-            this.txtWarranty.Name = "txtWarranty";
-            this.txtWarranty.Size = new System.Drawing.Size(138, 25);
-            this.txtWarranty.TabIndex = 7;
-            // 
-            // lblWarranty
-            // 
-            this.lblWarranty.AutoSize = true;
-            this.lblWarranty.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblWarranty.Location = new System.Drawing.Point(17, 127);
-            this.lblWarranty.Name = "lblWarranty";
-            this.lblWarranty.Size = new System.Drawing.Size(75, 19);
-            this.lblWarranty.TabIndex = 6;
-            this.lblWarranty.Text = "Bảo hành:";
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblId.Location = new System.Drawing.Point(86, 44);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(55, 19);
-            this.lblId.TabIndex = 8;
-            this.lblId.Text = "Mã SP:";
-            this.lblId.Visible = false;
+            txtQuantity = new NumericUpDown();
+            cboWarranty = new ComboBox();
+            groupBox1 = new GroupBox();
+            lblWarrantyCountValue = new Label();
+            lblLowStockValue = new Label();
+            lblTotalValueValue = new Label();
+            lblTotalProductsValue = new Label();
+            lblWarrantyCount = new Label();
+            lblLowStock = new Label();
+            lblTotalValue = new Label();
+            lblTotalProducts = new Label();
+            chkLowStockOnly = new CheckBox();
+            cmbWarrantyFilter = new ComboBox();
+            lblWarrantyFilter = new Label();
+            groupBoxSort = new GroupBox();
+            cmbSort = new ComboBox();
+            btnAddNew = new Button();
+            btnSearch = new Button();
+            txtSearch = new TextBox();
+            lblSearch = new Label();
+            statusLabel = new Label();
+            txtPrice = new NumericUpDown();
+            btnDelete = new Button();
+            btnSave = new Button();
+            label1 = new Label();
+            btnRefresh = new Button();
+            label5 = new Label();
+            lblWarranty = new Label();
+            txtName = new TextBox();
+            label2 = new Label();
+            txtId = new TextBox();
+            lblProductCode = new Label();
+            gridData = new DataGridView();
+            groupBox2 = new GroupBox();
+            ((System.ComponentModel.ISupportInitialize)txtQuantity).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBoxSort.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtPrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridData).BeginInit();
+            groupBox2.SuspendLayout();
+            SuspendLayout();
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtQuantity.Location = new System.Drawing.Point(414, 75);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(172, 25);
-            this.txtQuantity.TabIndex = 5;
+            txtQuantity.Location = new Point(557, 125);
+            txtQuantity.Maximum = new decimal(new int[] { 1000000000, 0, 0, 0 });
+            txtQuantity.Name = "txtQuantity";
+            txtQuantity.Size = new Size(333, 27);
+            txtQuantity.TabIndex = 5;
             // 
-            // lblQuantity
+            // cboWarranty
             // 
-            this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblQuantity.Location = new System.Drawing.Point(323, 78);
-            this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(73, 19);
-            this.lblQuantity.TabIndex = 4;
-            this.lblQuantity.Text = "Số lượng:";
+            cboWarranty.FormattingEnabled = true;
+            cboWarranty.Location = new Point(157, 170);
+            cboWarranty.Name = "cboWarranty";
+            cboWarranty.Size = new Size(200, 28);
+            cboWarranty.TabIndex = 4;
             // 
-            // txtPrice
+            // groupBox1
             // 
-            this.txtPrice.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPrice.Location = new System.Drawing.Point(78, 75);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(140, 25);
-            this.txtPrice.TabIndex = 3;
+            groupBox1.Controls.Add(lblWarrantyCountValue);
+            groupBox1.Controls.Add(lblLowStockValue);
+            groupBox1.Controls.Add(lblTotalValueValue);
+            groupBox1.Controls.Add(lblTotalProductsValue);
+            groupBox1.Controls.Add(lblWarrantyCount);
+            groupBox1.Controls.Add(lblLowStock);
+            groupBox1.Controls.Add(lblTotalValue);
+            groupBox1.Controls.Add(lblTotalProducts);
+            groupBox1.Controls.Add(chkLowStockOnly);
+            groupBox1.Controls.Add(cmbWarrantyFilter);
+            groupBox1.Controls.Add(lblWarrantyFilter);
+            groupBox1.Controls.Add(groupBoxSort);
+            groupBox1.Controls.Add(btnAddNew);
+            groupBox1.Controls.Add(btnSearch);
+            groupBox1.Controls.Add(txtSearch);
+            groupBox1.Controls.Add(lblSearch);
+            groupBox1.Controls.Add(statusLabel);
+            groupBox1.Controls.Add(txtQuantity);
+            groupBox1.Controls.Add(cboWarranty);
+            groupBox1.Controls.Add(txtPrice);
+            groupBox1.Controls.Add(btnDelete);
+            groupBox1.Controls.Add(btnSave);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(btnRefresh);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(lblWarranty);
+            groupBox1.Controls.Add(txtName);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(txtId);
+            groupBox1.Controls.Add(lblProductCode);
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(1200, 350);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Thông tin sản phẩm điện tử";
             // 
-            // lblPrice
+            // lblWarrantyCountValue
             // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblPrice.Location = new System.Drawing.Point(17, 78);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(35, 19);
-            this.lblPrice.TabIndex = 2;
-            this.lblPrice.Text = "Giá:";
+            lblWarrantyCountValue.AutoSize = true;
+            lblWarrantyCountValue.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblWarrantyCountValue.ForeColor = Color.FromArgb(46, 204, 113);
+            lblWarrantyCountValue.Location = new Point(1060, 130);
+            lblWarrantyCountValue.Name = "lblWarrantyCountValue";
+            lblWarrantyCountValue.Size = new Size(17, 20);
+            lblWarrantyCountValue.TabIndex = 30;
+            lblWarrantyCountValue.Text = "0";
             // 
-            // txtName
+            // lblLowStockValue
             // 
-            this.txtName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtName.Location = new System.Drawing.Point(414, 24);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(172, 25);
-            this.txtName.TabIndex = 1;
+            lblLowStockValue.AutoSize = true;
+            lblLowStockValue.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblLowStockValue.ForeColor = Color.Red;
+            lblLowStockValue.Location = new Point(1060, 100);
+            lblLowStockValue.Name = "lblLowStockValue";
+            lblLowStockValue.Size = new Size(17, 20);
+            lblLowStockValue.TabIndex = 29;
+            lblLowStockValue.Text = "0";
             // 
-            // txtId
+            // lblTotalValueValue
             // 
-            this.txtId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtId.Location = new System.Drawing.Point(164, 44);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(140, 25);
-            this.txtId.TabIndex = 9;
-            this.txtId.Visible = false;
+            lblTotalValueValue.AutoSize = true;
+            lblTotalValueValue.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTotalValueValue.ForeColor = Color.FromArgb(46, 204, 113);
+            lblTotalValueValue.Location = new Point(1060, 70);
+            lblTotalValueValue.Name = "lblTotalValueValue";
+            lblTotalValueValue.Size = new Size(32, 20);
+            lblTotalValueValue.TabIndex = 28;
+            lblTotalValueValue.Text = "0 đ";
             // 
-            // lblName
+            // lblTotalProductsValue
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblName.Location = new System.Drawing.Point(323, 27);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(57, 19);
-            this.lblName.TabIndex = 0;
-            this.lblName.Text = "Tên SP:";
+            lblTotalProductsValue.AutoSize = true;
+            lblTotalProductsValue.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTotalProductsValue.ForeColor = Color.FromArgb(46, 204, 113);
+            lblTotalProductsValue.Location = new Point(1060, 40);
+            lblTotalProductsValue.Name = "lblTotalProductsValue";
+            lblTotalProductsValue.Size = new Size(17, 20);
+            lblTotalProductsValue.TabIndex = 27;
+            lblTotalProductsValue.Text = "0";
             // 
-            // btnDelete
+            // lblWarrantyCount
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(677, 142);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(154, 29);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            lblWarrantyCount.AutoSize = true;
+            lblWarrantyCount.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblWarrantyCount.Location = new Point(900, 130);
+            lblWarrantyCount.Name = "lblWarrantyCount";
+            lblWarrantyCount.Size = new Size(144, 20);
+            lblWarrantyCount.TabIndex = 26;
+            lblWarrantyCount.Text = "Số loại bảo hành:";
             // 
-            // btnSave
+            // lblLowStock
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(502, 142);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(154, 29);
-            this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            lblLowStock.AutoSize = true;
+            lblLowStock.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblLowStock.Location = new Point(900, 100);
+            lblLowStock.Name = "lblLowStock";
+            lblLowStock.Size = new Size(144, 20);
+            lblLowStock.TabIndex = 25;
+            lblLowStock.Text = "Tồn kho thấp (<10):";
             // 
-            // btnRefresh
+            // lblTotalValue
             // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(321, 142);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(154, 29);
-            this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "Làm mới";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            lblTotalValue.AutoSize = true;
+            lblTotalValue.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTotalValue.Location = new Point(900, 70);
+            lblTotalValue.Name = "lblTotalValue";
+            lblTotalValue.Size = new Size(88, 20);
+            lblTotalValue.TabIndex = 24;
+            lblTotalValue.Text = "Tổng giá trị:";
             // 
-            // statusStrip
+            // lblTotalProducts
             // 
-            this.statusStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 582);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1101, 22);
-            this.statusStrip.TabIndex = 4;
-            this.statusStrip.Text = "statusStrip1";
+            lblTotalProducts.AutoSize = true;
+            lblTotalProducts.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTotalProducts.Location = new Point(900, 40);
+            lblTotalProducts.Name = "lblTotalProducts";
+            lblTotalProducts.Size = new Size(120, 20);
+            lblTotalProducts.TabIndex = 23;
+            lblTotalProducts.Text = "Tổng sản phẩm:";
+            // 
+            // chkLowStockOnly
+            // 
+            chkLowStockOnly.AutoSize = true;
+            chkLowStockOnly.Location = new Point(900, 230);
+            chkLowStockOnly.Name = "chkLowStockOnly";
+            chkLowStockOnly.Size = new Size(174, 24);
+            chkLowStockOnly.TabIndex = 22;
+            chkLowStockOnly.Text = "Chỉ hiện tồn kho thấp";
+            chkLowStockOnly.UseVisualStyleBackColor = true;
+            chkLowStockOnly.CheckedChanged += FilterChanged;
+            // 
+            // cmbWarrantyFilter
+            // 
+            cmbWarrantyFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbWarrantyFilter.FormattingEnabled = true;
+            cmbWarrantyFilter.Location = new Point(157, 230);
+            cmbWarrantyFilter.Name = "cmbWarrantyFilter";
+            cmbWarrantyFilter.Size = new Size(200, 28);
+            cmbWarrantyFilter.TabIndex = 21;
+            cmbWarrantyFilter.SelectedIndexChanged += FilterChanged;
+            // 
+            // lblWarrantyFilter
+            // 
+            lblWarrantyFilter.AutoSize = true;
+            lblWarrantyFilter.Location = new Point(31, 233);
+            lblWarrantyFilter.Name = "lblWarrantyFilter";
+            lblWarrantyFilter.Size = new Size(120, 20);
+            lblWarrantyFilter.TabIndex = 20;
+            lblWarrantyFilter.Text = "Lọc bảo hành:";
+            // 
+            // groupBoxSort
+            // 
+            groupBoxSort.Controls.Add(cmbSort);
+            groupBoxSort.Location = new Point(500, 210);
+            groupBoxSort.Name = "groupBoxSort";
+            groupBoxSort.Size = new Size(250, 80);
+            groupBoxSort.TabIndex = 19;
+            groupBoxSort.TabStop = false;
+            groupBoxSort.Text = "Sắp xếp";
+            // 
+            // cmbSort
+            // 
+            cmbSort.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbSort.FormattingEnabled = true;
+            cmbSort.Items.AddRange(new object[] {
+            "Mã SP (A-Z)",
+            "Mã SP (Z-A)",
+            "Tên SP (A-Z)",
+            "Tên SP (Z-A)",
+            "Giá (Thấp-Cao)",
+            "Giá (Cao-Thấp)",
+            "Số lượng (Thấp-Cao)",
+            "Số lượng (Cao-Thấp)",
+            "Bảo hành (A-Z)",
+            "Bảo hành (Z-A)"});
+            cmbSort.Location = new Point(15, 30);
+            cmbSort.Name = "cmbSort";
+            cmbSort.Size = new Size(220, 28);
+            cmbSort.TabIndex = 15;
+            cmbSort.SelectedIndexChanged += FilterChanged;
+            // 
+            // btnAddNew
+            // 
+            btnAddNew.Location = new Point(490, 34);
+            btnAddNew.Name = "btnAddNew";
+            btnAddNew.Size = new Size(100, 27);
+            btnAddNew.TabIndex = 3;
+            btnAddNew.Text = "Thêm mới";
+            btnAddNew.UseVisualStyleBackColor = true;
+            btnAddNew.BackColor = Color.FromArgb(46, 204, 113);
+            btnAddNew.ForeColor = Color.White;
+            btnAddNew.FlatStyle = FlatStyle.Flat;
+            btnAddNew.FlatAppearance.BorderSize = 0;
+            btnAddNew.Click += btnAddNew_Click;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(380, 34);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(100, 27);
+            btnSearch.TabIndex = 3;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.BackColor = Color.FromArgb(65, 105, 225);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(113, 34);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(261, 27);
+            txtSearch.TabIndex = 16;
+            // 
+            // lblSearch
+            // 
+            lblSearch.AutoSize = true;
+            lblSearch.Location = new Point(31, 41);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(78, 20);
+            lblSearch.TabIndex = 15;
+            lblSearch.Text = "Tìm kiếm:";
             // 
             // statusLabel
             // 
-            this.statusLabel.ForeColor = System.Drawing.Color.White;
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(54, 17);
-            this.statusLabel.Text = "Sẵn sàng";
+            statusLabel.AutoSize = true;
+            statusLabel.Location = new Point(700, 40);
+            statusLabel.Name = "statusLabel";
+            statusLabel.Size = new Size(50, 20);
+            statusLabel.TabIndex = 14;
+            statusLabel.Text = "Sẵn sàng";
             // 
-            // groupBoxList
+            // txtPrice
             // 
-            this.groupBoxList.Controls.Add(this.gridData);
-            this.groupBoxList.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.groupBoxList.Location = new System.Drawing.Point(10, 291);
-            this.groupBoxList.Name = "groupBoxList";
-            this.groupBoxList.Size = new System.Drawing.Size(837, 260);
-            this.groupBoxList.TabIndex = 3;
-            this.groupBoxList.TabStop = false;
-            this.groupBoxList.Text = "Danh sách sản phẩm";
+            txtPrice.Location = new Point(113, 125);
+            txtPrice.Maximum = new decimal(new int[] { 1000000000, 0, 0, 0 });
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(261, 27);
+            txtPrice.TabIndex = 5;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(1000, 310);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(100, 34);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Xoá";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.BackColor = Color.FromArgb(231, 76, 60);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(884, 310);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(100, 34);
+            btnSave.TabIndex = 3;
+            btnSave.Text = "Lưu";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.BackColor = Color.FromArgb(46, 204, 113);
+            btnSave.ForeColor = Color.White;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.Click += btnSave_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(475, 130);
+            label1.Name = "label1";
+            label1.Size = new Size(72, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Số Lượng";
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.Location = new Point(768, 310);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(100, 34);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "Làm mới";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.BackColor = Color.FromArgb(52, 152, 219);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(31, 130);
+            label5.Name = "label5";
+            label5.Size = new Size(31, 20);
+            label5.TabIndex = 0;
+            label5.Text = "Giá";
+            // 
+            // lblWarranty
+            // 
+            lblWarranty.AutoSize = true;
+            lblWarranty.Location = new Point(31, 173);
+            lblWarranty.Name = "lblWarranty";
+            lblWarranty.Size = new Size(75, 20);
+            lblWarranty.TabIndex = 0;
+            lblWarranty.Text = "Bảo hành";
+            // 
+            // txtName
+            // 
+            txtName.Location = new Point(557, 80);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(333, 27);
+            txtName.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(475, 87);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Tên SP";
+            // 
+            // txtId
+            // 
+            txtId.Location = new Point(113, 80);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(261, 27);
+            txtId.TabIndex = 1;
+            // 
+            // lblProductCode
+            // 
+            lblProductCode.AutoSize = true;
+            lblProductCode.Location = new Point(31, 87);
+            lblProductCode.Name = "lblProductCode";
+            lblProductCode.Size = new Size(50, 20);
+            lblProductCode.TabIndex = 0;
+            lblProductCode.Text = "Mã SP";
             // 
             // gridData
             // 
-            this.gridData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridData.Location = new System.Drawing.Point(3, 21);
-            this.gridData.Name = "gridData";
-            this.gridData.RowHeadersWidth = 51;
-            this.gridData.RowTemplate.Height = 24;
-            this.gridData.Size = new System.Drawing.Size(831, 236);
-            this.gridData.TabIndex = 0;
+            gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridData.Dock = DockStyle.Fill;
+            gridData.Location = new Point(3, 23);
+            gridData.Name = "gridData";
+            gridData.RowHeadersWidth = 51;
+            gridData.Size = new Size(1194, 274);
+            gridData.TabIndex = 1;
+            gridData.CellEnter += gridData_CellEnter;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(gridData);
+            groupBox2.Location = new Point(12, 368);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(1200, 300);
+            groupBox2.TabIndex = 5;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Danh sách sản phẩm điện tử";
             // 
             // ElectronicProductForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1101, 604);
-            this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.groupBoxList);
-            this.Controls.Add(this.groupBoxInfo);
-            this.Controls.Add(this.searchPanel);
-            this.Controls.Add(this.titlePanel);
-            this.Name = "ElectronicProductForm";
-            this.Text = "QUẢN LÝ SẢN PHẨM ĐIỆN TỬ";
-            this.titlePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAvatar)).EndInit();
-            this.searchPanel.ResumeLayout(false);
-            this.searchPanel.PerformLayout();
-            this.groupBoxInfo.ResumeLayout(false);
-            this.groupBoxInfo.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
-            this.groupBoxList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1224, 680);
+            Controls.Add(groupBox1);
+            Controls.Add(groupBox2);
+            Name = "ElectronicProductForm";
+            Text = "QUẢN LÝ SẢN PHẨM ĐIỆN TỬ";
+            Load += ElectronicForm_Load;
+            ((System.ComponentModel.ISupportInitialize)txtQuantity).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBoxSort.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)txtPrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridData).EndInit();
+            groupBox2.ResumeLayout(false);
+            ResumeLayout(false);
         }
-        private Panel titlePanel;
-        private Label titleLabel;
-        private PictureBox pictureAvatar;
-        private Panel searchPanel;
-        private TextBox txtSearch;
-        private Button btnSearch;
-        private Button btnAddNew;
-        private GroupBox groupBoxInfo;
-        private TextBox txtWarranty;
-        private Label lblWarranty;
-        private TextBox txtQuantity;
-        private Label lblQuantity;
-        private TextBox txtPrice;
-        private Label lblPrice;
-        private TextBox txtName;
-        private Label lblName;
-        private TextBox txtId;
+
+        #endregion
+        private NumericUpDown txtQuantity;
+        private ComboBox cboWarranty;
+        private GroupBox groupBox1;
+        private NumericUpDown txtPrice;
         private Button btnDelete;
         private Button btnSave;
+        private Label label1;
         private Button btnRefresh;
-        private StatusStrip statusStrip;
-        private ToolStripStatusLabel statusLabel;
-        #endregion
-
-        private Label lblId;
-        private GroupBox groupBoxList;
+        private Label label5;
+        private Label lblWarranty;
+        private TextBox txtName;
+        private Label label2;
+        private TextBox txtId;
+        private Label lblProductCode;
         private DataGridView gridData;
+        private GroupBox groupBox2;
+        private Label statusLabel;
+        private TextBox txtSearch;
+        private Label lblSearch;
+        private Button btnSearch;
+        private Button btnAddNew;
+        private GroupBox groupBoxSort;
+        private ComboBox cmbSort;
+        private ComboBox cmbWarrantyFilter;
+        private Label lblWarrantyFilter;
+        private CheckBox chkLowStockOnly;
+        private Label lblTotalProducts;
+        private Label lblTotalValue;
+        private Label lblLowStock;
+        private Label lblWarrantyCount;
+        private Label lblTotalProductsValue;
+        private Label lblTotalValueValue;
+        private Label lblLowStockValue;
+        private Label lblWarrantyCountValue;
     }
 }

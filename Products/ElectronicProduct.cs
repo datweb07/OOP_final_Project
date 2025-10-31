@@ -1,10 +1,11 @@
 ﻿using OOP_finalProject.Base;
 using System;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Products
 {
     [Serializable]
-    public class ElectronicProduct : Product
+    public class ElectronicProduct : Product, ISerializable
     {
         private string warrantyPeriod;
 
@@ -13,15 +14,35 @@ namespace OOP_finalProject.Products
             get { return warrantyPeriod; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Warranty period cannot be null or empty");
+                //if (string.IsNullOrWhiteSpace(value))
+                //    throw new ArgumentException("Thời gian bảo hành không được để trống");
                 warrantyPeriod = value;
             }
         }
 
-        public ElectronicProduct(string id, string name, decimal price, int quantity, string warrantyPeriod) : base(id, name, price, quantity)
+        public ElectronicProduct(string id, string name, decimal price, decimal quantity, string warrantyPeriod) : base(id, name, price, quantity)
         {
             WarrantyPeriod = warrantyPeriod;
+        }
+
+        protected ElectronicProduct(SerializationInfo info, StreamingContext context)
+        : base(info, context)
+        {
+            try
+            {
+                WarrantyPeriod = info.GetString("WarrantyPeriod");
+            }
+            catch (SerializationException)
+            {
+                // Nếu file cũ không có trường WarrantyPeriod, set giá trị mặc định
+                WarrantyPeriod = "12 months";
+            }
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            info.AddValue("WarrantyPeriod", WarrantyPeriod);
         }
 
         public override string Info()
