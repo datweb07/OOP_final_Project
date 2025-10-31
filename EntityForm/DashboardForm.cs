@@ -1,6 +1,7 @@
 using OOP_finalProject.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
 
 namespace OOP_finalProject
 {
@@ -11,6 +12,8 @@ namespace OOP_finalProject
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
         private CompositeProductData compositeProductData = new CompositeProductData();
+        private OrderData orderData = new OrderData();
+        private InvoiceData invoiceData = new InvoiceData();
 
         public DashboardForm()
         {
@@ -72,13 +75,14 @@ namespace OOP_finalProject
             // Get real data counts
             int customerCount = GetCustomerCount();
             int productCount = GetProductCount();
+            int orderCount = GetOrderCount();
+            string revenueText = GetRevenueText();
 
             // Add statistics cards with real data
             AddStatsCard(statsPanel, "👥 Khách Hàng", customerCount.ToString(), Color.FromArgb(52, 152, 219), 0);
             AddStatsCard(statsPanel, "📦 Sản Phẩm", productCount.ToString(), Color.FromArgb(46, 204, 113), 200);
-            AddStatsCard(statsPanel, "🛒 Đơn Hàng", "0", Color.FromArgb(241, 196, 15), 400);
-            AddStatsCard(statsPanel, "💰 Doanh Thu", "0", Color.FromArgb(231, 76, 60), 600);
-
+            AddStatsCard(statsPanel, "🛒 Đơn Hàng", orderCount.ToString(), Color.FromArgb(241, 196, 15), 400);
+            AddStatsCard(statsPanel, "💰 Doanh Thu", revenueText, Color.FromArgb(231, 76, 60), 600);
 
             // Add all controls to main panel
             mainPanel.Controls.Add(welcomeLabel);
@@ -123,9 +127,9 @@ namespace OOP_finalProject
             Label valueLabel = new Label
             {
                 Text = value,
-                Font = new Font("Segoe UI", 24, FontStyle.Bold),
+                Font = new Font("Segoe UI", 18, FontStyle.Bold),
                 ForeColor = Color.White,
-                Location = new Point(10, 45),
+                Location = new Point(10, 50),
                 AutoSize = true,
                 BackColor = Color.Transparent
             };
@@ -135,9 +139,6 @@ namespace OOP_finalProject
             parent.Controls.Add(card);
         }
 
-        
-
-        // Method to get customer count
         private int GetCustomerCount()
         {
             try
@@ -151,7 +152,6 @@ namespace OOP_finalProject
             }
         }
 
-        // Method to get product count from all product types
         private int GetProductCount()
         {
             try
@@ -169,31 +169,48 @@ namespace OOP_finalProject
             }
         }
 
+        private int GetOrderCount()
+        {
+            try
+            {
+                var orders = orderData.GetData();
+                return orders?.Count ?? 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private string GetRevenueText()
+        {
+            try
+            {
+                var invoices = invoiceData.GetData();
+                decimal total = 0m;
+                if (invoices != null)
+                {
+                    for (int i = 0; i < invoices.Count; i++)
+                    {
+                        Invoice inv = invoices[i];
+                        if (inv != null)
+                        {
+                            total += inv.FinalTotal;
+                        }
+                    }
+                }
+                return string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", total);
+            }
+            catch
+            {
+                return "0";
+            }
+        }
+
         // Method to refresh dashboard data
         public void RefreshDashboard()
         {
             CreateDashboardContent();
-        }
-
-        // Method to update statistics (you can call this from MainForm when data changes)
-        public void UpdateStatistics(int customerCount, int productCount, int orderCount, string revenue)
-        {
-            // Find and update the statistics cards
-            foreach (Control control in this.Controls)
-            {
-                if (control is Panel mainPanel)
-                {
-                    foreach (Control subControl in mainPanel.Controls)
-                    {
-                        if (subControl is Panel statsPanel && statsPanel.Location.Y == 180)
-                        {
-                            // Update statistics here
-                            // You can implement logic to update the values
-                            break;
-                        }
-                    }
-                }
-            }
         }
     }
 }
