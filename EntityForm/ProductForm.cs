@@ -91,6 +91,8 @@ namespace OOP_finalProject
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
         private CompositeProductData compositeProductData = new CompositeProductData();
+        private ClothingProductData clothingProductData = new ClothingProductData();
+        private ElectronicProductData electronicProductData = new ElectronicProductData();
 
         // Danh sách toàn bộ sản phẩm
         private List<Product> products = new List<Product>();
@@ -139,11 +141,15 @@ namespace OOP_finalProject
             List<FoodProduct> foodProducts = foodProductData.GetData();
             List<HouseholdProduct> householdProducts = householdProductData.GetData();
             List<CompositeProduct> compositeProducts = compositeProductData.GetData();
+            List<ClothingProduct> clothingProducts = clothingProductData.GetData();
+            List<ElectronicProduct> electronicProducts = electronicProductData.GetData();
 
             products.AddRange(drinkProducts);
             products.AddRange(foodProducts);
             products.AddRange(householdProducts);
             products.AddRange(compositeProducts);
+            products.AddRange(clothingProducts);
+            products.AddRange(electronicProducts);
 
             filteredProducts = products.ToList();
             DisplayInGrid();
@@ -226,6 +232,8 @@ namespace OOP_finalProject
             if (product is FoodProduct) return "Thực phẩm";
             if (product is HouseholdProduct) return "Gia dụng";
             if (product is CompositeProduct) return "Combo";
+            if (product is ClothingProduct) return "Thời trang";
+            if (product is ElectronicProduct) return "Điện tử";
             return "Khác";
         }
 

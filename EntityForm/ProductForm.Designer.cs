@@ -397,7 +397,9 @@ namespace OOP_finalProject
             "Đồ uống",
             "Thực phẩm",
             "Gia dụng",
-            "Combo"});
+            "Combo",
+            "Thời trang",
+            "Điện tử"});
             this.cmbProductType.Location = new System.Drawing.Point(450, 80);
             this.cmbProductType.Name = "cmbProductType";
             this.cmbProductType.Size = new System.Drawing.Size(200, 28);
