@@ -1,10 +1,11 @@
 ﻿using OOP_finalProject.Base;
 using System;
+using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Products
 {
     [Serializable]
-    public class ClothingProduct : Product
+    public class ClothingProduct : Product, ISerializable
     {
         private string size;
         public string Size { get { return size; } set { size = value; } }
@@ -15,6 +16,26 @@ namespace OOP_finalProject.Products
         public override string Info()
         {
             return $"Kích cỡ: {Size}";
+        }
+
+        protected ClothingProduct(SerializationInfo info, StreamingContext context)
+           : base(info, context)
+        {
+            try
+            {
+                Size = info.GetString("Size");
+            }
+            catch (SerializationException)
+            {
+                // Nếu file cũ không có trường Size, set giá trị mặc định
+                Size = "M";
+            }
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            info.AddValue("Size", Size);
         }
     }
 }
