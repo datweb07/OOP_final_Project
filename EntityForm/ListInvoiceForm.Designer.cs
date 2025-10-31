@@ -79,7 +79,7 @@ namespace OOP_finalProject
             // 
             // Column3
             // 
-            Column3.DataPropertyName = "SellerName";
+            Column3.DataPropertyName = "CashierName";
             Column3.HeaderText = "Nhân Viên";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
