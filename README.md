@@ -2,6 +2,19 @@
 
 Ứng dụng Windows Forms (.NET Framework) trong C# để quản lý doanh số bán hàng siêu thị với giao diện đơn giản và thân thiện với người dùng. Dự án này áp dụng các nguyên tắc **Lập trình hướng đối tượng (OOP)**.
 
+## 📋 Mục Lục
+
+- [Chức năng](#-chức-năng)
+- [Tính Năng](#-tính-năng)
+- [Công Nghệ](#-công-nghệ-sử-dụng)
+- [Yêu Cầu Hệ Thống](#-yêu-cầu-hệ-thống)
+- [Hướng Dẫn Cài Đặt](#-hướng-dẫn-cài-đặt)
+- [Hướng Dẫn Sử Dụng](#-hướng-dẫn-sử-dụng)
+- [Cấu Trúc Dự Án](#-cấu-trúc-dự-án)
+- [Xử Lý Lỗi Thường Gặp](#-xử-lý-lỗi-thường-gặp)
+- [Đóng Góp](#-đóng-góp)
+- [Giấy Phép](#-giấy-phép)
+
 ## Chức năng
 - Quản lý sản phẩm, khách hàng và hóa đơn
 - Áp dụng các nguyên tắc OOP: Đóng gói, Trừu tượng, Kế thừa và Đa hình
