@@ -14,10 +14,30 @@ Dự án này chạy trên nền **.NET Framework 4.7.2** and sử dụng **NetD
 ### Bước 1: Download Data storage and processing trong Visual Studio Installer
 <img width="421" height="127" alt="image" src="https://github.com/user-attachments/assets/cd012e13-d656-4eed-a86c-8e464db92c4c" />
 
-### Bước 2: Clone dự án về máy
+### Bước 2: Clone dự án về máy bằng Git (nếu có)
 ```bash
 git clone https://github.com/datweb07/OOP_final_Project.git
 ```
+
+Hoặc có thể thực hiện thủ công như sau:
+-  Chọn **Download ZIP** trong nút **Code**
+<img width="1078" height="500" alt="image" src="https://github.com/user-attachments/assets/714b60e0-c90c-40b3-b766-275843229325" />
+
+-  Giải nén được folder ```OOP_final_Project-main```
+-  Tìm đến file ```OOP_finalProject.sln``` và chạy nó
+
+<br>
+
+-  Một vài lỗi thường gặp (Updating)
+
+![z7177214442760_5085ced100eae0a45e510aed40cb8a4e](https://github.com/user-attachments/assets/917dc997-6271-45aa-98f6-7568e748f903)
+
+Lỗi này xuất hiện vì Windowns chặn các file ```.resx``` (download từ Internet như Github,... và bị đánh dấu là không an toàn) nên cần phải unblock như sau:
+-  Trong Visual Studio 2022, vào ```View```, chọn ```Terminal```, cửa số Developer PowerShell sẽ hiện lên, nhập câu lệnh này vào và nhấn Enter:
+```bash
+Get-ChildItem -Recurse | Unblock-File
+```
+
 ### Bước 3: Cấu hình file Data.mdf
 -  Trong Visual Studio 2022 --> ```View``` --> ```Server Explorer```.
 -  Chuột phải vào ```Data Connections```, chọn ```Add Connection...```
