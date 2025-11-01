@@ -4,7 +4,7 @@
 
 ## 📋 Mục Lục
 
-- [Chức năng](#-chức-năng)
+- [Chức năng](#-Chức-năng)
 - [Tính Năng](#-tính-năng)
 - [Công Nghệ](#-công-nghệ-sử-dụng)
 - [Yêu Cầu Hệ Thống](#-yêu-cầu-hệ-thống)
