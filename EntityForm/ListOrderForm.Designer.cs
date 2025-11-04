@@ -263,6 +263,7 @@ namespace OOP_finalProject
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblSummary);
             this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnEdit);
@@ -270,7 +271,7 @@ namespace OOP_finalProject
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1236, 83);
+            this.groupBox1.Size = new System.Drawing.Size(1236, 110);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chức năng";
@@ -343,11 +344,10 @@ namespace OOP_finalProject
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lblSummary);
-            this.groupBox2.Controls.Add(this.gridData);
-            this.groupBox2.Location = new System.Drawing.Point(12, 101);
+            this.groupBox2.Controls.Add(this.gridData); // Chỉ còn gridData
+            this.groupBox2.Location = new System.Drawing.Point(12, 130); // Đẩy xuống dưới groupBox1
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1236, 456);
+            this.groupBox2.Size = new System.Drawing.Size(1236, 427); // Giảm chiều cao tương ứng
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách đơn hàng";
@@ -357,7 +357,7 @@ namespace OOP_finalProject
             this.lblSummary.AutoSize = true;
             this.lblSummary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSummary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.lblSummary.Location = new System.Drawing.Point(15, 25);
+            this.lblSummary.Location = new System.Drawing.Point(30, 80);
             this.lblSummary.Name = "lblSummary";
             this.lblSummary.Size = new System.Drawing.Size(133, 20);
             this.lblSummary.TabIndex = 3;
@@ -403,7 +403,7 @@ namespace OOP_finalProject
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridData.DefaultCellStyle = dataGridViewCellStyle3;
             this.gridData.EnableHeadersVisualStyles = false;
-            this.gridData.Location = new System.Drawing.Point(15, 55);
+            this.gridData.Location = new System.Drawing.Point(15, 25);
             this.gridData.Name = "gridData";
             this.gridData.ReadOnly = true;
             this.gridData.RowHeadersWidth = 51;
