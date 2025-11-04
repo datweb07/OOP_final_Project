@@ -11,7 +11,7 @@ namespace OOP_finalProject
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
-        private CompositeProductData compositeProductData = new CompositeProductData();
+        private ComboProductData compositeProductData = new ComboProductData();
         private OrderData orderData = new OrderData();
         private InvoiceData invoiceData = new InvoiceData();
 

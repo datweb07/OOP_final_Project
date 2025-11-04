@@ -24,9 +24,9 @@ namespace OOP_finalProject
         {
             Id = info.GetString("Id");
             DateCreated = info.GetDateTime("DateCreated");
-            //Customer = (Customer)info.GetValue("Customer", typeof(Customer));
-            //Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier));
-            //BillDetails = (List<BillDetails>)info.GetValue("BillDetails", typeof(List<BillDetails>));
+            Customer = (Customer)info.GetValue("Customer", typeof(Customer));
+            Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier));
+            BillDetails = (List<BillDetails>)info.GetValue("BillDetails", typeof(List<BillDetails>));
 
             string customerName = info.GetString("CustomerName");
             string cashierName = info.GetString("CashierName");

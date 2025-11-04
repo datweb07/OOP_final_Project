@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Serialization;
 using OOP_finalProject.Interfaces;
 
@@ -73,6 +73,10 @@ namespace OOP_finalProject.Base
         {
             get { return hireDate; }
             private set { hireDate = value; }
+        }
+        public int DaysWorked
+        {
+            get { return (DateTime.Today - HireDate.Date).Days; }
         }
 
         public Employee()

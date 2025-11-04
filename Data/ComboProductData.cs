@@ -6,31 +6,25 @@ using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Data
 {
-    /// <summary>
-    /// Class quản lý dữ liệu CompositeProduct (Combo/Bundle)
-    /// Sử dụng XML serialization để lưu trữ
-    /// </summary>
-    public class CompositeProductData
+    [Serializable]
+    public class ComboProductData
     {
-        private string pathXml = Path.Combine(GetPath.path, nameof(CompositeProduct) + ".xml");
+        private string filePath = Path.Combine(GetPath.path, nameof(ComboProduct) + ".dat");
 
-        /// <summary>
-        /// Lấy danh sách tất cả composite products
-        /// </summary>
-        public List<CompositeProduct> GetData()
+        public List<ComboProduct> GetData()
         {
-            if (File.Exists(pathXml))
+            if (File.Exists(filePath))
             {
                 try
                 {
                     // Tạo DataContractSerializer cho List<CompositeProduct>
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<CompositeProduct>));
+                    NetDataContractSerializer serializer = new NetDataContractSerializer();
 
-                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                     {
                         // Đọc dữ liệu từ file XML và chuyển đổi thành List<CompositeProduct>
-                        List<CompositeProduct> compositeProducts = (List<CompositeProduct>)serializer.ReadObject(fileStream);
-                        return compositeProducts ?? new List<CompositeProduct>();
+                        List<ComboProduct> compositeProducts = (List<ComboProduct>)serializer.Deserialize(fileStream);
+                        return compositeProducts ?? new List<ComboProduct>();
                     }
                 }
                 catch (Exception ex)
@@ -38,13 +32,10 @@ namespace OOP_finalProject.Data
                     Console.WriteLine($"Lỗi đọc file CompositeProduct: {ex.Message}");
                 }
             }
-            return new List<CompositeProduct>();
+            return new List<ComboProduct>();
         }
 
-        /// <summary>
-        /// Lưu danh sách composite products
-        /// </summary>
-        public void SaveData(List<CompositeProduct> compositeProducts)
+        public void SaveData(List<ComboProduct> compositeProducts)
         {
             try
             {
@@ -55,12 +46,12 @@ namespace OOP_finalProject.Data
                 }
 
                 // Tạo DataContractSerializer cho List<CompositeProduct>
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<CompositeProduct>));
+                NetDataContractSerializer serializer = new NetDataContractSerializer();
 
-                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file XML
-                    serializer.WriteObject(fileStream, compositeProducts);
+                    serializer.Serialize(fileStream, compositeProducts);
                 }
             }
             catch (Exception ex)
@@ -72,11 +63,11 @@ namespace OOP_finalProject.Data
         /// <summary>
         /// Thêm một composite product mới
         /// </summary>
-        public bool AddCompositeProduct(CompositeProduct compositeProduct)
+        public bool AddCompositeProduct(ComboProduct compositeProduct)
         {
             try
             {
-                List<CompositeProduct> compositeProducts = GetData();
+                List<ComboProduct> compositeProducts = GetData();
 
                 // Kiểm tra trùng ID
                 if (compositeProducts.Exists(p => p.Id == compositeProduct.Id))
@@ -99,11 +90,11 @@ namespace OOP_finalProject.Data
         /// <summary>
         /// Cập nhật composite product
         /// </summary>
-        public bool UpdateCompositeProduct(CompositeProduct updatedProduct)
+        public bool UpdateCompositeProduct(ComboProduct updatedProduct)
         {
             try
             {
-                List<CompositeProduct> compositeProducts = GetData();
+                List<ComboProduct> compositeProducts = GetData();
                 int index = compositeProducts.FindIndex(p => p.Id == updatedProduct.Id);
 
                 if (index == -1)
@@ -130,7 +121,7 @@ namespace OOP_finalProject.Data
         {
             try
             {
-                List<CompositeProduct> compositeProducts = GetData();
+                List<ComboProduct> compositeProducts = GetData();
                 int removedCount = compositeProducts.RemoveAll(p => p.Id == id);
 
                 if (removedCount == 0)
@@ -152,18 +143,18 @@ namespace OOP_finalProject.Data
         /// <summary>
         /// Tìm composite product theo ID
         /// </summary>
-        public CompositeProduct FindById(string id)
+        public ComboProduct FindById(string id)
         {
-            List<CompositeProduct> compositeProducts = GetData();
+            List<ComboProduct> compositeProducts = GetData();
             return compositeProducts.Find(p => p.Id == id);
         }
 
         /// <summary>
         /// Tìm kiếm composite products theo tên
         /// </summary>
-        public List<CompositeProduct> SearchByName(string name)
+        public List<ComboProduct> SearchByName(string name)
         {
-            List<CompositeProduct> compositeProducts = GetData();
+            List<ComboProduct> compositeProducts = GetData();
             return compositeProducts.FindAll(p => p.Name.ToLower().Contains(name.ToLower()));
         }
     }

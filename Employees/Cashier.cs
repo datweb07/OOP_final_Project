@@ -1,11 +1,12 @@
-﻿using OOP_finalProject.Base;
+using OOP_finalProject.Base;
+using OOP_finalProject.Interfaces;
 using System;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Employees
 {
     [Serializable]
-    public class Cashier : Employee, ISerializable
+    public class Cashier : Employee, ISerializable, ISalaryCalculable
     {
         private string managerName;
 
@@ -55,6 +56,16 @@ namespace OOP_finalProject.Employees
         public override string GetDisplayInfo()
         {
             return base.GetDisplayInfo() + $", Manager: {ManagerName}";
+        }
+
+        public decimal HourlyRate
+        {
+            get { return 23000m; }
+        }
+
+        public decimal Salary
+        {
+            get { return DaysWorked * 8 * HourlyRate; }
         }
     }
 }

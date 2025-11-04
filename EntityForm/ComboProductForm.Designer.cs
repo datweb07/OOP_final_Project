@@ -1,6 +1,6 @@
 namespace OOP_finalProject.EntityForm
 {
-    partial class CompositeProductForm
+    partial class ComboProductForm
     {
         /// <summary>
         /// Required designer variable.

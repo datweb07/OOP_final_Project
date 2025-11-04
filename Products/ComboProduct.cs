@@ -12,30 +12,26 @@ namespace OOP_finalProject.Products
     /// Có thể chứa nhiều sản phẩm đơn lẻ hoặc composite khác
     /// </summary>
     [Serializable]
-    [DataContract]
-    public class CompositeProduct : Product
+    public class ComboProduct : Product, ISerializable
     {
-        [DataMember]
         private List<IProductComponent> children = new List<IProductComponent>();
 
-        [DataMember]
         private decimal discountPercentage = 0; // Giảm giá cho combo
 
-        [DataMember]
         private string description; // Mô tả combo
 
-        public CompositeProduct() : base()
+        public ComboProduct() : base()
         {
         }
 
-        public CompositeProduct(string id, string name, decimal discountPercentage = 0, string description = "")
+        public ComboProduct(string id, string name, decimal discountPercentage = 0, string description = "")
             : base(id, name, 0, 1) // Price sẽ được tính tự động, Quantity mặc định là 1
         {
             this.discountPercentage = discountPercentage;
             this.description = description;
         }
 
-        public CompositeProduct(SerializationInfo info, StreamingContext context)
+        public ComboProduct(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             try
@@ -235,7 +231,7 @@ namespace OOP_finalProject.Products
                 if (child.IsComposite())
                 {
                     // Nếu là composite, đệ quy lấy các leaf
-                    CompositeProduct composite = child as CompositeProduct;
+                    ComboProduct composite = child as ComboProduct;
                     if (composite != null)
                     {
                         leafProducts.AddRange(composite.GetAllLeafProducts());

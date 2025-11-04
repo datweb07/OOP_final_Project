@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Base\Bill.cs" />
     <Compile Include="Base\BillDetails.cs" />
+    <Compile Include="ComboProductList.cs" />
     <Compile Include="ComponentListData\ClothingProductList.cs" />
     <Compile Include="ComponentListData\ElectronicProductList.cs" />
     <Compile Include="EntityForm\ClothingProductForm.cs">
@@ -109,16 +110,16 @@
     <Compile Include="Data\BillData.cs" />
     <Compile Include="Data\CashierData.cs" />
     <Compile Include="Data\ClothingProductData.cs" />
-    <Compile Include="Data\CompositeProductData.cs" />
+    <Compile Include="Data\ComboProductData.cs" />
     <Compile Include="Data\DrinkProductData.cs" />
     <Compile Include="Data\CustomerData.cs" />
     <Compile Include="Data\ElectronicProductData.cs" />
     <Compile Include="ComponentListData\DrinkProductList.cs" />
-    <Compile Include="EntityForm\CompositeProductForm.cs">
+    <Compile Include="EntityForm\ComboProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EntityForm\CompositeProductForm.Designer.cs">
-      <DependentUpon>CompositeProductForm.cs</DependentUpon>
+    <Compile Include="EntityForm\ComboProductForm.Designer.cs">
+      <DependentUpon>ComboProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityForm\ElectronicProductForm.cs">
       <SubType>Form</SubType>
@@ -213,6 +214,7 @@
     <Compile Include="Interfaces\IDisplayable.cs" />
     <Compile Include="Interfaces\IProductComponent.cs" />
     <Compile Include="ComponentListData\InvoiceList.cs" />
+    <Compile Include="Interfaces\ISalaryCalculable.cs" />
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,7 +269,7 @@
     </Compile>
     <Compile Include="ComponentListData\ManagerList.cs" />
     <Compile Include="ComponentListData\OrderList.cs" />
-    <Compile Include="Products\CompositeProduct.cs" />
+    <Compile Include="Products\ComboProduct.cs" />
     <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
     <Compile Include="Products\ElectronicProduct.cs" />
@@ -289,8 +291,8 @@
     <EmbeddedResource Include="EntityForm\CashierForm.resx">
       <DependentUpon>CashierForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EntityForm\CompositeProductForm.resx">
-      <DependentUpon>CompositeProductForm.cs</DependentUpon>
+    <EmbeddedResource Include="EntityForm\ComboProductForm.resx">
+      <DependentUpon>ComboProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntityForm\ElectronicProductForm.resx">
       <DependentUpon>ElectronicProductForm.cs</DependentUpon>

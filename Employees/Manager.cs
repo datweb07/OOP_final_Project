@@ -1,4 +1,5 @@
 using OOP_finalProject.Base;
+using OOP_finalProject.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -6,7 +7,7 @@ using System.Runtime.Serialization;
 namespace OOP_finalProject.Employees
 {
     [Serializable]
-    public class Manager : Employee, ISerializable
+    public class Manager : Employee, ISerializable, ISalaryCalculable
     {
         private string storeName;
         private int teamSize;
@@ -80,6 +81,16 @@ namespace OOP_finalProject.Employees
         public override string GetRole()
         {
             return "Manager";
+        }
+
+        public decimal HourlyRate
+        {
+            get { return 28000m; }
+        }
+
+        public decimal Salary
+        {
+            get { return DaysWorked * 8 * HourlyRate; }
         }
 
         public override string GetDisplayInfo()

@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Employees;
+using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -48,6 +48,14 @@ namespace OOP_finalProject
             _Cashiers = _CashierDAL.GetData();
             UpdateAllTeamSizes();
             DisplayInGrid();
+            //if (gridData.Columns["DaysWorked"] == null)
+            //{
+            //    var col = new DataGridViewTextBoxColumn();
+            //    col.Name = "DaysWorked";
+            //    col.HeaderText = "Số ngày làm";
+            //    col.DataPropertyName = "DaysWorked";
+            //    gridData.Columns.Add(col);
+            //}
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

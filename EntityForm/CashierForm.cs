@@ -1,4 +1,4 @@
-﻿using OOP_finalProject.Employees;
+using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -55,6 +55,7 @@ namespace OOP_finalProject
         private void FormSeller_Load(object sender, EventArgs e)
         {
             CashierData.CreateSampleData();
+          
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
@@ -79,6 +80,14 @@ namespace OOP_finalProject
             managers = managerData.GetData();
             LoadManagersToComboBox();
             DisplayInGrid();
+            //if (gridData.Columns["DaysWorked"] == null)
+            //{
+            //    var col = new DataGridViewTextBoxColumn();
+            //    col.Name = "DaysWorked";
+            //    col.HeaderText = "Số ngày làm";
+            //    col.DataPropertyName = "DaysWorked";
+            //    gridData.Columns.Add(col);
+            //}
 
             // auto tìm kiếm khi gõ
             //txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
@@ -215,6 +224,8 @@ namespace OOP_finalProject
                 return;
 
             Display(cashier);
+
+            Console.WriteLine(cashier.Id);
         }
 
         public void Display(Cashier cashier)

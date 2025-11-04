@@ -70,7 +70,7 @@ namespace OOP_finalProject
             // 
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1200, 500);
+            groupBox1.Size = new Size(1300, 300);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Chức năng";
@@ -243,7 +243,7 @@ namespace OOP_finalProject
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(504, 310);
+            btnRefresh.Location = new Point(504, 220);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(100, 34);
             btnRefresh.TabIndex = 3;
@@ -258,7 +258,7 @@ namespace OOP_finalProject
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(620, 310);
+            btnSave.Location = new Point(620, 220);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 34);
             btnSave.TabIndex = 3;
@@ -273,7 +273,7 @@ namespace OOP_finalProject
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(736, 310);
+            btnDelete.Location = new Point(736, 220);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(100, 34);
             btnDelete.TabIndex = 3;
@@ -351,9 +351,9 @@ namespace OOP_finalProject
             // groupBox2
             // 
             groupBox2.Controls.Add(gridData);
-            groupBox2.Location = new Point(12, 400);
+            groupBox2.Location = new Point(12, 320);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1200, 300);
+            groupBox2.Size = new Size(1300, 300);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách";

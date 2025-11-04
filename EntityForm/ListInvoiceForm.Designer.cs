@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -95,10 +95,10 @@ namespace OOP_finalProject
             // 
             // Column5
             // 
-            Column5.DataPropertyName = "SumTotal";
+            Column5.DataPropertyName = "FinalTotal";
             dataGridViewCellStyle2.Format = "#,###";
             Column5.DefaultCellStyle = dataGridViewCellStyle2;
-            Column5.HeaderText = "Tổng Tiền";
+            Column5.HeaderText = "Thành Tiền (sau giảm)";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
             Column5.Width = 125;

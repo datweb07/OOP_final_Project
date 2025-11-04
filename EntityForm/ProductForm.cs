@@ -90,7 +90,7 @@ namespace OOP_finalProject
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
-        private CompositeProductData compositeProductData = new CompositeProductData();
+        private ComboProductData compositeProductData = new ComboProductData();
         private ClothingProductData clothingProductData = new ClothingProductData();
         private ElectronicProductData electronicProductData = new ElectronicProductData();
 
@@ -140,7 +140,7 @@ namespace OOP_finalProject
             List<DrinkProduct> drinkProducts = drinkProductData.GetData();
             List<FoodProduct> foodProducts = foodProductData.GetData();
             List<HouseholdProduct> householdProducts = householdProductData.GetData();
-            List<CompositeProduct> compositeProducts = compositeProductData.GetData();
+            List<ComboProduct> compositeProducts = compositeProductData.GetData();
             List<ClothingProduct> clothingProducts = clothingProductData.GetData();
             List<ElectronicProduct> electronicProducts = electronicProductData.GetData();
 
@@ -231,7 +231,7 @@ namespace OOP_finalProject
             if (product is DrinkProduct) return "Đồ uống";
             if (product is FoodProduct) return "Thực phẩm";
             if (product is HouseholdProduct) return "Gia dụng";
-            if (product is CompositeProduct) return "Combo";
+            if (product is ComboProduct) return "Combo";
             if (product is ClothingProduct) return "Thời trang";
             if (product is ElectronicProduct) return "Điện tử";
             return "Khác";
@@ -335,7 +335,7 @@ namespace OOP_finalProject
             {
                 details += $"Loại gia dụng: {household.Brand}";
             }
-            else if (product is CompositeProduct composite)
+            else if (product is ComboProduct composite)
             {
                 //details += $"Số sản phẩm trong combo: {composite.Components.Count}";
             }

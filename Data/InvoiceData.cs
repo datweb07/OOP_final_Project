@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
+    [Serializable]
     public class InvoiceData
     {
         private static string pathXml = Path.Combine(GetPath.path, nameof(Invoice) + ".dat");

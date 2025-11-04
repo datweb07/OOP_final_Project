@@ -250,7 +250,7 @@ namespace OOP_finalProject
 
         private void btnCombo_Click(object sender, EventArgs e)
         {
-            LoadForm(new CompositeProductForm(), "Combo sản phẩm", btnCombo);
+            LoadForm(new ComboProductForm(), "Combo sản phẩm", btnCombo);
         }
 
         private void btnStore_Click(object sender, EventArgs e)

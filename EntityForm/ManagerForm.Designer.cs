@@ -69,7 +69,7 @@ namespace OOP_finalProject
             // 
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1200, 300);
+            groupBox1.Size = new Size(1300, 300);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Chức năng";
@@ -352,7 +352,7 @@ namespace OOP_finalProject
             groupBox2.Controls.Add(gridData);
             groupBox2.Location = new Point(12, 320);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1200, 300);
+            groupBox2.Size = new Size(1300, 300);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách quản lý";

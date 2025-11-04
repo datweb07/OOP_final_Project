@@ -9,22 +9,22 @@ using System.Windows.Forms;
 
 namespace OOP_finalProject.EntityForm
 {
-    public partial class CompositeProductForm : Form
+    public partial class ComboProductForm : Form
     {
-        private CompositeProductData compositeProductData = new CompositeProductData();
-        private List<CompositeProduct> compositeProducts = new List<CompositeProduct>();
+        private ComboProductData compositeProductData = new ComboProductData();
+        private List<ComboProduct> compositeProducts = new List<ComboProduct>();
 
         // Danh sách tất cả sản phẩm có sẵn để thêm vào combo
         private List<Product> availableProducts = new List<Product>();
 
         // Combo hiện tại đang chỉnh sửa
-        private CompositeProduct currentComposite = null;
+        private ComboProduct currentComposite = null;
 
         BindingSource comboBindingSource = new BindingSource();
         BindingSource productsInComboBindingSource = new BindingSource();
         BindingSource availableProductsBindingSource = new BindingSource();
 
-        public CompositeProductForm()
+        public ComboProductForm()
         {
             InitializeComponent();
         }
@@ -93,7 +93,7 @@ namespace OOP_finalProject.EntityForm
             txtDescription.Text = "";
             numDiscount.Value = 0;
 
-            currentComposite = new CompositeProduct();
+            currentComposite = new ComboProduct();
             productsInComboBindingSource.DataSource = new List<IProductComponent>();
             productsInComboBindingSource.ResetBindings(true);
 
@@ -296,7 +296,7 @@ namespace OOP_finalProject.EntityForm
             if (gridComboList.CurrentRow == null || gridComboList.CurrentRow.IsNewRow)
                 return;
 
-            currentComposite = (CompositeProduct)gridComboList.CurrentRow.DataBoundItem;
+            currentComposite = (ComboProduct)gridComboList.CurrentRow.DataBoundItem;
             if (currentComposite != null)
             {
                 DisplayComposite(currentComposite);
@@ -306,7 +306,7 @@ namespace OOP_finalProject.EntityForm
         /// <summary>
         /// Hiển thị thông tin combo
         /// </summary>
-        private void DisplayComposite(CompositeProduct composite)
+        private void DisplayComposite(ComboProduct composite)
         {
             txtComboId.Text = composite.Id;
             txtComboName.Text = composite.Name;
