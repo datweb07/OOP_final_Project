@@ -1261,7 +1261,7 @@ namespace OOP_finalProject
             gridDataDetail.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 DataPropertyName = "TotalPrice",
-                HeaderText = "Thành tiền (gốc)",
+                HeaderText = "Tổng tiền (gốc)",
                 Width = 130,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N0" }
             });
