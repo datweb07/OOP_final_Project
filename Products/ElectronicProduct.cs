@@ -1,10 +1,14 @@
 ﻿using OOP_finalProject.Base;
 using System;
+<<<<<<< HEAD
 using System.Runtime.Serialization;
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Products
 {
     [Serializable]
+<<<<<<< HEAD
     public class ElectronicProduct : Product, ISerializable
     {
         private string warrantyPeriod;
@@ -45,10 +49,21 @@ namespace OOP_finalProject.Products
             info.AddValue("WarrantyPeriod", WarrantyPeriod);
         }
 
+=======
+    public class ElectronicProduct : Product
+    {
+        private string warrantyPeriod;
+        public string WarrantyPeriod { get { return warrantyPeriod; } set { warrantyPeriod = value; } }
+        public ElectronicProduct(string id, string name, decimal price, int quantity, string warrantyPeriod) : base(id, name, price, quantity)
+        {
+            WarrantyPeriod = warrantyPeriod;
+        }
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public override string Info()
         {
             return $"Thời gian bảo hành: {WarrantyPeriod}";
         }
+<<<<<<< HEAD
 
         public override string GetDisplayInfo()
         {
@@ -69,5 +84,7 @@ namespace OOP_finalProject.Products
 
             return base.CalculateDiscount(discountPercentage);
         }
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

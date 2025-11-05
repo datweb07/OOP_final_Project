@@ -1,13 +1,19 @@
+<<<<<<< HEAD
 using OOP_finalProject.Base;
 using OOP_finalProject.Interfaces;
 using OOP_finalProject.Strategies;
 using System;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+=======
+﻿using OOP_finalProject.Base;
+using System;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Customers
 {
     [Serializable]
+<<<<<<< HEAD
     public class VIPCustomer : Customer, ISerializable
     {
         public VIPCustomer()
@@ -78,4 +84,12 @@ namespace OOP_finalProject.Customers
     //        return $"[VIP] {Name} - {Id}";
     //    }
     //}
+=======
+    public class VIPCustomer : Customer
+    {
+        public VIPCustomer(string id, string name, string gender, string phoneNumber, string address) : base(id, name, gender, phoneNumber, address)
+        {
+        }
+    }
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 }

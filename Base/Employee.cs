@@ -1,17 +1,27 @@
+<<<<<<< HEAD
 using System;
 using System.Runtime.Serialization;
 using OOP_finalProject.Interfaces;
+=======
+﻿using System;
+using System.Runtime.Serialization;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Base
 {
     [Serializable]
+<<<<<<< HEAD
     public class Employee : IAuthenticatable, IDisplayable, ISerializable
+=======
+    public class Employee : ISerializable
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     {
         private string id;
         private string name;
         private string gender;
         private string phoneNumber;
         private string address;
+<<<<<<< HEAD
         private string role;
         private DateTime hireDate;
         public string Id
@@ -83,6 +93,19 @@ namespace OOP_finalProject.Base
         {
             HireDate = DateTime.Now;
         }
+=======
+
+
+        public string Id { get { return id; } set { id = value; } }
+
+        public string Name { get { return name; } set { name = value; } }
+        public string Gender { get { return gender; } set { gender = value; } }
+
+        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
+
+        public string Address { get { return address; } set { address = value; } }
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
         public Employee(string id, string name, string gender, string phoneNumber, string address)
         {
@@ -91,6 +114,7 @@ namespace OOP_finalProject.Base
             Gender = gender;
             PhoneNumber = phoneNumber;
             Address = address;
+<<<<<<< HEAD
             HireDate = DateTime.Now;
         }
         public Employee(SerializationInfo info, StreamingContext context)
@@ -103,6 +127,15 @@ namespace OOP_finalProject.Base
             Role = info.GetString("Role");
             HireDate = info.GetDateTime("HireDate");
         }
+=======
+
+        }
+
+        public Employee()
+        {
+        }
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", Id);
@@ -110,6 +143,7 @@ namespace OOP_finalProject.Base
             info.AddValue("Gender", Gender);
             info.AddValue("PhoneNumber", PhoneNumber);
             info.AddValue("Address", Address);
+<<<<<<< HEAD
             info.AddValue("Role", Role);
             info.AddValue("HireDate", HireDate);
         }
@@ -132,6 +166,8 @@ namespace OOP_finalProject.Base
         public virtual string GetShortInfo()
         {
             return $"{Name} - {GetRole()}";
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
     }
 }

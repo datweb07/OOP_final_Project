@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using OOP_finalProject.Customers;
 using OOP_finalProject.Interfaces;
 using System;
@@ -5,12 +6,20 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Security.Policy;
 using System.Xml.Serialization;
+=======
+﻿using System;
+using System.Runtime.Serialization;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Base
 {
     [Serializable]
+<<<<<<< HEAD
     //[XmlInclude(typeof(VIPCustomer))]
     //[XmlInclude(typeof(RegularCustomer))]
+=======
+    [DataContract]
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     public class Customer : ISerializable
     {
         private string id;
@@ -18,6 +27,7 @@ namespace OOP_finalProject.Base
         private string gender;
         private string phoneNumber;
         private string address;
+<<<<<<< HEAD
         private string customerType;
         public string Id
         {
@@ -106,6 +116,25 @@ namespace OOP_finalProject.Base
             }
         }
         public Customer() { }
+=======
+
+        [DataMember]
+        public string Id { get { return id; } set { id = value; } }
+
+        [DataMember]
+        public string Name { get { return name; } set { name = value; } }
+
+        [DataMember]
+        public string Gender { get { return gender; } set { gender = value; } }
+
+        [DataMember]
+        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
+
+        [DataMember]
+        public string Address { get { return address; } set { address = value; } }
+
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public Customer(string id, string name, string gender, string phoneNumber, string address)
         {
             Id = id;
@@ -115,6 +144,14 @@ namespace OOP_finalProject.Base
             Address = address;
 
         }
+<<<<<<< HEAD
+=======
+
+        public Customer()
+        {
+        }
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public Customer(SerializationInfo info, StreamingContext context)
         {
             Id = info.GetString("Id");
@@ -122,8 +159,13 @@ namespace OOP_finalProject.Base
             Gender = info.GetString("Gender");
             PhoneNumber = info.GetString("PhoneNumber");
             Address = info.GetString("Address");
+<<<<<<< HEAD
             CustomerType = info.GetString("CustomerType");
         }
+=======
+        }
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", Id);
@@ -131,6 +173,7 @@ namespace OOP_finalProject.Base
             info.AddValue("Gender", Gender);
             info.AddValue("PhoneNumber", PhoneNumber);
             info.AddValue("Address", Address);
+<<<<<<< HEAD
             info.AddValue("CustomerType", CustomerType);
         }
 
@@ -436,3 +479,8 @@ namespace OOP_finalProject.Base
 //        #endregion
 //    }
 //}
+=======
+        }
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

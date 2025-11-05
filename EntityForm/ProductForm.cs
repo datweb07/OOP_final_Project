@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //using OOP_finalProject.Base;
 //using OOP_finalProject.Data;
 //using OOP_finalProject.Products;
@@ -76,6 +77,12 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+=======
+﻿using OOP_finalProject.Base;
+using OOP_finalProject.Products;
+using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -90,6 +97,7 @@ namespace OOP_finalProject
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
+<<<<<<< HEAD
         private ComboProductData compositeProductData = new ComboProductData();
         private ClothingProductData clothingProductData = new ClothingProductData();
         private ElectronicProductData electronicProductData = new ElectronicProductData();
@@ -130,10 +138,23 @@ namespace OOP_finalProject
 
             LoadProducts();
             ApplyFiltersAndSearch();
+=======
+
+        // Danh sách toàn bộ sản phẩm
+        private List<Product> products = new List<Product>();
+
+        BindingSource src = new BindingSource();
+        private void FormProduct_Load(object sender, EventArgs e)
+        {
+            gridData.ReadOnly = true;
+            gridData.DataSource = src;
+            LoadProducts();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void LoadProducts()
         {
+<<<<<<< HEAD
             products.Clear();
 
             // Lấy ra danh sách sản phẩm cụ thể và thêm vào danh sách tổng quát
@@ -347,3 +368,32 @@ namespace OOP_finalProject
         #endregion
     }
 }
+=======
+            // lấy ra danh sách sản phẩm cụ thể và thêm vào danh sách tổng quát
+            List<DrinkProduct> drinkProducts = drinkProductData.GetData();
+            List<FoodProduct> foodProducts = foodProductData.GetData();
+            List<HouseholdProduct> householdProducts = householdProductData.GetData();
+
+            for (int i = 0; i < drinkProducts.Count; i++)
+            {
+                products.Add(drinkProducts[i]);
+            }
+
+            for (int i = 0; i < foodProducts.Count; i++)
+            {
+                products.Add(foodProducts[i]);
+            }
+
+            for (int i = 0; i < householdProducts.Count; i++)
+            {
+                products.Add(householdProducts[i]);
+            }
+
+            // Gán dữ liệu danh sách tổng quát vào BindingSource để hiển thị ra lưới
+            src.DataSource = products;
+            // Làm tươi lưới dữ liệu
+            src.ResetBindings(true);
+        }
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

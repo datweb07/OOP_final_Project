@@ -31,8 +31,11 @@ namespace OOP_finalProject
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             // Khởi tạo các controls
             groupBox1 = new GroupBox();
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             btnDelete = new Button();
             btnSave = new Button();
             btnRefresh = new Button();
@@ -49,6 +52,7 @@ namespace OOP_finalProject
             txtCode = new TextBox();
             label3 = new Label();
             lblCustomerCode = new Label();
+<<<<<<< HEAD
             lblTeamSize = new Label();
             txtTeamSize = new TextBox();
 
@@ -171,17 +175,59 @@ namespace OOP_finalProject
             rdoMale.Text = "Nam";
             rdoMale.UseVisualStyleBackColor = true;
 
+=======
+            groupBox1 = new GroupBox();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridData).BeginInit();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(744, 183);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(146, 34);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Xoá";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(576, 183);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(146, 34);
+            btnSave.TabIndex = 3;
+            btnSave.Text = "Lưu";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.Location = new Point(409, 183);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(146, 34);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "Làm mới";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             // 
             // rdoFemale
             // 
             rdoFemale.AutoSize = true;
+<<<<<<< HEAD
             rdoFemale.Location = new Point(257, 126);
+=======
+            rdoFemale.Location = new Point(257, 86);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             rdoFemale.Name = "rdoFemale";
             rdoFemale.Size = new Size(50, 24);
             rdoFemale.TabIndex = 2;
             rdoFemale.TabStop = true;
             rdoFemale.Text = "Nữ";
             rdoFemale.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
 
             // 
             // txtPhone
@@ -209,15 +255,40 @@ namespace OOP_finalProject
             txtAddress.Size = new Size(777, 27);
             txtAddress.TabIndex = 1;
 
+=======
+            // 
+            // rdoMale
+            // 
+            rdoMale.AutoSize = true;
+            rdoMale.Location = new Point(113, 86);
+            rdoMale.Name = "rdoMale";
+            rdoMale.Size = new Size(62, 24);
+            rdoMale.TabIndex = 2;
+            rdoMale.TabStop = true;
+            rdoMale.Text = "Nam";
+            rdoMale.UseVisualStyleBackColor = true;
+            // 
+            // txtAddress
+            // 
+            txtAddress.Location = new Point(113, 129);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(777, 27);
+            txtAddress.TabIndex = 1;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             // 
             // label5
             // 
             label5.AutoSize = true;
+<<<<<<< HEAD
             label5.Location = new Point(31, 177);
+=======
+            label5.Location = new Point(31, 136);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             label5.Name = "label5";
             label5.Size = new Size(57, 20);
             label5.TabIndex = 0;
             label5.Text = "Địa Chỉ";
+<<<<<<< HEAD
 
             // 
             // lblTeamSize
@@ -302,6 +373,89 @@ namespace OOP_finalProject
             groupBox1.Controls.Add(statusLabel);
 
             // Add all controls to groupBox1
+=======
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(gridData);
+            groupBox2.Location = new Point(12, 273);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(923, 269);
+            groupBox2.TabIndex = 3;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Danh sách";
+            // 
+            // gridData
+            // 
+            gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridData.Dock = DockStyle.Fill;
+            gridData.Location = new Point(3, 23);
+            gridData.Name = "gridData";
+            gridData.RowHeadersWidth = 51;
+            gridData.Size = new Size(917, 243);
+            gridData.TabIndex = 1;
+            gridData.CellEnter += gridData_CellEnter;
+            // 
+            // txtPhone
+            // 
+            txtPhone.Location = new Point(557, 85);
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(333, 27);
+            txtPhone.TabIndex = 1;
+            // 
+            // lblPhone
+            // 
+            lblPhone.AutoSize = true;
+            lblPhone.Location = new Point(475, 92);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(49, 20);
+            lblPhone.TabIndex = 0;
+            lblPhone.Text = "Số ĐT";
+            // 
+            // txtName
+            // 
+            txtName.Location = new Point(557, 34);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(333, 27);
+            txtName.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(475, 41);
+            label2.Name = "label2";
+            label2.Size = new Size(56, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Họ Tên";
+            // 
+            // txtCode
+            // 
+            txtCode.Location = new Point(113, 34);
+            txtCode.Name = "txtCode";
+            txtCode.Size = new Size(261, 27);
+            txtCode.TabIndex = 1;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(31, 90);
+            label3.Name = "label3";
+            label3.Size = new Size(37, 20);
+            label3.TabIndex = 0;
+            label3.Text = "Phái";
+            // 
+            // lblCustomerCode
+            // 
+            lblCustomerCode.AutoSize = true;
+            lblCustomerCode.Location = new Point(31, 41);
+            lblCustomerCode.Name = "lblCustomerCode";
+            lblCustomerCode.Size = new Size(54, 20);
+            lblCustomerCode.TabIndex = 0;
+            lblCustomerCode.Text = "Mã NV";
+            // 
+            // groupBox1
+            // 
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             groupBox1.Controls.Add(btnDelete);
             groupBox1.Controls.Add(btnSave);
             groupBox1.Controls.Add(btnRefresh);
@@ -316,6 +470,7 @@ namespace OOP_finalProject
             groupBox1.Controls.Add(txtCode);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(lblCustomerCode);
+<<<<<<< HEAD
             groupBox1.Controls.Add(txtTeamSize);
             groupBox1.Controls.Add(lblTeamSize);
 
@@ -373,19 +528,53 @@ namespace OOP_finalProject
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gridData).EndInit();
             groupBox2.ResumeLayout(false);
+=======
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(920, 244);
+            groupBox1.TabIndex = 4;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Chức năng";
+            // 
+            // FormManager
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(950, 553);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Name = "FormManager";
+            Text = "QUẢN LÝ NHÂN VIÊN QUẢN LÝ CỬA HÀNG";
+            Load += FormManager_Load;
+            groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridData).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             ResumeLayout(false);
         }
 
         #endregion
+<<<<<<< HEAD
 
         // Khai báo các controls
         private GroupBox groupBox1;
         private DataGridView gridData;
         private GroupBox groupBox2;
+=======
+        private Button btnDelete;
+        private Button btnSave;
+        private Button btnRefresh;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         private RadioButton rdoFemale;
         private RadioButton rdoMale;
         private TextBox txtAddress;
         private Label label5;
+<<<<<<< HEAD
+=======
+        private GroupBox groupBox2;
+        private DataGridView gridData;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         private TextBox txtPhone;
         private Label lblPhone;
         private TextBox txtName;
@@ -393,6 +582,7 @@ namespace OOP_finalProject
         private TextBox txtCode;
         private Label label3;
         private Label lblCustomerCode;
+<<<<<<< HEAD
         private Button btnDelete;
         private Button btnSave;
         private Button btnRefresh;
@@ -405,5 +595,8 @@ namespace OOP_finalProject
         private Label statusLabel;
         private Button btnAddNew;
         private Label lblSearch;
+=======
+        private GroupBox groupBox1;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

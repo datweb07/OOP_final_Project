@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿//using OOP_finalProject.Products;
 //using System;
 //using System.Collections.Generic;
@@ -503,6 +504,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+=======
+﻿using OOP_finalProject.Products;
+using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -517,6 +523,7 @@ namespace OOP_finalProject
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
+<<<<<<< HEAD
         private ElectronicProductData electronicProductData = new ElectronicProductData();
         private ClothingProductData clothingProductData = new ClothingProductData();
 
@@ -528,10 +535,17 @@ namespace OOP_finalProject
         private void FormOrderList_Load(object sender, EventArgs e)
         {
             // Cấu hình DataGridView
+=======
+        OrderData orderData = new OrderData();
+        BindingSource src = new BindingSource();
+        private void FormOrderList_Load(object sender, EventArgs e)
+        {
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             gridData.ReadOnly = true;
             gridData.AllowUserToAddRows = false;
             gridData.AutoGenerateColumns = false;
             gridData.DataSource = src;
+<<<<<<< HEAD
 
             // Tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
@@ -557,19 +571,28 @@ namespace OOP_finalProject
             filteredOrders = orders.ToList();
             LoadGrid();
             UpdateStatistics();
+=======
+            LoadGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void LoadGrid()
         {
+<<<<<<< HEAD
             src.DataSource = filteredOrders;
             src.ResetBindings(true);
             UpdateStatistics();
+=======
+            src.DataSource = orderData.GetData();
+            src.ResetBindings(true);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OrderForm frm = new OrderForm();
             frm.ShowDialog();
+<<<<<<< HEAD
 
             // Reload data after form closes
             orders = orderData.GetData();
@@ -577,15 +600,22 @@ namespace OOP_finalProject
             LoadGrid();
 
             statusLabel.Text = "Đã thêm đơn hàng mới";
+=======
+            LoadGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+<<<<<<< HEAD
             {
                 MessageBox.Show("Vui lòng chọn đơn hàng cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+=======
+                return;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             Order order = gridData.CurrentRow.DataBoundItem as Order;
 
@@ -595,21 +625,29 @@ namespace OOP_finalProject
             OrderForm frm = new OrderForm(order);
             frm.ShowDialog();
 
+<<<<<<< HEAD
             // Reload data after form closes
             orders = orderData.GetData();
             filteredOrders = orders.ToList();
             LoadGrid();
 
             statusLabel.Text = "Đã cập nhật đơn hàng";
+=======
+            LoadGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+<<<<<<< HEAD
             {
                 MessageBox.Show("Vui lòng chọn đơn hàng cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+=======
+                return;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             Order order = gridData.CurrentRow.DataBoundItem as Order;
 
@@ -620,6 +658,7 @@ namespace OOP_finalProject
                 return;
             }
 
+<<<<<<< HEAD
             if (MessageBox.Show($"Bạn có chắc chắn muốn xoá đơn hàng '{order.OrderId}'?\n\nThao tác này không thể hoàn tác!",
                 "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -630,6 +669,18 @@ namespace OOP_finalProject
                     if (allOrders[i].OrderId.ToLower() == order.OrderId.ToLower())
                     {
                         toDelete = allOrders[i];
+=======
+            if (MessageBox.Show("Bạn muốn xoá đơn hàng được chọn ?"
+                , "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                List<Order> orders = orderData.GetData();
+                Order toDelete = null;
+                for (int i = 0; i < orders.Count; i++)
+                {
+                    if (orders[i].OrderId.ToLower() == order.OrderId.ToLower())
+                    {
+                        toDelete = orders[i];
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                         break;
                     }
                 }
@@ -640,6 +691,7 @@ namespace OOP_finalProject
                  , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+<<<<<<< HEAD
 
                 // Cập nhật lại số lượng sản phẩm
                 RestoreProductQuantities(toDelete);
@@ -715,16 +767,74 @@ namespace OOP_finalProject
                     products[j].Quantity = products[j].Quantity + quantity;
                     break;
                 }
+=======
+                // Cập nhật lại số lượng sản phẩm
+
+                List<DrinkProduct> drinkProducts = drinkProductData.GetData();
+                List<FoodProduct> foodProducts = foodProductData.GetData();
+                List<HouseholdProduct> householdProducts = householdProductData.GetData();
+
+                for (int i = 0; i < toDelete.OrderDetails.Count; i++)
+                {
+                    if (toDelete.OrderDetails[i].Product is DrinkProduct)
+                    {
+                        for (int j = 0; j < drinkProducts.Count; j++)
+                        {
+                            if (drinkProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product.Id.ToLower())
+                            {
+                                drinkProducts[j].Quantity = drinkProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (toDelete.OrderDetails[i].Product is FoodProduct)
+                    {
+                        for (int j = 0; j < foodProducts.Count; j++)
+                        {
+                            if (foodProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product.Id.ToLower())
+                            {
+                                foodProducts[j].Quantity = foodProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
+
+                                break;
+                            }
+                        }
+                    }
+
+                    if (toDelete.OrderDetails[i].Product is HouseholdProduct)
+                    {
+                        for (int j = 0; j < householdProducts.Count; j++)
+                        {
+                            if (householdProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product.Id.ToLower())
+                            {
+                                householdProducts[j].Quantity = householdProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                drinkProductData.SaveData(drinkProducts);
+                foodProductData.SaveData(foodProducts);
+                householdProductData.SaveData(householdProducts);
+                orders.Remove(toDelete);
+                orderData.SaveData(orders);
+                LoadGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             }
         }
 
         private void btnXemHoaDon_Click(object sender, EventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+<<<<<<< HEAD
             {
                 MessageBox.Show("Vui lòng chọn đơn hàng cần xem!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+=======
+                return;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             Order order = gridData.CurrentRow.DataBoundItem as Order;
 
@@ -750,11 +860,16 @@ namespace OOP_finalProject
                     Quantity = order.OrderDetails[i].Quantity,
                     UnitPrice = order.OrderDetails[i].Product.Price
                 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             }
 
             InvoiceForm frm = new InvoiceForm(invoice);
             frm.ShowDialog();
         }
+<<<<<<< HEAD
 
         #region Các chức năng mới
 
@@ -879,3 +994,7 @@ namespace OOP_finalProject
         #endregion
     }
 }
+=======
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

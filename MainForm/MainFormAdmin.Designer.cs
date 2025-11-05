@@ -38,10 +38,13 @@ namespace OOP_finalProject
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlLeftSidebar = new System.Windows.Forms.Panel();
             this.pnlMenuContainer = new System.Windows.Forms.Panel();
+<<<<<<< HEAD
             this.btnClothing = new System.Windows.Forms.Button();
             this.btnStore = new System.Windows.Forms.Button();
             this.btnCombo = new System.Windows.Forms.Button();
             this.btnElectronic = new System.Windows.Forms.Button();
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnManager = new System.Windows.Forms.Button();
@@ -89,7 +92,11 @@ namespace OOP_finalProject
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlRightContent);
+<<<<<<< HEAD
             this.splitContainer1.Size = new System.Drawing.Size(1162, 702);
+=======
+            this.splitContainer1.Size = new System.Drawing.Size(1162, 642);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
@@ -103,17 +110,24 @@ namespace OOP_finalProject
             this.pnlLeftSidebar.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlLeftSidebar.Name = "pnlLeftSidebar";
+<<<<<<< HEAD
             this.pnlLeftSidebar.Size = new System.Drawing.Size(280, 702);
+=======
+            this.pnlLeftSidebar.Size = new System.Drawing.Size(280, 642);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.pnlLeftSidebar.TabIndex = 0;
             // 
             // pnlMenuContainer
             // 
             this.pnlMenuContainer.AutoScroll = true;
             this.pnlMenuContainer.BackColor = System.Drawing.Color.DodgerBlue;
+<<<<<<< HEAD
             this.pnlMenuContainer.Controls.Add(this.btnClothing);
             this.pnlMenuContainer.Controls.Add(this.btnStore);
             this.pnlMenuContainer.Controls.Add(this.btnCombo);
             this.pnlMenuContainer.Controls.Add(this.btnElectronic);
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.pnlMenuContainer.Controls.Add(this.btnDashboard);
             this.pnlMenuContainer.Controls.Add(this.btnCustomer);
             this.pnlMenuContainer.Controls.Add(this.btnManager);
@@ -131,6 +145,7 @@ namespace OOP_finalProject
             this.pnlMenuContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMenuContainer.Name = "pnlMenuContainer";
             this.pnlMenuContainer.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
+<<<<<<< HEAD
             this.pnlMenuContainer.Size = new System.Drawing.Size(280, 650);
             this.pnlMenuContainer.TabIndex = 1;
             // 
@@ -207,6 +222,11 @@ namespace OOP_finalProject
             this.btnElectronic.UseVisualStyleBackColor = false;
             this.btnElectronic.Click += new System.EventHandler(this.btnElectronic_Click);
             // 
+=======
+            this.pnlMenuContainer.Size = new System.Drawing.Size(280, 590);
+            this.pnlMenuContainer.TabIndex = 1;
+            // 
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             // btnDashboard
             // 
             this.btnDashboard.BackColor = System.Drawing.Color.Transparent;
@@ -221,7 +241,11 @@ namespace OOP_finalProject
             this.btnDashboard.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnDashboard.Size = new System.Drawing.Size(228, 34);
             this.btnDashboard.TabIndex = 1;
+<<<<<<< HEAD
             this.btnDashboard.Text = "📊 Dashboard";
+=======
+            this.btnDashboard.Text = "🏠 Dashboard";
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.UseVisualStyleBackColor = false;
             // 
@@ -233,7 +257,11 @@ namespace OOP_finalProject
             this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnCustomer.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnCustomer.Location = new System.Drawing.Point(9, 84);
+=======
+            this.btnCustomer.Location = new System.Drawing.Point(9, 46);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -251,13 +279,21 @@ namespace OOP_finalProject
             this.btnManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnManager.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnManager.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnManager.Location = new System.Drawing.Point(9, 122);
+=======
+            this.btnManager.Location = new System.Drawing.Point(9, 84);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnManager.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnManager.Name = "btnManager";
             this.btnManager.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnManager.Size = new System.Drawing.Size(228, 34);
             this.btnManager.TabIndex = 4;
+<<<<<<< HEAD
             this.btnManager.Text = "👨🏻‍💼 Nhân Viên Quản Lý";
+=======
+            this.btnManager.Text = "👨‍💼 Quản Lý";
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnManager.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnManager.UseVisualStyleBackColor = false;
             // 
@@ -269,13 +305,21 @@ namespace OOP_finalProject
             this.btnSeller.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeller.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnSeller.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnSeller.Location = new System.Drawing.Point(9, 160);
+=======
+            this.btnSeller.Location = new System.Drawing.Point(9, 122);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnSeller.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSeller.Name = "btnSeller";
             this.btnSeller.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnSeller.Size = new System.Drawing.Size(228, 34);
             this.btnSeller.TabIndex = 5;
+<<<<<<< HEAD
             this.btnSeller.Text = "🛒 Nhân Viên Bán Hàng";
+=======
+            this.btnSeller.Text = "👨‍💻 Nhân Viên Bán Hàng";
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnSeller.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSeller.UseVisualStyleBackColor = false;
             // 
@@ -287,7 +331,11 @@ namespace OOP_finalProject
             this.btnProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProduct.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnProduct.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnProduct.Location = new System.Drawing.Point(9, 198);
+=======
+            this.btnProduct.Location = new System.Drawing.Point(9, 160);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -305,7 +353,11 @@ namespace OOP_finalProject
             this.btnBeverage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBeverage.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnBeverage.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnBeverage.Location = new System.Drawing.Point(9, 236);
+=======
+            this.btnBeverage.Location = new System.Drawing.Point(9, 198);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnBeverage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBeverage.Name = "btnBeverage";
             this.btnBeverage.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -323,7 +375,11 @@ namespace OOP_finalProject
             this.btnFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFood.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnFood.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnFood.Location = new System.Drawing.Point(9, 274);
+=======
+            this.btnFood.Location = new System.Drawing.Point(9, 236);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnFood.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFood.Name = "btnFood";
             this.btnFood.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -341,7 +397,11 @@ namespace OOP_finalProject
             this.btnHouseHold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHouseHold.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnHouseHold.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnHouseHold.Location = new System.Drawing.Point(9, 312);
+=======
+            this.btnHouseHold.Location = new System.Drawing.Point(9, 274);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnHouseHold.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHouseHold.Name = "btnHouseHold";
             this.btnHouseHold.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -359,7 +419,11 @@ namespace OOP_finalProject
             this.btnInvoiceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInvoiceList.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnInvoiceList.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnInvoiceList.Location = new System.Drawing.Point(9, 424);
+=======
+            this.btnInvoiceList.Location = new System.Drawing.Point(9, 312);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnInvoiceList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInvoiceList.Name = "btnInvoiceList";
             this.btnInvoiceList.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -377,7 +441,11 @@ namespace OOP_finalProject
             this.btnOrderList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderList.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnOrderList.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnOrderList.Location = new System.Drawing.Point(9, 462);
+=======
+            this.btnOrderList.Location = new System.Drawing.Point(9, 350);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnOrderList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrderList.Name = "btnOrderList";
             this.btnOrderList.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -395,7 +463,11 @@ namespace OOP_finalProject
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnAccount.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnAccount.Location = new System.Drawing.Point(9, 538);
+=======
+            this.btnAccount.Location = new System.Drawing.Point(9, 388);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -413,13 +485,21 @@ namespace OOP_finalProject
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnExit.Location = new System.Drawing.Point(9, 576);
+=======
+            this.btnExit.Location = new System.Drawing.Point(9, 426);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnExit.Size = new System.Drawing.Size(228, 34);
             this.btnExit.TabIndex = 14;
+<<<<<<< HEAD
             this.btnExit.Text = "➜] Thoát";
+=======
+            this.btnExit.Text = "🚪 Thoát";
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.UseVisualStyleBackColor = false;
             // 
@@ -446,7 +526,11 @@ namespace OOP_finalProject
             this.pnlRightContent.Location = new System.Drawing.Point(0, 0);
             this.pnlRightContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlRightContent.Name = "pnlRightContent";
+<<<<<<< HEAD
             this.pnlRightContent.Size = new System.Drawing.Size(881, 702);
+=======
+            this.pnlRightContent.Size = new System.Drawing.Size(881, 642);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.pnlRightContent.TabIndex = 0;
             // 
             // pnlContentArea
@@ -457,7 +541,11 @@ namespace OOP_finalProject
             this.pnlContentArea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContentArea.Name = "pnlContentArea";
             this.pnlContentArea.Padding = new System.Windows.Forms.Padding(18, 15, 18, 15);
+<<<<<<< HEAD
             this.pnlContentArea.Size = new System.Drawing.Size(881, 635);
+=======
+            this.pnlContentArea.Size = new System.Drawing.Size(881, 575);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.pnlContentArea.TabIndex = 1;
             // 
             // lblWelcome
@@ -480,7 +568,11 @@ namespace OOP_finalProject
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus,
             this.lblTime});
+<<<<<<< HEAD
             this.statusStrip1.Location = new System.Drawing.Point(0, 680);
+=======
+            this.statusStrip1.Location = new System.Drawing.Point(0, 620);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
             this.statusStrip1.Size = new System.Drawing.Size(881, 22);
@@ -509,7 +601,11 @@ namespace OOP_finalProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1162, 702);
+=======
+            this.ClientSize = new System.Drawing.Size(1162, 642);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -559,9 +655,12 @@ namespace OOP_finalProject
         private Button btnOrderList;
         private Button btnAccount;
         private Button btnExit;
+<<<<<<< HEAD
         private Button btnElectronic;
         private Button btnCombo;
         private Button btnStore;
         private Button btnClothing;
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

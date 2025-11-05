@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
+<<<<<<< HEAD
     [Serializable]
     public class InvoiceData
     {
@@ -20,6 +21,54 @@ namespace OOP_finalProject
                 {
                     // Ghi dữ liệu vào file
                     dataContractSerializer.Serialize(fileStream, invoiceList);
+=======
+    public class InvoiceData
+    {
+        private string pathXml = Path.Combine(GetPath.path, nameof(Invoice) + ".xml");
+
+        public List<Invoice> GetData()
+        {
+            if (File.Exists(pathXml))
+            {
+                try
+                {
+                    // Tạo DataContractSerializer cho List<Invoice>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Invoice>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Invoice>
+                        List<Invoice> invoices = (List<Invoice>)serializer.ReadObject(fileStream);
+                        return invoices ?? new List<Invoice>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi đọc file: {ex.Message}");
+
+                }
+            }
+            return new List<Invoice>();
+        }
+
+        public void SaveData(List<Invoice> invoices)
+        {
+            try
+            {
+                // Tạo thư mục nếu chưa tồn tại
+                if (!Directory.Exists(GetPath.path))
+                {
+                    Directory.CreateDirectory(GetPath.path);
+                }
+
+                // Tạo DataContractSerializer cho List<Invoice>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Invoice>));
+
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, invoices);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 }
             }
             catch (Exception ex)
@@ -27,6 +76,7 @@ namespace OOP_finalProject
                 Console.WriteLine($"Lỗi ghi file: {ex.Message}");
             }
         }
+<<<<<<< HEAD
 
         public InvoiceList ReadObject()
         {
@@ -64,5 +114,7 @@ namespace OOP_finalProject
             InvoiceList invoiceList = new InvoiceList(invoices);
             WriteObject(invoiceList);
         }   
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

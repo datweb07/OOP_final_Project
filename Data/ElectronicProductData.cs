@@ -8,6 +8,7 @@ namespace OOP_finalProject
 {
     public class ElectronicProductData
     {
+<<<<<<< HEAD
         private static string filePath = Path.Combine(GetPath.path, nameof(ElectronicProduct) + ".dat");
 
         public static void WriteObject(ElectronicProductList electronicProductList)
@@ -20,6 +21,52 @@ namespace OOP_finalProject
                 {
                     // Ghi dữ liệu vào file
                     dataContractSerializer.Serialize(fileStream, electronicProductList);
+=======
+        private string pathXml = Path.Combine(GetPath.path, nameof(ElectronicProduct) + ".xml");
+
+        public List<ElectronicProduct> GetData()
+        {
+            if (File.Exists(pathXml))
+            {
+                try
+                {
+                    // Tạo DataContractSerializer cho List<ElectronicProduct>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<ElectronicProduct>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<ElectronicProduct>
+                        List<ElectronicProduct> electronicProducts = (List<ElectronicProduct>)serializer.ReadObject(fileStream);
+                        return electronicProducts ?? new List<ElectronicProduct>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi đọc file: {ex.Message}");
+
+                }
+            }
+            return new List<ElectronicProduct>();
+        }
+
+        public void SaveData(List<ElectronicProduct> electronicProducts)
+        {
+            try
+            {
+                // Tạo thư mục nếu chưa tồn tại
+                if (!Directory.Exists(GetPath.path))
+                {
+                    Directory.CreateDirectory(GetPath.path);
+                }
+
+                // Tạo DataContractSerializer cho List<ElectronicProduct>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<ElectronicProduct>));
+
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, electronicProducts);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 }
             }
             catch (Exception ex)
@@ -27,6 +74,7 @@ namespace OOP_finalProject
                 Console.WriteLine($"Lỗi ghi file: {ex.Message}");
             }
         }
+<<<<<<< HEAD
 
         public ElectronicProductList ReadObject()
         {
@@ -82,5 +130,7 @@ namespace OOP_finalProject
 
             }
         }
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

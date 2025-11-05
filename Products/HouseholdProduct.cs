@@ -1,10 +1,14 @@
 ﻿using OOP_finalProject.Base;
 using System;
+<<<<<<< HEAD
 using System.Runtime.Serialization;
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Products
 {
     [Serializable]
+<<<<<<< HEAD
     public class HouseholdProduct : Product, ISerializable
     {
         private string brand;
@@ -12,6 +16,13 @@ namespace OOP_finalProject.Products
 
         public HouseholdProduct(string id, string name, decimal price, decimal quantity, string brand) 
             : base(id, name, price, quantity)
+=======
+    public class HouseholdProduct : Product
+    {
+        private string brand;
+        public string Brand { get { return brand; } set { brand = value; } }
+        public HouseholdProduct(string id, string name, decimal price, decimal quantity, string brand) : base(id, name, price, quantity)
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         {
             Brand = brand;
         }
@@ -20,6 +31,7 @@ namespace OOP_finalProject.Products
         {
             return $"Thương hiệu: {Brand}";
         }
+<<<<<<< HEAD
 
         // Constructor cho deserialization
         protected HouseholdProduct(SerializationInfo info, StreamingContext context)
@@ -44,3 +56,7 @@ namespace OOP_finalProject.Products
         }
     }
 }
+=======
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

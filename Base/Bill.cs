@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using OOP_finalProject.Base;
+=======
+﻿using OOP_finalProject.Base;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
@@ -24,9 +28,15 @@ namespace OOP_finalProject
         {
             Id = info.GetString("Id");
             DateCreated = info.GetDateTime("DateCreated");
+<<<<<<< HEAD
             Customer = (Customer)info.GetValue("Customer", typeof(Customer));
             Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier));
             BillDetails = (List<BillDetails>)info.GetValue("BillDetails", typeof(List<BillDetails>));
+=======
+            //Customer = (Customer)info.GetValue("Customer", typeof(Customer));
+            //Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier));
+            //BillDetails = (List<BillDetails>)info.GetValue("BillDetails", typeof(List<BillDetails>));
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             string customerName = info.GetString("CustomerName");
             string cashierName = info.GetString("CashierName");
@@ -70,10 +80,13 @@ namespace OOP_finalProject
             } 
         }
         public virtual List<BillDetails> BillDetails { get { return billDetails; } set { billDetails = value; } }
+<<<<<<< HEAD
         
         /// <summary>
         /// Tổng giá trị đơn hàng (chưa giảm giá)
         /// </summary>
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public virtual decimal TotalPrice
         {
             get
@@ -87,6 +100,7 @@ namespace OOP_finalProject
             }
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Số tiền được giảm giá (Strategy Pattern)
         /// </summary>
@@ -128,6 +142,8 @@ namespace OOP_finalProject
             }
         }
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", Id);

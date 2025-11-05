@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
+<<<<<<< HEAD
     [Serializable]
     public class CashierData
     {
@@ -22,6 +23,54 @@ namespace OOP_finalProject
                 {
                     // Ghi dữ liệu vào file
                     dataContractSerializer.Serialize(fileStream, cashierList);
+=======
+    public class CashierData
+    {
+        private string pathXml = Path.Combine(GetPath.path, nameof(Cashier) + ".dat");
+
+        public List<Cashier> GetData()
+        {
+            if (File.Exists(pathXml))
+            {
+                try
+                {
+                    // Tạo DataContractSerializer cho List<Cashier>
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<Cashier>));
+
+                    using (FileStream fileStream = new FileStream(pathXml, FileMode.Open, FileAccess.Read))
+                    {
+                        // Đọc dữ liệu từ file XML và chuyển đổi thành List<Cashier>
+                        List<Cashier> cashiers = (List<Cashier>)serializer.ReadObject(fileStream);
+                        return cashiers ?? new List<Cashier>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi đọc file: {ex.Message}");
+
+                }
+            }
+            return new List<Cashier>();
+        }
+
+        public void SaveData(List<Cashier> cashiers)
+        {
+            try
+            {
+                // Tạo thư mục nếu chưa tồn tại
+                if (!Directory.Exists(GetPath.path))
+                {
+                    Directory.CreateDirectory(GetPath.path);
+                }
+
+                // Tạo DataContractSerializer cho List<Cashier>
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Cashier>));
+
+                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file XML
+                    serializer.WriteObject(fileStream, cashiers);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 }
             }
             catch (Exception ex)
@@ -29,6 +78,7 @@ namespace OOP_finalProject
                 Console.WriteLine($"Lỗi ghi file: {ex.Message}");
             }
         }
+<<<<<<< HEAD
 
         public CashierList ReadObject()
         {
@@ -83,5 +133,7 @@ namespace OOP_finalProject
                 WriteObject(cashierList);
             }
         }
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //using OOP_finalProject.Base;
 //using OOP_finalProject.Employees;
 //using System;
@@ -145,6 +146,12 @@ using OOP_finalProject.Strategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+=======
+﻿using OOP_finalProject.Base;
+using OOP_finalProject.Employees;
+using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject
@@ -156,6 +163,7 @@ namespace OOP_finalProject
         private DateTime dateCreated;
         private Customer customer;
         private Cashier cashier;
+<<<<<<< HEAD
         private List<InvoiceDetails> invoiceDetails;
 
 
@@ -225,10 +233,57 @@ namespace OOP_finalProject
         {
             InvoiceDetails = new List<InvoiceDetails>();
             DateCreated = DateTime.Now;
+=======
+        private List<InvoiceDetails> invoiceDetails = new List<InvoiceDetails>();
+
+        public string Id { get { return id; } set { id = value; } }
+        public DateTime DateCreated { get { return dateCreated; } set { dateCreated = value; } }
+        public virtual Customer Customer { get { return customer; } set { customer = value; } }
+        public virtual string CustomerName
+        {
+            get
+            {
+                if (customer == null)
+                {
+                    return "Không xác định";
+                }
+                return customer.Name;
+            }
+        }
+        public virtual Cashier Cashier { get { return cashier; } set { cashier = value; } }
+        public virtual string CashierName
+        {
+            get
+            {
+                if (cashier == null)
+                {
+                    return "Không xác định";
+                }
+                return cashier.Name;
+            }
+        }
+        public virtual List<InvoiceDetails> InvoiceDetails { get { return invoiceDetails; } set { invoiceDetails = value; } }
+        public virtual decimal SumTotal
+        {
+            get
+            {
+                decimal total = 0;
+                foreach (InvoiceDetails detail in invoiceDetails)
+                {
+                    total += detail.TotalPrice;
+                }
+                return total;
+            }
+        }
+
+        public Invoice()
+        {
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public Invoice(SerializationInfo info, StreamingContext context)
         {
+<<<<<<< HEAD
             // Xử lý tất cả trường hợp lỗi
             try { Id = info.GetString("Id") ?? GenerateInvoiceId(); }
             catch { Id = GenerateInvoiceId(); }
@@ -351,12 +406,32 @@ namespace OOP_finalProject
         private Cashier CreateCashierFromName(string name)
         {
             return new Cashier { Name = name ?? "Nhân viên" };
+=======
+            Id = info.GetString("Id");
+            DateCreated = info.GetDateTime("DateCreated");
+
+            string customerName = info.GetString("CustomerName");
+            string cashierName = info.GetString("CashierName");
+
+            if (customerName != "Không xác định")
+            {
+                customer = new Customer { Name = customerName };
+            }
+
+            if (cashierName != "Không xác định")
+            {
+                cashier = new Cashier { Name = cashierName };
+            }
+
+            InvoiceDetails = (List<InvoiceDetails>)info.GetValue("InvoiceDetails", typeof(List<InvoiceDetails>));
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", Id);
             info.AddValue("DateCreated", DateCreated);
+<<<<<<< HEAD
             info.AddValue("Cashier", Cashier);
             info.AddValue("Customer", Customer);
             info.AddValue("InvoiceDetails", InvoiceDetails);
@@ -458,5 +533,11 @@ namespace OOP_finalProject
         {
             return $"Hóa đơn {Id}: {InvoiceDetails.Count} sản phẩm, Tổng: {SubTotal:N0}đ, Giảm: {DiscountAmount:N0}đ, Thành tiền: {FinalTotal:N0}đ";
         }
+=======
+            info.AddValue("CustomerName", CustomerName);
+            info.AddValue("CashierName", CashierName);
+            info.AddValue("InvoiceDetails", InvoiceDetails);
+        }
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

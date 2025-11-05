@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 using OOP_finalProject.Base;
 using System;
 using System.Runtime.Serialization;
+=======
+﻿using OOP_finalProject.Base;
+using System;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Products
 {
     [Serializable]
+<<<<<<< HEAD
     public class DrinkProduct : Product, ISerializable
+=======
+    public class DrinkProduct : Product
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     {
         private bool carbonated;
         public bool Carbonated { get { return carbonated; } set { carbonated = value; } }
@@ -17,6 +26,7 @@ namespace OOP_finalProject.Products
         {
             return $"Có gas: {Carbonated}";
         }
+<<<<<<< HEAD
         protected DrinkProduct(SerializationInfo info, StreamingContext context)
            : base(info, context)
         {
@@ -36,5 +46,7 @@ namespace OOP_finalProject.Products
             base.GetObjectData(info, context);
             info.AddValue("Carbonated", Carbonated);
         }
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

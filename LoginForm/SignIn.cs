@@ -2,6 +2,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+<<<<<<< HEAD
+=======
+using System.Runtime.Remoting.Contexts;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject.LoginForm
@@ -11,6 +15,7 @@ namespace OOP_finalProject.LoginForm
         public SignIn()
         {
             InitializeComponent();
+<<<<<<< HEAD
             //SetPlaceholder(txtUserNameSignIn, "Nhập tên của bạn");
             //SetPlaceholder(txtPasswordSignIn, "Nhập mật khẩu");
         }
@@ -47,6 +52,11 @@ namespace OOP_finalProject.LoginForm
         }
 
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\MY LENOVO\Downloads\OOP_final_Project-main\OOP_final_Project-main\Data.mdf;Integrated Security=True;Connect Timeout=30");
+=======
+        }
+
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\THANH DAT\source\repos\OOP_finalProject\Data.mdf;Integrated Security = True; Connect Timeout = 30");
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         //SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\signInData.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void btnSignIn_Click(object sender, EventArgs e)
@@ -78,7 +88,11 @@ namespace OOP_finalProject.LoginForm
                                     string email = reader["email"]?.ToString() ?? "";
 
                                     // Lưu thông tin user vào session
+<<<<<<< HEAD
                                     UserSession.Instance.SetUserInfo(txtUserNameSignIn.Text, role, email);
+=======
+                                    UserSession.SetUserInfo(txtUserNameSignIn.Text, role, email);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
                                     if (role == "admin")
                                     {

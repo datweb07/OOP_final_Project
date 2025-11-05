@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //using OOP_finalProject.Base;
 //using OOP_finalProject.Customers;
 //using OOP_finalProject.Employees;
@@ -145,16 +146,26 @@ using OOP_finalProject.Strategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+=======
+﻿using OOP_finalProject.Base;
+using OOP_finalProject.Employees;
+using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     [Serializable]
+<<<<<<< HEAD
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     public class Order : ISerializable
     {
         private string orderId;
         private DateTime orderDate;
+<<<<<<< HEAD
         private Cashier cashier;
         private Customer customer;
         private List<OrderDetails> orderDetails;
@@ -213,10 +224,56 @@ namespace OOP_finalProject
         {
             OrderDetails = new List<OrderDetails>();
             OrderDate = DateTime.Now;
+=======
+
+        public string OrderId { get { return orderId; } set { orderId = value; } }
+        public DateTime OrderDate { get { return orderDate; } set { orderDate = value; } }
+        public virtual Customer Customer { get; set; }
+        public virtual string CustomerName
+        {
+            get
+            {
+                if (Customer == null)
+                {
+                    return "Không xác định";
+                }
+                return Customer.Name;
+            }
+        }
+        public virtual Cashier Cashier { get; set; }
+        public virtual string CashierName
+        {
+            get
+            {
+                if (Cashier == null)
+                {
+                    return "Không xác định";
+                }
+                return Cashier.Name;
+            }
+        }
+        public virtual List<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
+        public virtual decimal SumTotal
+        {
+            get
+            {
+                decimal total = 0;
+                foreach (OrderDetails detail in OrderDetails)
+                {
+                    total += detail.TotalPrice;
+                }
+                return total;
+            }
+        }
+
+        public Order()
+        {
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public Order(SerializationInfo info, StreamingContext context)
         {
+<<<<<<< HEAD
             // Xử lý tất cả trường hợp lỗi
             try { OrderId = info.GetString("OrderId") ?? GenerateOrderId(); }
             catch { OrderId = GenerateOrderId(); }
@@ -339,12 +396,32 @@ namespace OOP_finalProject
         private Cashier CreateCashierFromName(string name)
         {
             return new Cashier { Name = name ?? "Nhân viên" };
+=======
+            OrderId = info.GetString("OrderId");
+            OrderDate = info.GetDateTime("OrderDate");
+
+            string customerName = info.GetString("CustomerName");
+            string cashierName = info.GetString("CashierName");
+
+            if (customerName != "Không xác định")
+            {
+                Customer = new Customer { Name = customerName };
+            }
+
+            if (cashierName != "Không xác định")
+            {
+                Cashier = new Cashier { Name = cashierName };
+            }
+
+            OrderDetails = (List<OrderDetails>)info.GetValue("OrderDetails", typeof(List<OrderDetails>));
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("OrderId", OrderId);
             info.AddValue("OrderDate", OrderDate);
+<<<<<<< HEAD
             info.AddValue("Cashier", Cashier);
             info.AddValue("Customer", Customer);
             info.AddValue("OrderDetails", OrderDetails);
@@ -380,3 +457,12 @@ namespace OOP_finalProject
         }
     }
 }
+=======
+            info.AddValue("CustomerName", CustomerName);
+            info.AddValue("CashierName", CashierName);
+            info.AddValue("OrderDetails", OrderDetails);
+            info.AddValue("SumTotal", SumTotal);
+        }
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

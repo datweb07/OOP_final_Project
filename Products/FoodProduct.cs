@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using OOP_finalProject.Base;
 using System;
 using System.Runtime.Serialization;
@@ -6,6 +7,16 @@ namespace OOP_finalProject.Products
 {
     [Serializable]
     public class FoodProduct : Product, ISerializable
+=======
+﻿using OOP_finalProject.Base;
+using System;
+
+namespace OOP_finalProject.Products
+{
+
+    [Serializable]
+    public class FoodProduct : Product
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     {
         private DateTime expirationDate;
         public DateTime ExpirationDate { get { return expirationDate; } set { expirationDate = value; } }
@@ -16,6 +27,7 @@ namespace OOP_finalProject.Products
 
         public override string Info()
         {
+<<<<<<< HEAD
             return $"Ngày hết hạn: {ExpirationDate.ToString("dd/MM/yyyy HH:mm")}";
         }
         protected FoodProduct(SerializationInfo info, StreamingContext context)
@@ -36,6 +48,9 @@ namespace OOP_finalProject.Products
         {
             base.GetObjectData(info, context);
             info.AddValue("ExpirationDate", ExpirationDate);
+=======
+            return $"Ngày hết hạn: {ExpirationDate.ToShortDateString()}";
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
     }
 }

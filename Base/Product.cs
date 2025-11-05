@@ -1,17 +1,28 @@
+<<<<<<< HEAD
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using OOP_finalProject.Interfaces;
+=======
+﻿using System;
+using System.IO.IsolatedStorage;
+using System.Runtime.Serialization;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Base
 {
     [Serializable]
+<<<<<<< HEAD
     public abstract class Product : ISerializable, IDisplayable, ICalculable, IProductComponent
+=======
+    public abstract class Product : ISerializable
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     {
         private string id;
         private string name;
         private decimal price;
         private decimal quantity;
+<<<<<<< HEAD
 
         public string Id
         {
@@ -56,6 +67,17 @@ namespace OOP_finalProject.Base
                 quantity = value;
             }
         }
+=======
+        //private string category;
+
+        public string Id { get { return id; } set { id = value; } }
+
+        public string Name { get { return name; } set { name = value; } }
+
+        public decimal Price { get { return price; } set { price = value; } }
+
+        public decimal Quantity { get { return quantity; } set { quantity = value; } }
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
         //public string Category { get { return category; } set { category = value; } }
 
@@ -89,6 +111,7 @@ namespace OOP_finalProject.Base
         }
 
         public abstract string Info();
+<<<<<<< HEAD
 
         public virtual string GetDisplayInfo()
         {
@@ -113,12 +136,18 @@ namespace OOP_finalProject.Base
             return CalculateTotal() * (discountPercentage / 100);
         }
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public string Display
         {
             get { return Info(); }
         }
 
+<<<<<<< HEAD
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+=======
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         {
             info.AddValue("Id", Id);
             info.AddValue("Name", Name);
@@ -126,6 +155,7 @@ namespace OOP_finalProject.Base
             info.AddValue("Quantity", Quantity);
         }
 
+<<<<<<< HEAD
         // Implement IProductComponent methods
         public virtual bool IsComposite()
         {
@@ -137,4 +167,9 @@ namespace OOP_finalProject.Base
             return new List<IProductComponent>(); // Sản phẩm đơn lẻ không có con
         }
     }
+=======
+
+    }
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 }

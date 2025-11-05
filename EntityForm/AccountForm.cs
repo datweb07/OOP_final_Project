@@ -76,6 +76,7 @@ namespace OOP_finalProject
             int leftMargin = 200;
 
             // Username
+<<<<<<< HEAD
             CreateInfoRow(infoContainer, "Tên đăng nhập:", UserSession.Instance.Username, leftMargin, startY);
 
             // Full name
@@ -89,6 +90,21 @@ namespace OOP_finalProject
 
             // Session duration - lưu reference để cập nhật sau
             TimeSpan sessionDuration = DateTime.Now - UserSession.Instance.LoginTime;
+=======
+            CreateInfoRow(infoContainer, "Tên đăng nhập:", UserSession.Username, leftMargin, startY);
+
+            // Full name
+            CreateInfoRow(infoContainer, "Họ và tên:", UserSession.GetDisplayName(), leftMargin, startY + labelSpacing);
+
+            // Role
+            CreateInfoRow(infoContainer, "Vai trò:", UserSession.GetRoleDisplayName(), leftMargin, startY + labelSpacing * 2);
+
+            // Login time
+            CreateInfoRow(infoContainer, "Thời gian đăng nhập:", UserSession.LoginTime.ToString("dd/MM/yyyy HH:mm:ss"), leftMargin, startY + labelSpacing * 3);
+
+            // Session duration - lưu reference để cập nhật sau
+            TimeSpan sessionDuration = DateTime.Now - UserSession.LoginTime;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             string durationText = $"{sessionDuration.Hours:D2}:{sessionDuration.Minutes:D2}:{sessionDuration.Seconds:D2}";
             sessionDurationLabel = CreateInfoRowWithReference(infoContainer, "Thời gian hoạt động:", durationText, leftMargin, startY + labelSpacing * 4);
 
@@ -193,7 +209,11 @@ namespace OOP_finalProject
 
         private void LoadAccountInfo()
         {
+<<<<<<< HEAD
             if (!UserSession.Instance.IsLoggedIn())
+=======
+            if (!UserSession.IsLoggedIn())
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             {
                 MessageBox.Show("Không có thông tin người dùng!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -212,7 +232,11 @@ namespace OOP_finalProject
             if (result == DialogResult.Yes)
             {
                 // Clear user session
+<<<<<<< HEAD
                 UserSession.Instance.ClearUserInfo();
+=======
+                UserSession.ClearUserInfo();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
                 // Đóng tất cả forms và quay về form đăng nhập
                 foreach (Form form in Application.OpenForms.Cast<Form>().ToArray())
@@ -239,7 +263,11 @@ namespace OOP_finalProject
         {
             if (sessionDurationLabel != null)
             {
+<<<<<<< HEAD
                 TimeSpan sessionDuration = DateTime.Now - UserSession.Instance.LoginTime;
+=======
+                TimeSpan sessionDuration = DateTime.Now - UserSession.LoginTime;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 string durationText = $"{sessionDuration.Hours:D2}:{sessionDuration.Minutes:D2}:{sessionDuration.Seconds:D2}";
                 sessionDurationLabel.Text = durationText;
             }

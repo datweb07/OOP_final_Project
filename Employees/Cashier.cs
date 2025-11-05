@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 using OOP_finalProject.Base;
 using OOP_finalProject.Interfaces;
 using System;
 using System.Runtime.Serialization;
+=======
+﻿using OOP_finalProject.Base;
+using System;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject.Employees
 {
     [Serializable]
+<<<<<<< HEAD
     public class Cashier : Employee, ISerializable, ISalaryCalculable
     {
         private string managerName;
@@ -66,6 +72,15 @@ namespace OOP_finalProject.Employees
         public decimal Salary
         {
             get { return DaysWorked * 8 * HourlyRate; }
+=======
+    public class Cashier : Employee
+    {
+        public Cashier(string id, string name, string gender, string phoneNumber, string address) : base(id, name, gender, phoneNumber, address)
+        {
+        }
+        public Cashier()
+        {
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
     }
 }

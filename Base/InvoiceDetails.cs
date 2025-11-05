@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿//using System;
 //using System.Runtime.Serialization;
 
@@ -50,18 +51,25 @@
 //}
 
 using System;
+=======
+﻿using System;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
     [Serializable]
+<<<<<<< HEAD
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     public class InvoiceDetails : ISerializable
     {
         private string productId;
         private string productName;
         private decimal quantity = 0;
         private decimal unitPrice = 0;
+<<<<<<< HEAD
 
 
         public string ProductID
@@ -91,17 +99,27 @@ namespace OOP_finalProject
             set { unitPrice = value >= 0 ? value : 0; }
         }
 
+=======
+        public string ProductID { get { return productId; } set { productId = value; } }
+        public string ProductName { get { return productName; } set { productName = value; } }
+        public decimal Quantity { get { return quantity; } set { quantity = value; } }
+        public decimal UnitPrice { get { return unitPrice; } set { unitPrice = value; } }
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public decimal TotalPrice
         {
             get
             {
                 return UnitPrice * Quantity;
             }
+<<<<<<< HEAD
             set { }
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public InvoiceDetails()
         {
+<<<<<<< HEAD
             ProductID = "UNKNOWN";
             ProductName = "Sản phẩm không xác định";
             Quantity = 0;
@@ -114,10 +132,13 @@ namespace OOP_finalProject
             ProductName = productName;
             Quantity = quantity;
             UnitPrice = unitPrice;
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public InvoiceDetails(SerializationInfo info, StreamingContext context)
         {
+<<<<<<< HEAD
             try { ProductID = info.GetString("ProductID") ?? "UNKNOWN"; }
             catch { ProductID = "UNKNOWN"; }
 
@@ -129,6 +150,12 @@ namespace OOP_finalProject
 
             try { UnitPrice = info.GetDecimal("UnitPrice"); }
             catch { UnitPrice = 0; }
+=======
+            ProductID = info.GetString("ProductID");
+            ProductName = info.GetString("ProductName");
+            Quantity = info.GetDecimal("Quantity");
+            UnitPrice = info.GetDecimal("UnitPrice");
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -139,6 +166,7 @@ namespace OOP_finalProject
             info.AddValue("UnitPrice", UnitPrice);
             info.AddValue("TotalPrice", TotalPrice);
         }
+<<<<<<< HEAD
 
         // Method để validate invoice detail
         public bool IsValid()
@@ -190,3 +218,7 @@ namespace OOP_finalProject
         }
     }
 }
+=======
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using OOP_finalProject.EntityForm;
 using System;
+=======
+﻿using System;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -48,13 +52,17 @@ namespace OOP_finalProject
             btnOrderList.Click += btnOrderList_Click;
             btnAccount.Click += btnAccount_Click; // Thêm sự kiện cho nút Account
             btnExit.Click += btnExit_Click;
+<<<<<<< HEAD
             btnStore.Click += btnStore_Click;
             btnCombo.Click += btnCombo_Click;
             btnClothing.Click += btnClothing_Click;
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void UpdateWelcomeMessage()
         {
+<<<<<<< HEAD
             if (UserSession.Instance.IsLoggedIn())
             {
                 lblWelcome.Text = $"Chào mừng {UserSession.Instance.GetDisplayName()} ({UserSession.Instance.GetRoleDisplayName()})";
@@ -62,6 +70,15 @@ namespace OOP_finalProject
             else
             {
                 lblWelcome.Text = "Dashboard";
+=======
+            if (UserSession.IsLoggedIn())
+            {
+                lblWelcome.Text = $"Chào mừng {UserSession.GetDisplayName()} ({UserSession.GetRoleDisplayName()})";
+            }
+            else
+            {
+                lblWelcome.Text = "🏠 Dashboard";
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             }
         }
 
@@ -187,54 +204,87 @@ namespace OOP_finalProject
         // Quản lý khách hàng
         private void btnCustomer_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new CustomerForm(), "Khách hàng", btnCustomer);
+=======
+            LoadForm(new CustomerForm(), "👥 Quản Lý Khách Hàng", btnCustomer);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Quản lý nhân viên quản lý
         private void btnManager_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new ManagerForm(), "Nhân viên quản lý", btnManager);
+=======
+            LoadForm(new ManagerForm(), "👨‍💼 Quản Lý Nhân Viên Quản Lý", btnManager);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Quản lý nhân viên bán hàng
         private void btnSeller_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new CashierForm(), "Nhân viên bán hàng", btnSeller);
+=======
+            LoadForm(new CashierForm(), "👨‍💻 Quản Lý Nhân Viên Bán Hàng", btnSeller);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Quản lý sản phẩm
         private void btnProduct_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new ProductForm(), "Danh sách sản phẩm", btnProduct);
+=======
+            LoadForm(new ProductForm(), "📦 Quản Lý Sản Phẩm", btnProduct);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Quản lý đồ uống
         private void btnBeverage_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new DrinkProductForm(), "Đồ uống", btnBeverage);
+=======
+            LoadForm(new DrinkForm(), "🥤 Quản Lý Đồ Uống", btnBeverage);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Quản lý thực phẩm
         private void btnFood_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new FoodProductForm(), "Thực phẩm", btnFood);
+=======
+            LoadForm(new FoodForm(), "🍔 Quản Lý Thực Phẩm", btnFood);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Quản lý đồ gia dụng
         private void btnHouseHold_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new HouseholdProductForm(), "Đồ gia dụng", btnHouseHold);
+=======
+            LoadForm(new HouseholdProductForm(), "🏠 Quản Lý Đồ Gia Dụng", btnHouseHold);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new ListInvoiceForm(), "Danh sách hóa đơn", btnInvoiceList);
+=======
+            LoadForm(new ListInvoiceForm(), "📋 Danh Sách Hóa Đơn", btnInvoiceList);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Danh sách đơn hàng
         private void btnOrderList_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LoadForm(new ListOrderForm(), "Danh sách đơn hàng", btnOrderList);
         }
 
@@ -256,19 +306,30 @@ namespace OOP_finalProject
         private void btnStore_Click(object sender, EventArgs e)
         {
             LoadForm(new StoreForm(), "Thiết lập cửa hàng", btnStore);
+=======
+            LoadForm(new ListOrderForm(), "📝 Danh Sách Đơn Hàng", btnOrderList);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Hiển thị thông tin tài khoản
         private void btnAccount_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (!UserSession.Instance.IsLoggedIn())
+=======
+            if (!UserSession.IsLoggedIn())
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             {
                 MessageBox.Show("Không có thông tin người dùng đăng nhập!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+<<<<<<< HEAD
             LoadForm(new AccountForm(), "👤 Thông tin tài khoản", btnAccount);
+=======
+            LoadForm(new AccountForm(), "👤 Thông Tin Tài Khoản", btnAccount);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Thoát ứng dụng
@@ -279,7 +340,11 @@ namespace OOP_finalProject
             if (result == DialogResult.Yes)
             {
                 // Clear user session
+<<<<<<< HEAD
                 UserSession.Instance.ClearUserInfo();
+=======
+                UserSession.ClearUserInfo();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
                 // Đóng tất cả forms con
                 if (currentForm != null)
@@ -323,7 +388,10 @@ namespace OOP_finalProject
             base.OnFormClosing(e);
         }
         #endregion
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     }
 }

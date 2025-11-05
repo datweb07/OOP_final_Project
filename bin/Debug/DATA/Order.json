@@ -1,0 +1,51 @@
+[
+  {
+    "Code": "DH001",
+    "CreatedDate": "2024-10-18T21:07:15.2291653+07:00",
+    "Customer": {
+      "Code": "KH001",
+      "Name": "Giang",
+      "Gender": "Nam",
+      "Phone": "0973942343",
+      "Address": "TP HCM"
+    },
+    "CustomerName": "Giang",
+    "Seller": {
+      "Code": "BH001",
+      "Name": "Qu\u1EF3nh",
+      "Gender": "N\u1EEF",
+      "Phone": "073493923434",
+      "Address": "\u0110\u00E0 N\u1EB5ng"
+    },
+    "SellerName": "Qu\u1EF3nh",
+    "Details": [
+      {
+        "Product": {
+          "Code": "DO001",
+          "Name": "Bia Tiger",
+          "Price": 25000,
+          "Qty": 99,
+          "Info": "\u0110\u1ED3 u\u1ED1ng. C\u00F3 ch\u1EE9a c\u1ED3n: True"
+        },
+        "Code": "DO001",
+        "Name": "Bia Tiger",
+        "Qty": 1,
+        "Total": 25000
+      },
+      {
+        "Product": {
+          "Code": "TP003",
+          "Name": "B\u00F4ng B\u00ED",
+          "Price": 1500,
+          "Qty": 98,
+          "Info": "Th\u1EF1c ph\u1EA9m. Ng\u00E0y h\u1EBFt h\u1EA1n: 10/18/2024"
+        },
+        "Code": "TP003",
+        "Name": "B\u00F4ng B\u00ED",
+        "Qty": 2,
+        "Total": 3000
+      }
+    ],
+    "SumTotal": 28000
+  }
+]

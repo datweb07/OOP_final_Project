@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+=======
+﻿using OOP_finalProject.Employees;
+using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -16,6 +22,7 @@ namespace OOP_finalProject
 
         private ManagerData _ManagerDAL = new ManagerData();
         private List<Manager> _Managers = new List<Manager>();
+<<<<<<< HEAD
         private CashierData _CashierDAL = new CashierData();
         private List<Cashier> _Cashiers = new List<Cashier>();
         private Store Store = new Store();
@@ -25,10 +32,17 @@ namespace OOP_finalProject
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             ManagerData.CreateSampleData();
+=======
+
+        BindingSource _src = new BindingSource();
+        private void FormManager_Load(object sender, EventArgs e)
+        {
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
+<<<<<<< HEAD
             // Tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
@@ -84,6 +98,12 @@ namespace OOP_finalProject
             btnRefresh_Click(null, null);
             txtCode.Focus();
             statusLabel.Text = "Nhập thông tin nhân viên mới";
+=======
+            rdoMale.Checked = true;
+            rdoFemale.Checked = false;
+            _Managers = _ManagerDAL.GetData();
+            DisplayInGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void DisplayInGrid()
@@ -98,6 +118,7 @@ namespace OOP_finalProject
             txtName.Text = "";
             txtPhone.Text = "";
             txtAddress.Text = "";
+<<<<<<< HEAD
             txtTeamSize.Text = "0";
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
@@ -105,6 +126,10 @@ namespace OOP_finalProject
 
             txtSearch.Text = "";
             statusLabel.Text = "Đã làm mới dữ liệu";
+=======
+            rdoMale.Checked = true;
+            rdoFemale.Checked = false;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -113,15 +138,23 @@ namespace OOP_finalProject
             {
                 MessageBox.Show("Mã quản lý không được để trống !"
                     , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+<<<<<<< HEAD
                 txtCode.Focus();
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 return;
             }
 
             if (string.IsNullOrEmpty(txtName.Text))
             {
+<<<<<<< HEAD
                 MessageBox.Show("Tên quản lý không được để trống !"
                     , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtName.Focus();
+=======
+                MessageBox.Show("Tên khách hàng không được để trống !"
+                    , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 return;
             }
 
@@ -129,7 +162,10 @@ namespace OOP_finalProject
             {
                 MessageBox.Show("Số điện thoại không được để trống !"
                     , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+<<<<<<< HEAD
                 txtPhone.Focus();
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 return;
             }
 
@@ -137,21 +173,33 @@ namespace OOP_finalProject
             {
                 MessageBox.Show("Địa chỉ không được để trống !"
                     , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+<<<<<<< HEAD
                 txtAddress.Focus();
                 return;
             }
 
             Manager manager = null;
+=======
+                return;
+            }
+
+            Manager Manager = null;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             for (int i = 0; i < _Managers.Count; i++)
             {
                 if (_Managers[i].Id.ToLower() == txtCode.Text.ToLower())
                 {
+<<<<<<< HEAD
                     manager = _Managers[i];
+=======
+                    Manager = _Managers[i];
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                     break;
                 }
             }
 
+<<<<<<< HEAD
             if (manager == null)
             {
                 manager = new Manager(txtCode.Text, txtName.Text, rdoMale.Checked ? "Nam" : "Nữ", txtPhone.Text, txtAddress.Text, "Không có cửa hàng");
@@ -165,21 +213,42 @@ namespace OOP_finalProject
                 manager.Address = txtAddress.Text;
             }
 
+=======
+            if (Manager == null)
+            {
+                Manager = new Manager();
+                _Managers.Add(Manager);
+            }
+
+            Manager.Id = txtCode.Text;
+            Manager.PhoneNumber = txtPhone.Text;
+            Manager.Address = txtAddress.Text;
+            Manager.Name = txtName.Text;
+            Manager.Gender = rdoMale.Checked ? "Nam" : "Nữ";
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             DisplayInGrid();
 
             // save data in database
             _ManagerDAL.SaveData(_Managers);
 
+<<<<<<< HEAD
             // Cập nhật team size sau khi lưu
             UpdateAllTeamSizes();
             DisplayInGrid();
 
             MessageBox.Show("Cập nhật thông tin quản lý thành công !"
                 , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+=======
+            MessageBox.Show("Cập nhật thông tin quản lý thành công !"
+                , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (string.IsNullOrWhiteSpace(txtCode.Text))
             {
                 MessageBox.Show("Vui lòng chọn quản lý cần xóa!",
@@ -197,16 +266,24 @@ namespace OOP_finalProject
                 return;
 
             Manager manager = null;
+=======
+            Manager Manager = null;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             for (int i = 0; i < _Managers.Count; i++)
             {
                 if (_Managers[i].Id.ToLower() == txtCode.Text.ToLower())
                 {
+<<<<<<< HEAD
                     manager = _Managers[i];
+=======
+                    Manager = _Managers[i];
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                     break;
                 }
             }
 
+<<<<<<< HEAD
             if (manager != null)
             {
                 _Managers.Remove(manager);
@@ -222,6 +299,21 @@ namespace OOP_finalProject
 
                 btnRefresh_Click(null, null);
             }
+=======
+            if (Manager != null)
+            {
+                _Managers.Remove(Manager);
+            }
+
+            DisplayInGrid();
+
+            _ManagerDAL.SaveData(_Managers);
+
+
+            MessageBox.Show("Xoá thông tin quản lý thành công !"
+                , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -229,6 +321,7 @@ namespace OOP_finalProject
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
+<<<<<<< HEAD
             Manager manager = gridData.CurrentRow.DataBoundItem as Manager;
 
             if (manager == null)
@@ -262,3 +355,24 @@ namespace OOP_finalProject
 }
 
 
+=======
+            Manager Manager = (Manager)gridData.CurrentRow.DataBoundItem;
+
+            if (Manager == null)
+                return;
+
+            Display(Manager);
+        }
+
+        public void Display(Manager Manager)
+        {
+            txtCode.Text = Manager.Id;
+            txtName.Text = Manager.Name;
+            rdoMale.Checked = Manager.Gender == "Nam" ? true : false;
+            rdoFemale.Checked = Manager.Gender != "Nam" ? true : false;
+            txtAddress.Text = Manager.Address;
+            txtPhone.Text = Manager.PhoneNumber;
+        }
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

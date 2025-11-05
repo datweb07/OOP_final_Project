@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 using OOP_finalProject.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System;
+=======
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
 namespace OOP_finalProject
 {
     public partial class DashboardForm : Form
     {
+<<<<<<< HEAD
         private CustomerData customerData = new CustomerData();
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
@@ -15,6 +22,8 @@ namespace OOP_finalProject
         private OrderData orderData = new OrderData();
         private InvoiceData invoiceData = new InvoiceData();
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         public DashboardForm()
         {
             // Khởi tạo form thủ công thay vì dùng InitializeComponent()
@@ -72,6 +81,7 @@ namespace OOP_finalProject
                 BackColor = Color.Transparent
             };
 
+<<<<<<< HEAD
             // Get real data counts
             int customerCount = GetCustomerCount();
             int productCount = GetProductCount();
@@ -83,11 +93,26 @@ namespace OOP_finalProject
             AddStatsCard(statsPanel, "📦 Sản Phẩm", productCount.ToString(), Color.FromArgb(46, 204, 113), 200);
             AddStatsCard(statsPanel, "🛒 Đơn Hàng", orderCount.ToString(), Color.FromArgb(241, 196, 15), 400);
             AddStatsCard(statsPanel, "💰 Doanh Thu", revenueText, Color.FromArgb(231, 76, 60), 600);
+=======
+            // Add statistics cards
+            AddStatsCard(statsPanel, "👥 Khách Hàng", "1,234", Color.FromArgb(52, 152, 219), 0);
+            AddStatsCard(statsPanel, "📦 Sản Phẩm", "567", Color.FromArgb(46, 204, 113), 200);
+            AddStatsCard(statsPanel, "🛒 Đơn Hàng", "89", Color.FromArgb(241, 196, 15), 400);
+            AddStatsCard(statsPanel, "💰 Doanh Thu", "1.2M", Color.FromArgb(231, 76, 60), 600);
+
+            // Quick actions panel
+            Panel quickActionsPanel = CreateQuickActionsPanel();
+            quickActionsPanel.Location = new Point(50, 400);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             // Add all controls to main panel
             mainPanel.Controls.Add(welcomeLabel);
             mainPanel.Controls.Add(instructionLabel);
             mainPanel.Controls.Add(statsPanel);
+<<<<<<< HEAD
+=======
+            mainPanel.Controls.Add(quickActionsPanel);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             // Add main panel to form
             this.Controls.Add(mainPanel);
@@ -127,9 +152,15 @@ namespace OOP_finalProject
             Label valueLabel = new Label
             {
                 Text = value,
+<<<<<<< HEAD
                 Font = new Font("Segoe UI", 18, FontStyle.Bold),
                 ForeColor = Color.White,
                 Location = new Point(10, 50),
+=======
+                Font = new Font("Segoe UI", 24, FontStyle.Bold),
+                ForeColor = Color.White,
+                Location = new Point(10, 45),
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                 AutoSize = true,
                 BackColor = Color.Transparent
             };
@@ -139,6 +170,7 @@ namespace OOP_finalProject
             parent.Controls.Add(card);
         }
 
+<<<<<<< HEAD
         private int GetCustomerCount()
         {
             try
@@ -205,6 +237,74 @@ namespace OOP_finalProject
             {
                 return "0";
             }
+=======
+        private Panel CreateQuickActionsPanel()
+        {
+            Panel quickActionsPanel = new Panel
+            {
+                Size = new Size(800, 150),
+                BackColor = Color.Transparent
+            };
+
+            Label quickActionsTitle = new Label
+            {
+                Text = "🚀 Thao Tác Nhanh",
+                Font = new Font("Segoe UI", 16, FontStyle.Bold),
+                ForeColor = Color.FromArgb(52, 73, 94),
+                Location = new Point(0, 0),
+                AutoSize = true
+            };
+
+            // Quick action buttons
+            Button btnNewOrder = CreateQuickActionButton("📝 Tạo Đơn Hàng", Color.FromArgb(52, 152, 219), 0, 40);
+            Button btnViewProducts = CreateQuickActionButton("📦 Xem Sản Phẩm", Color.FromArgb(46, 204, 113), 200, 40);
+            Button btnViewCustomers = CreateQuickActionButton("👥 Xem Khách Hàng", Color.FromArgb(155, 89, 182), 400, 40);
+            Button btnViewInvoices = CreateQuickActionButton("📋 Xem Hóa Đơn", Color.FromArgb(230, 126, 34), 600, 40);
+
+            quickActionsPanel.Controls.Add(quickActionsTitle);
+            quickActionsPanel.Controls.Add(btnNewOrder);
+            quickActionsPanel.Controls.Add(btnViewProducts);
+            quickActionsPanel.Controls.Add(btnViewCustomers);
+            quickActionsPanel.Controls.Add(btnViewInvoices);
+
+            return quickActionsPanel;
+        }
+
+        private Button CreateQuickActionButton(string text, Color color, int x, int y)
+        {
+            Button btn = new Button
+            {
+                Text = text,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.White,
+                BackColor = color,
+                Location = new Point(x, y),
+                Size = new Size(180, 50),
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
+            };
+
+            btn.FlatAppearance.BorderSize = 0;
+
+            // Hover effects
+            btn.MouseEnter += (s, e) =>
+            {
+                btn.BackColor = ControlPaint.Light(color, 0.2f);
+            };
+            btn.MouseLeave += (s, e) =>
+            {
+                btn.BackColor = color;
+            };
+
+            // Click events - you can customize these based on your needs
+            btn.Click += (s, e) =>
+            {
+                MessageBox.Show($"Chức năng {text} sẽ được triển khai!", "Thông Báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
+
+            return btn;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         // Method to refresh dashboard data
@@ -212,5 +312,31 @@ namespace OOP_finalProject
         {
             CreateDashboardContent();
         }
+<<<<<<< HEAD
     }
 }
+=======
+
+        // Method to update statistics (you can call this from MainForm when data changes)
+        public void UpdateStatistics(int customerCount, int productCount, int orderCount, string revenue)
+        {
+            // Find and update the statistics cards
+            foreach (Control control in this.Controls)
+            {
+                if (control is Panel mainPanel)
+                {
+                    foreach (Control subControl in mainPanel.Controls)
+                    {
+                        if (subControl is Panel statsPanel && statsPanel.Location.Y == 180)
+                        {
+                            // Update statistics here
+                            // You can implement logic to update the values
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

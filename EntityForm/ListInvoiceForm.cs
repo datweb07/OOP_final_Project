@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿//using System;
 //using System.Collections.Generic;
 //using System.Windows.Forms;
@@ -90,6 +91,10 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+=======
+﻿using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -103,16 +108,22 @@ namespace OOP_finalProject
 
         InvoiceData invoiceData = new InvoiceData();
         BindingSource src = new BindingSource();
+<<<<<<< HEAD
         private List<Invoice> invoices = new List<Invoice>();
         private List<Invoice> filteredInvoices = new List<Invoice>();
 
         private void FormInvoiceList_Load(object sender, EventArgs e)
         {
             // Cấu hình DataGridView
+=======
+        private void FormInvoiceList_Load(object sender, EventArgs e)
+        {
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             gridData.AutoGenerateColumns = false;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
             gridData.DataSource = src;
+<<<<<<< HEAD
 
             // Tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
@@ -138,24 +149,39 @@ namespace OOP_finalProject
             filteredInvoices = invoices.ToList();
             LoadGrid();
             UpdateStatistics();
+=======
+            LoadGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void LoadGrid()
         {
+<<<<<<< HEAD
             src.DataSource = filteredInvoices;
             src.ResetBindings(true);
             UpdateStatistics();
+=======
+            src.DataSource = invoiceData.GetData();
+            src.ResetBindings(true);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnXemHoaDon_Click(object sender, EventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+<<<<<<< HEAD
             {
                 MessageBox.Show("Vui lòng chọn hoá đơn cần xem!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             Invoice invoice = gridData.CurrentRow.DataBoundItem as Invoice;
+=======
+                return;
+
+            Invoice invoice = gridData.CurrentRow.DataBoundItem as Invoice;
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             if (invoice == null)
                 return;
 
@@ -166,12 +192,19 @@ namespace OOP_finalProject
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+<<<<<<< HEAD
             {
                 MessageBox.Show("Vui lòng chọn hoá đơn cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             Invoice invoice = gridData.CurrentRow.DataBoundItem as Invoice;
+=======
+                return;
+
+            Invoice invoice = gridData.CurrentRow.DataBoundItem as Invoice;
+
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             if (invoice == null)
             {
                 MessageBox.Show("Không tìm thấy hoá đơn cần xoá ! "
@@ -179,6 +212,7 @@ namespace OOP_finalProject
                 return;
             }
 
+<<<<<<< HEAD
             if (MessageBox.Show($"Bạn có chắc chắn muốn xoá hoá đơn '{invoice.Id}'?\n\nThao tác này không thể hoàn tác!",
                 "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
@@ -191,12 +225,27 @@ namespace OOP_finalProject
                 if (allInvoices[i].Id.ToLower() == invoice.Id.ToLower())
                 {
                     toDelete = allInvoices[i];
+=======
+            if (MessageBox.Show("Bạn muốn xoá hoá đơn được chọn ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            List<Invoice> invoices = invoiceData.GetData();
+
+            Invoice toDelete = null;
+
+            for (int i = 0; i < invoices.Count; i++)
+            {
+                if (invoices[i].Id.ToLower() == invoice.Id.ToLower())
+                {
+                    toDelete = invoices[i];
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
                     break;
                 }
             }
 
             if (toDelete != null)
             {
+<<<<<<< HEAD
                 allInvoices.Remove(toDelete);
                 invoiceData.SaveData(allInvoices);
 
@@ -331,3 +380,15 @@ namespace OOP_finalProject
         #endregion
     }
 }
+=======
+                invoices.Remove(toDelete);
+            }
+
+            invoiceData.SaveData(invoices);
+
+            LoadGrid();
+
+        }
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

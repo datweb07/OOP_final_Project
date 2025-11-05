@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
@@ -5,6 +6,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+=======
+﻿using OOP_finalProject.Employees;
+using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -18,6 +24,7 @@ namespace OOP_finalProject
 
         private CashierData cashierData = new CashierData();
         private List<Cashier> cashiers = new List<Cashier>();
+<<<<<<< HEAD
         private ManagerData managerData = new ManagerData();
         private List<Manager> managers = new List<Manager>();
 
@@ -57,10 +64,17 @@ namespace OOP_finalProject
             CashierData.CreateSampleData();
           
 
+=======
+
+        BindingSource _src = new BindingSource();
+        private void FormSeller_Load(object sender, EventArgs e)
+        {
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
+<<<<<<< HEAD
             // Tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
@@ -91,6 +105,12 @@ namespace OOP_finalProject
 
             // auto tìm kiếm khi gõ
             //txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
+=======
+            rdoMale.Checked = true;
+            rdoFemale.Checked = false;
+            cashiers = cashierData.GetData();
+            DisplayInGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void DisplayInGrid()
@@ -105,12 +125,17 @@ namespace OOP_finalProject
             txtName.Text = "";
             txtPhone.Text = "";
             txtAddress.Text = "";
+<<<<<<< HEAD
             cmbManager.SelectedIndex = -1;
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
 
             txtSearch.Text = "";
             statusLabel.Text = "Đã làm mới dữ liệu";
+=======
+            rdoMale.Checked = true;
+            rdoFemale.Checked = false;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -143,6 +168,7 @@ namespace OOP_finalProject
                 return;
             }
 
+<<<<<<< HEAD
             if (cmbManager.SelectedIndex == -1)
             {
                 MessageBox.Show("Vui lòng chọn quản lý !"
@@ -150,6 +176,8 @@ namespace OOP_finalProject
                 return;
             }
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             Cashier cashier = null;
 
             for (int i = 0; i < cashiers.Count; i++)
@@ -172,8 +200,11 @@ namespace OOP_finalProject
             cashier.Address = txtAddress.Text;
             cashier.Name = txtName.Text;
             cashier.Gender = rdoMale.Checked ? "Nam" : "Nữ";
+<<<<<<< HEAD
             cashier.Role = "Cashier";
             cashier.ManagerName = cmbManager.SelectedItem.ToString();
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             DisplayInGrid();
 
@@ -218,14 +249,21 @@ namespace OOP_finalProject
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
+<<<<<<< HEAD
             Cashier cashier = gridData.CurrentRow.DataBoundItem as Cashier;
+=======
+            Cashier cashier = (Cashier)gridData.CurrentRow.DataBoundItem;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
             if (cashier == null)
                 return;
 
             Display(cashier);
+<<<<<<< HEAD
 
             Console.WriteLine(cashier.Id);
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public void Display(Cashier cashier)
@@ -236,6 +274,7 @@ namespace OOP_finalProject
             rdoFemale.Checked = cashier.Gender != "Nam" ? true : false;
             txtAddress.Text = cashier.Address;
             txtPhone.Text = cashier.PhoneNumber;
+<<<<<<< HEAD
 
             // Tìm và chọn manager trong ComboBox
             for (int i = 0; i < cmbManager.Items.Count; i++)
@@ -258,6 +297,8 @@ namespace OOP_finalProject
             {
                 cmbManager.Items.Add(manager.Name);
             }
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
     }
 }

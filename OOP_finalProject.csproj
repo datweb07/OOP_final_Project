@@ -55,7 +55,10 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="System.Configuration" />
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Pipelines, Version=9.0.0.9, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Pipelines.9.0.9\lib\net462\System.IO.Pipelines.dll</HintPath>
@@ -96,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Base\Bill.cs" />
     <Compile Include="Base\BillDetails.cs" />
+<<<<<<< HEAD
     <Compile Include="ComboProductList.cs" />
     <Compile Include="ComponentListData\ClothingProductList.cs" />
     <Compile Include="ComponentListData\ElectronicProductList.cs" />
@@ -127,6 +131,14 @@
     <Compile Include="EntityForm\ElectronicProductForm.Designer.cs">
       <DependentUpon>ElectronicProductForm.cs</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Data\BillData.cs" />
+    <Compile Include="Data\CashierData.cs" />
+    <Compile Include="Data\ClothingProductData.cs" />
+    <Compile Include="Data\DrinkProductData.cs" />
+    <Compile Include="Data\CustomerData.cs" />
+    <Compile Include="Data\ElectronicProductData.cs" />
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <Compile Include="EntityForm\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,11 +154,19 @@
     <Compile Include="EntityForm\DashboardForm.Designer.cs">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="EntityForm\DrinkProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EntityForm\DrinkProductForm.Designer.cs">
       <DependentUpon>DrinkProductForm.cs</DependentUpon>
+=======
+    <Compile Include="EntityForm\DrinkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityForm\DrinkForm.Designer.cs">
+      <DependentUpon>DrinkForm.cs</DependentUpon>
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     </Compile>
     <Compile Include="EntityForm\CashierForm.cs">
       <SubType>Form</SubType>
@@ -170,11 +190,20 @@
     <Compile Include="Customers\VIPCustomer.cs" />
     <Compile Include="Employees\Cashier.cs" />
     <Compile Include="Employees\Manager.cs" />
+<<<<<<< HEAD
     <Compile Include="EntityForm\FoodProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EntityForm\FoodProductForm.Designer.cs">
       <DependentUpon>FoodProductForm.cs</DependentUpon>
+=======
+    <Compile Include="Employees\Stocker.cs" />
+    <Compile Include="EntityForm\FoodForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityForm\FoodForm.Designer.cs">
+      <DependentUpon>FoodForm.cs</DependentUpon>
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     </Compile>
     <Compile Include="EntityForm\HouseholdProductForm.cs">
       <SubType>Form</SubType>
@@ -195,7 +224,10 @@
       <DependentUpon>ListOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\FoodProductData.cs" />
+<<<<<<< HEAD
     <Compile Include="ComponentListData\FoodProductList.cs" />
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <Compile Include="GetPath\GetPath.cs" />
     <Compile Include="Data\HouseholdProductData.cs" />
     <Compile Include="Base\Invoice.cs" />
@@ -207,6 +239,7 @@
     <Compile Include="EntityForm\InvoiceForm.Designer.cs">
       <DependentUpon>InvoiceForm.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ComponentListData\HouseholdProductList.cs" />
     <Compile Include="Interfaces\IAuthenticatable.cs" />
     <Compile Include="Interfaces\ICalculable.cs" />
@@ -215,6 +248,8 @@
     <Compile Include="Interfaces\IProductComponent.cs" />
     <Compile Include="ComponentListData\InvoiceList.cs" />
     <Compile Include="Interfaces\ISalaryCalculable.cs" />
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <Compile Include="LoginForm\SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +274,15 @@
     <Compile Include="EntityForm\MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="EntityForm\NewOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityForm\NewOrderForm.Designer.cs">
+      <DependentUpon>NewOrderForm.cs</DependentUpon>
+    </Compile>
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <Compile Include="EntityForm\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,9 +311,12 @@
     <Compile Include="EntityForm\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ComponentListData\ManagerList.cs" />
     <Compile Include="ComponentListData\OrderList.cs" />
     <Compile Include="Products\ComboProduct.cs" />
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
     <Compile Include="Products\ElectronicProduct.cs" />
@@ -277,6 +324,7 @@
     <Compile Include="Products\HouseholdProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="Base\Store.cs" />
     <Compile Include="Data\StoreData.cs" />
     <Compile Include="EntityForm\StoreForm.cs">
@@ -297,6 +345,9 @@
     <EmbeddedResource Include="EntityForm\ElectronicProductForm.resx">
       <DependentUpon>ElectronicProductForm.cs</DependentUpon>
     </EmbeddedResource>
+=======
+    <Compile Include="UserManagement\UserSession.cs" />
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <EmbeddedResource Include="EntityForm\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,6 +357,7 @@
     <EmbeddedResource Include="EntityForm\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="EntityForm\FoodProductForm.resx">
       <DependentUpon>FoodProductForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +376,8 @@
     <EmbeddedResource Include="EntityForm\ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <EmbeddedResource Include="LoginForm\SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -348,11 +402,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <EmbeddedResource Include="EntityForm\StoreForm.resx">
       <DependentUpon>StoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
     <None Include="oopProperties.md" />
+=======
+    <None Include="ClassDiagram1.cd" />
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

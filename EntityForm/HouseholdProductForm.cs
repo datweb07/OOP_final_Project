@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿//using OOP_finalProject.Products;
 //using System;
 //using System.Collections.Generic;
@@ -175,6 +176,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+=======
+﻿using OOP_finalProject.Products;
+using System;
+using System.Collections.Generic;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -186,6 +192,7 @@ namespace OOP_finalProject
             InitializeComponent();
         }
 
+<<<<<<< HEAD
         private HouseholdProductData householdProductData = new HouseholdProductData();
         private List<HouseholdProduct> householdProducts = new List<HouseholdProduct>();
         private List<HouseholdProduct> filteredProducts = new List<HouseholdProduct>();
@@ -247,19 +254,46 @@ namespace OOP_finalProject
             cmbBrandFilter.Items.Add("Tất cả thương hiệu");
             cmbBrandFilter.Items.AddRange(brands);
             cmbBrandFilter.SelectedIndex = 0;
+=======
+
+        private HouseholdProductData householdProductData = new HouseholdProductData();
+        private List<HouseholdProduct> householdProducts = new List<HouseholdProduct>();
+
+        BindingSource _src = new BindingSource();
+        private void FormHouseHoldItem_Load(object sender, EventArgs e)
+        {
+            gridData.DataSource = _src;
+            gridData.AllowUserToAddRows = false;
+            gridData.ReadOnly = true;
+            cboBrand.Items.Clear();
+            cboBrand.Items.Add("Sony");
+            cboBrand.Items.Add("Samsung");
+            cboBrand.Items.Add("Apple");
+            cboBrand.Items.Add("Nature Hike");
+            cboBrand.Items.Add("IKIA");
+            cboBrand.SelectedIndex = 0;
+            householdProducts = householdProductData.GetData();
+            DisplayInGrid();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void DisplayInGrid()
         {
+<<<<<<< HEAD
             _src.DataSource = filteredProducts;
             _src.ResetBindings(true);
             UpdateStatistics();
+=======
+            _src.DataSource = householdProducts;
+            _src.ResetBindings(true);
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtCode.Text = "";
             txtName.Text = "";
+<<<<<<< HEAD
             txtPrice.Value = 0;
             txtQty.Value = 0;
             txtSearch.Text = "";
@@ -271,13 +305,55 @@ namespace OOP_finalProject
             filteredProducts = householdProducts.ToList();
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
+=======
+            txtPrice.Text = "";
+            txtQty.Text = "";
+            cboBrand.SelectedIndex = 0;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (!ValidateInput())
                 return;
 
+=======
+            if (string.IsNullOrEmpty(txtCode.Text))
+            {
+                MessageBox.Show("Mã đồ gia dụng không được để trống !"
+                    , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                MessageBox.Show("Tên sản phẩm không được để trống !",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (txtPrice.Value < 0)
+            {
+                MessageBox.Show("Giá sản phẩm không được bé hơn 0 !",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (txtQty.Value < 0)
+            {
+                MessageBox.Show("Số lượng sản phẩm không được bé hơn 0 !",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (cboBrand.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn nhãn hiệu !"
+                   , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             HouseholdProduct householdProduct = null;
 
             for (int i = 0; i < householdProducts.Count; i++)
@@ -291,6 +367,7 @@ namespace OOP_finalProject
 
             if (householdProduct == null)
             {
+<<<<<<< HEAD
                 householdProduct = new HouseholdProduct(
                     txtCode.Text,
                     txtName.Text,
@@ -308,10 +385,25 @@ namespace OOP_finalProject
             }
 
             ApplyFiltersAndSearch();
+=======
+                householdProduct = new HouseholdProduct(txtCode.Text, txtName.Text, txtPrice.Value, txtQty.Value, (string)cboBrand.SelectedItem);
+                householdProducts.Add(householdProduct);
+            }
+
+            householdProduct.Name = txtName.Text;
+            householdProduct.Price = txtPrice.Value;
+            householdProduct.Quantity = txtQty.Value;
+            householdProduct.Brand = (string)cboBrand.SelectedItem;
+
+            DisplayInGrid();
+
+            // save data in database
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             householdProductData.SaveData(householdProducts);
 
             MessageBox.Show("Cập nhật thông tin đồ gia dụng thành công !"
                 , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+<<<<<<< HEAD
 
             statusLabel.Text = "Đã lưu thông tin thành công";
             statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
@@ -360,10 +452,14 @@ namespace OOP_finalProject
             }
 
             return true;
+=======
+            return;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (string.IsNullOrWhiteSpace(txtCode.Text))
             {
                 MessageBox.Show("Vui lòng chọn sản phẩm cần xóa!",
@@ -380,6 +476,8 @@ namespace OOP_finalProject
             if (result == DialogResult.No)
                 return;
 
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             HouseholdProduct householdProduct = null;
 
             for (int i = 0; i < householdProducts.Count; i++)
@@ -394,6 +492,7 @@ namespace OOP_finalProject
             if (householdProduct != null)
             {
                 householdProducts.Remove(householdProduct);
+<<<<<<< HEAD
                 ApplyFiltersAndSearch();
                 householdProductData.SaveData(householdProducts);
 
@@ -404,6 +503,18 @@ namespace OOP_finalProject
                 statusLabel.Text = "Đã xóa sản phẩm thành công";
                 statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
             }
+=======
+            }
+
+            DisplayInGrid();
+
+            householdProductData.SaveData(householdProducts);
+
+
+            MessageBox.Show("Xoá thông tin đồ gia dụng thành công !"
+                , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -427,6 +538,7 @@ namespace OOP_finalProject
             txtQty.Value = householdProduct.Quantity;
             cboBrand.SelectedItem = householdProduct.Brand;
         }
+<<<<<<< HEAD
 
         #region Các chức năng mới
 
@@ -560,3 +672,7 @@ namespace OOP_finalProject
         #endregion
     }
 }
+=======
+    }
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7

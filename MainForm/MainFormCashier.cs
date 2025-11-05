@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Drawing;
+<<<<<<< HEAD
+=======
+using System.Security.Principal;
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -37,15 +41,25 @@ namespace OOP_finalProject
             btnOrder.Click += btnOrder_Click;
             btnInvoiceList.Click += btnInvoiceList_Click;
             btnOrderList.Click += btnOrderList_Click;
+<<<<<<< HEAD
             btnAccount.Click += btnAccount_Click;
+=======
+            btnAccount.Click += btnAccount_Click; 
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             btnExit.Click += btnExit_Click;
         }
 
         private void UpdateWelcomeMessage()
         {
+<<<<<<< HEAD
             if (UserSession.Instance.IsLoggedIn())
             {
                 lblWelcome.Text = $"Chào mừng {UserSession.Instance.GetDisplayName()} ({UserSession.Instance.GetRoleDisplayName()})";
+=======
+            if (UserSession.IsLoggedIn())
+            {
+                lblWelcome.Text = $"Chào mừng {UserSession.GetDisplayName()} ({UserSession.GetRoleDisplayName()})";
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             }
             else
             {
@@ -121,7 +135,11 @@ namespace OOP_finalProject
             currentForm.Show();
         }
 
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         #endregion
 
         #region Event Handlers
@@ -157,7 +175,11 @@ namespace OOP_finalProject
         // Hiển thị thông tin tài khoản
         private void btnAccount_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (!UserSession.Instance.IsLoggedIn())
+=======
+            if (!UserSession.IsLoggedIn())
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
             {
                 MessageBox.Show("Không có thông tin người dùng đăng nhập!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -180,7 +202,11 @@ namespace OOP_finalProject
             if (result == DialogResult.Yes)
             {
                 // Clear user session
+<<<<<<< HEAD
                 UserSession.Instance.ClearUserInfo();
+=======
+                UserSession.ClearUserInfo();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 
                 // Đóng tất cả forms con
                 if (currentForm != null)

@@ -1,9 +1,13 @@
 ﻿using OOP_finalProject.Base;
+<<<<<<< HEAD
 using OOP_finalProject.Customers;
+=======
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+<<<<<<< HEAD
 
 namespace OOP_finalProject
 {
@@ -56,10 +60,39 @@ namespace OOP_finalProject
         {
             CustomerList customerList = ReadObject();
             return customerList.Customers ?? new List<Customer>();
+=======
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace OOP_finalProject
+{
+    public class CustomerData
+    {
+        private string pathDat = Path.Combine(GetPath.path, nameof(Customer) + ".dat");
+
+        public List<Customer> GetData()
+        {
+            if (File.Exists(pathDat))
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(pathDat, FileMode.Open))
+                    {
+                        BinaryFormatter bf = new BinaryFormatter();
+                        return (List<Customer>)bf.Deserialize(fs);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi đọc file .dat: {ex.Message}");
+                }
+            }
+            return new List<Customer>();
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
         }
 
         public void SaveData(List<Customer> customers)
         {
+<<<<<<< HEAD
             CustomerList customerList = new CustomerList(customers);
             WriteObject(customerList);
         }
@@ -87,3 +120,26 @@ namespace OOP_finalProject
         }
     }
 }
+=======
+            try
+            {
+                if (!Directory.Exists(GetPath.path))
+                {
+                    Directory.CreateDirectory(GetPath.path);
+                }
+
+                using (FileStream fs = new FileStream(pathDat, FileMode.Create))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(fs, customers);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi ghi file .dat: {ex.Message}");
+            }
+        }
+    }
+
+}
+>>>>>>> 332e790e8125708e6ccf87e339604d4d0c75dbc7
