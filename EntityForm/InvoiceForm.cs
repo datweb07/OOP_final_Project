@@ -1369,7 +1369,7 @@ namespace OOP_finalProject
             g.DrawString("Tên sản phẩm", font, Brushes.Black, leftMargin + 50, yPos);
             g.DrawString("SL", font, Brushes.Black, leftMargin + 300, yPos);
             g.DrawString("Đơn giá", font, Brushes.Black, leftMargin + 350, yPos);
-            g.DrawString("Thành tiền", font, Brushes.Black, leftMargin + 450, yPos);
+            g.DrawString("Tổng tiền", font, Brushes.Black, leftMargin + 450, yPos);
         }
 
         private float DrawInvoiceDetails(Graphics g, Font font, float leftMargin, float yPos, PrintPageEventArgs e)
@@ -1430,13 +1430,15 @@ namespace OOP_finalProject
             string customerName = _invoice.Customer?.Name ?? CUSTOMER_TYPE_GUEST;
             string cashierName = _invoice.Cashier?.Name ?? CUSTOMER_TYPE_UNKNOWN;
 
-            g.DrawString("(Ký, ghi rõ họ tên)", smallFont, Brushes.Black, leftMargin + 80, yPos);
-            g.DrawString("(Ký, ghi rõ họ tên)", smallFont, Brushes.Black, leftMargin + 380, yPos);
+            g.DrawString("(Ký, ghi rõ họ tên)", smallFont, Brushes.Black, leftMargin + 103, yPos);
+            g.DrawString("(Ký, ghi rõ họ tên)", smallFont, Brushes.Black, leftMargin + 400, yPos);
             yPos += 20;
 
-            g.DrawString(customerName, smallFont, Brushes.Black, leftMargin + 110, yPos);
-            g.DrawString(cashierName, smallFont, Brushes.Black, leftMargin + 420, yPos);
+            // tên người mua hàng và bán hàng
+            //g.DrawString(customerName, smallFont, Brushes.Black, leftMargin + 110, yPos);
+            //g.DrawString(cashierName, smallFont, Brushes.Black, leftMargin + 420, yPos);
         }
+
 
         #endregion
 
