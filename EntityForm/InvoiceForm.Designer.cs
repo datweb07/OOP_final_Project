@@ -561,7 +561,7 @@ namespace OOP_finalProject
             // 
             Column5.DataPropertyName = "TotalPrice";
             Column5.FillWeight = 100F;
-            Column5.HeaderText = "THÀNH TIỀN";
+            Column5.HeaderText = "TỔNG TIỀN";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
             Column5.ReadOnly = true;
