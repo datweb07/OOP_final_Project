@@ -46,7 +46,7 @@ namespace OOP_finalProject.Base
             }
         }
 
-        public decimal Quantity
+        public virtual decimal Quantity
         {
             get { return quantity; }
             set

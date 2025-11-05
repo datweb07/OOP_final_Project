@@ -1181,6 +1181,7 @@
 
 
 using OOP_finalProject.Base;
+using OOP_finalProject.Data;
 using OOP_finalProject.Employees;
 using OOP_finalProject.Products;
 using System;
@@ -1212,6 +1213,7 @@ namespace OOP_finalProject
         private HouseholdProductData householdProductData = new HouseholdProductData();
         private ElectronicProductData electronicProductData = new ElectronicProductData();
         private ClothingProductData clothingProductData = new ClothingProductData();
+        private ComboProductData comboProductData = new ComboProductData(); 
 
         private List<Order> orders;
         private List<Product> products = new List<Product>();
@@ -1357,6 +1359,8 @@ namespace OOP_finalProject
                 products.AddRange(householdProductData.GetData());
                 products.AddRange(electronicProductData.GetData());
                 products.AddRange(clothingProductData.GetData());
+                products.AddRange(comboProductData.GetData());
+
 
                 // Chỉ hiển thị sản phẩm còn hàng
                 products = products.Where(p => p.Quantity > 0).ToList();
@@ -1578,6 +1582,7 @@ namespace OOP_finalProject
             allProducts.AddRange(householdProductData.GetData());
             allProducts.AddRange(electronicProductData.GetData());
             allProducts.AddRange(clothingProductData.GetData());
+            allProducts.AddRange(comboProductData.GetData());
 
             var targetProduct = allProducts.FirstOrDefault(p => p.Id == product.Id);
             if (targetProduct != null)
@@ -1592,6 +1597,7 @@ namespace OOP_finalProject
             householdProductData.SaveData(allProducts.OfType<HouseholdProduct>().ToList());
             electronicProductData.SaveData(allProducts.OfType<ElectronicProduct>().ToList());
             clothingProductData.SaveData(allProducts.OfType<ClothingProduct>().ToList());
+            comboProductData.SaveData(allProducts.OfType<ComboProduct>().ToList());
         }
 
         private void UpdateAllDisplays()
@@ -1733,6 +1739,9 @@ namespace OOP_finalProject
             List<DrinkProduct> drinkProducts = drinkProductData.GetData();
             List<FoodProduct> foodProducts = foodProductData.GetData();
             List<HouseholdProduct> householdProducts = householdProductData.GetData();
+            List<ElectronicProduct> electronicProducts = electronicProductData.GetData();
+            List<ClothingProduct> clothingProducts = clothingProductData.GetData();
+            List<ComboProduct> comboProducts = comboProductData.GetData();
 
             for (int i = 0; i < toDelete.OrderDetails.Count; i++)
             {
@@ -1772,11 +1781,50 @@ namespace OOP_finalProject
                         }
                     }
                 }
+
+                if (toDelete.OrderDetails[i].Product is ElectronicProduct)
+                {
+                    for (int j = 0; i < electronicProducts.Count; j++)
+                    {
+                        if (electronicProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product?.Id.ToLower())
+                        {
+                            electronicProducts[j].Quantity = electronicProducts[j].Quantity + toDelete.OrderDetails[i].Quantity; 
+                            break;
+                        }
+                    }
+                }
+
+                if (toDelete.OrderDetails[i].Product is ClothingProduct)
+                {
+                    for (int j = 0; i < clothingProducts.Count; j++)
+                    {
+                        if (clothingProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product?.Id.ToLower())
+                        {
+                            clothingProducts[j].Quantity = clothingProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
+                            break;
+                        }
+                    }
+                }
+
+                if (toDelete.OrderDetails[i].Product is ComboProduct)
+                {
+                    for (int j = 0; i < comboProducts.Count; j++)
+                    {
+                        if (comboProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product?.Id.ToLower())
+                        {
+                            comboProducts[j].Quantity = comboProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
+                            break;
+                        }
+                    }
+                }
             }
 
             drinkProductData.SaveData(drinkProducts);
             foodProductData.SaveData(foodProducts);
             householdProductData.SaveData(householdProducts);
+            electronicProductData.SaveData(electronicProducts);
+            clothingProductData.SaveData(clothingProducts);
+            comboProductData.SaveData(comboProducts);
 
             // Nạp lại số lượng thực tế
             LoadProducts();
