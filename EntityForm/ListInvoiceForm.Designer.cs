@@ -292,6 +292,7 @@ namespace OOP_finalProject
             // Column6
             //
             Column6.DataPropertyName = "DiscountAmount";
+            Column6.DefaultCellStyle = dataGridViewCellStyle2;
             Column6.HeaderText = "Giảm Giá";
             Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
@@ -308,6 +309,7 @@ namespace OOP_finalProject
             // Column8
             //
             Column8.DataPropertyName = "SumTotal";
+            Column8.DefaultCellStyle = dataGridViewCellStyle2;
             Column8.HeaderText = "Tổng Tiền";
             Column8.MinimumWidth = 6;
             Column8.Name = "Column8";
@@ -341,7 +343,7 @@ namespace OOP_finalProject
             groupBox1.Controls.Add(btnXemHoaDon);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1236, 270);
+            groupBox1.Size = new Size(1300, 270);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin hoá đơn";
@@ -547,7 +549,7 @@ namespace OOP_finalProject
             groupBox2.Controls.Add(gridData);
             groupBox2.Location = new Point(12, 300);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1236, 456);
+            groupBox2.Size = new Size(1300, 456);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách hoá đơn";
