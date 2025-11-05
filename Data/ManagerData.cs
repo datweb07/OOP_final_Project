@@ -1,0 +1,84 @@
+﻿using OOP_finalProject.Employees;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+
+namespace OOP_finalProject
+{
+    public class ManagerData
+    {
+        private static string filePath = Path.Combine(GetPath.path, nameof(Manager) + ".dat");
+
+        public static void WriteObject(ManagerList managerList)
+        {
+            try
+            {
+                // Tạo NetDataContractSerializer
+                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
+
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    // Ghi dữ liệu vào file
+                    dataContractSerializer.Serialize(fileStream, managerList);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi ghi file: {ex.Message}");
+            }
+        }
+
+        public ManagerList ReadObject()
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
+                    return new ManagerList();
+                }
+                // Tạo NetDataContractSerializer
+                NetDataContractSerializer serializer = new NetDataContractSerializer();
+
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
+                {
+                    // Đọc dữ liệu từ file và chuyển đổi thành ManagerList
+                    ManagerList managerList = (ManagerList)serializer.Deserialize(fileStream);
+                    return managerList;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi đọc file: {ex.Message}");
+                return new ManagerList();
+            }
+        }
+
+        public List<Manager> GetData()
+        {
+            ManagerList managerList = ReadObject();
+            return managerList.Managers ?? new List<Manager>();
+        }
+
+        public void SaveData(List<Manager> managers)
+        {
+            ManagerList managerList = new ManagerList(managers);
+            WriteObject(managerList);
+        }
+        public static void CreateSampleData()
+        {
+            if (!File.Exists(filePath))
+            {
+                List<Manager> managers = new List<Manager>()
+                {
+                    new Manager("MG001", "Nguyễn Thị Lan", "Nữ", "0901123456", "123 Lê Lợi, Q1, TP.HCM", "Không có cửa hàng"),
+                    new Manager("MG002", "Trần Văn Nam", "Nam", "0912234567", "456 Nguyễn Huệ, Q3, TP.HCM", "Không có cửa hàng"),
+                };
+
+                ManagerList managerList = new ManagerList(managers);
+                WriteObject(managerList);
+            }
+        }
+    }
+}
