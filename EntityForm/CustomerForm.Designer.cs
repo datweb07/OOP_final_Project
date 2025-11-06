@@ -258,6 +258,10 @@ namespace OOP_finalProject
             btnRefresh.TabIndex = 3;
             btnRefresh.Text = "Làm mới";
             btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.BackColor = Color.FromArgb(52, 152, 219);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.FlatAppearance.BorderSize = 0;
             btnRefresh.Click += btnRefresh_Click;
 
             // 
@@ -269,6 +273,10 @@ namespace OOP_finalProject
             btnSave.TabIndex = 3;
             btnSave.Text = "Lưu";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.BackColor = Color.FromArgb(46, 204, 113);
+            btnSave.ForeColor = Color.White;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.FlatAppearance.BorderSize = 0;
             btnSave.Click += btnSave_Click;
 
             // 
@@ -280,6 +288,10 @@ namespace OOP_finalProject
             btnDelete.TabIndex = 3;
             btnDelete.Text = "Xoá";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.BackColor = Color.FromArgb(231, 76, 60);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.Click += btnDelete_Click;
 
             // 

@@ -1636,7 +1636,7 @@ namespace OOP_finalProject.EntityForm
             this.txtDescription.Location = new System.Drawing.Point(100, 85);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(480, 50);
+            this.txtDescription.Size = new System.Drawing.Size(480, 23);
             this.txtDescription.TabIndex = 5;
             // 
             // label3
@@ -1696,9 +1696,9 @@ namespace OOP_finalProject.EntityForm
             this.btnRemoveFromCombo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.btnRemoveFromCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveFromCombo.ForeColor = System.Drawing.Color.White;
-            this.btnRemoveFromCombo.Location = new System.Drawing.Point(580, 214);
+            this.btnRemoveFromCombo.Location = new System.Drawing.Point(575, 214);
             this.btnRemoveFromCombo.Name = "btnRemoveFromCombo";
-            this.btnRemoveFromCombo.Size = new System.Drawing.Size(100, 30);
+            this.btnRemoveFromCombo.Size = new System.Drawing.Size(120, 30);
             this.btnRemoveFromCombo.TabIndex = 1;
             this.btnRemoveFromCombo.Text = "Xóa khỏi Combo";
             this.btnRemoveFromCombo.UseVisualStyleBackColor = false;
