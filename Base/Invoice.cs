@@ -72,12 +72,53 @@ namespace OOP_finalProject
             }
         }
 
-        public decimal SubTotal => InvoiceDetails.Sum(d => d.TotalPrice);
-        public decimal SumTotal => SubTotal; // Alias cho tương thích
-        public decimal DiscountPercentage => Customer?.GetDiscountPercentage() ?? 0;
-        public decimal DiscountAmount => Customer?.CalculateDiscount(SubTotal) ?? 0;
-        public decimal FinalTotal => SubTotal - DiscountAmount;
-        public string DiscountInfo => Customer?.GetDiscountInfo() ?? "Không có giảm giá";
+        public decimal SumTotal
+        {
+            get
+            {
+                decimal total = 0;
+                foreach (var detail in InvoiceDetails)
+                {
+                    total += detail.TotalPrice;
+                }
+                return total;
+            }
+        }
+
+        public decimal DiscountPercentage
+        {
+            get
+            {
+                if (Customer != null)
+                    return Customer.GetDiscountPercentage();
+                return 0;
+            }
+        }
+
+        public decimal DiscountAmount
+        {
+            get
+            {
+                if (Customer != null)
+                    return Customer.CalculateDiscount(SumTotal);
+                return 0;
+            }
+        }
+
+        public decimal FinalTotal
+        {
+            get { return SumTotal - DiscountAmount; }
+        }
+
+        public string DiscountInfo
+        {
+            get
+            {
+                if (Customer != null)
+                    return Customer.GetDiscountInfo();
+                return "Không có giảm giá";
+            }
+        }
 
         public Invoice()
         {
@@ -88,14 +129,29 @@ namespace OOP_finalProject
         public Invoice(SerializationInfo info, StreamingContext context)
         {
             // Xử lý tất cả trường hợp lỗi
-            try { Id = info.GetString("Id") ?? GenerateInvoiceId(); }
-            catch { Id = GenerateInvoiceId(); }
+            try 
+            { 
+                Id = info.GetString("Id") ?? GenerateInvoiceId(); 
+            }
+            catch 
+            { 
+                Id = GenerateInvoiceId(); 
+            }
 
-            try { DateCreated = info.GetDateTime("DateCreated"); }
-            catch { DateCreated = DateTime.Now; }
+            try 
+            { 
+                DateCreated = info.GetDateTime("DateCreated"); 
+            }
+            catch 
+            { 
+                DateCreated = DateTime.Now; 
+            }
 
             // Xử lý Cashier
-            try { Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier)); }
+            try 
+            { 
+                Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier)); 
+            }
             catch
             {
                 try
@@ -103,11 +159,17 @@ namespace OOP_finalProject
                     string cashierName = info.GetString("CashierName");
                     Cashier = CreateCashierFromName(cashierName);
                 }
-                catch { Cashier = GetDefaultCashier(); }
+                catch 
+                { 
+                    Cashier = GetDefaultCashier(); 
+                }
             }
 
-            // Xử lý Customer - QUAN TRỌNG
-            try { Customer = (Customer)info.GetValue("Customer", typeof(Customer)); }
+            // Xử lý Customer
+            try 
+            { 
+                Customer = (Customer)info.GetValue("Customer", typeof(Customer)); 
+            }
             catch
             {
                 Customer = CreateCustomerFromAvailableData(info);
@@ -120,8 +182,14 @@ namespace OOP_finalProject
             }
 
             // Xử lý InvoiceDetails
-            try { InvoiceDetails = (List<InvoiceDetails>)info.GetValue("InvoiceDetails", typeof(List<InvoiceDetails>)); }
-            catch { InvoiceDetails = new List<InvoiceDetails>(); }
+            try 
+            { 
+                InvoiceDetails = (List<InvoiceDetails>)info.GetValue("InvoiceDetails", typeof(List<InvoiceDetails>)); 
+            }
+            catch 
+            { 
+                InvoiceDetails = new List<InvoiceDetails>(); 
+            }
         }
 
         private Customer CreateCustomerFromAvailableData(SerializationInfo info)
@@ -130,17 +198,9 @@ namespace OOP_finalProject
             {
                 // Thử lấy Customer object trực tiếp
                 var customer = (Customer)info.GetValue("Customer", typeof(Customer));
-                if (customer != null) return customer;
-            }
-            catch { }
-
-            try
-            {
-                // Thử lấy CustomerName cũ
-                string customerName = info.GetString("CustomerName");
-                if (!string.IsNullOrEmpty(customerName))
+                if (customer != null)
                 {
-                    //return FindOrCreateCustomerByName(customerName);
+                    return customer;
                 }
             }
             catch { }
@@ -148,53 +208,12 @@ namespace OOP_finalProject
             return GetDefaultCustomer();
         }
 
-        //private Customer FindOrCreateCustomerByName(string customerName)
-        //{
-        //    try
-        //    {
-        //        var customerData = new CustomerData();
-        //        var customers = customerData.GetData();
-        //        var existingCustomer = customers.FirstOrDefault(c =>
-        //            c.Name.Equals(customerName, StringComparison.OrdinalIgnoreCase));
-
-        //        return existingCustomer ?? CreateCustomerFromName(customerName);
-        //    }
-        //    catch
-        //    {
-        //        return CreateCustomerFromName(customerName);
-        //    }
-        //}
-
-        //private Customer CreateCustomerFromName(string name)
-        //{
-        //    // Xác định loại customer dựa trên name
-        //    var vipNames = new[] { "Trương Thị Hương", "Võ Văn Giang", "Đặng Thị Hoa", "Bùi Văn Hùng", "Lý Thị Kim" };
-
-        //    if (vipNames.Contains(name))
-        //    {
-        //        var vip = new VIPCustomer
-        //        {
-        //            Name = name,
-        //            CustomerType = "Khách hàng VIP"
-        //        };
-        //        vip.SetDiscountStrategy(new VIPCustomerDiscountStrategy());
-        //        return vip;
-        //    }
-        //    else
-        //    {
-        //        var regular = new RegularCustomer
-        //        {
-        //            Name = name,
-        //            CustomerType = "Khách hàng thường"
-        //        };
-        //        regular.SetDiscountStrategy(new RegularCustomerDiscountStrategy());
-        //        return regular;
-        //    }
-        //}
-
         private void RestoreCustomerDiscountStrategy(Customer customer)
         {
-            if (customer == null) return;
+            if (customer == null)
+            {
+                return;
+            }
 
             if (customer is VIPCustomer || customer.CustomerType?.Contains("VIP") == true)
             {
@@ -208,7 +227,9 @@ namespace OOP_finalProject
 
         private Cashier CreateCashierFromName(string name)
         {
-            return new Cashier { Name = name ?? "Nhân viên" };
+            return new Cashier { 
+                Name = name ?? "Nhân viên" 
+            };
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -227,94 +248,20 @@ namespace OOP_finalProject
 
         private Cashier GetDefaultCashier()
         {
-            return new Cashier { Name = "Nhân viên" };
+            return new Cashier { 
+                Name = "Nhân viên" 
+            };
         }
 
         private Customer GetDefaultCustomer()
         {
-            var customer = new RegularCustomer
+            RegularCustomer customer = new RegularCustomer
             {
                 Name = "Khách lẻ",
                 CustomerType = "Khách hàng thường"
             };
             customer.SetDiscountStrategy(new RegularCustomerDiscountStrategy());
             return customer;
-        }
-
-        // Method để tạo Invoice từ Order
-        public static Invoice CreateFromOrder(Order order)
-        {
-            var invoice = new Invoice
-            {
-                Id = order.OrderId,
-                DateCreated = order.OrderDate,
-                Cashier = order.Cashier,
-                Customer = order.Customer
-            };
-
-            // Copy order details sang invoice details
-            foreach (var orderDetail in order.OrderDetails)
-            {
-                invoice.InvoiceDetails.Add(new InvoiceDetails
-                {
-                    ProductID = orderDetail.Product.Id,
-                    ProductName = orderDetail.Product.Name,
-                    Quantity = orderDetail.Quantity,
-                    UnitPrice = orderDetail.Product.Price,
-                    TotalPrice = orderDetail.TotalPrice
-                });
-            }
-
-            return invoice;
-        }
-
-        // Method để validate invoice
-        public bool IsValid()
-        {
-            return !string.IsNullOrEmpty(Id) &&
-                   InvoiceDetails != null &&
-                   InvoiceDetails.Count > 0 &&
-                   InvoiceDetails.All(d => d.Quantity > 0 && d.UnitPrice >= 0);
-        }
-
-        // Method để thêm invoice detail
-        public void AddInvoiceDetail(InvoiceDetails detail)
-        {
-            if (detail == null) return;
-
-            // Kiểm tra xem sản phẩm đã tồn tại chưa
-            var existingDetail = InvoiceDetails.FirstOrDefault(d => d.ProductID == detail.ProductID);
-            if (existingDetail != null)
-            {
-                existingDetail.Quantity += detail.Quantity;
-            }
-            else
-            {
-                InvoiceDetails.Add(detail);
-            }
-        }
-
-        // Method để xóa invoice detail
-        public bool RemoveInvoiceDetail(string productId)
-        {
-            var detail = InvoiceDetails.FirstOrDefault(d => d.ProductID == productId);
-            if (detail != null)
-            {
-                return InvoiceDetails.Remove(detail);
-            }
-            return false;
-        }
-
-        // Method để clear all details
-        public void ClearInvoiceDetails()
-        {
-            InvoiceDetails.Clear();
-        }
-
-        // Method để lấy thông tin summary
-        public string GetSummary()
-        {
-            return $"Hóa đơn {Id}: {InvoiceDetails.Count} sản phẩm, Tổng: {SubTotal:N0}đ, Giảm: {DiscountAmount:N0}đ, Thành tiền: {FinalTotal:N0}đ";
         }
     }
 }

@@ -1153,7 +1153,7 @@ namespace OOP_finalProject
         private void DisplayInvoiceSummary()
         {
             // SỬ DỤNG TRỰC TIẾP CÁC COMPUTED PROPERTIES TỪ INVOICE CLASS
-            decimal subTotal = _invoice.SubTotal;           // Computed property
+            decimal subTotal = _invoice.SumTotal;           // Computed property
             decimal discountAmount = _invoice.DiscountAmount; // Computed property
             decimal finalTotal = _invoice.FinalTotal;       // Computed property
             decimal discountPercentage = _invoice.DiscountPercentage; // Computed property
@@ -1403,7 +1403,7 @@ namespace OOP_finalProject
             yPos += 20;
 
             // SỬ DỤNG COMPUTED PROPERTIES TỪ INVOICE
-            g.DrawString($"Tổng tiền: {FormatCurrency(_invoice.SubTotal)}",
+            g.DrawString($"Tổng tiền: {FormatCurrency(_invoice.SumTotal)}",
                 headerFont, Brushes.Black, leftMargin + 300, yPos);
             yPos += 25;
 
