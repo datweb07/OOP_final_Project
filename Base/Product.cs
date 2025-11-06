@@ -19,7 +19,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("ID cannot be null or empty");
+                {
+                    throw new ArgumentException("ID sản phẩm không thể để trống hoặc rỗng!");
+                }    
                 id = value;
             }
         }
@@ -30,7 +32,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Name cannot be null or empty");
+                {
+                    throw new ArgumentException("Tên sản phẩm không được để trống hoặc rỗng!");
+                }
                 name = value;
             }
         }
@@ -41,7 +45,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (value < 0)
-                    throw new ArgumentException("Price cannot be negative");
+                {
+                    throw new ArgumentException("Giá sản phẩm không âm!");
+                }
                 price = value;
             }
         }
@@ -52,7 +58,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (value < 0)
-                    throw new ArgumentException("Quantity cannot be negative");
+                {
+                    throw new ArgumentException("Số lượn sản phẩm không âm!");
+                }
                 quantity = value;
             }
         }
@@ -97,8 +105,10 @@ namespace OOP_finalProject.Base
         public virtual decimal CalculateDiscount(decimal discountPercentage)
         {
             if (discountPercentage < 0 || discountPercentage > 100)
-                throw new ArgumentException("Discount percentage must be between 0 and 100");
-
+            {
+                throw new ArgumentException("Tỷ lệ phần trăm giảm giá phải từ 0 đến 100");
+            }    
+                
             return CalculateTotal() * (discountPercentage / 100);
         }
 

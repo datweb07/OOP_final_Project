@@ -1,10 +1,6 @@
-using OOP_finalProject.Customers;
 using OOP_finalProject.Interfaces;
 using System;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using System.Security.Policy;
-using System.Xml.Serialization;
 
 namespace OOP_finalProject.Base
 {

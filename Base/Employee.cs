@@ -20,7 +20,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("ID nhân viên không được để trống hoặc rỗng!");
+                { 
+                    throw new ArgumentException("ID nhân viên không được để trống hoặc rỗng!"); 
+                }
                 id = value;
             }
         }
@@ -30,7 +32,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("Tên nhân viên không được để trống hoặc rỗng!");
+                }
                 name = value;
             }
         }
@@ -40,7 +44,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("Giới tính nhân viên không được để trống hoặc rỗng!");
+                }
                 gender = value;
             }
         }
@@ -50,7 +56,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Số điện thoại nhân viên không được để trống hoặc rỗng!");
+                { 
+                    throw new ArgumentException("Số điện thoại nhân viên không được để trống hoặc rỗng!"); 
+                }
                 phoneNumber = value;
             }
         }
@@ -60,7 +68,9 @@ namespace OOP_finalProject.Base
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("Địa chỉ không được để trống hoặc rỗng!");
+                }
                 address = value;
             }
         }

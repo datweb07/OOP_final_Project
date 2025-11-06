@@ -1,11 +1,9 @@
 using OOP_finalProject.Base;
 using OOP_finalProject.Customers;
 using OOP_finalProject.Employees;
-using OOP_finalProject.Interfaces;
 using OOP_finalProject.Strategies;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 
 namespace OOP_finalProject
@@ -50,26 +48,17 @@ namespace OOP_finalProject
 
         public string CashierName
         {
-            get
-            {
-                return Cashier?.Name ?? "Không xác định";
-            }
+            get { return Cashier?.Name ?? "Không xác định"; }
         }
 
         public string CustomerName
         {
-            get
-            {
-                return Customer?.Name ?? "Không xác định";
-            }
+            get { return Customer?.Name ?? "Không xác định"; }
         }
 
         public string CustomerTypeDisplay
         {
-            get
-            {
-                return Customer?.CustomerType ?? "Không xác định";
-            }
+            get { return Customer?.CustomerType ?? "Không xác định"; }
         }
 
         public decimal SumTotal
@@ -90,7 +79,9 @@ namespace OOP_finalProject
             get
             {
                 if (Customer != null)
+                {
                     return Customer.GetDiscountPercentage();
+                }
                 return 0;
             }
         }
@@ -100,7 +91,9 @@ namespace OOP_finalProject
             get
             {
                 if (Customer != null)
+                {
                     return Customer.CalculateDiscount(SumTotal);
+                }
                 return 0;
             }
         }
@@ -115,7 +108,9 @@ namespace OOP_finalProject
             get
             {
                 if (Customer != null)
+                {
                     return Customer.GetDiscountInfo();
+                }
                 return "Không có giảm giá";
             }
         }
@@ -197,7 +192,7 @@ namespace OOP_finalProject
             try
             {
                 // Thử lấy Customer object trực tiếp
-                var customer = (Customer)info.GetValue("Customer", typeof(Customer));
+                Customer customer = (Customer)info.GetValue("Customer", typeof(Customer));
                 if (customer != null)
                 {
                     return customer;
@@ -227,9 +222,7 @@ namespace OOP_finalProject
 
         private Cashier CreateCashierFromName(string name)
         {
-            return new Cashier { 
-                Name = name ?? "Nhân viên" 
-            };
+            return new Cashier { Name = name ?? "Nhân viên" };
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -248,9 +241,7 @@ namespace OOP_finalProject
 
         private Cashier GetDefaultCashier()
         {
-            return new Cashier { 
-                Name = "Nhân viên" 
-            };
+            return new Cashier { Name = "Nhân viên" };
         }
 
         private Customer GetDefaultCustomer()
