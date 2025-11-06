@@ -209,9 +209,7 @@
     </Compile>
     <Compile Include="ComponentListData\HouseholdProductList.cs" />
     <Compile Include="Interfaces\IAuthenticatable.cs" />
-    <Compile Include="Interfaces\ICalculable.cs" />
     <Compile Include="Interfaces\IDiscountStrategy.cs" />
-    <Compile Include="Interfaces\IDisplayable.cs" />
     <Compile Include="Interfaces\IProductComponent.cs" />
     <Compile Include="ComponentListData\InvoiceList.cs" />
     <Compile Include="Interfaces\ISalaryCalculable.cs" />

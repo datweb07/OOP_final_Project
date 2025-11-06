@@ -1,4 +1,4 @@
-﻿//using OOP_finalProject.Base;
+//using OOP_finalProject.Base;
 //using OOP_finalProject.Interfaces;
 //using System;
 //using System.Collections.Generic;
@@ -756,18 +756,20 @@ namespace OOP_finalProject.Products
             children.Remove(component);
         }
 
-        public void RemoveById(string productId)
-        {
-            children?.RemoveAll(c => c.Id == productId);
-        }
+        // Có thể xóa nếu không dùng sau này
+        //public void RemoveById(string productId)
+        //{
+        //    children?.RemoveAll(c => c.Id == productId);
+        //}
 
-        public IProductComponent GetChild(int index)
-        {
-            if (index < 0 || index >= (children?.Count ?? 0))
-                throw new ArgumentOutOfRangeException(nameof(index));
-
-            return children[index];
-        }
+        // Có thể xóa nếu không dùng sau này
+        //public IProductComponent GetChild(int index)
+        //{
+        //    if (index < 0 || index >= (children?.Count ?? 0))
+        //        throw new ArgumentOutOfRangeException(nameof(index));
+        //
+        //    return children[index];
+        //}
 
         public int GetChildCount()
         {
@@ -886,27 +888,28 @@ namespace OOP_finalProject.Products
             return leafProducts;
         }
 
-        public bool CanCreateMore(int requestedQuantity)
-        {
-            if (requestedQuantity <= 0)
-                return false;
-
-            var leafProducts = GetAllLeafProducts();
-            foreach (var product in leafProducts)
-            {
-                if (product.Quantity < (product.Quantity * requestedQuantity))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        // Có thể xóa nếu không dùng sau này
+        //public bool CanCreateMore(int requestedQuantity)
+        //{
+        //    if (requestedQuantity <= 0)
+        //        return false;
+        //
+        //    var leafProducts = GetAllLeafProducts();
+        //    foreach (var product in leafProducts)
+        //    {
+        //        if (product.Quantity < (product.Quantity * requestedQuantity))
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
 
         /// <summary>
         /// Serialization - CHỈ serialized các properties cần thiết
         /// KHÔNG gọi base.GetObjectData() để tránh trùng lặp
         /// </summary>
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             try
             {
@@ -924,45 +927,46 @@ namespace OOP_finalProject.Products
             }
         }
 
-        public ComboProduct CloneWithQuantity(int newQuantity)
-        {
-            var cloned = new ComboProduct(this.Id, this.Name, this.discountPercentage, this.description)
-            {
-                Quantity = newQuantity
-            };
-
-            if (children != null)
-            {
-                foreach (var child in children)
-                {
-                    if (child is Product product)
-                    {
-                        Product clonedProduct = CloneProduct(product);
-                        if (clonedProduct != null)
-                        {
-                            cloned.Add(clonedProduct);
-                        }
-                    }
-                }
-            }
-
-            return cloned;
-        }
-
-        private Product CloneProduct(Product original)
-        {
-            if (original is DrinkProduct drink)
-                return new DrinkProduct(drink.Id, drink.Name, drink.Price, drink.Quantity, drink.Carbonated);
-            else if (original is FoodProduct food)
-                return new FoodProduct(food.Id, food.Name, food.Price, food.Quantity, food.ExpirationDate);
-            else if (original is HouseholdProduct household)
-                return new HouseholdProduct(household.Id, household.Name, household.Price, household.Quantity, household.Brand);
-            else if (original is ElectronicProduct electronic)
-                return new ElectronicProduct(electronic.Id, electronic.Name, electronic.Price, electronic.Quantity, electronic.WarrantyPeriod);
-            else if (original is ClothingProduct clothing)
-                return new ClothingProduct(clothing.Id, clothing.Name, clothing.Price, clothing.Quantity, clothing.Size);
-            else
-                return original;
-        }
+        // Có thể xóa nếu không dùng sau này
+        //public ComboProduct CloneWithQuantity(int newQuantity)
+        //{
+        //    var cloned = new ComboProduct(this.Id, this.Name, this.discountPercentage, this.description)
+        //    {
+        //        Quantity = newQuantity
+        //    };
+        //
+        //    if (children != null)
+        //    {
+        //        foreach (var child in children)
+        //        {
+        //            if (child is Product product)
+        //            {
+        //                Product clonedProduct = CloneProduct(product);
+        //                if (clonedProduct != null)
+        //                {
+        //                    cloned.Add(clonedProduct);
+        //                }
+        //            }
+        //        }
+        //    }
+        //
+        //    return cloned;
+        //}
+        //
+        //private Product CloneProduct(Product original)
+        //{
+        //    if (original is DrinkProduct drink)
+        //        return new DrinkProduct(drink.Id, drink.Name, drink.Price, drink.Quantity, drink.Carbonated);
+        //    else if (original is FoodProduct food)
+        //        return new FoodProduct(food.Id, food.Name, food.Price, food.Quantity, food.ExpirationDate);
+        //    else if (original is HouseholdProduct household)
+        //        return new HouseholdProduct(household.Id, household.Name, household.Price, household.Quantity, household.Brand);
+        //    else if (original is ElectronicProduct electronic)
+        //        return new ElectronicProduct(electronic.Id, electronic.Name, electronic.Price, electronic.Quantity, electronic.WarrantyPeriod);
+        //    else if (original is ClothingProduct clothing)
+        //        return new ClothingProduct(clothing.Id, clothing.Name, clothing.Price, clothing.Quantity, clothing.Size);
+        //    else
+        //        return original;
+        //}
     }
 }

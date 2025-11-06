@@ -71,9 +71,7 @@ namespace OOP_finalProject
         }
         public virtual List<BillDetails> BillDetails { get { return billDetails; } set { billDetails = value; } }
         
-        /// <summary>
-        /// Tổng giá trị đơn hàng (chưa giảm giá)
-        /// </summary>
+        // tổng tiền (chưa giảm giá)
         public virtual decimal TotalPrice
         {
             get
@@ -87,9 +85,7 @@ namespace OOP_finalProject
             }
         }
 
-        /// <summary>
-        /// Số tiền được giảm giá (Strategy Pattern)
-        /// </summary>
+        // số tiền được giảm
         public virtual decimal DiscountAmount
         {
             get
@@ -102,9 +98,7 @@ namespace OOP_finalProject
             }
         }
 
-        /// <summary>
-        /// Tổng giá trị sau khi giảm giá
-        /// </summary>
+        // thành tiền
         public virtual decimal FinalPrice
         {
             get
@@ -113,9 +107,7 @@ namespace OOP_finalProject
             }
         }
 
-        /// <summary>
-        /// Phần trăm giảm giá của khách hàng
-        /// </summary>
+        // phần trăm giảm giá
         public virtual decimal DiscountPercentage
         {
             get
@@ -135,7 +127,6 @@ namespace OOP_finalProject
             info.AddValue("CustomerName", CustomerName);
             info.AddValue("CashierName", CashierName);
             info.AddValue("BillDetails", BillDetails);
-            //info.AddValue("TotalPrice", TotalPrice);
         }
     }
 }

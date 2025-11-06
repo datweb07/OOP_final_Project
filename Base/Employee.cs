@@ -5,7 +5,7 @@ using OOP_finalProject.Interfaces;
 namespace OOP_finalProject.Base
 {
     [Serializable]
-    public class Employee : IAuthenticatable, IDisplayable, ISerializable
+    public class Employee : IAuthenticatable, ISerializable
     {
         private string id;
         private string name;
@@ -112,11 +112,6 @@ namespace OOP_finalProject.Base
             info.AddValue("Address", Address);
             info.AddValue("Role", Role);
             info.AddValue("HireDate", HireDate);
-        }
-
-        public virtual bool ValidateCredentials(string username, string password)
-        {
-            return !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
         }
 
         public virtual string GetRole()
