@@ -16,7 +16,9 @@ namespace OOP_finalProject.Employees
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Tên quản lý không thể để trống!");
+                {
+                    throw new ArgumentException("Tên quản lý không thể để trống hoặc rỗng!");
+                }
                 managerName = value;
             }
         }

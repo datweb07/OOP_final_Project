@@ -51,7 +51,5 @@ namespace OOP_finalProject
                 Console.WriteLine($"Lỗi ghi file: {ex.Message}");
             }
         }
-
-
     }
 }
