@@ -9,11 +9,7 @@ namespace OOP_finalProject
     public class FoodProductList : ISerializable
     {
         private List<FoodProduct> foodProducts = new List<FoodProduct>();
-        public List<FoodProduct> FoodProducts
-        {
-            get { return foodProducts; }
-            set { foodProducts = value; }
-        }
+        public List<FoodProduct> FoodProducts { get { return foodProducts; } set { foodProducts = value; } }
         public FoodProductList()
         {
         }
