@@ -258,7 +258,7 @@ namespace OOP_finalProject.EntityForm
             this.lblActiveCombosValue.AutoSize = true;
             this.lblActiveCombosValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblActiveCombosValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.lblActiveCombosValue.Location = new System.Drawing.Point(500, 220);
+            this.lblActiveCombosValue.Location = new System.Drawing.Point(530, 220);
             this.lblActiveCombosValue.Name = "lblActiveCombosValue";
             this.lblActiveCombosValue.Size = new System.Drawing.Size(14, 15);
             this.lblActiveCombosValue.TabIndex = 19;
@@ -269,7 +269,7 @@ namespace OOP_finalProject.EntityForm
             this.lblTotalValueValue.AutoSize = true;
             this.lblTotalValueValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblTotalValueValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.lblTotalValueValue.Location = new System.Drawing.Point(500, 200);
+            this.lblTotalValueValue.Location = new System.Drawing.Point(530, 200);
             this.lblTotalValueValue.Name = "lblTotalValueValue";
             this.lblTotalValueValue.Size = new System.Drawing.Size(20, 15);
             this.lblTotalValueValue.TabIndex = 18;
@@ -280,7 +280,7 @@ namespace OOP_finalProject.EntityForm
             this.lblTotalProductsValue.AutoSize = true;
             this.lblTotalProductsValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblTotalProductsValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.lblTotalProductsValue.Location = new System.Drawing.Point(500, 180);
+            this.lblTotalProductsValue.Location = new System.Drawing.Point(530, 180);
             this.lblTotalProductsValue.Name = "lblTotalProductsValue";
             this.lblTotalProductsValue.Size = new System.Drawing.Size(14, 15);
             this.lblTotalProductsValue.TabIndex = 17;
@@ -291,7 +291,7 @@ namespace OOP_finalProject.EntityForm
             this.lblTotalCombosValue.AutoSize = true;
             this.lblTotalCombosValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblTotalCombosValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.lblTotalCombosValue.Location = new System.Drawing.Point(500, 160);
+            this.lblTotalCombosValue.Location = new System.Drawing.Point(530, 160);
             this.lblTotalCombosValue.Name = "lblTotalCombosValue";
             this.lblTotalCombosValue.Size = new System.Drawing.Size(14, 15);
             this.lblTotalCombosValue.TabIndex = 16;
@@ -504,6 +504,9 @@ namespace OOP_finalProject.EntityForm
             this.gridProductsInCombo.AllowUserToAddRows = false;
             this.gridProductsInCombo.AllowUserToDeleteRows = false;
             this.gridProductsInCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridProductsInCombo.Dock = DockStyle.Fill;
+            this.gridProductsInCombo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridProductsInCombo.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             this.gridProductsInCombo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colProductId,
             this.colProductName,
