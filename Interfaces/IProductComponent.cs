@@ -2,10 +2,6 @@
 
 namespace OOP_finalProject.Interfaces
 {
-    /// <summary>
-    /// Interface Component cho Composite Pattern
-    /// Định nghĩa các phương thức chung cho cả sản phẩm đơn lẻ và composite
-    /// </summary>
     public interface IProductComponent
     {
         string Id { get; set; }
@@ -13,34 +9,22 @@ namespace OOP_finalProject.Interfaces
         decimal Price { get; set; }
         decimal Quantity { get; set; }
 
-        /// <summary>
-        /// Tính tổng giá trị (cho sản phẩm đơn hoặc combo)
-        /// </summary>
+        // tính tổng tiền cho sản phẩm đơn hoặc combo
         decimal CalculateTotal();
 
-        /// <summary>
-        /// Tính giảm giá
-        /// </summary>
+        // tính giảm giá
         decimal CalculateDiscount(decimal discountPercentage);
 
-        /// <summary>
-        /// Lấy thông tin hiển thị
-        /// </summary>
+        // thông tin
         string GetDisplayInfo();
 
-        /// <summary>
-        /// Lấy thông tin ngắn gọn
-        /// </summary>
+        // thông tin ngắn
         string GetShortInfo();
 
-        /// <summary>
-        /// Kiểm tra xem có phải là composite không
-        /// </summary>
+        // kiểm tra có phải là composite không
         bool IsComposite();
 
-        /// <summary>
-        /// Lấy danh sách các component con (nếu là composite)
-        /// </summary>
+        // lấy ds sản phẩm con (nếu là composite)
         List<IProductComponent> GetChildren();
     }
 }
