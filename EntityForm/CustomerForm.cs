@@ -20,15 +20,6 @@ namespace OOP_finalProject
         public CustomerForm()
         {
             InitializeComponent();
-
-            // Wire filter button events ngay trong constructor
-            btnShowAll.Click += btnShowAll_Click;
-            btnShowRegular.Click += btnShowRegular_Click;
-            btnShowVIP.Click += btnShowVIP_Click;
-
-            // Wire radio button events
-            rbRegular.CheckedChanged += (s, e) => UpdateDiscountLabelForSelection();
-            rbVIP.CheckedChanged += (s, e) => UpdateDiscountLabelForSelection();
         }
 
         private void FormCustomer_Load(object sender, EventArgs e)

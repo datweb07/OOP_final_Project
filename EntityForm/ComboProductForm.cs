@@ -582,43 +582,6 @@ namespace OOP_finalProject.EntityForm
             }
         }
 
-        ///// <summary>
-        ///// Kiểm tra tồn kho khi thay đổi số lượng combo
-        ///// </summary>
-        //private bool CheckInventoryForComboQuantity(int requestedQuantity)
-        //{
-        //    if (currentComposite == null) return false;
-
-        //    // Kiểm tra xem có đủ sản phẩm con để tạo số lượng combo mong muốn không
-        //    var leafProducts = currentComposite.GetAllLeafProducts();
-        //    foreach (var product in leafProducts)
-        //    {
-        //        // Mỗi combo cần 1 lượng sản phẩm con bằng số lượng của sản phẩm đó trong combo
-        //        decimal requiredQuantity = product.Quantity * requestedQuantity;
-        //        if (product.Quantity < requiredQuantity)
-        //        {
-        //            MessageBox.Show($"Không đủ tồn kho cho sản phẩm: {product.Name}\n" +
-        //                          $"Cần: {requiredQuantity}, Hiện có: {product.Quantity}",
-        //                          "Cảnh báo tồn kho",
-        //                          MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return false;
-        //        }
-        //    }
-        //    return true;
-        //}
-
-        ///// <summary>
-        ///// Nhập số lượng nhanh cho combo
-        ///// </summary>
-        //private void QuickSetComboQuantity(int quantity)
-        //{
-        //    if (currentComposite != null && quantity >= 0)
-        //    {
-        //        numComboQuantity.Value = quantity;
-        //        statusLabel.Text = $"Đã đặt số lượng combo thành {quantity}";
-        //    }
-        //}
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             PerformSearch();

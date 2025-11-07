@@ -225,10 +225,12 @@ namespace OOP_finalProject
             rbRegular.Location = new Point(10, 22);
             rbRegular.AutoSize = true;
             rbRegular.Checked = true;
+            rbRegular.CheckedChanged += (s, e) => UpdateDiscountLabelForSelection();
 
             rbVIP.Text = "VIP";
             rbVIP.Location = new Point(120, 22);
             rbVIP.AutoSize = true;
+            rbVIP.CheckedChanged += (s, e) => UpdateDiscountLabelForSelection();
 
             groupBoxCustomerType.Controls.Add(rbRegular);
             groupBoxCustomerType.Controls.Add(rbVIP);
@@ -306,6 +308,7 @@ namespace OOP_finalProject
             btnShowAll.FlatStyle = FlatStyle.Flat;
             btnShowAll.FlatAppearance.BorderSize = 0;
             btnShowAll.Cursor = Cursors.Hand;
+            btnShowAll.Click += btnShowAll_Click;
 
             // 
             // btnShowRegular
@@ -319,6 +322,7 @@ namespace OOP_finalProject
             btnShowRegular.FlatStyle = FlatStyle.Flat;
             btnShowRegular.FlatAppearance.BorderSize = 0;
             btnShowRegular.Cursor = Cursors.Hand;
+            btnShowRegular.Click += btnShowRegular_Click;
 
             // 
             // btnShowVIP
@@ -332,6 +336,7 @@ namespace OOP_finalProject
             btnShowVIP.FlatStyle = FlatStyle.Flat;
             btnShowVIP.FlatAppearance.BorderSize = 0;
             btnShowVIP.Cursor = Cursors.Hand;
+            btnShowVIP.Click += btnShowVIP_Click;
 
             // 
             // statusLabel
