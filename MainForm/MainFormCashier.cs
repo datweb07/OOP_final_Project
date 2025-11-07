@@ -28,17 +28,6 @@ namespace OOP_finalProject
                     btn.MouseLeave += MenuButton_MouseLeave;
                 }
             }
-
-            // Special hover effects cho Exit button
-            btnExit.MouseEnter += ExitButton_MouseEnter;
-            btnExit.MouseLeave += ExitButton_MouseLeave;
-
-            // thiết lập sự kiện (hiển thị form)
-            btnOrder.Click += btnOrder_Click;
-            btnInvoiceList.Click += btnInvoiceList_Click;
-            btnOrderList.Click += btnOrderList_Click;
-            btnAccount.Click += btnAccount_Click;
-            btnExit.Click += btnExit_Click;
         }
 
         private void UpdateWelcomeMessage()
@@ -53,7 +42,6 @@ namespace OOP_finalProject
             }
         }
 
-        #region Menu Button Hover Effects
         private void MenuButton_MouseEnter(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -77,9 +65,7 @@ namespace OOP_finalProject
         {
             btnExit.BackColor = Color.FromArgb(231, 76, 60);
         }
-        #endregion
 
-        #region Form Loading Methods
         private void LoadForm(Form formToLoad, string title, Button clickedButton)
         {
             if (formToLoad == null)
@@ -121,16 +107,12 @@ namespace OOP_finalProject
             currentForm.Show();
         }
 
-
-        #endregion
-
-        #region Event Handlers
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
+        #region Entity Form
         // Danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
@@ -143,12 +125,13 @@ namespace OOP_finalProject
             LoadForm(new ListOrderForm(), "📝 Danh Sách Đơn Hàng", btnOrderList);
         }
 
-        // Tạo đơn hàng
-        //private void btnOrder_Click(object sender, EventArgs e)
-        //{
-        //    LoadForm(new NewOrderForm(), "🛒 Tạo Đơn Hàng Mới", btnOrder);
-        //}
+        // Danh sách sản phẩm
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            LoadForm(new ProductForm(), "📦 Quản Lý Sản Phẩm", btnProduct);
+        }
 
+        // Tạo đơn hàng mới
         private void btnOrder_Click(object sender, EventArgs e)
         {
             LoadForm(new OrderForm(), "🛒 Tạo Đơn Hàng Mới", btnOrder);
@@ -200,7 +183,6 @@ namespace OOP_finalProject
         }
         #endregion
 
-        #region Form Cleanup
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -226,12 +208,6 @@ namespace OOP_finalProject
             }
 
             base.OnFormClosing(e);
-        }
-        #endregion
-
-        private void btnProduct_Click(object sender, EventArgs e)
-        {
-            LoadForm(new ProductForm(), "📦 Quản Lý Sản Phẩm", btnProduct);
         }
     }
 }

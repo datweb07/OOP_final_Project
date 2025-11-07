@@ -30,27 +30,6 @@ namespace OOP_finalProject
                     btn.MouseLeave += MenuButton_MouseLeave;
                 }
             }
-
-            // Special hover effects cho Exit button
-            btnExit.MouseEnter += ExitButton_MouseEnter;
-            btnExit.MouseLeave += ExitButton_MouseLeave;
-
-            // Setup click events cho các buttons
-            btnDashboard.Click += btnDashboard_Click;
-            btnCustomer.Click += btnCustomer_Click;
-            btnManager.Click += btnManager_Click;
-            btnSeller.Click += btnSeller_Click;
-            btnProduct.Click += btnProduct_Click;
-            btnBeverage.Click += btnBeverage_Click;
-            btnFood.Click += btnFood_Click;
-            btnHouseHold.Click += btnHouseHold_Click;
-            btnInvoiceList.Click += btnInvoiceList_Click;
-            btnOrderList.Click += btnOrderList_Click;
-            btnAccount.Click += btnAccount_Click; // Thêm sự kiện cho nút Account
-            btnExit.Click += btnExit_Click;
-            btnStore.Click += btnStore_Click;
-            btnCombo.Click += btnCombo_Click;
-            btnClothing.Click += btnClothing_Click;
         }
 
         private void UpdateWelcomeMessage()
@@ -65,7 +44,6 @@ namespace OOP_finalProject
             }
         }
 
-        #region Menu Button Hover Effects
         private void MenuButton_MouseEnter(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -89,9 +67,7 @@ namespace OOP_finalProject
         {
             btnExit.BackColor = Color.FromArgb(231, 76, 60);
         }
-        #endregion
 
-        #region Form Loading Methods
         private void LoadForm(Form formToLoad, string title, Button clickedButton)
         {
             if (formToLoad == null)
@@ -165,9 +141,7 @@ namespace OOP_finalProject
 
             dashboardForm.Show();
         }
-        #endregion
 
-        #region Event Handlers
         private void MainFormAdmin_Load(object sender, EventArgs e)
         {
             lblStatus.Text = "Hệ thống đã sẵn sàng";
@@ -177,6 +151,8 @@ namespace OOP_finalProject
         {
             lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
+
+        #region Entity Form
 
         // Dashboard
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -299,7 +275,6 @@ namespace OOP_finalProject
         }
         #endregion
 
-        #region Form Cleanup
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -322,8 +297,5 @@ namespace OOP_finalProject
 
             base.OnFormClosing(e);
         }
-        #endregion
-
-
     }
 }

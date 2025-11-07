@@ -151,6 +151,7 @@ namespace OOP_finalProject
             this.btnClothing.Text = "👚 Đồ thời trang";
             this.btnClothing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClothing.UseVisualStyleBackColor = false;
+            this.btnClothing.Click += btnClothing_Click;
             // 
             // btnStore
             // 
@@ -169,6 +170,7 @@ namespace OOP_finalProject
             this.btnStore.Text = "🏪 Cửa hàng";
             this.btnStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStore.UseVisualStyleBackColor = false;
+            this.btnStore.Click += btnStore_Click;
             // 
             // btnCombo
             // 
@@ -187,6 +189,7 @@ namespace OOP_finalProject
             this.btnCombo.Text = "🛍️ Quản lý Combo";
             this.btnCombo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCombo.UseVisualStyleBackColor = false;
+            this.btnCombo.Click += btnCombo_Click;
             // 
             // btnElectronic
             // 
@@ -224,6 +227,7 @@ namespace OOP_finalProject
             this.btnDashboard.Text = "📊 Dashboard";
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.UseVisualStyleBackColor = false;
+            this.btnDashboard.Click += btnDashboard_Click;
             // 
             // btnCustomer
             // 
@@ -242,6 +246,7 @@ namespace OOP_finalProject
             this.btnCustomer.Text = "👥 Khách Hàng";
             this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCustomer.UseVisualStyleBackColor = false;
+            this.btnCustomer.Click += btnCustomer_Click;
             // 
             // btnManager
             // 
@@ -260,6 +265,7 @@ namespace OOP_finalProject
             this.btnManager.Text = "👨🏻‍💼 Nhân Viên Quản Lý";
             this.btnManager.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnManager.UseVisualStyleBackColor = false;
+            this.btnManager.Click += btnManager_Click;
             // 
             // btnSeller
             // 
@@ -278,6 +284,7 @@ namespace OOP_finalProject
             this.btnSeller.Text = "🛒 Nhân Viên Bán Hàng";
             this.btnSeller.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSeller.UseVisualStyleBackColor = false;
+            this.btnSeller.Click += btnSeller_Click;
             // 
             // btnProduct
             // 
@@ -296,6 +303,7 @@ namespace OOP_finalProject
             this.btnProduct.Text = "📦 Sản Phẩm";
             this.btnProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProduct.UseVisualStyleBackColor = false;
+            this.btnProduct.Click += btnProduct_Click;
             // 
             // btnBeverage
             // 
@@ -314,6 +322,7 @@ namespace OOP_finalProject
             this.btnBeverage.Text = "🥤 Đồ Uống";
             this.btnBeverage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBeverage.UseVisualStyleBackColor = false;
+            this.btnBeverage.Click += btnBeverage_Click;
             // 
             // btnFood
             // 
@@ -332,6 +341,7 @@ namespace OOP_finalProject
             this.btnFood.Text = "🍔 Thực Phẩm";
             this.btnFood.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFood.UseVisualStyleBackColor = false;
+            this.btnFood.Click += btnFood_Click;
             // 
             // btnHouseHold
             // 
@@ -350,6 +360,7 @@ namespace OOP_finalProject
             this.btnHouseHold.Text = "🏠 Đồ Gia Dụng";
             this.btnHouseHold.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHouseHold.UseVisualStyleBackColor = false;
+            this.btnHouseHold.Click += btnHouseHold_Click;
             // 
             // btnInvoiceList
             // 
@@ -368,6 +379,7 @@ namespace OOP_finalProject
             this.btnInvoiceList.Text = "📋 Danh Sách Hoá Đơn";
             this.btnInvoiceList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInvoiceList.UseVisualStyleBackColor = false;
+            this.btnInvoiceList.Click += btnInvoiceList_Click;
             // 
             // btnOrderList
             // 
@@ -386,6 +398,7 @@ namespace OOP_finalProject
             this.btnOrderList.Text = "📝 Danh Sách Đơn Hàng";
             this.btnOrderList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrderList.UseVisualStyleBackColor = false;
+            this.btnOrderList.Click += btnOrderList_Click;
             // 
             // btnAccount
             // 
@@ -404,6 +417,7 @@ namespace OOP_finalProject
             this.btnAccount.Text = "👤 Tài Khoản";
             this.btnAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAccount.UseVisualStyleBackColor = false;
+            this.btnAccount.Click += btnAccount_Click;
             // 
             // btnExit
             // 
@@ -422,6 +436,9 @@ namespace OOP_finalProject
             this.btnExit.Text = "➜] Thoát";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.MouseEnter += ExitButton_MouseEnter;
+            this.btnExit.MouseLeave += ExitButton_MouseLeave;
+            this.btnExit.Click += btnExit_Click;
             // 
             // lblTitle
             // 
@@ -545,8 +562,6 @@ namespace OOP_finalProject
         private ToolStripStatusLabel lblStatus;
         private ToolStripStatusLabel lblTime;
         private System.Windows.Forms.Timer timer1;
-
-        // Menu buttons
         private Button btnDashboard;
         private Button btnCustomer;
         private Button btnManager;

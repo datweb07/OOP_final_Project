@@ -131,6 +131,7 @@ namespace OOP_finalProject
             this.btnInvoiceList.Text = "📋 Danh Sách Hoá Đơn";
             this.btnInvoiceList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInvoiceList.UseVisualStyleBackColor = false;
+            this.btnInvoiceList.Click += btnInvoiceList_Click;
             // 
             // btnOrderList
             // 
@@ -149,6 +150,7 @@ namespace OOP_finalProject
             this.btnOrderList.Text = "📝 Danh Sách Đơn Hàng";
             this.btnOrderList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrderList.UseVisualStyleBackColor = false;
+            this.btnOrderList.Click += btnOrderList_Click;
             // 
             // btnAccount
             // 
@@ -167,6 +169,7 @@ namespace OOP_finalProject
             this.btnAccount.Text = "👤 Tài Khoản";
             this.btnAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAccount.UseVisualStyleBackColor = false;
+            this.btnAccount.Click += btnAccount_Click;
             // 
             // btnExit
             // 
@@ -185,6 +188,9 @@ namespace OOP_finalProject
             this.btnExit.Text = "🚪 Thoát";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.MouseEnter += ExitButton_MouseEnter;
+            this.btnExit.MouseLeave += ExitButton_MouseLeave;
+            this.btnExit.Click += btnExit_Click;
             // 
             // btnOrder
             // 
@@ -203,6 +209,7 @@ namespace OOP_finalProject
             this.btnOrder.Text = "🛒 Tạo Đơn Hàng";
             this.btnOrder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += btnOrder_Click;
             // 
             // lblTitle
             // 
@@ -345,8 +352,6 @@ namespace OOP_finalProject
         private ToolStripStatusLabel lblStatus;
         private ToolStripStatusLabel lblTime;
         private System.Windows.Forms.Timer timer1;
-
-        // Menu buttons
         private Button btnInvoiceList;
         private Button btnOrderList;
         private Button btnOrder;
