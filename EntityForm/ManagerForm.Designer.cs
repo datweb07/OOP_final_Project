@@ -51,8 +51,6 @@ namespace OOP_finalProject
             lblCustomerCode = new Label();
             lblTeamSize = new Label();
             txtTeamSize = new TextBox();
-
-            // Thêm các controls cho chức năng tìm kiếm và lọc
             txtSearch = new TextBox();
             btnSearch = new Button();
             statusLabel = new Label();
@@ -294,14 +292,11 @@ namespace OOP_finalProject
             statusLabel.TabIndex = 4;
             statusLabel.Text = "Sẵn sàng";
 
-            // THÊM VÀO groupBox1.Controls
             groupBox1.Controls.Add(txtSearch);
             groupBox1.Controls.Add(lblSearch);
             groupBox1.Controls.Add(btnSearch);
             groupBox1.Controls.Add(btnAddNew);
             groupBox1.Controls.Add(statusLabel);
-
-            // Add all controls to groupBox1
             groupBox1.Controls.Add(btnDelete);
             groupBox1.Controls.Add(btnSave);
             groupBox1.Controls.Add(btnRefresh);
@@ -377,8 +372,6 @@ namespace OOP_finalProject
         }
 
         #endregion
-
-        // Khai báo các controls
         private GroupBox groupBox1;
         private DataGridView gridData;
         private GroupBox groupBox2;
@@ -398,8 +391,6 @@ namespace OOP_finalProject
         private Button btnRefresh;
         private Label lblTeamSize;
         private TextBox txtTeamSize;
-
-        // Thêm các controls cho chức năng tìm kiếm và lọc
         private TextBox txtSearch;
         private Button btnSearch;
         private Label statusLabel;
