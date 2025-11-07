@@ -48,15 +48,10 @@ namespace OOP_finalProject
             lblCustomerCode = new Label();
             gridData = new DataGridView();
             groupBox2 = new GroupBox();
-
-            // Thêm các controls cho chức năng tìm kiếm
             txtSearch = new TextBox();
             btnSearch = new Button();
             statusLabel = new Label();
             btnAddNew = new Button();
-
-
-            // Thêm controls cho Manager
             lblManager = new Label();
             cmbManager = new ComboBox();
 
@@ -82,7 +77,9 @@ namespace OOP_finalProject
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(261, 27);
             txtSearch.TabIndex = 1;
-
+            //
+            // lblSearch
+            //
             lblSearch = new Label();
             lblSearch.AutoSize = true;
             lblSearch.Location = new Point(31, 41);
@@ -90,7 +87,9 @@ namespace OOP_finalProject
             lblSearch.Size = new Size(78, 20);
             lblSearch.TabIndex = 0;
             lblSearch.Text = "Tìm kiếm";
-
+            //
+            // btnSearch
+            //
             btnSearch.Location = new Point(380, 34);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(100, 27);
@@ -102,7 +101,9 @@ namespace OOP_finalProject
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.Click += btnSearch_Click;
-
+            //
+            // btnAddNew
+            //
             btnAddNew.Location = new Point(490, 34);
             btnAddNew.Name = "btnAddNew";
             btnAddNew.Size = new Size(100, 27);
@@ -114,7 +115,6 @@ namespace OOP_finalProject
             btnAddNew.FlatStyle = FlatStyle.Flat;
             btnAddNew.FlatAppearance.BorderSize = 0;
             btnAddNew.Click += btnAddNew_Click;
-
             // 
             // txtCode
             // 
@@ -295,14 +295,11 @@ namespace OOP_finalProject
             statusLabel.TabIndex = 4;
             statusLabel.Text = "Sẵn sàng";
 
-            // THÊM VÀO groupBox1.Controls
             groupBox1.Controls.Add(txtSearch);
             groupBox1.Controls.Add(lblSearch);
             groupBox1.Controls.Add(btnSearch);
             groupBox1.Controls.Add(btnAddNew);
             groupBox1.Controls.Add(statusLabel);
-
-            // Add all controls to groupBox1
             groupBox1.Controls.Add(btnDelete);
             groupBox1.Controls.Add(btnSave);
             groupBox1.Controls.Add(btnRefresh);
@@ -333,8 +330,6 @@ namespace OOP_finalProject
             gridData.Size = new Size(917, 178);
             gridData.TabIndex = 1;
             gridData.CellEnter += gridData_CellEnter;
-
-            // Tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -398,8 +393,6 @@ namespace OOP_finalProject
         private Button btnRefresh;
         private Label lblManager;
         private ComboBox cmbManager;
-
-        // Thêm các controls cho chức năng tìm kiếm
         private TextBox txtSearch;
         private Button btnSearch;
         private Label statusLabel;

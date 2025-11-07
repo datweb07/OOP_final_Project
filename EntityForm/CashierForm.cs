@@ -80,17 +80,6 @@ namespace OOP_finalProject
             managers = managerData.GetData();
             LoadManagersToComboBox();
             DisplayInGrid();
-            //if (gridData.Columns["DaysWorked"] == null)
-            //{
-            //    var col = new DataGridViewTextBoxColumn();
-            //    col.Name = "DaysWorked";
-            //    col.HeaderText = "Số ngày làm";
-            //    col.DataPropertyName = "DaysWorked";
-            //    gridData.Columns.Add(col);
-            //}
-
-            // auto tìm kiếm khi gõ
-            //txtSearch.TextChanged += (s, _) => btnSearch_Click(null, null);
         }
 
         private void DisplayInGrid()
