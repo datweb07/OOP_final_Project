@@ -23,6 +23,16 @@ namespace OOP_finalProject.Employees
             }
         }
 
+        public decimal HourlyRate
+        {
+            get { return 23000m; }
+        }
+
+        public decimal Salary
+        {
+            get { return DaysWorked * 8 * HourlyRate; }
+        }
+
         public Cashier() { }
 
         public Cashier(string id, string name, string gender, string phoneNumber, string address) : base(id, name, gender, phoneNumber, address)
@@ -58,16 +68,6 @@ namespace OOP_finalProject.Employees
         public override string GetDisplayInfo()
         {
             return base.GetDisplayInfo() + $", Manager: {ManagerName}";
-        }
-
-        public decimal HourlyRate
-        {
-            get { return 23000m; }
-        }
-
-        public decimal Salary
-        {
-            get { return DaysWorked * 8 * HourlyRate; }
         }
     }
 }
