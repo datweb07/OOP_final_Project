@@ -3,7 +3,6 @@ using System;
 
 namespace OOP_finalProject.Strategies
 {
-    // Khách hàng VIP thì giảm giá 30% trên tổng giá trị đơn hàng
     public class VIPCustomerDiscountStrategy : IDiscountStrategy
     {
         private const decimal discountPercentage = 30m;
