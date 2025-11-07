@@ -21,7 +21,6 @@ namespace OOP_finalProject.Products
             return $"Thương hiệu: {Brand}";
         }
 
-        // Constructor cho deserialization
         protected HouseholdProduct(SerializationInfo info, StreamingContext context)
            : base(info, context)
         {
@@ -36,7 +35,6 @@ namespace OOP_finalProject.Products
             }
         }
 
-        // Phương thức serialization - QUAN TRỌNG: Phải override và implement ISerializable
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);

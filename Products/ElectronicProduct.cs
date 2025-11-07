@@ -14,8 +14,6 @@ namespace OOP_finalProject.Products
             get { return warrantyPeriod; }
             set
             {
-                //if (string.IsNullOrWhiteSpace(value))
-                //    throw new ArgumentException("Thời gian bảo hành không được để trống");
                 warrantyPeriod = value;
             }
         }
@@ -65,7 +63,9 @@ namespace OOP_finalProject.Products
         public override decimal CalculateDiscount(decimal discountPercentage)
         {
             if (discountPercentage > 20)
-                discountPercentage = 20; 
+            {
+                discountPercentage = 20;
+            }
 
             return base.CalculateDiscount(discountPercentage);
         }
