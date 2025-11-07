@@ -35,14 +35,10 @@ namespace OOP_finalProject
             txtQty = new NumericUpDown();
             txtPrice = new NumericUpDown();
             label1 = new Label();
-
-            // Thêm các controls cho chức năng tìm kiếm
             txtSearch = new TextBox();
             btnSearch = new Button();
             statusLabel = new Label();
             btnAddNew = new Button();
-
-            // Thêm controls mới: lọc gas, sắp xếp, thống kê
             groupBoxFilter = new GroupBox();
             rdoAll = new RadioButton();
             rdoWithGas = new RadioButton();
@@ -381,14 +377,12 @@ namespace OOP_finalProject
             statusLabel.TabIndex = 4;
             statusLabel.Text = "Sẵn sàng";
 
-            // THÊM VÀO groupBox1.Controls
+
             groupBox1.Controls.Add(txtSearch);
             groupBox1.Controls.Add(lblSearch);
             groupBox1.Controls.Add(btnSearch);
             groupBox1.Controls.Add(btnAddNew);
             groupBox1.Controls.Add(statusLabel);
-
-            // Add all controls to groupBox1
             groupBox1.Controls.Add(lblTotalValueValue);
             groupBox1.Controls.Add(lblTotalProductsValue);
             groupBox1.Controls.Add(lblTotalValue);
@@ -421,8 +415,6 @@ namespace OOP_finalProject
             gridData.Size = new Size(1194, 274);
             gridData.TabIndex = 1;
             gridData.CellEnter += gridData_CellEnter;
-
-            // Tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -487,15 +479,11 @@ namespace OOP_finalProject
         private NumericUpDown txtPrice;
         private Label label1;
         private CheckBox chkIsAlcoholic;
-
-        // Thêm các controls cho chức năng tìm kiếm
         private TextBox txtSearch;
         private Button btnSearch;
         private Label statusLabel;
         private Button btnAddNew;
         private Label lblSearch;
-
-        // Thêm controls mới
         private GroupBox groupBoxFilter;
         private RadioButton rdoWithoutGas;
         private RadioButton rdoWithGas;

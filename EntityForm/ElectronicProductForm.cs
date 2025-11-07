@@ -85,20 +85,6 @@ namespace OOP_finalProject
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            //txtId.Text = "";
-            //txtName.Text = "";
-            //txtPrice.Value = 0;
-            //txtQuantity.Value = 0;
-            //txtSearch.Text = "";
-            //cboWarranty.SelectedIndex = 0;
-            //cmbSort.SelectedIndex = -1;
-            //cmbWarrantyFilter.SelectedIndex = 0;
-            //chkLowStockOnly.Checked = false;
-
-            //filteredProducts = products.ToList();
-            //ApplyFiltersAndSearch();
-            //statusLabel.Text = "Đã làm mới danh sách";
-
             txtId.Text = "";
             txtName.Text = "";
             txtPrice.Value = 0;
@@ -119,51 +105,6 @@ namespace OOP_finalProject
             statusLabel.Text = "Đã làm mới danh sách";
         }
 
-        //private void btnSave_Click(object sender, EventArgs e)
-        //{
-        //    if (!ValidateInput())
-        //        return;
-
-        //    ElectronicProduct product = null;
-
-        //    for (int i = 0; i < products.Count; i++)
-        //    {
-        //        if (products[i].Id.ToLower() == txtId.Text.ToLower())
-        //        {
-        //            product = products[i];
-        //            break;
-        //        }
-        //    }
-
-        //    if (product == null)
-        //    {
-        //        product = new ElectronicProduct(
-        //            txtId.Text,
-        //            txtName.Text,
-        //            txtPrice.Value,
-        //            txtQuantity.Value,
-        //            (string)cboWarranty.SelectedItem);
-        //        products.Add(product);
-        //    }
-        //    else
-        //    {
-        //        product.Name = txtName.Text;
-        //        product.Price = txtPrice.Value;
-        //        product.Quantity = txtQuantity.Value;
-        //        product.WarrantyPeriod = (string)cboWarranty.SelectedItem;
-        //    }
-
-        //    ApplyFiltersAndSearch();
-        //    productData.SaveData(products);
-
-        //    MessageBox.Show("Cập nhật thông tin sản phẩm điện tử thành công !"
-        //        , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //    statusLabel.Text = "Đã lưu thông tin thành công";
-        //    statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
-        //}
-
-        // fix bug chỗ lưu dữ liệu sau khi thêm mới hoặc cập nhật
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
