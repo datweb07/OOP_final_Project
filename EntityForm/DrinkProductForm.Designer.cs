@@ -462,6 +462,11 @@ namespace OOP_finalProject
             ResumeLayout(false);
         }
 
+        private void gri(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
         private TextBox txtCode;

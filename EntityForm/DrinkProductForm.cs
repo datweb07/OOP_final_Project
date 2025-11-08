@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +18,7 @@ namespace OOP_finalProject
         private DrinkProductData drinkProductData = new DrinkProductData();
         private List<DrinkProduct> drinkProducts = new List<DrinkProduct>();
         private List<DrinkProduct> filteredProducts = new List<DrinkProduct>();
+        private bool isRefresh = false;
 
         BindingSource _src = new BindingSource();
 
@@ -69,9 +71,13 @@ namespace OOP_finalProject
             _src.ResetBindings(true);
             UpdateStatistics();
         }
-
+       
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            isRefresh = true;
+           
+            gridData.ClearSelection();
+            
             txtCode.Text = "";
             txtName.Text = "";
             txtPrice.Value = 0;
@@ -82,9 +88,12 @@ namespace OOP_finalProject
             cmbSort.SelectedIndex = 0;
             statusLabel.Text = "Sẵn sàng";
 
-            // Reset về danh sách đầy đủ
             filteredProducts = drinkProducts.ToList();
+            // Reset về danh sách đầy đủ
             DisplayInGrid();
+
+            isRefresh = false;
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -204,6 +213,7 @@ namespace OOP_finalProject
 
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (isRefresh) return;
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
