@@ -21,6 +21,8 @@ namespace OOP_finalProject.EntityForm
         // Combo hiện tại đang chỉnh sửa
         private ComboProduct currentComposite = null;
 
+        private List<Product> allAvailableProducts = new List<Product>();
+
         BindingSource comboBindingSource = new BindingSource();
         BindingSource productsInComboBindingSource = new BindingSource();
         BindingSource availableProductsBindingSource = new BindingSource();
@@ -92,6 +94,7 @@ namespace OOP_finalProject.EntityForm
         private void LoadAvailableProducts()
         {
             availableProducts.Clear();
+            allAvailableProducts.Clear();
 
             // Load từ các data source khác nhau
             DrinkProductData drinkData = new DrinkProductData();
@@ -100,14 +103,17 @@ namespace OOP_finalProject.EntityForm
             ElectronicProductData electronicData = new ElectronicProductData();
             ClothingProductData clothingData = new ClothingProductData();
 
-            availableProducts.AddRange(drinkData.GetData());
-            availableProducts.AddRange(foodData.GetData());
-            availableProducts.AddRange(householdData.GetData());
-            availableProducts.AddRange(electronicData.GetData());
-            availableProducts.AddRange(clothingData.GetData());
+            allAvailableProducts.AddRange(drinkData.GetData());
+            allAvailableProducts.AddRange(foodData.GetData());
+            allAvailableProducts.AddRange(householdData.GetData());
+            allAvailableProducts.AddRange(electronicData.GetData());
+            allAvailableProducts.AddRange(clothingData.GetData());
 
             // Chỉ hiển thị sản phẩm có số lượng > 0
-            availableProducts = availableProducts.Where(p => p.Quantity > 0).ToList();
+            allAvailableProducts = allAvailableProducts.Where(p => p.Quantity > 0).ToList();
+
+            // Copy sang availableProducts để hiển thị
+            availableProducts = new List<Product>(allAvailableProducts);
 
             availableProductsBindingSource.DataSource = availableProducts;
             availableProductsBindingSource.ResetBindings(true);
@@ -622,6 +628,71 @@ namespace OOP_finalProject.EntityForm
                 comboBindingSource.DataSource = searchResults;
                 comboBindingSource.ResetBindings(true);
                 statusLabel.Text = $"Tìm thấy {searchResults.Count} combo";
+            }
+        }
+
+        // Thêm method tìm kiếm sản phẩm:
+        private void btnSearchProduct_Click(object sender, EventArgs e)
+        {
+            PerformProductSearch();
+        }
+
+        // Thêm method xóa tìm kiếm:
+        private void btnClearSearchProduct_Click(object sender, EventArgs e)
+        {
+            txtSearchProduct.Text = "";
+            availableProducts = new List<Product>(allAvailableProducts);
+            availableProductsBindingSource.DataSource = availableProducts;
+            availableProductsBindingSource.ResetBindings(true);
+            statusLabel.Text = "Đã xóa bộ lọc tìm kiếm sản phẩm";
+        }
+
+        // Thêm method thực hiện tìm kiếm:
+        private void PerformProductSearch()
+        {
+            string keyword = txtSearchProduct.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                // Nếu không có từ khóa, hiển thị tất cả
+                availableProducts = new List<Product>(allAvailableProducts);
+                availableProductsBindingSource.DataSource = availableProducts;
+                availableProductsBindingSource.ResetBindings(true);
+                statusLabel.Text = "Hiển thị tất cả sản phẩm";
+                return;
+            }
+
+            // Tìm kiếm theo tên hoặc mã sản phẩm
+            var searchResults = allAvailableProducts.Where(p =>
+                p.Name.ToLower().Contains(keyword) ||
+                p.Id.ToLower().Contains(keyword)
+            ).ToList();
+
+            if (searchResults.Count == 0)
+            {
+                availableProducts.Clear();
+                availableProductsBindingSource.DataSource = availableProducts;
+                availableProductsBindingSource.ResetBindings(true);
+                statusLabel.Text = $"Không tìm thấy sản phẩm nào với từ khóa '{keyword}'";
+                statusLabel.ForeColor = Color.Red;
+            }
+            else
+            {
+                availableProducts = searchResults;
+                availableProductsBindingSource.DataSource = availableProducts;
+                availableProductsBindingSource.ResetBindings(true);
+                statusLabel.Text = $"Tìm thấy {searchResults.Count} sản phẩm";
+                statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
+            }
+        }
+
+        // Thêm event để tìm kiếm khi nhấn Enter:
+        private void txtSearchProduct_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                PerformProductSearch();
+                e.Handled = true; // Ngăn tiếng beep
             }
         }
     }

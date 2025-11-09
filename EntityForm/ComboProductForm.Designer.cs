@@ -81,6 +81,11 @@ namespace OOP_finalProject.EntityForm
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClearSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearchProduct = new System.Windows.Forms.TextBox();
+            this.btnSearchProduct = new System.Windows.Forms.Button();
+            this.btnClearSearchProduct = new System.Windows.Forms.Button();
+            this.lblSearchProduct = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridComboList)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -143,7 +148,6 @@ namespace OOP_finalProject.EntityForm
             // 
             // lblSearch
             // 
-            this.lblSearch = new System.Windows.Forms.Label();
             this.lblSearch.AutoSize = true;
             this.lblSearch.Location = new System.Drawing.Point(280, 25);
             this.lblSearch.Name = "lblSearch";
@@ -560,6 +564,10 @@ namespace OOP_finalProject.EntityForm
             this.groupBox4.Controls.Add(this.btnRefreshProducts);
             this.groupBox4.Controls.Add(this.btnAddToCombo);
             this.groupBox4.Controls.Add(this.gridAvailableProducts);
+            this.groupBox4.Controls.Add(this.lblSearchProduct);
+            this.groupBox4.Controls.Add(this.txtSearchProduct);
+            this.groupBox4.Controls.Add(this.btnSearchProduct);
+            this.groupBox4.Controls.Add(this.btnClearSearchProduct);
             this.groupBox4.Location = new System.Drawing.Point(718, 268);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(600, 250);
@@ -639,12 +647,14 @@ namespace OOP_finalProject.EntityForm
             this.colAvailName,
             this.colAvailPrice,
             this.colAvailQty});
-            this.gridAvailableProducts.Location = new System.Drawing.Point(6, 19);
+            //this.gridAvailableProducts.Location = new System.Drawing.Point(6, 19);
             this.gridAvailableProducts.Name = "gridAvailableProducts";
             this.gridAvailableProducts.ReadOnly = true;
-            this.gridAvailableProducts.Size = new System.Drawing.Size(588, 189);
+            //this.gridAvailableProducts.Size = new System.Drawing.Size(588, 189);
             this.gridAvailableProducts.TabIndex = 0;
             this.gridAvailableProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAvailableProducts_CellClick);
+            this.gridAvailableProducts.Location = new System.Drawing.Point(6, 55); // Đổi từ 19 thành 55
+            this.gridAvailableProducts.Size = new System.Drawing.Size(588, 153); // Đổi height từ 189 thành 153
             // 
             // colAvailId
             // 
@@ -739,6 +749,49 @@ namespace OOP_finalProject.EntityForm
             this.btnNewCombo.UseVisualStyleBackColor = false;
             this.btnNewCombo.Click += new System.EventHandler(this.btnNewCombo_Click);
             // 
+            // lblSearchProduct
+            // 
+            this.lblSearchProduct.AutoSize = true;
+            this.lblSearchProduct.Location = new System.Drawing.Point(15, 25);
+            this.lblSearchProduct.Name = "lblSearchProduct";
+            this.lblSearchProduct.Size = new System.Drawing.Size(74, 15);
+            this.lblSearchProduct.TabIndex = 6;
+            this.lblSearchProduct.Text = "Tìm kiếm SP:";
+            // 
+            // txtSearchProduct
+            // 
+            this.txtSearchProduct.Location = new System.Drawing.Point(95, 22);
+            this.txtSearchProduct.Name = "txtSearchProduct";
+            this.txtSearchProduct.Size = new System.Drawing.Size(200, 23);
+            this.txtSearchProduct.TabIndex = 7;
+            this.txtSearchProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchProduct_KeyPress);
+            // 
+            // btnSearchProduct
+            // 
+            this.btnSearchProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnSearchProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchProduct.ForeColor = System.Drawing.Color.White;
+            this.btnSearchProduct.Location = new System.Drawing.Point(300, 20);
+            this.btnSearchProduct.Name = "btnSearchProduct";
+            this.btnSearchProduct.Size = new System.Drawing.Size(80, 27);
+            this.btnSearchProduct.TabIndex = 8;
+            this.btnSearchProduct.Text = "Tìm";
+            this.btnSearchProduct.UseVisualStyleBackColor = false;
+            this.btnSearchProduct.Click += new System.EventHandler(this.btnSearchProduct_Click);
+            // 
+            // btnClearSearchProduct
+            // 
+            this.btnClearSearchProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnClearSearchProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearSearchProduct.ForeColor = System.Drawing.Color.White;
+            this.btnClearSearchProduct.Location = new System.Drawing.Point(385, 20);
+            this.btnClearSearchProduct.Name = "btnClearSearchProduct";
+            this.btnClearSearchProduct.Size = new System.Drawing.Size(80, 27);
+            this.btnClearSearchProduct.TabIndex = 9;
+            this.btnClearSearchProduct.Text = "Xóa";
+            this.btnClearSearchProduct.UseVisualStyleBackColor = false;
+            this.btnClearSearchProduct.Click += new System.EventHandler(this.btnClearSearchProduct_Click);
+            // 
             // ComboProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -831,5 +884,10 @@ namespace OOP_finalProject.EntityForm
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClearSearch;
+
+        private System.Windows.Forms.TextBox txtSearchProduct;
+        private System.Windows.Forms.Button btnSearchProduct;
+        private System.Windows.Forms.Button btnClearSearchProduct;
+        private System.Windows.Forms.Label lblSearchProduct;
     }
 }
