@@ -94,8 +94,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\Bill.cs" />
-    <Compile Include="Base\BillDetails.cs" />
     <Compile Include="ComponentListData\ComboProductList.cs" />
     <Compile Include="ComponentListData\ClothingProductList.cs" />
     <Compile Include="ComponentListData\ElectronicProductList.cs" />
@@ -107,7 +105,6 @@
     </Compile>
     <Compile Include="ComponentListData\CashierList.cs" />
     <Compile Include="ComponentListData\CustomerList.cs" />
-    <Compile Include="Data\BillData.cs" />
     <Compile Include="Data\CashierData.cs" />
     <Compile Include="Data\ClothingProductData.cs" />
     <Compile Include="Data\ComboProductData.cs" />
