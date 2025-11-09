@@ -70,13 +70,12 @@ namespace OOP_finalProject
             _src.DataSource = filteredProducts;
             _src.ResetBindings(true);
             UpdateStatistics();
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
         }
        
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             isRefresh = true;
-           
-            gridData.ClearSelection();
             
             txtCode.Text = "";
             txtName.Text = "";
@@ -86,12 +85,12 @@ namespace OOP_finalProject
             txtSearch.Text = "";
             rdoAll.Checked = true;
             cmbSort.SelectedIndex = 0;
-            statusLabel.Text = "Sẵn sàng";
+          
 
             filteredProducts = drinkProducts.ToList();
             // Reset về danh sách đầy đủ
-            DisplayInGrid();
-
+            ApplyFiltersAndSearch();
+            statusLabel.Text = "Đã làm mới danh sách";
             isRefresh = false;
             
         }

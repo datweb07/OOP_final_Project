@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -17,6 +18,7 @@ namespace OOP_finalProject
         private HouseholdProductData householdProductData = new HouseholdProductData();
         private List<HouseholdProduct> householdProducts = new List<HouseholdProduct>();
         private List<HouseholdProduct> filteredProducts = new List<HouseholdProduct>();
+        private bool isFresh;
 
         BindingSource _src = new BindingSource();
 
@@ -82,10 +84,13 @@ namespace OOP_finalProject
             _src.DataSource = filteredProducts;
             _src.ResetBindings(true);
             UpdateStatistics();
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            isFresh = true;
+
             txtCode.Text = "";
             txtName.Text = "";
             txtPrice.Value = 0;
@@ -99,6 +104,7 @@ namespace OOP_finalProject
             filteredProducts = householdProducts.ToList();
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
+            isFresh = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -236,6 +242,7 @@ namespace OOP_finalProject
 
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (isFresh) return;
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
@@ -310,7 +317,7 @@ namespace OOP_finalProject
             ApplySorting();
 
             DisplayInGrid();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
         }
 
         /// <summary>

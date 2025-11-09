@@ -18,6 +18,7 @@ namespace OOP_finalProject
         private ClothingProductData clothingProductData = new ClothingProductData();
         private List<ClothingProduct> clothingProducts = new List<ClothingProduct>();
         private List<ClothingProduct> filteredProducts = new List<ClothingProduct>();
+        private bool isFresh = false;
 
         BindingSource _src = new BindingSource();
 
@@ -81,10 +82,13 @@ namespace OOP_finalProject
             _src.DataSource = filteredProducts;
             _src.ResetBindings(true);
             UpdateStatistics();
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            isFresh = true;
+
             txtCode.Text = "";
             txtName.Text = "";
             txtPrice.Value = 0;
@@ -98,6 +102,7 @@ namespace OOP_finalProject
             filteredProducts = clothingProducts.ToList();
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
+            isFresh = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -106,7 +111,7 @@ namespace OOP_finalProject
                 return;
 
             ClothingProduct clothingProduct = null;
-            bool isNewProduct = false;
+         
 
             for (int i = 0; i < clothingProducts.Count; i++)
             {
@@ -126,7 +131,7 @@ namespace OOP_finalProject
                     txtQty.Value,
                     (string)cboSize.SelectedItem);
                 clothingProducts.Add(clothingProduct);
-                isNewProduct = true;
+              
             }
             else
             {
@@ -136,23 +141,11 @@ namespace OOP_finalProject
                 clothingProduct.Size = (string)cboSize.SelectedItem;
             }
 
+            // Nếu là cập nhật, áp dụng bộ lọc hiện tại
+            ApplyFiltersAndSearch();
+
             // Lưu dữ liệu
             clothingProductData.SaveData(clothingProducts);
-
-            // Nếu là sản phẩm mới, hiển thị toàn bộ danh sách không sắp xếp
-            if (isNewProduct)
-            {
-                // Reset về trạng thái mặc định để sản phẩm mới xuất hiện ở cuối
-                cmbSort.SelectedIndex = -1;
-                filteredProducts = clothingProducts.ToList();
-                DisplayInGrid();
-                cmbSort.SelectedIndex = 0; // Reset lại sắp xếp mặc định
-            }
-            else
-            {
-                // Nếu là cập nhật, áp dụng bộ lọc hiện tại
-                ApplyFiltersAndSearch();
-            }
 
             MessageBox.Show("Cập nhật thông tin quần áo thành công !"
                 , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -252,6 +245,7 @@ namespace OOP_finalProject
 
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (isFresh) return;
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
@@ -326,7 +320,7 @@ namespace OOP_finalProject
             ApplySorting();
 
             DisplayInGrid();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
         }
 
         /// <summary>

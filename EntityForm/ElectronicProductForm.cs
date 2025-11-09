@@ -18,6 +18,7 @@ namespace OOP_finalProject
         private ElectronicProductData productData = new ElectronicProductData();
         private List<ElectronicProduct> products = new List<ElectronicProduct>();
         private List<ElectronicProduct> filteredProducts = new List<ElectronicProduct>();
+        private bool isFresh = false;
 
         BindingSource _src = new BindingSource();
 
@@ -81,10 +82,13 @@ namespace OOP_finalProject
             _src.DataSource = filteredProducts;
             _src.ResetBindings(true);
             UpdateStatistics();
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            isFresh = true;
+
             txtId.Text = "";
             txtName.Text = "";
             txtPrice.Value = 0;
@@ -93,16 +97,12 @@ namespace OOP_finalProject
             cboWarranty.SelectedIndex = 0;
             cmbWarrantyFilter.SelectedIndex = 0;
             chkLowStockOnly.Checked = false;
-
-
             cmbSort.SelectedIndex = 0;
 
             filteredProducts = products.ToList();
-
-
-            DisplayInGrid();
-
+            ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
+            isFresh = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -245,6 +245,7 @@ namespace OOP_finalProject
 
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (isFresh) return;
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
@@ -320,7 +321,7 @@ namespace OOP_finalProject
             
 
             DisplayInGrid();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
         }
 
         /// <summary>

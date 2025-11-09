@@ -17,6 +17,7 @@ namespace OOP_finalProject
         private FoodProductData foodProductData = new FoodProductData();
         private List<FoodProduct> foodProducts = new List<FoodProduct>();
         private List<FoodProduct> filteredProducts = new List<FoodProduct>();
+        private bool isFresh = false;
 
         BindingSource _src = new BindingSource();
 
@@ -61,10 +62,13 @@ namespace OOP_finalProject
             _src.ResetBindings(true);
             UpdateStatistics();
             UpdateExpiryWarnings();
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            isFresh = true;
+
             txtCode.Text = "";
             txtName.Text = "";
             txtPrice.Value = 0;
@@ -78,6 +82,7 @@ namespace OOP_finalProject
             filteredProducts = foodProducts.ToList();
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
+            isFresh = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -220,6 +225,7 @@ namespace OOP_finalProject
 
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (isFresh) return;
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
                 return;
 
@@ -294,7 +300,7 @@ namespace OOP_finalProject
             ApplySorting();
 
             DisplayInGrid();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
         }
 
         /// <summary>
