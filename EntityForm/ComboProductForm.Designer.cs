@@ -775,7 +775,7 @@ namespace OOP_finalProject.EntityForm
             this.btnSearchProduct.Name = "btnSearchProduct";
             this.btnSearchProduct.Size = new System.Drawing.Size(80, 27);
             this.btnSearchProduct.TabIndex = 8;
-            this.btnSearchProduct.Text = "Tìm";
+            this.btnSearchProduct.Text = "Tìm kiếm";
             this.btnSearchProduct.UseVisualStyleBackColor = false;
             this.btnSearchProduct.Click += new System.EventHandler(this.btnSearchProduct_Click);
             // 

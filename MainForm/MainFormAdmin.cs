@@ -163,75 +163,75 @@ namespace OOP_finalProject
         // Quản lý khách hàng
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            LoadForm(new CustomerForm(), "Khách hàng", btnCustomer);
+            LoadForm(new CustomerForm(), "Khách Hàng", btnCustomer);
         }
 
         // Quản lý nhân viên quản lý
         private void btnManager_Click(object sender, EventArgs e)
         {
-            LoadForm(new ManagerForm(), "Nhân viên quản lý", btnManager);
+            LoadForm(new ManagerForm(), "Nhân Viên Quản Lý", btnManager);
         }
 
         // Quản lý nhân viên bán hàng
         private void btnSeller_Click(object sender, EventArgs e)
         {
-            LoadForm(new CashierForm(), "Nhân viên bán hàng", btnSeller);
+            LoadForm(new CashierForm(), "Nhân Viên Bán Hàng", btnSeller);
         }
 
         // Quản lý sản phẩm
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            LoadForm(new ProductForm(), "Danh sách sản phẩm", btnProduct);
+            LoadForm(new ProductForm(), "Danh Sách Sản Phẩm", btnProduct);
         }
 
         // Quản lý đồ uống
         private void btnBeverage_Click(object sender, EventArgs e)
         {
-            LoadForm(new DrinkProductForm(), "Đồ uống", btnBeverage);
+            LoadForm(new DrinkProductForm(), "Đồ Uống", btnBeverage);
         }
 
         // Quản lý thực phẩm
         private void btnFood_Click(object sender, EventArgs e)
         {
-            LoadForm(new FoodProductForm(), "Thực phẩm", btnFood);
+            LoadForm(new FoodProductForm(), "Thực Phẩm", btnFood);
         }
 
         // Quản lý đồ gia dụng
         private void btnHouseHold_Click(object sender, EventArgs e)
         {
-            LoadForm(new HouseholdProductForm(), "Đồ gia dụng", btnHouseHold);
+            LoadForm(new HouseholdProductForm(), "Đồ Gia Dụng", btnHouseHold);
         }
 
         // Danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
-            LoadForm(new ListInvoiceForm(), "Danh sách hóa đơn", btnInvoiceList);
+            LoadForm(new ListInvoiceForm(), "Danh Sách Hóa Đơn", btnInvoiceList);
         }
 
         // Danh sách đơn hàng
         private void btnOrderList_Click(object sender, EventArgs e)
         {
-            LoadForm(new ListOrderForm(), "Danh sách đơn hàng", btnOrderList);
+            LoadForm(new ListOrderForm(), "Danh Sách Đơn Hàng", btnOrderList);
         }
 
         private void btnElectronic_Click(object sender, EventArgs e)
         {
-            LoadForm(new ElectronicProductForm(), "Đồ điện tử", btnElectronic);
+            LoadForm(new ElectronicProductForm(), "Đồ Điện Tử", btnElectronic);
         }
 
         private void btnClothing_Click(object sender, EventArgs e)
         {
-            LoadForm(new ClothingProductForm(), "Đồ thời trang", btnClothing);
+            LoadForm(new ClothingProductForm(), "Đồ Thời Trang", btnClothing);
         }
 
         private void btnCombo_Click(object sender, EventArgs e)
         {
-            LoadForm(new ComboProductForm(), "Combo sản phẩm", btnCombo);
+            LoadForm(new ComboProductForm(), "Combo Sản Phẩm", btnCombo);
         }
 
         private void btnStore_Click(object sender, EventArgs e)
         {
-            LoadForm(new StoreForm(), "Thiết lập cửa hàng", btnStore);
+            LoadForm(new StoreForm(), "Thiết Lập Cửa Hàng", btnStore);
         }
 
         // Hiển thị thông tin tài khoản
@@ -244,7 +244,7 @@ namespace OOP_finalProject
                 return;
             }
 
-            LoadForm(new AccountForm(), "👤 Thông tin tài khoản", btnAccount);
+            LoadForm(new AccountForm(), "Thông tin tài khoản", btnAccount);
         }
 
         // Thoát ứng dụng

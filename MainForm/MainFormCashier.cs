@@ -116,25 +116,25 @@ namespace OOP_finalProject
         // Danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
-            LoadForm(new ListInvoiceForm(), "📋 Danh Sách Hóa Đơn", btnInvoiceList);
+            LoadForm(new ListInvoiceForm(), "Danh Sách Hóa Đơn", btnInvoiceList);
         }
 
         // Danh sách đơn hàng
         private void btnOrderList_Click(object sender, EventArgs e)
         {
-            LoadForm(new ListOrderForm(), "📝 Danh Sách Đơn Hàng", btnOrderList);
+            LoadForm(new ListOrderForm(), "Danh Sách Đơn Hàng", btnOrderList);
         }
 
         // Danh sách sản phẩm
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            LoadForm(new ProductForm(), "📦 Quản Lý Sản Phẩm", btnProduct);
+            LoadForm(new ProductForm(), "Danh Sách Sản Phẩm", btnProduct);
         }
 
         // Tạo đơn hàng mới
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            LoadForm(new OrderForm(), "🛒 Tạo Đơn Hàng Mới", btnOrder);
+            LoadForm(new OrderForm(), "Tạo Đơn Hàng Mới", btnOrder);
         }
 
         // Hiển thị thông tin tài khoản
@@ -147,7 +147,7 @@ namespace OOP_finalProject
                 return;
             }
 
-            LoadForm(new AccountForm(), "👤 Thông Tin Tài Khoản", btnAccount);
+            LoadForm(new AccountForm(), "Thông Tin Tài Khoản", btnAccount);
         }
 
         // Thoát ứng dụng
