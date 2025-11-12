@@ -33,7 +33,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="OOP_finalProject.Store" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="41" Y="7.5" Width="1.5" />
+    <Position X="43.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAQABAAEAAAAAAAAIIEAAiCBAAAAAAAAAABAAAAAQ=</HashCode>
       <FileName>Base\Store.cs</FileName>
@@ -199,14 +199,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.StoreData" Collapsed="true">
-    <Position X="41" Y="8.75" Width="1.5" />
+    <Position X="43.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAQAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\StoreData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.AccountForm" Collapsed="true">
-    <Position X="43.75" Y="8.75" Width="1.5" />
+    <Position X="46.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAEAQAACAAAABABACAAAACAEAAGIAAAAAAgAgABAA=</HashCode>
       <FileName>EntityForm\AccountForm.cs</FileName>
@@ -234,7 +234,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.DashboardForm" Collapsed="true">
-    <Position X="43.75" Y="7.5" Width="1.5" />
+    <Position X="46.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAADAAAABQQQSAIAACCAAAAACAAABAAAgAIIA=</HashCode>
       <FileName>EntityForm\DashboardForm.cs</FileName>
@@ -318,7 +318,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.StoreForm" Collapsed="true">
-    <Position X="41" Y="10" Width="1.5" />
+    <Position X="43.75" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAACAYCBAAAAiAASAiIAAAABAgACAQAAIAAAQ=</HashCode>
       <FileName>EntityForm\StoreForm.cs</FileName>
@@ -353,7 +353,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.UserSession" Collapsed="true">
-    <Position X="43.75" Y="10" Width="1.5" />
+    <Position X="46.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABEAAEAACAAAAAhEQAAAACAAAAAAAAARAACAAAAAAA=</HashCode>
       <FileName>UserManagement\UserSession.cs</FileName>
@@ -533,6 +533,27 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="OOP_finalProject.Payments.CashPayment" Collapsed="true">
+    <Position X="40.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAABQAgAA=</HashCode>
+      <FileName>Payments\CashPayment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_finalProject.Payments.Payment" Collapsed="true">
+    <Position X="40.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABEAACAAAAEACAgACCAAAAAAgAAAAAAMBAAgAA=</HashCode>
+      <FileName>Payments\Payment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_finalProject.Payments.PaymentFactory" Collapsed="true">
+    <Position X="40.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Payments\PaymentFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="OOP_finalProject.ISalaryCalculable" Collapsed="true">
     <Position X="31.25" Y="12.5" Width="1.5" />
     <TypeIdentifier>
@@ -561,5 +582,19 @@
       <FileName>Interfaces\IProductComponent.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Enum Name="OOP_finalProject.Payments.PaymentMethod" Collapsed="true">
+    <Position X="40.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Payments\PaymentMethod.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="OOP_finalProject.Payments.PaymentStatus" Collapsed="true">
+    <Position X="40.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAgAAAAAAABAAIAAAAAA=</HashCode>
+      <FileName>Payments\PaymentStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
