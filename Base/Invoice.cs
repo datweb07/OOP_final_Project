@@ -16,6 +16,8 @@ namespace OOP_finalProject
         private Customer customer;
         private Cashier cashier;
         private List<InvoiceDetails> invoiceDetails;
+        private string paymentMethod;
+        private string transactionId;
 
 
         public string Id { get { return id; } set { id = value; } }
@@ -45,6 +47,10 @@ namespace OOP_finalProject
             get { return invoiceDetails ?? (invoiceDetails = new List<InvoiceDetails>()); }
             set { invoiceDetails = value; }
         }
+
+        public string PaymentMethod { get { return paymentMethod; } set { paymentMethod = value; } }
+
+        public string TransactionId { get { return transactionId; } set { transactionId = value; } }
 
         public string CashierName
         {
@@ -124,28 +130,28 @@ namespace OOP_finalProject
         public Invoice(SerializationInfo info, StreamingContext context)
         {
             // Xử lý tất cả trường hợp lỗi
-            try 
-            { 
-                Id = info.GetString("Id") ?? GenerateInvoiceId(); 
+            try
+            {
+                Id = info.GetString("Id") ?? GenerateInvoiceId();
             }
-            catch 
-            { 
-                Id = GenerateInvoiceId(); 
+            catch
+            {
+                Id = GenerateInvoiceId();
             }
 
-            try 
-            { 
-                DateCreated = info.GetDateTime("DateCreated"); 
+            try
+            {
+                DateCreated = info.GetDateTime("DateCreated");
             }
-            catch 
-            { 
-                DateCreated = DateTime.Now; 
+            catch
+            {
+                DateCreated = DateTime.Now;
             }
 
             // Xử lý Cashier
-            try 
-            { 
-                Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier)); 
+            try
+            {
+                Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier));
             }
             catch
             {
@@ -154,16 +160,16 @@ namespace OOP_finalProject
                     string cashierName = info.GetString("CashierName");
                     Cashier = CreateCashierFromName(cashierName);
                 }
-                catch 
-                { 
-                    Cashier = GetDefaultCashier(); 
+                catch
+                {
+                    Cashier = GetDefaultCashier();
                 }
             }
 
             // Xử lý Customer
-            try 
-            { 
-                Customer = (Customer)info.GetValue("Customer", typeof(Customer)); 
+            try
+            {
+                Customer = (Customer)info.GetValue("Customer", typeof(Customer));
             }
             catch
             {
@@ -177,14 +183,27 @@ namespace OOP_finalProject
             }
 
             // Xử lý InvoiceDetails
-            try 
-            { 
-                InvoiceDetails = (List<InvoiceDetails>)info.GetValue("InvoiceDetails", typeof(List<InvoiceDetails>)); 
+            try
+            {
+                InvoiceDetails = (List<InvoiceDetails>)info.GetValue("InvoiceDetails", typeof(List<InvoiceDetails>));
             }
-            catch 
-            { 
-                InvoiceDetails = new List<InvoiceDetails>(); 
+            catch
+            {
+                InvoiceDetails = new List<InvoiceDetails>();
             }
+
+            // Payment info (không bắt buộc)
+            try
+            {
+                PaymentMethod = info.GetString("PaymentMethod");
+            }
+            catch { PaymentMethod = null; }
+
+            try
+            {
+                TransactionId = info.GetString("TransactionId");
+            }
+            catch { TransactionId = null; }
         }
 
         private Customer CreateCustomerFromAvailableData(SerializationInfo info)
@@ -232,6 +251,9 @@ namespace OOP_finalProject
             info.AddValue("Cashier", Cashier);
             info.AddValue("Customer", Customer);
             info.AddValue("InvoiceDetails", InvoiceDetails);
+            // Payment info (optional)
+            info.AddValue("PaymentMethod", PaymentMethod);
+            info.AddValue("TransactionId", TransactionId);
         }
 
         private string GenerateInvoiceId()

@@ -265,6 +265,32 @@ namespace OOP_finalProject
             }
         }
 
+        private void btnPayment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_invoice == null)
+                {
+                    ShowError("Không có thông tin hóa đơn để thanh toán!");
+                    return;
+                }
+
+                // Mở form thanh toán QR
+                QRPaymentForm paymentForm = new QRPaymentForm(_invoice);
+                DialogResult result = paymentForm.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    ShowSuccess("Thanh toán thành công!");
+                    // Có thể cập nhật trạng thái hóa đơn ở đây nếu cần
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError($"Lỗi khi mở form thanh toán: {ex.Message}");
+            }
+        }
+
         #endregion
 
         #region Print Methods
@@ -420,6 +446,20 @@ namespace OOP_finalProject
             g.DrawString($"Thành tiền: {FormatCurrency(_invoice.FinalTotal)}",
                 new Font("Arial", 12, FontStyle.Bold), Brushes.Red, leftMargin + 300, yPos);
             yPos += 40;
+
+            if (!string.IsNullOrEmpty(_invoice.PaymentMethod))
+            {
+                g.DrawString($"Phương thức thanh toán: {_invoice.PaymentMethod}",
+                    new Font("Arial", 10, FontStyle.Regular), Brushes.Black, leftMargin, yPos - 87);
+                yPos += 20;
+            }
+
+            if (!string.IsNullOrEmpty(_invoice.TransactionId))
+            {
+                g.DrawString($"Mã giao dịch: {_invoice.TransactionId}",
+                    new Font("Arial", 10, FontStyle.Regular), Brushes.Black, leftMargin, yPos - 82);
+                yPos += 20;
+            }
 
             return yPos;
         }

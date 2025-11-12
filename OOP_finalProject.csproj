@@ -264,6 +264,11 @@
     </Compile>
     <Compile Include="ComponentListData\ManagerList.cs" />
     <Compile Include="ComponentListData\OrderList.cs" />
+    <Compile Include="Payments\CashPayment.cs" />
+    <Compile Include="Payments\Payment.cs" />
+    <Compile Include="Payments\PaymentFactory.cs" />
+    <Compile Include="Payments\PaymentMethod.cs" />
+    <Compile Include="Payments\PaymentStatus.cs" />
     <Compile Include="Products\ComboProduct.cs" />
     <Compile Include="Products\DrinkProduct.cs" />
     <Compile Include="Products\ClothingProduct.cs" />
@@ -279,6 +284,12 @@
     </Compile>
     <Compile Include="EntityForm\StoreForm.Designer.cs">
       <DependentUpon>StoreForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityForm\QRPaymentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityForm\QRPaymentForm.Designer.cs">
+      <DependentUpon>QRPaymentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Strategies\RegularCustomerDiscountStrategy.cs" />
     <Compile Include="Strategies\VIPCustomerDiscountStrategy.cs" />

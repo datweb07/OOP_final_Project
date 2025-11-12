@@ -31,6 +31,7 @@ namespace OOP_finalProject
             label6 = new Label();
             btnPrint = new Button();
             btnSave = new Button();
+            btnPayment = new Button();
             gridData = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
@@ -75,6 +76,7 @@ namespace OOP_finalProject
             panelFooter.Controls.Add(label7);
             panelFooter.Controls.Add(lblSumTotal);
             panelFooter.Controls.Add(label6);
+            panelFooter.Controls.Add(btnPayment);
             panelFooter.Controls.Add(btnPrint);
             panelFooter.Controls.Add(btnSave);
             panelFooter.Dock = DockStyle.Bottom;
@@ -172,13 +174,30 @@ namespace OOP_finalProject
             btnSave.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(750, 19);
+            btnSave.Location = new Point(540, 19);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(200, 45);
             btnSave.TabIndex = 0;
             btnSave.Text = "Lưu Hóa Đơn";
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
+            // 
+            // btnPayment
+            // 
+            btnPayment.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPayment.BackColor = Color.FromArgb(155, 89, 182);
+            btnPayment.FlatAppearance.BorderSize = 0;
+            btnPayment.FlatStyle = FlatStyle.Flat;
+            btnPayment.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPayment.ForeColor = Color.White;
+            btnPayment.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPayment.Location = new Point(750, 19);
+            btnPayment.Name = "btnPayment";
+            btnPayment.Size = new Size(200, 45);
+            btnPayment.TabIndex = 8;
+            btnPayment.Text = "Thanh Toán";
+            btnPayment.UseVisualStyleBackColor = false;
+            btnPayment.Click += btnPayment_Click;
             // 
             // gridData
             // 
@@ -413,6 +432,7 @@ namespace OOP_finalProject
         private GroupBox groupBox1;
         private Button btnSave;
         private Button btnPrint;
+        private Button btnPayment;
         private Label lblSumTotal;
         private Label lblCustomerName;
         private Label lblSellerName;

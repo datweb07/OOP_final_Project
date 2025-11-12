@@ -32,6 +32,8 @@ namespace OOP_finalProject
             Column7 = new DataGridViewTextBoxColumn();
             Column8 = new DataGridViewTextBoxColumn();
             Column9 = new DataGridViewTextBoxColumn();
+            Column10 = new DataGridViewTextBoxColumn();
+            Column11 = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
             lblCustomerCountValue = new Label();
             lblTotalDiscountValue = new Label();
@@ -62,7 +64,7 @@ namespace OOP_finalProject
             dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
             gridData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridData.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column8, Column6, Column7, Column5, Column9 });
+            gridData.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column8, Column6, Column7, Column5, Column9, Column10, Column11});
             gridData.Dock = DockStyle.Fill;
             gridData.Location = new Point(3, 23);
             gridData.Name = "gridData";
@@ -145,6 +147,22 @@ namespace OOP_finalProject
             Column9.MinimumWidth = 6;
             Column9.Name = "Column9";
             Column9.Width = 200;
+            //
+            // Column10
+            //
+            Column10.DataPropertyName = "PaymentMethod";
+            Column10.HeaderText = "PTTT";
+            Column10.MinimumWidth = 6;
+            Column10.Name = "Column10";
+            Column10.Width = 125;
+            //
+            // Column11
+            //
+            Column11.DataPropertyName = "TransactionId";
+            Column11.HeaderText = "Mã GD";
+            Column11.MinimumWidth = 6;
+            Column11.Name = "Column11";
+            Column11.Width = 125;
             // 
             // groupBox1
             // 
@@ -411,6 +429,8 @@ namespace OOP_finalProject
         private DataGridViewTextBoxColumn Column7;
         private DataGridViewTextBoxColumn Column8;
         private DataGridViewTextBoxColumn Column9;
+        private DataGridViewTextBoxColumn Column10;
+        private DataGridViewTextBoxColumn Column11;
         private Button btnRefresh;
         private Label statusLabel;
         private TextBox txtSearch;
