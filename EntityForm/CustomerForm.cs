@@ -3,11 +3,7 @@ using OOP_finalProject.Customers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace OOP_finalProject
 {
@@ -56,15 +52,22 @@ namespace OOP_finalProject
         {
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                var filteredCustomers = customers.Where(c =>
-                    c.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    c.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    c.PhoneNumber.Contains(txtSearch.Text)).ToList();
+                List<Customer> filteredCustomers = new List<Customer>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < customers.Count; i++)
+                {
+                    Customer customer = customers[i];
+                    if (customer.Id.ToLower().Contains(searchText) || customer.Name.ToLower().Contains(searchText) || customer.PhoneNumber.Contains(txtSearch.Text))
+                    {
+                        filteredCustomers.Add(customer);
+                    }
+                }
 
                 _src.DataSource = filteredCustomers;
                 _src.ResetBindings(true);
 
-                statusLabel.Text = $"Tìm thấy {filteredCustomers.Count} kết quả";
+                statusLabel.Text = "Tìm thấy " + filteredCustomers.Count + " kết quả";
             }
             else
             {
@@ -80,9 +83,6 @@ namespace OOP_finalProject
             statusLabel.Text = "Nhập thông tin khách hàng mới";
         }
 
-        
-
-        #region Display Methods
         private void DisplayInGrid()
         {
             _src.DataSource = customers;
@@ -154,9 +154,7 @@ namespace OOP_finalProject
                 lblDiscountInfo.ForeColor = Color.Black;
             }
         }
-        #endregion
 
-        #region Button Events
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtCode.Text = "";
@@ -174,7 +172,6 @@ namespace OOP_finalProject
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Validate
             if (string.IsNullOrWhiteSpace(txtCode.Text))
             {
                 MessageBox.Show("Mã khách hàng không được để trống!",
@@ -248,14 +245,12 @@ namespace OOP_finalProject
 
                 if (rbVIP.Checked && !(customer is VIPCustomer))
                 {
-                    newCustomer = new VIPCustomer(customer.Id, customer.Name, customer.Gender,
-                        customer.PhoneNumber, customer.Address);
+                    newCustomer = new VIPCustomer(customer.Id, customer.Name, customer.Gender, customer.PhoneNumber, customer.Address);
                     needReplace = true;
                 }
                 else if (rbRegular.Checked && !(customer is RegularCustomer))
                 {
-                    newCustomer = new RegularCustomer(customer.Id, customer.Name, customer.Gender,
-                        customer.PhoneNumber, customer.Address);
+                    newCustomer = new RegularCustomer(customer.Id, customer.Name, customer.Gender, customer.PhoneNumber, customer.Address);
                     needReplace = true;
                 }
 
@@ -283,13 +278,15 @@ namespace OOP_finalProject
             }
 
             DialogResult result = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa khách hàng '{txtName.Text}'?",
+                "Bạn có chắc chắn muốn xóa khách hàng '" + txtName.Text + "'?",
                 "Xác nhận xóa",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (result == DialogResult.No)
+            {
                 return;
+            }
 
             Customer customer = null;
 
@@ -315,7 +312,7 @@ namespace OOP_finalProject
             }
         }
 
-        // Filter button events
+        // fill
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             DisplayInGrid();
@@ -330,21 +327,22 @@ namespace OOP_finalProject
         {
             DisplayFilteredByType(typeof(VIPCustomer));
         }
-        #endregion
 
-        #region Grid Events
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+            {
                 return;
+            }
 
             Customer customer = gridData.CurrentRow.DataBoundItem as Customer;
 
             if (customer == null)
+            {
                 return;
+            }
 
             Display(customer);
         }
-        #endregion
     }
 }

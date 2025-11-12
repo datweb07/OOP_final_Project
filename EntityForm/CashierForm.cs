@@ -2,9 +2,6 @@ using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -22,20 +19,28 @@ namespace OOP_finalProject
         private List<Manager> managers = new List<Manager>();
 
         BindingSource _src = new BindingSource();
+
         // Thêm sự kiện cho các nút mới
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                var filteredCashiers = cashiers.Where(c =>
-                    c.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    c.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    c.PhoneNumber.Contains(txtSearch.Text)).ToList();
+                List<Cashier> filteredCashiers = new List<Cashier>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < cashiers.Count; i++)
+                {
+                    Cashier cashier = cashiers[i];
+                    if (cashier.Id.ToLower().Contains(searchText) || cashier.Name.ToLower().Contains(searchText) || cashier.PhoneNumber.Contains(txtSearch.Text))
+                    {
+                        filteredCashiers.Add(cashier);
+                    }
+                }
 
                 _src.DataSource = filteredCashiers;
                 _src.ResetBindings(true);
 
-                statusLabel.Text = $"Tìm thấy {filteredCashiers.Count} kết quả";
+                statusLabel.Text = "Tìm thấy " + filteredCashiers.Count + " kết quả";
             }
             else
             {
@@ -51,11 +56,9 @@ namespace OOP_finalProject
             statusLabel.Text = "Nhập thông tin nhân viên mới";
         }
 
-        // Cập nhật FormSeller_Load
         private void FormSeller_Load(object sender, EventArgs e)
         {
             CashierData.CreateSampleData();
-          
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
@@ -194,8 +197,8 @@ namespace OOP_finalProject
 
             DisplayInGrid();
 
+            // save data in database
             cashierData.SaveData(cashiers);
-
 
             MessageBox.Show("Xoá thông tin nhân viên bán hàng thành công !"
                 , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -205,7 +208,9 @@ namespace OOP_finalProject
         private void gridData_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
+            {
                 return;
+            }
 
             Cashier cashier = gridData.CurrentRow.DataBoundItem as Cashier;
 
@@ -226,7 +231,7 @@ namespace OOP_finalProject
             txtAddress.Text = cashier.Address;
             txtPhone.Text = cashier.PhoneNumber;
 
-            // Tìm và chọn manager trong ComboBox
+            // tìm và chọn manager trong comboBox
             for (int i = 0; i < cmbManager.Items.Count; i++)
             {
                 if (cmbManager.Items[i].ToString() == cashier.ManagerName)
@@ -237,9 +242,6 @@ namespace OOP_finalProject
             }
         }
 
-        /// <summary>
-        /// Load danh sách managers vào ComboBox
-        /// </summary>
         private void LoadManagersToComboBox()
         {
             cmbManager.Items.Clear();
