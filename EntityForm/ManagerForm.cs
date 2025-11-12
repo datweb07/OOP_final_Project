@@ -2,7 +2,6 @@ using OOP_finalProject.Employees;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -14,10 +13,10 @@ namespace OOP_finalProject
             InitializeComponent();
         }
 
-        private ManagerData _ManagerDAL = new ManagerData();
-        private List<Manager> _Managers = new List<Manager>();
-        private CashierData _CashierDAL = new CashierData();
-        private List<Cashier> _Cashiers = new List<Cashier>();
+        private ManagerData managerData = new ManagerData();
+        private List<Manager> managers = new List<Manager>();
+        private CashierData cashierData = new CashierData();
+        private List<Cashier> cashiers = new List<Cashier>();
         private Store Store = new Store();
 
         BindingSource _src = new BindingSource();
@@ -25,11 +24,12 @@ namespace OOP_finalProject
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             ManagerData.CreateSampleData();
+
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
-            // Tùy chỉnh giao diện DataGridView
+            // tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -44,8 +44,8 @@ namespace OOP_finalProject
 
             rdoMale.Checked = true;
             rdoFemale.Checked = false;
-            _Managers = _ManagerDAL.GetData();
-            _Cashiers = _CashierDAL.GetData();
+            managers = managerData.GetData();
+            cashiers = cashierData.GetData();
             UpdateAllTeamSizes();
             DisplayInGrid();
         }
@@ -54,15 +54,24 @@ namespace OOP_finalProject
         {
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                var filteredManagers = _Managers.Where(m =>
-                    m.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    m.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    m.PhoneNumber.Contains(txtSearch.Text)).ToList();
+                List<Manager> filteredManagers = new List<Manager>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < managers.Count; i++)
+                {
+                    Manager manager = managers[i];
+                    if (manager.Id.ToLower().Contains(searchText) ||
+                        manager.Name.ToLower().Contains(searchText) ||
+                        manager.PhoneNumber.Contains(txtSearch.Text))
+                    {
+                        filteredManagers.Add(manager);
+                    }
+                }
 
                 _src.DataSource = filteredManagers;
                 _src.ResetBindings(true);
 
-                statusLabel.Text = $"Tìm thấy {filteredManagers.Count} kết quả";
+                statusLabel.Text = "Tìm thấy " + filteredManagers.Count + " kết quả";
             }
             else
             {
@@ -80,7 +89,7 @@ namespace OOP_finalProject
 
         private void DisplayInGrid()
         {
-            _src.DataSource = _Managers;
+            _src.DataSource = managers;
             _src.ResetBindings(true);
         }
 
@@ -135,11 +144,11 @@ namespace OOP_finalProject
 
             Manager manager = null;
 
-            for (int i = 0; i < _Managers.Count; i++)
+            for (int i = 0; i < managers.Count; i++)
             {
-                if (_Managers[i].Id.ToLower() == txtCode.Text.ToLower())
+                if (managers[i].Id.ToLower() == txtCode.Text.ToLower())
                 {
-                    manager = _Managers[i];
+                    manager = managers[i];
                     break;
                 }
             }
@@ -147,7 +156,7 @@ namespace OOP_finalProject
             if (manager == null)
             {
                 manager = new Manager(txtCode.Text, txtName.Text, rdoMale.Checked ? "Nam" : "Nữ", txtPhone.Text, txtAddress.Text, "Không có cửa hàng");
-                _Managers.Add(manager);
+                managers.Add(manager);
             }
             else
             {
@@ -160,9 +169,9 @@ namespace OOP_finalProject
             DisplayInGrid();
 
             // save data in database
-            _ManagerDAL.SaveData(_Managers);
+            managerData.SaveData(managers);
 
-            // Cập nhật team size sau khi lưu
+            // cập nhật team size sau khi lưu
             UpdateAllTeamSizes();
             DisplayInGrid();
 
@@ -180,7 +189,7 @@ namespace OOP_finalProject
             }
 
             DialogResult result = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa quản lý '{txtName.Text}'?",
+                "Bạn có chắc chắn muốn xóa quản lý '" + txtName.Text + "'?",
                 "Xác nhận xóa",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -190,22 +199,22 @@ namespace OOP_finalProject
 
             Manager manager = null;
 
-            for (int i = 0; i < _Managers.Count; i++)
+            for (int i = 0; i < managers.Count; i++)
             {
-                if (_Managers[i].Id.ToLower() == txtCode.Text.ToLower())
+                if (managers[i].Id.ToLower() == txtCode.Text.ToLower())
                 {
-                    manager = _Managers[i];
+                    manager = managers[i];
                     break;
                 }
             }
 
             if (manager != null)
             {
-                _Managers.Remove(manager);
+                managers.Remove(manager);
                 DisplayInGrid();
-                _ManagerDAL.SaveData(_Managers);
+                managerData.SaveData(managers);
 
-                // Cập nhật team size sau khi xóa
+                // cập nhật team size sau khi xóa
                 UpdateAllTeamSizes();
                 DisplayInGrid();
 
@@ -243,14 +252,12 @@ namespace OOP_finalProject
         private void UpdateAllTeamSizes()
         {
             // load lại cashier data để có dữ liệu mới nhất
-            _Cashiers = _CashierDAL.GetData();
+            cashiers = cashierData.GetData();
 
-            foreach (Manager manager in _Managers)
+            for (int i = 0; i < managers.Count; i++)
             {
-                manager.UpdateTeamSizeFromCashiers(_Cashiers);
+                managers[i].UpdateTeamSizeFromCashiers(cashiers);
             }
         }
     }
 }
-
-

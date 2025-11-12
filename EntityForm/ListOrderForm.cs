@@ -3,7 +3,6 @@ using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -28,13 +27,12 @@ namespace OOP_finalProject
 
         private void FormOrderList_Load(object sender, EventArgs e)
         {
-            // Cấu hình DataGridView
             gridData.ReadOnly = true;
             gridData.AllowUserToAddRows = false;
             gridData.AutoGenerateColumns = false;
             gridData.DataSource = src;
 
-            // Tùy chỉnh giao diện DataGridView
+            // tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -47,15 +45,13 @@ namespace OOP_finalProject
             gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
-            // Cấu hình để gridData rộng hết cỡ
             gridData.Dock = DockStyle.Fill;
             gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Thiết lập mặc định
             cmbSort.SelectedIndex = 0;
 
             orders = orderData.GetData();
-            filteredOrders = orders.ToList();
+            filteredOrders = new List<Order>(orders);
             LoadGrid();
             UpdateStatistics();
         }
@@ -72,9 +68,9 @@ namespace OOP_finalProject
             OrderForm frm = new OrderForm();
             frm.ShowDialog();
 
-            // Reload data after form closes
+            // load lại data sau khi form đóng
             orders = orderData.GetData();
-            filteredOrders = orders.ToList();
+            filteredOrders = new List<Order>(orders);
             LoadGrid();
 
             statusLabel.Text = "Đã thêm đơn hàng mới";
@@ -96,9 +92,9 @@ namespace OOP_finalProject
             OrderForm frm = new OrderForm(order);
             frm.ShowDialog();
 
-            // Reload data after form closes
+            // load lại data sau khi form đóng
             orders = orderData.GetData();
-            filteredOrders = orders.ToList();
+            filteredOrders = new List<Order>(orders);
             LoadGrid();
 
             statusLabel.Text = "Đã cập nhật đơn hàng";
@@ -121,7 +117,7 @@ namespace OOP_finalProject
                 return;
             }
 
-            if (MessageBox.Show($"Bạn có chắc chắn muốn xoá đơn hàng '{order.OrderId}'?\n\nThao tác này không thể hoàn tác!",
+            if (MessageBox.Show("Bạn có chắc chắn muốn xoá đơn hàng '" + order.OrderId + "'?\n\nThao tác này không thể hoàn tác!",
                 "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 List<Order> allOrders = orderData.GetData();
@@ -142,15 +138,15 @@ namespace OOP_finalProject
                     return;
                 }
 
-                // Cập nhật lại số lượng sản phẩm
+                // cập nhật lại số lượng sản phẩm
                 RestoreProductQuantities(toDelete);
 
                 allOrders.Remove(toDelete);
                 orderData.SaveData(allOrders);
 
-                // Cập nhật danh sách
+                // cập nhật danh sách
                 orders = allOrders;
-                filteredOrders = orders.ToList();
+                filteredOrders = new List<Order>(orders);
                 LoadGrid();
 
                 MessageBox.Show("Xoá đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -169,7 +165,7 @@ namespace OOP_finalProject
 
             for (int i = 0; i < order.OrderDetails.Count; i++)
             {
-                var detail = order.OrderDetails[i];
+                OrderDetails detail = order.OrderDetails[i];
                 RestoreProductQuantity(detail.Product, detail.Quantity, drinkProducts, foodProducts, householdProducts, electronicProducts, clothingProducts);
             }
 
@@ -219,7 +215,7 @@ namespace OOP_finalProject
             }
         }
 
-        private void btnXemHoaDon_Click(object sender, EventArgs e)
+        private void btnDisplayInvoice_Click(object sender, EventArgs e)
         {
             if (gridData.CurrentRow == null || gridData.CurrentRow.IsNewRow)
             {
@@ -244,70 +240,67 @@ namespace OOP_finalProject
 
             for (int i = 0; i < order.OrderDetails.Count; i++)
             {
-                invoice.InvoiceDetails.Add(new InvoiceDetails()
-                {
-                    ProductID = order.OrderDetails[i].Product.Id,
-                    ProductName = order.OrderDetails[i].Product.Name,
-                    Quantity = order.OrderDetails[i].Quantity,
-                    UnitPrice = order.OrderDetails[i].Product.Price
-                });
+                InvoiceDetails invoiceDetail = new InvoiceDetails();
+                invoiceDetail.ProductID = order.OrderDetails[i].Product.Id;
+                invoiceDetail.ProductName = order.OrderDetails[i].Product.Name;
+                invoiceDetail.Quantity = order.OrderDetails[i].Quantity;
+                invoiceDetail.UnitPrice = order.OrderDetails[i].Product.Price;
+                invoice.InvoiceDetails.Add(invoiceDetail);
             }
 
             InvoiceForm frm = new InvoiceForm(invoice);
             frm.ShowDialog();
         }
 
-        #region Các chức năng mới
-
-        /// <summary>
-        /// Tìm kiếm đơn hàng
-        /// </summary>
+        // tìm kiếm đơn hàng
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
 
-        /// <summary>
-        /// Làm mới danh sách
-        /// </summary>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtSearch.Text = "";
             cmbSort.SelectedIndex = 0;
 
             orders = orderData.GetData();
-            filteredOrders = orders.ToList();
+            filteredOrders = new List<Order>(orders);
             LoadGrid();
             statusLabel.Text = "Đã làm mới danh sách";
         }
 
-        /// <summary>
-        /// Áp dụng tất cả bộ lọc và tìm kiếm
-        /// </summary>
+        // lọc và tìm kiếm
         private void ApplyFiltersAndSearch()
         {
-            // Bắt đầu từ danh sách đầy đủ
-            filteredOrders = orders.ToList();
+            // gắn danh sách đầy đủ
+            filteredOrders = new List<Order>(orders);
 
-            // Áp dụng tìm kiếm
+            //  tìm kiếm
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                filteredOrders = filteredOrders.Where(p =>
-                    p.OrderId.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.CashierName.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.CustomerName.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                List<Order> searchResults = new List<Order>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < filteredOrders.Count; i++)
+                {
+                    Order order = filteredOrders[i];
+                    if (order.OrderId.ToLower().Contains(searchText) ||
+                        order.CashierName.ToLower().Contains(searchText) ||
+                        order.CustomerName.ToLower().Contains(searchText))
+                    {
+                        searchResults.Add(order);
+                    }
+                }
+                filteredOrders = searchResults;
             }
 
-            // Áp dụng sắp xếp
+            // sắp xếp
             ApplySorting();
 
             LoadGrid();
-            statusLabel.Text = $"Tìm thấy {filteredOrders.Count} đơn hàng";
+            statusLabel.Text = "Tìm thấy " + filteredOrders.Count + " đơn hàng";
         }
 
-        /// <summary>
-        /// Áp dụng sắp xếp
-        /// </summary>
         private void ApplySorting()
         {
             if (cmbSort.SelectedIndex == -1) return;
@@ -315,68 +308,81 @@ namespace OOP_finalProject
             switch (cmbSort.SelectedIndex)
             {
                 case 0: // Mã ĐH (A-Z)
-                    filteredOrders = filteredOrders.OrderBy(p => p.OrderId).ToList();
+                    filteredOrders.Sort((p1, p2) => p1.OrderId.CompareTo(p2.OrderId));
                     break;
                 case 1: // Mã ĐH (Z-A)
-                    filteredOrders = filteredOrders.OrderByDescending(p => p.OrderId).ToList();
+                    filteredOrders.Sort((p1, p2) => p2.OrderId.CompareTo(p1.OrderId));
                     break;
                 case 2: // Ngày lập (Cũ-Nhất)
-                    filteredOrders = filteredOrders.OrderBy(p => p.OrderDate).ToList();
+                    filteredOrders.Sort((p1, p2) => p1.OrderDate.CompareTo(p2.OrderDate));
                     break;
                 case 3: // Ngày lập (Mới-Nhất)
-                    filteredOrders = filteredOrders.OrderByDescending(p => p.OrderDate).ToList();
+                    filteredOrders.Sort((p1, p2) => p2.OrderDate.CompareTo(p1.OrderDate));
                     break;
                 case 4: // Nhân viên (A-Z)
-                    filteredOrders = filteredOrders.OrderBy(p => p.CashierName).ToList();
+                    filteredOrders.Sort((p1, p2) => p1.CashierName.CompareTo(p2.CashierName));
                     break;
                 case 5: // Nhân viên (Z-A)
-                    filteredOrders = filteredOrders.OrderByDescending(p => p.CashierName).ToList();
+                    filteredOrders.Sort((p1, p2) => p2.CashierName.CompareTo(p1.CashierName));
                     break;
                 case 6: // Khách hàng (A-Z)
-                    filteredOrders = filteredOrders.OrderBy(p => p.CustomerName).ToList();
+                    filteredOrders.Sort((p1, p2) => p1.CustomerName.CompareTo(p2.CustomerName));
                     break;
                 case 7: // Khách hàng (Z-A)
-                    filteredOrders = filteredOrders.OrderByDescending(p => p.CustomerName).ToList();
+                    filteredOrders.Sort((p1, p2) => p2.CustomerName.CompareTo(p1.CustomerName));
                     break;
                 case 8: // Thành tiền (Thấp-Cao)
-                    filteredOrders = filteredOrders.OrderBy(p => p.FinalTotal).ToList();
+                    filteredOrders.Sort((p1, p2) => p1.FinalTotal.CompareTo(p2.FinalTotal));
                     break;
                 case 9: // Thành tiền (Cao-Thấp)
-                    filteredOrders = filteredOrders.OrderByDescending(p => p.FinalTotal).ToList();
+                    filteredOrders.Sort((p1, p2) => p2.FinalTotal.CompareTo(p1.FinalTotal));
                     break;
             }
         }
 
-        /// <summary>
-        /// Cập nhật thống kê
-        /// </summary>
+        // thống kê chi tiết
         private void UpdateStatistics()
         {
             int totalOrders = filteredOrders.Count;
-            decimal totalRevenue = filteredOrders.Sum(p => p.FinalTotal);
-            decimal totalDiscount = filteredOrders.Sum(p => p.DiscountAmount);
-            int customerCount = filteredOrders.Select(p => p.CustomerName).Distinct().Count();
+
+            decimal totalRevenue = 0;
+            for (int i = 0; i < filteredOrders.Count; i++)
+            {
+                totalRevenue += filteredOrders[i].FinalTotal;
+            }
+
+            decimal totalDiscount = 0;
+            for (int i = 0; i < filteredOrders.Count; i++)
+            {
+                totalDiscount += filteredOrders[i].DiscountAmount;
+            }
+
+            List<string> distinctCustomers = new List<string>();
+            for (int i = 0; i < filteredOrders.Count; i++)
+            {
+                string customerName = filteredOrders[i].CustomerName;
+                if (!string.IsNullOrEmpty(customerName) && !distinctCustomers.Contains(customerName))
+                {
+                    distinctCustomers.Add(customerName);
+                }
+            }
+            int customerCount = distinctCustomers.Count;
 
             lblTotalOrdersValue.Text = totalOrders.ToString();
-            lblTotalRevenueValue.Text = $"{totalRevenue:N0} đ";
-            lblTotalDiscountValue.Text = $"{totalDiscount:N0} đ";
+            lblTotalRevenueValue.Text = totalRevenue.ToString("N0") + " đ";
+            lblTotalDiscountValue.Text = totalDiscount.ToString("N0") + " đ";
             lblCustomerCountValue.Text = customerCount.ToString();
 
-            // Đổi màu theo số lượng
+            // đổi màu theo số lượng
             lblTotalOrdersValue.ForeColor = totalOrders > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalRevenueValue.ForeColor = totalRevenue > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalDiscountValue.ForeColor = totalDiscount > 0 ? Color.FromArgb(255, 165, 0) : Color.Gray;
             lblCustomerCountValue.ForeColor = customerCount > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
         }
 
-        /// <summary>
-        /// Sự kiện khi thay đổi lựa chọn lọc
-        /// </summary>
         private void FilterChanged(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
-
-        #endregion
     }
 }

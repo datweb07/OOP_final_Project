@@ -285,7 +285,7 @@
   <Class Name="OOP_finalProject.ListOrderForm" Collapsed="true">
     <Position X="34" Y="13.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QBIAiAABCGAQCCBAAQyKAKACADS45wA1ASMAABwCMQY=</HashCode>
+      <HashCode>QBIAiAABCGAQCCBAAQyKAKCCADS45wA1ASMAABwCMQY=</HashCode>
       <FileName>EntityForm\ListOrderForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -313,7 +313,7 @@
   <Class Name="OOP_finalProject.ProductForm" Collapsed="true">
     <Position X="28.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QEAhAAACCGgYCEBAAQzIACECABS4FgAhACBgBBACFAM=</HashCode>
+      <HashCode>QEAlAAACCGgYCEBAAQzIACECABS4FgAhACAgBBACFAM=</HashCode>
       <FileName>EntityForm\ProductForm.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -16,7 +16,7 @@ namespace OOP_finalProject
             this.Close();
         }
 
-        // Phương thức để hiển thị lại MainInterface khi người dùng đóng form đăng nhập
+        // hiển thị lại MainInterface khi người dùng đóng form đăng nhập
         public void ShowMainInterface()
         {
             this.Show();

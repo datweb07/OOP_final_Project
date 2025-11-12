@@ -19,7 +19,7 @@ namespace OOP_finalProject
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
-        private ComboProductData compositeProductData = new ComboProductData();
+        private ComboProductData comboProductData = new ComboProductData();
         private ClothingProductData clothingProductData = new ClothingProductData();
         private ElectronicProductData electronicProductData = new ElectronicProductData();
 
@@ -69,7 +69,7 @@ namespace OOP_finalProject
             List<DrinkProduct> drinkProducts = drinkProductData.GetData();
             List<FoodProduct> foodProducts = foodProductData.GetData();
             List<HouseholdProduct> householdProducts = householdProductData.GetData();
-            List<ComboProduct> compositeProducts = compositeProductData.GetData();
+            List<ComboProduct> compositeProducts = comboProductData.GetData();
             List<ClothingProduct> clothingProducts = clothingProductData.GetData();
             List<ElectronicProduct> electronicProducts = electronicProductData.GetData();
 

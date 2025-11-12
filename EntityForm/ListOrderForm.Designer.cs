@@ -295,7 +295,7 @@ namespace OOP_finalProject
             btnXemHoaDon.ForeColor = Color.White;
             btnXemHoaDon.FlatStyle = FlatStyle.Flat;
             btnXemHoaDon.FlatAppearance.BorderSize = 0;
-            btnXemHoaDon.Click += btnXemHoaDon_Click;
+            btnXemHoaDon.Click += btnDisplayInvoice_Click;
             // 
             // btnAdd
             // 
