@@ -4,19 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
     public partial class InvoiceForm : Form
     {
-        #region Constants
-
-        private const string CUSTOMER_TYPE_VIP = "VIP";
-        private const string CUSTOMER_TYPE_REGULAR = "Thường";
-        private const string CUSTOMER_TYPE_GUEST = "Khách lẻ";
-        private const string CUSTOMER_TYPE_UNKNOWN = "Không xác định";
+        // const quản lý khách hàng
+        private const string customerTypeVIP = "VIP";
+        private const string customerTypeRegular = "Thường";
+        private const string customerTypeGuest = "Khách lẻ";
+        private const string customerTypeUnknown = "Không xác định";
 
         private static class UIColors
         {
@@ -27,23 +25,17 @@ namespace OOP_finalProject
             public static readonly Color RegularBlue = Color.FromArgb(65, 105, 225);
         }
 
-        private const string MSG_NO_INVOICE = "Không có thông tin hóa đơn!";
-        private const string MSG_SAVE_SUCCESS = "Lưu thông tin hóa đơn thành công!";
-        private const string MSG_PRINT_SUCCESS = "In hóa đơn thành công!";
-        private const string MSG_ERROR_TITLE = "Lỗi";
-        private const string MSG_INFO_TITLE = "Thông báo";
-
-        #endregion
-
-        #region Fields
+        // const thông báo trạng thái hóa đơn
+        private const string msgNoInvoice = "Không có thông tin hóa đơn!";
+        private const string msgSaveSuccess = "Lưu thông tin hóa đơn thành công!";
+        private const string msgPrintSuccess = "In hóa đơn thành công!";
+        private const string msgErrorTitle = "Lỗi";
+        private const string msgInfoTitle = "Thông báo";
 
         private Invoice _invoice;
         private InvoiceData invoiceData = new InvoiceData();
         private BindingSource src = new BindingSource();
 
-        #endregion
-
-        #region Constructors
 
         public InvoiceForm()
         {
@@ -55,9 +47,6 @@ namespace OOP_finalProject
             _invoice = invoice;
         }
 
-        #endregion
-
-        #region Form Events
 
         private void FormInvoice_Load(object sender, EventArgs e)
         {
@@ -65,29 +54,29 @@ namespace OOP_finalProject
             {
                 if (_invoice == null)
                 {
-                    ShowError(MSG_NO_INVOICE);
+                    ShowError(msgNoInvoice);
                     this.Close();
                     return;
                 }
 
-                ConfigureDataGridView();
+                ConfigureDataGridView();  // tùy chỉnh dataGridView
                 LoadInvoiceData();
             }
             catch (Exception ex)
             {
-                ShowError($"Lỗi khi tải hóa đơn: {ex.Message}");
+                ShowError("Lỗi khi tải hóa đơn: " + ex.Message);
             }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            src?.Dispose();
+            if (src != null)
+            {
+                src.Dispose();
+            }
         }
 
-        #endregion
-
-        #region Configuration
 
         private void ConfigureDataGridView()
         {
@@ -97,41 +86,30 @@ namespace OOP_finalProject
             gridData.DataSource = src;
         }
 
-        #endregion
-
-        #region Load & Display Methods
-
         private void LoadInvoiceData()
         {
             try
             {
-                // SỬ DỤNG CÁC PROPERTIES TỪ INVOICE CLASS
-                // Hiển thị thông tin cơ bản
                 lblCode.Text = _invoice.Id ?? "N/A";
                 lblCreatedDate.Text = _invoice.DateCreated.ToString("dd/MM/yyyy HH:mm");
-
-                // Sử dụng CashierName từ Invoice
                 lblSellerName.Text = _invoice.CashierName;
-
-                // Sử dụng CustomerName từ Invoice
                 lblCustomerName.Text = _invoice.CustomerName;
 
-                // Hiển thị thông tin customer với màu sắc
                 DisplayCustomerInfo();
 
-                // Hiển thị tổng kết hóa đơn - SỬ DỤNG COMPUTED PROPERTIES TỪ INVOICE
+                // hiển thị tổng quan hóa đơn
                 DisplayInvoiceSummary();
 
-                // Hiển thị danh sách sản phẩm
+                // hiển thi danh sách sản phẩm trong details
                 src.DataSource = _invoice.InvoiceDetails;
                 src.ResetBindings(true);
 
-                // Cập nhật tiêu đề form
-                this.Text = $"HÓA ĐƠN BÁN HÀNG - {_invoice.Id}";
+                // tiêu đề
+                this.Text = "HÓA ĐƠN BÁN HÀNG - " + _invoice.Id;
             }
             catch (Exception ex)
             {
-                ShowError($"Lỗi tải dữ liệu hóa đơn: {ex.Message}");
+                ShowError("Lỗi tải dữ liệu hóa đơn: " + ex.Message);
             }
         }
 
@@ -139,35 +117,34 @@ namespace OOP_finalProject
         {
             if (_invoice.Customer == null)
             {
-                lblCustomerName.Text = CUSTOMER_TYPE_GUEST;
+                lblCustomerName.Text = customerTypeGuest;
                 lblCustomerName.ForeColor = UIColors.Gray;
                 return;
             }
 
-            // SỬ DỤNG CustomerTypeDisplay TỪ INVOICE
-            string displayName = $"{_invoice.CustomerName} ({_invoice.CustomerTypeDisplay})";
+            //hiển thị CustomerTypeDisplay
+            string displayName = _invoice.CustomerName + " (" + _invoice.CustomerTypeDisplay + ")";
             lblCustomerName.Text = displayName;
 
-            // Set màu theo loại khách hàng
+            // thiết lập màu theo loại khách hàng
             string customerType = GetCustomerType(_invoice.Customer);
             lblCustomerName.ForeColor = GetCustomerTypeColor(customerType);
         }
 
         private void DisplayInvoiceSummary()
         {
-            // SỬ DỤNG TRỰC TIẾP CÁC COMPUTED PROPERTIES TỪ INVOICE CLASS
-            decimal subTotal = _invoice.SumTotal;           // Computed property
-            decimal discountAmount = _invoice.DiscountAmount; // Computed property
-            decimal finalTotal = _invoice.FinalTotal;       // Computed property
-            decimal discountPercentage = _invoice.DiscountPercentage; // Computed property
+            decimal subTotal = _invoice.SumTotal;           
+            decimal discountAmount = _invoice.DiscountAmount; 
+            decimal finalTotal = _invoice.FinalTotal;       
+            decimal discountPercentage = _invoice.DiscountPercentage;
 
-            // Hiển thị tổng tiền
+            // tổng tiền
             lblSumTotal.Text = FormatCurrency(subTotal);
 
-            // Hiển thị giảm giá
+            // giảm giá
             if (discountPercentage > 0)
             {
-                lblDiscount.Text = $"-{FormatCurrency(discountAmount)} ({discountPercentage}%)";
+                lblDiscount.Text = "-" + FormatCurrency(discountAmount) + " (" + discountPercentage + "%)";
                 lblDiscount.ForeColor = UIColors.Success;
                 lblDiscount.Font = new Font(lblDiscount.Font, FontStyle.Bold);
             }
@@ -177,46 +154,39 @@ namespace OOP_finalProject
                 lblDiscount.ForeColor = UIColors.Gray;
             }
 
-            // Hiển thị thành tiền
+            //  thành tiền
             lblFinalTotal.Text = FormatCurrency(finalTotal);
             lblFinalTotal.ForeColor = UIColors.Danger;
             lblFinalTotal.Font = new Font(lblFinalTotal.Font.FontFamily, 12, FontStyle.Bold);
         }
 
-        #endregion
-
-        #region Customer Helper Methods
 
         private string GetCustomerType(Customer customer)
         {
             if (customer == null)
-                return CUSTOMER_TYPE_UNKNOWN;
+                return customerTypeUnknown;
 
             if (customer is VIPCustomer)
-                return CUSTOMER_TYPE_VIP;
+                return customerTypeVIP;
 
             if (customer is RegularCustomer)
-                return CUSTOMER_TYPE_REGULAR;
+                return customerTypeRegular;
 
-            return CUSTOMER_TYPE_UNKNOWN;
+            return customerTypeUnknown;
         }
 
         private Color GetCustomerTypeColor(string customerType)
         {
             switch (customerType)
             {
-                case CUSTOMER_TYPE_VIP:
+                case customerTypeVIP:
                     return UIColors.VIPGold;
-                case CUSTOMER_TYPE_REGULAR:
+                case customerTypeRegular:
                     return UIColors.RegularBlue;
                 default:
                     return UIColors.Gray;
             }
         }
-
-        #endregion
-
-        #region Button Events
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -228,9 +198,13 @@ namespace OOP_finalProject
                     return;
                 }
 
-                List<Invoice> invoices = invoiceData.GetData() ?? new List<Invoice>();
+                List<Invoice> invoices = invoiceData.GetData();
+                if (invoices == null)
+                {
+                    invoices = new List<Invoice>();
+                }
 
-                // Tìm hóa đơn theo Id
+                // tìm hóa đơn theo Id
                 int existingIndex = FindInvoiceIndex(invoices, _invoice.Id);
 
                 if (existingIndex >= 0)
@@ -244,12 +218,12 @@ namespace OOP_finalProject
 
                 invoiceData.SaveData(invoices);
 
-                ShowSuccess(MSG_SAVE_SUCCESS);
+                ShowSuccess(msgSaveSuccess);
                 UpdateSaveButtonState();
             }
             catch (Exception ex)
             {
-                ShowError($"Lỗi khi lưu hóa đơn: {ex.Message}");
+                ShowError("Lỗi khi lưu hóa đơn: " + ex.Message);
             }
         }
 
@@ -261,7 +235,7 @@ namespace OOP_finalProject
             }
             catch (Exception ex)
             {
-                ShowError($"Lỗi khi in hóa đơn: {ex.Message}");
+                ShowError("Lỗi khi in hóa đơn: " + ex.Message);
             }
         }
 
@@ -275,8 +249,8 @@ namespace OOP_finalProject
                     return;
                 }
 
-                // Mở form thanh toán QR
-                QRPaymentForm paymentForm = new QRPaymentForm(_invoice);
+                // mở paymentForm
+                PaymentForm paymentForm = new PaymentForm(_invoice);
                 DialogResult result = paymentForm.ShowDialog();
 
                 if (result == DialogResult.OK)
@@ -287,32 +261,31 @@ namespace OOP_finalProject
             }
             catch (Exception ex)
             {
-                ShowError($"Lỗi khi mở form thanh toán: {ex.Message}");
+                ShowError("Lỗi khi mở form thanh toán: " + ex.Message);
             }
         }
 
-        #endregion
 
-        #region Print Methods
 
         private void PrintInvoice()
         {
             try
             {
                 PrintDocument printDoc = new PrintDocument();
-                printDoc.PrintPage += PrintInvoicePage;
+                printDoc.PrintPage += new PrintPageEventHandler(PrintInvoicePage);
 
-                PrintDialog printDialog = new PrintDialog { Document = printDoc };
+                PrintDialog printDialog = new PrintDialog();
+                printDialog.Document = printDoc;
 
                 if (printDialog.ShowDialog() == DialogResult.OK)
                 {
                     printDoc.Print();
-                    ShowSuccess(MSG_PRINT_SUCCESS);
+                    ShowSuccess(msgPrintSuccess);
                 }
             }
             catch (Exception ex)
             {
-                ShowError($"Lỗi in ấn: {ex.Message}");
+                ShowError("Lỗi in ấn: " + ex.Message);
             }
         }
 
@@ -325,35 +298,34 @@ namespace OOP_finalProject
                 float leftMargin = 50;
                 float rightMargin = e.PageBounds.Width - 50;
 
-                // Fonts
                 Font titleFont = new Font("Arial", 16, FontStyle.Bold);
                 Font headerFont = new Font("Arial", 12, FontStyle.Bold);
                 Font normalFont = new Font("Arial", 10);
                 Font smallFont = new Font("Arial", 9);
 
-                // Tiêu đề
+                // tiêu đề
                 DrawCenteredText(g, "HÓA ĐƠN BÁN HÀNG", titleFont, yPos, e.PageBounds.Width);
                 yPos += 40;
 
-                // Thông tin hóa đơn - SỬ DỤNG PROPERTIES TỪ INVOICE
-                g.DrawString($"Số hóa đơn: {_invoice.Id}", headerFont, Brushes.Black, leftMargin, yPos);
-                g.DrawString($"Ngày lập: {_invoice.DateCreated:dd/MM/yyyy HH:mm}", headerFont,
+                // Thông tin hóa đơn 
+                g.DrawString("Số hóa đơn: " + _invoice.Id, headerFont, Brushes.Black, leftMargin, yPos);
+                g.DrawString("Ngày lập: " + _invoice.DateCreated.ToString("dd/MM/yyyy HH:mm"), headerFont,
                     Brushes.Black, rightMargin - 250, yPos);
                 yPos += 30;
 
-                // Sử dụng CashierName từ Invoice
-                g.DrawString($"Nhân viên: {_invoice.CashierName}", normalFont, Brushes.Black, leftMargin, yPos);
+                // CashierName
+                g.DrawString("Nhân viên: " + _invoice.CashierName, normalFont, Brushes.Black, leftMargin, yPos);
                 yPos += 25;
 
-                // Sử dụng CustomerName và CustomerTypeDisplay từ Invoice
-                string customerDisplay = $"{_invoice.CustomerName} ({_invoice.CustomerTypeDisplay})";
-                g.DrawString($"Khách hàng: {customerDisplay}", normalFont, Brushes.Black, leftMargin, yPos);
+                //  CustomerName và CustomerTypeDisplay 
+                string customerDisplay = _invoice.CustomerName + " (" + _invoice.CustomerTypeDisplay + ")";
+                g.DrawString("Khách hàng: " + customerDisplay, normalFont, Brushes.Black, leftMargin, yPos);
                 yPos += 25;
 
-                // Sử dụng DiscountInfo từ Invoice
+                //  DiscountInfo từ Invoice
                 if (_invoice.DiscountPercentage > 0)
                 {
-                    g.DrawString($"Chương trình KM: {_invoice.DiscountInfo}", normalFont, Brushes.Black, leftMargin, yPos);
+                    g.DrawString("Chương trình KM: " + _invoice.DiscountInfo, normalFont, Brushes.Black, leftMargin, yPos);
                     yPos += 25;
                 }
 
@@ -365,7 +337,7 @@ namespace OOP_finalProject
                 g.DrawLine(new Pen(Color.Black, 1), leftMargin, yPos, rightMargin, yPos);
                 yPos += 10;
 
-                // Chi tiết sản phẩm
+                // chi tiết sản phẩm
                 yPos = DrawInvoiceDetails(g, normalFont, leftMargin, yPos, e);
 
                 if (e.HasMorePages)
@@ -373,7 +345,7 @@ namespace OOP_finalProject
 
                 yPos += 20;
 
-                // Tổng kết - SỬ DỤNG COMPUTED PROPERTIES TỪ INVOICE
+                // Tổng kết
                 yPos = DrawInvoiceSummary(g, headerFont, leftMargin, yPos, rightMargin);
 
                 // Chữ ký
@@ -381,7 +353,7 @@ namespace OOP_finalProject
             }
             catch (Exception ex)
             {
-                ShowError($"Lỗi tạo nội dung in: {ex.Message}");
+                ShowError("Lỗi tạo nội dung in: " + ex.Message);
             }
         }
 
@@ -405,7 +377,7 @@ namespace OOP_finalProject
         {
             for (int i = 0; i < _invoice.InvoiceDetails.Count; i++)
             {
-                var detail = _invoice.InvoiceDetails[i];
+                InvoiceDetails detail = _invoice.InvoiceDetails[i];
 
                 g.DrawString((i + 1).ToString(), font, Brushes.Black, leftMargin, yPos);
                 g.DrawString(detail.ProductName, font, Brushes.Black, leftMargin + 50, yPos);
@@ -431,32 +403,31 @@ namespace OOP_finalProject
             g.DrawLine(new Pen(Color.Black, 1), leftMargin, yPos, rightMargin, yPos);
             yPos += 20;
 
-            // SỬ DỤNG COMPUTED PROPERTIES TỪ INVOICE
-            g.DrawString($"Tổng tiền: {FormatCurrency(_invoice.SumTotal)}",
+            g.DrawString("Tổng tiền: " + FormatCurrency(_invoice.SumTotal),
                 headerFont, Brushes.Black, leftMargin + 300, yPos);
             yPos += 25;
 
             if (_invoice.DiscountPercentage > 0)
             {
-                g.DrawString($"Giảm giá: {_invoice.DiscountPercentage}% (-{FormatCurrency(_invoice.DiscountAmount)})",
+                g.DrawString("Giảm giá: " + _invoice.DiscountPercentage + "% (-" + FormatCurrency(_invoice.DiscountAmount) + ")",
                     headerFont, Brushes.Black, leftMargin + 300, yPos);
                 yPos += 25;
             }
 
-            g.DrawString($"Thành tiền: {FormatCurrency(_invoice.FinalTotal)}",
+            g.DrawString("Thành tiền: " + FormatCurrency(_invoice.FinalTotal),
                 new Font("Arial", 12, FontStyle.Bold), Brushes.Red, leftMargin + 300, yPos);
             yPos += 40;
 
             if (!string.IsNullOrEmpty(_invoice.PaymentMethod))
             {
-                g.DrawString($"Phương thức thanh toán: {_invoice.PaymentMethod}",
+                g.DrawString("Phương thức thanh toán: " + _invoice.PaymentMethod,
                     new Font("Arial", 10, FontStyle.Regular), Brushes.Black, leftMargin, yPos - 87);
                 yPos += 20;
             }
 
             if (!string.IsNullOrEmpty(_invoice.TransactionId))
             {
-                g.DrawString($"Mã giao dịch: {_invoice.TransactionId}",
+                g.DrawString("Mã giao dịch: " + _invoice.TransactionId,
                     new Font("Arial", 10, FontStyle.Regular), Brushes.Black, leftMargin, yPos - 82);
                 yPos += 20;
             }
@@ -470,8 +441,8 @@ namespace OOP_finalProject
             g.DrawString("Người bán hàng", normalFont, Brushes.Black, leftMargin + 400, yPos);
             yPos += 20;
 
-            string customerName = _invoice.Customer?.Name ?? CUSTOMER_TYPE_GUEST;
-            string cashierName = _invoice.Cashier?.Name ?? CUSTOMER_TYPE_UNKNOWN;
+            string customerName = _invoice.Customer != null ? _invoice.Customer.Name : customerTypeGuest;
+            string cashierName = _invoice.Cashier != null ? _invoice.Cashier.Name : customerTypeUnknown;
 
             g.DrawString("(Ký, ghi rõ họ tên)", smallFont, Brushes.Black, leftMargin + 103, yPos);
             g.DrawString("(Ký, ghi rõ họ tên)", smallFont, Brushes.Black, leftMargin + 400, yPos);
@@ -483,10 +454,6 @@ namespace OOP_finalProject
         }
 
 
-        #endregion
-
-        #region Helper Methods
-
         private int FindInvoiceIndex(List<Invoice> invoices, string invoiceId)
         {
             if (string.IsNullOrEmpty(invoiceId))
@@ -494,7 +461,7 @@ namespace OOP_finalProject
 
             for (int i = 0; i < invoices.Count; i++)
             {
-                if (invoices[i]?.Id != null &&
+                if (invoices[i] != null && invoices[i].Id != null &&
                     invoices[i].Id.Equals(invoiceId, StringComparison.OrdinalIgnoreCase))
                 {
                     return i;
@@ -506,7 +473,7 @@ namespace OOP_finalProject
 
         private string FormatCurrency(decimal amount)
         {
-            return $"{amount:N0} đ";
+            return amount.ToString("N0") + " đ";
         }
 
         private void UpdateSaveButtonState()
@@ -518,16 +485,14 @@ namespace OOP_finalProject
 
         private void ShowError(string message)
         {
-            MessageBox.Show(message, MSG_ERROR_TITLE,
+            MessageBox.Show(message, msgErrorTitle,
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ShowSuccess(string message)
         {
-            MessageBox.Show(message, MSG_INFO_TITLE,
+            MessageBox.Show(message, msgInfoTitle,
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        #endregion
     }
 }

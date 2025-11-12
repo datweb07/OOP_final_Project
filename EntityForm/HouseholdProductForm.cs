@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -30,7 +28,7 @@ namespace OOP_finalProject
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
-            // Tùy chỉnh giao diện DataGridView
+            // tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -43,36 +41,34 @@ namespace OOP_finalProject
             gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
-            // Cấu hình để gridData rộng hết cỡ
             gridData.Dock = DockStyle.Fill;
             gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Khởi tạo danh sách thương hiệu
+            // khởi tạo danh sách các thương hiệu
             InitializeBrands();
 
-            // Thiết lập mặc định
             cmbSort.SelectedIndex = 0;
             cmbBrandFilter.SelectedIndex = 0;
 
             householdProducts = householdProductData.GetData();
-            filteredProducts = householdProducts.ToList();
+            filteredProducts = new List<HouseholdProduct>(householdProducts);
             DisplayInGrid();
         }
 
         private void InitializeBrands()
         {
             string[] brands = new string[] {
-        "Sony", "Samsung", "Apple", "Nature Hike", "IKIA",
-        "LG", "Toshiba", "Panasonic", "Philips", "Electrolux",
-        "Midea", "Aqua", "Sunhouse", "Kangaroo", "Lock&Lock"
-    };
+                "Sony", "Samsung", "Apple", "Nature Hike", "IKIA",
+                "LG", "Toshiba", "Panasonic", "Philips", "Electrolux",
+                "Midea", "Aqua", "Sunhouse", "Kangaroo", "Lock&Lock"
+            };
 
-            // ComboBox thương hiệu cho sản phẩm mới
+            // thêm thương hiệu vào comboBox
             cboBrand.Items.Clear();
             cboBrand.Items.AddRange(brands);
             cboBrand.SelectedIndex = 0;
 
-            // ComboBox lọc thương hiệu
+            // lọc theo theo thương hiệu
             cmbBrandFilter.Items.Clear();
             cmbBrandFilter.Items.Add("Tất cả thương hiệu");
             cmbBrandFilter.Items.AddRange(brands);
@@ -84,7 +80,7 @@ namespace OOP_finalProject
             _src.DataSource = filteredProducts;
             _src.ResetBindings(true);
             UpdateStatistics();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+            statusLabel.Text = "Tìm thấy " + filteredProducts.Count + " sản phẩm";
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -101,7 +97,7 @@ namespace OOP_finalProject
             cmbBrandFilter.SelectedIndex = 0;
             chkLowStockOnly.Checked = false;
 
-            filteredProducts = householdProducts.ToList();
+            filteredProducts = new List<HouseholdProduct>(householdProducts);
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
             isFresh = false;
@@ -206,7 +202,7 @@ namespace OOP_finalProject
             }
 
             DialogResult result = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa sản phẩm '{txtName.Text}'?",
+                "Bạn có chắc chắn muốn xóa sản phẩm '" + txtName.Text + "'?",
                 "Xác nhận xóa",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -263,19 +259,13 @@ namespace OOP_finalProject
             cboBrand.SelectedItem = householdProduct.Brand;
         }
 
-        #region Các chức năng mới
-
-        /// <summary>
-        /// Tìm kiếm sản phẩm
-        /// </summary>
+        // tìm kiếm sản phẩm
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
 
-        /// <summary>
-        /// Thêm mới sản phẩm
-        /// </summary>
+        // thêm mới
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             btnRefresh_Click(null, null);
@@ -283,46 +273,69 @@ namespace OOP_finalProject
             statusLabel.Text = "Nhập thông tin sản phẩm mới";
         }
 
-        /// <summary>
-        /// Áp dụng tất cả bộ lọc và tìm kiếm
-        /// </summary>
+        // lọc và tìm kiếm
         private void ApplyFiltersAndSearch()
         {
-            // Bắt đầu từ danh sách đầy đủ
-            filteredProducts = householdProducts.ToList();
+            // gắn vào danh sách đầy đủ
+            filteredProducts = new List<HouseholdProduct>(householdProducts);
 
-            // Áp dụng tìm kiếm
+            // tìm kiếm
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                filteredProducts = filteredProducts.Where(p =>
-                    p.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.Name.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.Brand.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                List<HouseholdProduct> searchResults = new List<HouseholdProduct>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    HouseholdProduct product = filteredProducts[i];
+                    if (product.Id.ToLower().Contains(searchText) ||
+                        product.Name.ToLower().Contains(searchText) ||
+                        product.Brand.ToLower().Contains(searchText))
+                    {
+                        searchResults.Add(product);
+                    }
+                }
+                filteredProducts = searchResults;
             }
 
-            // Áp dụng lọc thương hiệu
+            // lọc thương hiệu
             if (cmbBrandFilter.SelectedIndex > 0)
             {
                 string selectedBrand = cmbBrandFilter.SelectedItem.ToString();
-                filteredProducts = filteredProducts.Where(p => p.Brand == selectedBrand).ToList();
+                List<HouseholdProduct> brandResults = new List<HouseholdProduct>();
+
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    if (filteredProducts[i].Brand == selectedBrand)
+                    {
+                        brandResults.Add(filteredProducts[i]);
+                    }
+                }
+                filteredProducts = brandResults;
             }
 
-            // Áp dụng lọc tồn kho thấp
+            // lọc tồn kho thấp
             if (chkLowStockOnly.Checked)
             {
-                filteredProducts = filteredProducts.Where(p => p.Quantity <= 10).ToList();
+                List<HouseholdProduct> lowStockResults = new List<HouseholdProduct>();
+
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    if (filteredProducts[i].Quantity <= 10)
+                    {
+                        lowStockResults.Add(filteredProducts[i]);
+                    }
+                }
+                filteredProducts = lowStockResults;
             }
 
-            // Áp dụng sắp xếp
+            // sắp xếp
             ApplySorting();
 
             DisplayInGrid();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
+            statusLabel.Text = "Tìm thấy " + filteredProducts.Count + " kết quả";
         }
 
-        /// <summary>
-        /// Áp dụng sắp xếp
-        /// </summary>
         private void ApplySorting()
         {
             if (cmbSort.SelectedIndex == -1) return;
@@ -330,68 +343,84 @@ namespace OOP_finalProject
             switch (cmbSort.SelectedIndex)
             {
                 case 0: // Mã SP (A-Z)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Id).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Id.CompareTo(p2.Id));
                     break;
                 case 1: // Mã SP (Z-A)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Id).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Id.CompareTo(p1.Id));
                     break;
                 case 2: // Tên SP (A-Z)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Name).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Name.CompareTo(p2.Name));
                     break;
                 case 3: // Tên SP (Z-A)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Name).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Name.CompareTo(p1.Name));
                     break;
                 case 4: // Giá (Thấp-Cao)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Price).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Price.CompareTo(p2.Price));
                     break;
                 case 5: // Giá (Cao-Thấp)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Price).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Price.CompareTo(p1.Price));
                     break;
                 case 6: // Số lượng (Thấp-Cao)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Quantity).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Quantity.CompareTo(p2.Quantity));
                     break;
                 case 7: // Số lượng (Cao-Thấp)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Quantity).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Quantity.CompareTo(p1.Quantity));
                     break;
                 case 8: // Thương hiệu (A-Z)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Brand).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Brand.CompareTo(p2.Brand));
                     break;
                 case 9: // Thương hiệu (Z-A)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Brand).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Brand.CompareTo(p1.Brand));
                     break;
             }
         }
 
-        /// <summary>
-        /// Cập nhật thống kê
-        /// </summary>
+        // thống kê
         private void UpdateStatistics()
         {
             int totalProducts = filteredProducts.Count;
-            decimal totalValue = filteredProducts.Sum(p => p.Price * p.Quantity);
-            int lowStockCount = filteredProducts.Count(p => p.Quantity <= 10);
-            int brandCount = filteredProducts.Select(p => p.Brand).Distinct().Count();
+
+            decimal totalValue = 0;
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                totalValue += filteredProducts[i].Price * filteredProducts[i].Quantity;
+            }
+
+            int lowStockCount = 0;
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                if (filteredProducts[i].Quantity <= 10)
+                {
+                    lowStockCount++;
+                }
+            }
+
+            List<string> distinctBrands = new List<string>();
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                string brand = filteredProducts[i].Brand;
+                if (!distinctBrands.Contains(brand))
+                {
+                    distinctBrands.Add(brand);
+                }
+            }
+            int brandCount = distinctBrands.Count;
 
             lblTotalProductsValue.Text = totalProducts.ToString();
-            lblTotalValueValue.Text = $"{totalValue:N0} đ";
+            lblTotalValueValue.Text = totalValue.ToString("N0") + " đ";
             lblLowStockValue.Text = lowStockCount.ToString();
             lblBrandCountValue.Text = brandCount.ToString();
 
-            // Đổi màu theo số lượng
+            // đổi màu theo số lượng
             lblTotalProductsValue.ForeColor = totalProducts > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalValueValue.ForeColor = totalValue > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblLowStockValue.ForeColor = lowStockCount > 0 ? Color.Red : Color.FromArgb(46, 204, 113);
             lblBrandCountValue.ForeColor = brandCount > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
         }
 
-        /// <summary>
-        /// Sự kiện khi thay đổi lựa chọn lọc
-        /// </summary>
         private void FilterChanged(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
-
-        #endregion
     }
 }

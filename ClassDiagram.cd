@@ -271,7 +271,7 @@
   <Class Name="OOP_finalProject.InvoiceForm" Collapsed="true">
     <Position X="37.5" Y="12.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAABAAgDAECNAAEKSgCCDCQEg4BhREQCgBIAIHsAE=</HashCode>
+      <HashCode>IAAAgRAAhDAECJAEWKSgCCDCQEg4BhAEwCAAIAIHsBA=</HashCode>
       <FileName>EntityForm\InvoiceForm.cs</FileName>
     </TypeIdentifier>
   </Class>

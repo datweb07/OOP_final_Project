@@ -1,6 +1,6 @@
 ﻿namespace OOP_finalProject
 {
-    partial class QRPaymentForm
+    partial class PaymentForm
     {
         /// <summary>
         /// Required designer variable.

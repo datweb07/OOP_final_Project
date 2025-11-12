@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -20,7 +19,6 @@ namespace OOP_finalProject
 
         private void FormInvoiceList_Load(object sender, EventArgs e)
         {
-            // Cấu hình DataGridView
             gridData.AutoGenerateColumns = false;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
@@ -39,15 +37,13 @@ namespace OOP_finalProject
             gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
-            // Cấu hình để gridData rộng hết cỡ
             gridData.Dock = DockStyle.Fill;
             gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Thiết lập mặc định
             cmbSort.SelectedIndex = 0;
 
             invoices = invoiceData.GetData();
-            filteredInvoices = invoices.ToList();
+            filteredInvoices = new List<Invoice>(invoices);
             LoadGrid();
             UpdateStatistics();
         }
@@ -91,7 +87,7 @@ namespace OOP_finalProject
                 return;
             }
 
-            if (MessageBox.Show($"Bạn có chắc chắn muốn xoá hoá đơn '{invoice.Id}'?\n\nThao tác này không thể hoàn tác!",
+            if (MessageBox.Show("Bạn có chắc chắn muốn xoá hoá đơn '" + invoice.Id + "'?\n\nThao tác này không thể hoàn tác!",
                 "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
@@ -112,9 +108,9 @@ namespace OOP_finalProject
                 allInvoices.Remove(toDelete);
                 invoiceData.SaveData(allInvoices);
 
-                // Cập nhật danh sách
+                // cập nhật lại danh sách
                 invoices = allInvoices;
-                filteredInvoices = invoices.ToList();
+                filteredInvoices = new List<Invoice>(invoices);
                 LoadGrid();
 
                 MessageBox.Show("Xoá hoá đơn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -129,48 +125,47 @@ namespace OOP_finalProject
             cmbSort.SelectedIndex = 0;
 
             invoices = invoiceData.GetData();
-            filteredInvoices = invoices.ToList();
+            filteredInvoices = new List<Invoice>(invoices);
             LoadGrid();
             statusLabel.Text = "Đã làm mới danh sách";
         }
 
-        #region Các chức năng mới
-
-        /// <summary>
-        /// Tìm kiếm hoá đơn
-        /// </summary>
+        // tìm kiếm hóa đơn
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
 
-        /// <summary>
-        /// Áp dụng tất cả bộ lọc và tìm kiếm
-        /// </summary>
+        // lọc và tìm kiếm
         private void ApplyFiltersAndSearch()
         {
-            // Bắt đầu từ danh sách đầy đủ
-            filteredInvoices = invoices.ToList();
+            // gắn vào danh sách đầy đủ
+            filteredInvoices = new List<Invoice>(invoices);
 
-            // Áp dụng tìm kiếm
+            // tìm kiếm
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                filteredInvoices = filteredInvoices.Where(p =>
-                    p.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.CashierName.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.CustomerName.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                List<Invoice> searchResults = new List<Invoice>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < filteredInvoices.Count; i++)
+                {
+                    Invoice invoice = filteredInvoices[i];
+                    if (invoice.Id.ToLower().Contains(searchText) || invoice.CashierName.ToLower().Contains(searchText) || invoice.CustomerName.ToLower().Contains(searchText))
+                    {
+                        searchResults.Add(invoice);
+                    }
+                }
+                filteredInvoices = searchResults;
             }
 
-            // Áp dụng sắp xếp
+            // sắp xếp
             ApplySorting();
 
             LoadGrid();
-            statusLabel.Text = $"Tìm thấy {filteredInvoices.Count} hoá đơn";
+            statusLabel.Text = "Tìm thấy " + filteredInvoices.Count + " hoá đơn";
         }
 
-        /// <summary>
-        /// Áp dụng sắp xếp
-        /// </summary>
         private void ApplySorting()
         {
             if (cmbSort.SelectedIndex == -1) return;
@@ -178,68 +173,81 @@ namespace OOP_finalProject
             switch (cmbSort.SelectedIndex)
             {
                 case 0: // Mã HĐ (A-Z)
-                    filteredInvoices = filteredInvoices.OrderBy(p => p.Id).ToList();
+                    filteredInvoices.Sort((p1, p2) => p1.Id.CompareTo(p2.Id));
                     break;
                 case 1: // Mã HĐ (Z-A)
-                    filteredInvoices = filteredInvoices.OrderByDescending(p => p.Id).ToList();
+                    filteredInvoices.Sort((p1, p2) => p2.Id.CompareTo(p1.Id));
                     break;
                 case 2: // Ngày lập (Cũ-Nhất)
-                    filteredInvoices = filteredInvoices.OrderBy(p => p.DateCreated).ToList();
+                    filteredInvoices.Sort((p1, p2) => p1.DateCreated.CompareTo(p2.DateCreated));
                     break;
                 case 3: // Ngày lập (Mới-Nhất)
-                    filteredInvoices = filteredInvoices.OrderByDescending(p => p.DateCreated).ToList();
+                    filteredInvoices.Sort((p1, p2) => p2.DateCreated.CompareTo(p1.DateCreated));
                     break;
                 case 4: // Nhân viên (A-Z)
-                    filteredInvoices = filteredInvoices.OrderBy(p => p.CashierName).ToList();
+                    filteredInvoices.Sort((p1, p2) => p1.CashierName.CompareTo(p2.CashierName));
                     break;
                 case 5: // Nhân viên (Z-A)
-                    filteredInvoices = filteredInvoices.OrderByDescending(p => p.CashierName).ToList();
+                    filteredInvoices.Sort((p1, p2) => p2.CashierName.CompareTo(p1.CashierName));
                     break;
                 case 6: // Khách hàng (A-Z)
-                    filteredInvoices = filteredInvoices.OrderBy(p => p.CustomerName).ToList();
+                    filteredInvoices.Sort((p1, p2) => p1.CustomerName.CompareTo(p2.CustomerName));
                     break;
                 case 7: // Khách hàng (Z-A)
-                    filteredInvoices = filteredInvoices.OrderByDescending(p => p.CustomerName).ToList();
+                    filteredInvoices.Sort((p1, p2) => p2.CustomerName.CompareTo(p1.CustomerName));
                     break;
                 case 8: // Thành tiền (Thấp-Cao)
-                    filteredInvoices = filteredInvoices.OrderBy(p => p.FinalTotal).ToList();
+                    filteredInvoices.Sort((p1, p2) => p1.FinalTotal.CompareTo(p2.FinalTotal));
                     break;
                 case 9: // Thành tiền (Cao-Thấp)
-                    filteredInvoices = filteredInvoices.OrderByDescending(p => p.FinalTotal).ToList();
+                    filteredInvoices.Sort((p1, p2) => p2.FinalTotal.CompareTo(p1.FinalTotal));
                     break;
             }
         }
 
-        /// <summary>
-        /// Cập nhật thống kê
-        /// </summary>
+        // chi tiết thống kê
         private void UpdateStatistics()
         {
             int totalInvoices = filteredInvoices.Count;
-            decimal totalRevenue = filteredInvoices.Sum(p => p.FinalTotal);
-            decimal totalDiscount = filteredInvoices.Sum(p => p.DiscountAmount);
-            int customerCount = filteredInvoices.Select(p => p.CustomerName).Distinct().Count();
+
+            decimal totalRevenue = 0;
+            for (int i = 0; i < filteredInvoices.Count; i++)
+            {
+                totalRevenue += filteredInvoices[i].FinalTotal;
+            }
+
+            decimal totalDiscount = 0;
+            for (int i = 0; i < filteredInvoices.Count; i++)
+            {
+                totalDiscount += filteredInvoices[i].DiscountAmount;
+            }
+
+            List<string> distinctCustomers = new List<string>();
+            for (int i = 0; i < filteredInvoices.Count; i++)
+            {
+                string customerName = filteredInvoices[i].CustomerName;
+                if (!string.IsNullOrEmpty(customerName) && !distinctCustomers.Contains(customerName))
+                {
+                    distinctCustomers.Add(customerName);
+                }
+            }
+            int customerCount = distinctCustomers.Count;
 
             lblTotalInvoicesValue.Text = totalInvoices.ToString();
-            lblTotalRevenueValue.Text = $"{totalRevenue:N0} đ";
-            lblTotalDiscountValue.Text = $"{totalDiscount:N0} đ";
+            lblTotalRevenueValue.Text = totalRevenue.ToString("N0") + " đ";
+            lblTotalDiscountValue.Text = totalDiscount.ToString("N0") + " đ";
             lblCustomerCountValue.Text = customerCount.ToString();
 
-            // Đổi màu theo số lượng
+            // đổi màu theo số lượng
             lblTotalInvoicesValue.ForeColor = totalInvoices > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalRevenueValue.ForeColor = totalRevenue > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalDiscountValue.ForeColor = totalDiscount > 0 ? Color.FromArgb(255, 165, 0) : Color.Gray;
             lblCustomerCountValue.ForeColor = customerCount > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
         }
 
-        /// <summary>
-        /// Sự kiện khi thay đổi lựa chọn lọc
-        /// </summary>
         private void FilterChanged(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
-
-        #endregion
     }
 }

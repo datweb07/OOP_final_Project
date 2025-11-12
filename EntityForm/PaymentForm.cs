@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
-    public partial class QRPaymentForm : Form
+    public partial class PaymentForm : Form
     {
         private Invoice _invoice;
         private Order _order;
@@ -20,7 +20,7 @@ namespace OOP_finalProject
         private decimal _amount;
         private string _invoiceId;
 
-        public QRPaymentForm(Invoice invoice)
+        public PaymentForm(Invoice invoice)
         {
             InitializeComponent();
             _invoice = invoice;
@@ -30,7 +30,7 @@ namespace OOP_finalProject
         }
 
         // cái này có thể không cần thiết
-        public QRPaymentForm(Order order)
+        public PaymentForm(Order order)
         {
             InitializeComponent();
             _order = order;
@@ -39,7 +39,7 @@ namespace OOP_finalProject
             InitializeForm();
         }
 
-        public QRPaymentForm(decimal amount, string invoiceId)
+        public PaymentForm(decimal amount, string invoiceId)
         {
             InitializeComponent();
             _amount = amount;
@@ -362,7 +362,7 @@ namespace OOP_finalProject
 
             return false;
         }
-        public QRPaymentForm()
+        public PaymentForm()
         {
             InitializeComponent();
         }

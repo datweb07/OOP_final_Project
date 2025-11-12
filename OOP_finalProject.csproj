@@ -285,11 +285,11 @@
     <Compile Include="EntityForm\StoreForm.Designer.cs">
       <DependentUpon>StoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EntityForm\QRPaymentForm.cs">
+    <Compile Include="EntityForm\PaymentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EntityForm\QRPaymentForm.Designer.cs">
-      <DependentUpon>QRPaymentForm.cs</DependentUpon>
+    <Compile Include="EntityForm\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Strategies\RegularCustomerDiscountStrategy.cs" />
     <Compile Include="Strategies\VIPCustomerDiscountStrategy.cs" />
