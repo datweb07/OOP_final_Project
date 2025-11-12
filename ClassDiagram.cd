@@ -299,14 +299,14 @@
   <Class Name="OOP_finalProject.ManagerForm" Collapsed="true">
     <Position X="23" Y="12.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAQICCCIaCBAAAAOAAQgDAAAAABYhACAEEQICFQY=</HashCode>
+      <HashCode>AAAhAAJCCCISCBAAAAOAAQAjIAAAABYhACAEEQICFQY=</HashCode>
       <FileName>EntityForm\ManagerForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.OrderForm" Collapsed="true">
     <Position X="34" Y="12.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>RGAEJAIHCCgYGJTAMV+IHCACBhQ8BhI9ASgJBR7AAZU=</HashCode>
+      <HashCode>RGAFJAIFCCAYGJTAMU+IHCACDhQ4BhI9ASgJBR7AAZU=</HashCode>
       <FileName>EntityForm\OrderForm.cs</FileName>
     </TypeIdentifier>
   </Class>

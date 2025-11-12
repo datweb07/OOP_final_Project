@@ -33,13 +33,11 @@ namespace OOP_finalProject
         {
             try
             {
-                // Tạo dữ liệu mẫu cho Manager nếu chưa có
                 ManagerData.CreateSampleData();
 
-                // Lấy danh sách quản lý
+                // lấy danh sách quản lý
                 managers = managerData.GetData();
 
-                // Kiểm tra danh sách có rỗng không
                 if (managers == null || managers.Count == 0)
                 {
                     MessageBox.Show("Không có dữ liệu quản lý. Vui lòng thêm quản lý trước!",
@@ -49,7 +47,7 @@ namespace OOP_finalProject
                     return;
                 }
 
-                // Gán dữ liệu cho ComboBox
+                // gán dữ liệu vào combobox
                 cboManager.DataSource = managers;
                 cboManager.ValueMember = "Id";
                 cboManager.DisplayMember = "Name";
@@ -57,7 +55,7 @@ namespace OOP_finalProject
                 if (cboManager.Items.Count > 0)
                     cboManager.SelectedIndex = 0;
 
-                // Lấy thông tin cửa hàng
+                // lấy thông tin cửa hàng
                 Store store = storeData.GetData();
                 Display(store);
 
@@ -81,7 +79,7 @@ namespace OOP_finalProject
 
             if (!string.IsNullOrEmpty(store.ManagerId))
             {
-                // Tìm quản lý trong danh sách
+                // Tìm quản lý 
                 for (int i = 0; i < managers.Count; i++)
                 {
                     if (managers[i].Id == store.ManagerId)
@@ -134,22 +132,19 @@ namespace OOP_finalProject
 
             try
             {
-                // Lấy thông tin quản lý được chọn
-                Manager selectedManager = cboManager.SelectedItem as Manager;
+                // lấy thông tin quản lý được chọn
+                Manager selectedManager = (Manager)cboManager.SelectedItem;
 
-                // Tạo mới cửa hàng
-                Store store = new Store
-                {
-                    StoreId = txtId.Text,
-                    StoreName = txtName.Text,
-                    Location = txtAddress.Text,
-                    ManagerId = selectedManager.Id
-                };
+                // tạo cửa hàng mới
+                Store store = new Store();
+                store.StoreId = txtId.Text;
+                store.StoreName = txtName.Text;
+                store.Location = txtAddress.Text;
+                store.ManagerId = selectedManager.Id;
 
-                // Lưu cửa hàng
                 storeData.SaveData(store);
 
-                // Cập nhật lại StoreName cho Manager
+                // cập nhật storeName cho managerName
                 selectedManager.Store = store.StoreName;
                 managerData.SaveData(managers);
 

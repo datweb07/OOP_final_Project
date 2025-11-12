@@ -5,7 +5,6 @@ using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -20,34 +19,33 @@ namespace OOP_finalProject
 
         public OrderForm(Order order) : this()
         {
-            _order = order;
+            this.order = order;
         }
 
-        private OrderData orderDAL = new OrderData();
-        private CashierData cashierDAL = new CashierData();
-        private CustomerData customerDAL = new CustomerData();
+        private OrderData orderData = new OrderData();
+        private CashierData cashierData = new CashierData();
+        private CustomerData customerData = new CustomerData();
         private DrinkProductData drinkProductData = new DrinkProductData();
         private FoodProductData foodProductData = new FoodProductData();
         private HouseholdProductData householdProductData = new HouseholdProductData();
         private ElectronicProductData electronicProductData = new ElectronicProductData();
         private ClothingProductData clothingProductData = new ClothingProductData();
-        private ComboProductData comboProductData = new ComboProductData(); 
+        private ComboProductData comboProductData = new ComboProductData();
 
         private List<Order> orders;
         private List<Product> products = new List<Product>();
-        private Order _order;
+        private Order order;
         private BindingSource src = new BindingSource();
 
         private void InitializeDataGrid()
         {
             gridDataDetail.ReadOnly = true;
             gridDataDetail.AllowUserToAddRows = false;
-            gridDataDetail.AutoGenerateColumns = false;
+            gridDataDetail.AutoGenerateColumns = false;  // tắt để thêm thủ công
 
-            // Xóa columns cũ
             gridDataDetail.Columns.Clear();
 
-            // Thêm columns mới
+            // thêm columns mới (thủ công)
             gridDataDetail.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 DataPropertyName = "ProductID",
@@ -81,23 +79,22 @@ namespace OOP_finalProject
             gridDataDetail.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 DataPropertyName = "TotalPrice",
-                HeaderText = "Tổng tiền (gốc)",
+                HeaderText = "Tổng tiền",
                 Width = 130,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N0" }
             });
 
-            // Column hiển thị giá sau discount
             gridDataDetail.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "colDiscountedPrice",
-                HeaderText = "Thành tiền (sau KM)",
+                HeaderText = "Thành tiền",
                 Width = 150,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N0" }
             });
 
             gridDataDetail.DataSource = src;
 
-            // Styling
+            // tùy chỉnh giao diện cho DataGridView
             gridDataDetail.BorderStyle = BorderStyle.None;
             gridDataDetail.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridDataDetail.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -116,23 +113,20 @@ namespace OOP_finalProject
             LoadAllData();
             InitializeOrder();
             UpdateAllDisplays();
-
-            // Test debug
-            TestCurrentOrder();
         }
 
         private void LoadAllData()
         {
             try
             {
-                orders = orderDAL.GetData();
+                orders = orderData.GetData();
                 LoadProducts();
                 LoadSellers();
                 LoadCustomers();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi load dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi load dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -140,7 +134,7 @@ namespace OOP_finalProject
         {
             try
             {
-                List<Customer> customers = customerDAL.GetData();
+                List<Customer> customers = customerData.GetData();
                 cboCustomer.DataSource = customers;
                 cboCustomer.ValueMember = "Id";
                 cboCustomer.DisplayMember = "Name";
@@ -148,7 +142,7 @@ namespace OOP_finalProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi load khách hàng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi load khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -156,14 +150,14 @@ namespace OOP_finalProject
         {
             try
             {
-                List<Cashier> cashiers = cashierDAL.GetData();
+                List<Cashier> cashiers = cashierData.GetData();
                 cboSeller.DataSource = cashiers;
                 cboSeller.ValueMember = "Id";
                 cboSeller.DisplayMember = "Name";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi load nhân viên: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi load nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -172,16 +166,53 @@ namespace OOP_finalProject
             try
             {
                 products.Clear();
-                products.AddRange(drinkProductData.GetData());
-                products.AddRange(foodProductData.GetData());
-                products.AddRange(householdProductData.GetData());
-                products.AddRange(electronicProductData.GetData());
-                products.AddRange(clothingProductData.GetData());
-                products.AddRange(comboProductData.GetData());
 
+                List<DrinkProduct> drinkProducts = drinkProductData.GetData();
+                for (int i = 0; i < drinkProducts.Count; i++)
+                {
+                    products.Add(drinkProducts[i]);
+                }
 
-                // Chỉ hiển thị sản phẩm còn hàng
-                products = products.Where(p => p.Quantity > 0).ToList();
+                List<FoodProduct> foodProducts = foodProductData.GetData();
+                for (int i = 0; i < foodProducts.Count; i++)
+                {
+                    products.Add(foodProducts[i]);
+                }
+
+                List<HouseholdProduct> householdProducts = householdProductData.GetData();
+                for (int i = 0; i < householdProducts.Count; i++)
+                {
+                    products.Add(householdProducts[i]);
+                }
+
+                List<ElectronicProduct> electronicProducts = electronicProductData.GetData();
+                for (int i = 0; i < electronicProducts.Count; i++)
+                {
+                    products.Add(electronicProducts[i]);
+                }
+
+                List<ClothingProduct> clothingProducts = clothingProductData.GetData();
+                for (int i = 0; i < clothingProducts.Count; i++)
+                {
+                    products.Add(clothingProducts[i]);
+                }
+
+                List<ComboProduct> comboProducts = comboProductData.GetData();
+                for (int i = 0; i < comboProducts.Count; i++)
+                {
+                    products.Add(comboProducts[i]);
+                }
+
+                // hiển thị sản phẩm còn hàng
+                List<Product> availableProducts = new List<Product>();
+                for (int i = 0; i < products.Count; i++)
+                {
+                    if (products[i].Quantity > 0)
+                    {
+                        availableProducts.Add(products[i]);
+                    }
+                }
+                products = availableProducts;
 
                 cboProduct.DataSource = products;
                 cboProduct.ValueMember = "Id";
@@ -189,38 +220,38 @@ namespace OOP_finalProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi load sản phẩm: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi load sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void InitializeOrder()
         {
-            if (_order == null)
+            if (order == null)
             {
-                _order = new Order();
-                txtCode.Text = _order.OrderId;
-                dtCreateDate.Value = _order.OrderDate;
+                order = new Order();
+                txtCode.Text = order.OrderId;
+                dtCreateDate.Value = order.OrderDate;
             }
             else
             {
-                txtCode.Text = _order.OrderId;
-                dtCreateDate.Value = _order.OrderDate;
+                txtCode.Text = order.OrderId;
+                dtCreateDate.Value = order.OrderDate;
 
-                // Select cashier và customer nếu có
-                if (_order.Cashier != null)
-                    cboSeller.SelectedValue = _order.Cashier.Id;
 
-                if (_order.Customer != null)
-                    cboCustomer.SelectedValue = _order.Customer.Id;
+                if (order.Cashier != null)
+                    cboSeller.SelectedValue = order.Cashier.Id;
+
+                if (order.Customer != null)
+                    cboCustomer.SelectedValue = order.Customer.Id;
             }
 
-            src.DataSource = _order.OrderDetails;
+            src.DataSource = order.OrderDetails;
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            _order = new Order();
-            txtCode.Text = _order.OrderId;
+            order = new Order();
+            txtCode.Text = order.OrderId;
             dtCreateDate.Value = DateTime.Now;
 
             if (cboCustomer.Items.Count > 0) cboCustomer.SelectedIndex = 0;
@@ -228,7 +259,7 @@ namespace OOP_finalProject
             if (cboProduct.Items.Count > 0) cboProduct.SelectedIndex = 0;
 
             txtQty.Value = 1;
-            src.DataSource = _order.OrderDetails;
+            src.DataSource = order.OrderDetails;
             src.ResetBindings(false);
 
             UpdateAllDisplays();
@@ -239,43 +270,51 @@ namespace OOP_finalProject
         {
             if (!ValidateAddProduct()) return;
 
-            var product = cboProduct.SelectedItem as Product;
-            var quantity = txtQty.Value;
+            Product product = cboProduct.SelectedItem as Product;
+            decimal quantity = txtQty.Value;
 
-            // Kiểm tra số lượng tồn kho
+            // kiểm tra tồn kho
             if (product.Quantity < quantity)
             {
-                MessageBox.Show($"Sản phẩm không đủ số lượng! Chỉ còn {product.Quantity} sản phẩm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sản phẩm không đủ số lượng! Chỉ còn " + product.Quantity + " sản phẩm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Tìm hoặc thêm order detail
-            var existingDetail = _order.OrderDetails.FirstOrDefault(od => od.Product.Id == product.Id);
+            // tìm hoặc thêm order detail
+            OrderDetails existingDetail = null;
+            for (int i = 0; i < order.OrderDetails.Count; i++)
+            {
+                if (order.OrderDetails[i].Product.Id == product.Id)
+                {
+                    existingDetail = order.OrderDetails[i];
+                    break;
+                }
+            }
+
             if (existingDetail != null)
             {
                 existingDetail.Quantity += quantity;
             }
             else
             {
-                _order.OrderDetails.Add(new OrderDetails
-                {
-                    Product = product,
-                    Quantity = quantity
-                });
+                OrderDetails newDetail = new OrderDetails();
+                newDetail.Product = product;
+                newDetail.Quantity = quantity;
+                order.OrderDetails.Add(newDetail);
             }
 
-            // Cập nhật số lượng hiển thị (không trừ thật cho đến khi save)
+            // cập nhật số lượng hiển thị (không trừ thật cho đến khi save)
             product.Quantity -= quantity;
 
             RefreshDataGrid();
             UpdateAllDisplays();
 
-            statusLabel.Text = $"Đã thêm {quantity} {product.Name} vào đơn hàng";
+            statusLabel.Text = "Đã thêm " + quantity + " " + product.Name + " vào đơn hàng";
         }
 
         private bool ValidateAddProduct()
         {
-            if (_order == null)
+            if (order == null)
             {
                 MessageBox.Show("Không có đơn hàng nào được khởi tạo!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -300,11 +339,11 @@ namespace OOP_finalProject
 
         private void btnDeleteDetail_Click(object sender, EventArgs e)
         {
-            if (gridDataDetail.CurrentRow?.DataBoundItem is OrderDetails detail)
+            if (gridDataDetail.CurrentRow != null && gridDataDetail.CurrentRow.DataBoundItem is OrderDetails detail)
             {
-                // Trả lại số lượng cho sản phẩm
+                // trả lại số lương sản phẩm
                 detail.Product.Quantity += detail.Quantity;
-                _order.OrderDetails.Remove(detail);
+                order.OrderDetails.Remove(detail);
 
                 RefreshDataGrid();
                 UpdateAllDisplays();
@@ -320,14 +359,23 @@ namespace OOP_finalProject
         {
             if (!ValidateSave()) return;
 
-            // Cập nhật thông tin order
-            _order.OrderId = txtCode.Text.Trim();
-            _order.OrderDate = dtCreateDate.Value;
-            _order.Cashier = cboSeller.SelectedItem as Cashier;
-            _order.Customer = cboCustomer.SelectedItem as Customer;
+            // cập nhật thông tin đơn hàng
+            order.OrderId = txtCode.Text.Trim();
+            order.OrderDate = dtCreateDate.Value;
+            order.Cashier = cboSeller.SelectedItem as Cashier;
+            order.Customer = cboCustomer.SelectedItem as Customer;
 
-            // Kiểm tra trùng order ID
-            var existingOrder = orders.FirstOrDefault(o => o.OrderId == _order.OrderId && o != _order);
+            // kiểm tra trùng order ID
+            Order existingOrder = null;
+            for (int i = 0; i < orders.Count; i++)
+            {
+                if (orders[i].OrderId == order.OrderId && orders[i] != order)
+                {
+                    existingOrder = orders[i];
+                    break;
+                }
+            }
+
             if (existingOrder != null)
             {
                 MessageBox.Show("Mã đơn hàng đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -335,14 +383,24 @@ namespace OOP_finalProject
                 return;
             }
 
-            // Thêm hoặc cập nhật order
-            if (!orders.Contains(_order))
-                orders.Add(_order);
+            // thêm hoặc cập nhật order
+            bool containsOrder = false;
+            for (int i = 0; i < orders.Count; i++)
+            {
+                if (orders[i] == order)
+                {
+                    containsOrder = true;
+                    break;
+                }
+            }
 
-            // Lưu dữ liệu
-            orderDAL.SaveData(orders);
+            if (!containsOrder)
+                orders.Add(order);
+
+            // lưu data
+            orderData.SaveData(orders);
             UpdateProductQuantities();
-            LoadProducts(); // Reload products để cập nhật số lượng
+            LoadProducts(); // reload products để cập nhật số lượng
 
             MessageBox.Show("Lưu đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             statusLabel.Text = "Đã lưu đơn hàng thành công";
@@ -372,7 +430,7 @@ namespace OOP_finalProject
                 return false;
             }
 
-            if (_order.OrderDetails.Count == 0)
+            if (order.OrderDetails.Count == 0)
             {
                 MessageBox.Show("Đơn hàng phải có ít nhất một sản phẩm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -383,26 +441,63 @@ namespace OOP_finalProject
 
         private void UpdateProductQuantities()
         {
-            // Cập nhật số lượng sản phẩm trong inventory
-            foreach (var detail in _order.OrderDetails)
+            // cập nhật số lượng sản phẩm trong product
+            for (int i = 0; i < order.OrderDetails.Count; i++)
             {
-                UpdateProductInventory(detail.Product, detail.Quantity);
+                UpdateProductInventory(order.OrderDetails[i].Product, order.OrderDetails[i].Quantity);
             }
         }
 
         private void UpdateProductInventory(Product product, decimal quantity)
         {
-            // Implementation depends on your product data structure
-            // This is a simplified version
-            var allProducts = new List<Product>();
-            allProducts.AddRange(drinkProductData.GetData());
-            allProducts.AddRange(foodProductData.GetData());
-            allProducts.AddRange(householdProductData.GetData());
-            allProducts.AddRange(electronicProductData.GetData());
-            allProducts.AddRange(clothingProductData.GetData());
-            allProducts.AddRange(comboProductData.GetData());
+            List<Product> allProducts = new List<Product>();
 
-            var targetProduct = allProducts.FirstOrDefault(p => p.Id == product.Id);
+            List<DrinkProduct> drinkProducts = drinkProductData.GetData();
+            for (int i = 0; i < drinkProducts.Count; i++)
+            {
+                allProducts.Add(drinkProducts[i]);
+            }
+
+            List<FoodProduct> foodProducts = foodProductData.GetData();
+            for (int i = 0; i < foodProducts.Count; i++)
+            {
+                allProducts.Add(foodProducts[i]);
+            }
+
+            List<HouseholdProduct> householdProducts = householdProductData.GetData();
+            for (int i = 0; i < householdProducts.Count; i++)
+            {
+                allProducts.Add(householdProducts[i]);
+            }
+
+            List<ElectronicProduct> electronicProducts = electronicProductData.GetData();
+            for (int i = 0; i < electronicProducts.Count; i++)
+            {
+                allProducts.Add(electronicProducts[i]);
+            }
+
+            List<ClothingProduct> clothingProducts = clothingProductData.GetData();
+            for (int i = 0; i < clothingProducts.Count; i++)
+            {
+                allProducts.Add(clothingProducts[i]);
+            }
+
+            List<ComboProduct> comboProducts = comboProductData.GetData();
+            for (int i = 0; i < comboProducts.Count; i++)
+            {
+                allProducts.Add(comboProducts[i]);
+            }
+
+            Product targetProduct = null;
+            for (int i = 0; i < allProducts.Count; i++)
+            {
+                if (allProducts[i].Id == product.Id)
+                {
+                    targetProduct = allProducts[i];
+                    break;
+                }
+            }
+
             if (targetProduct != null)
             {
                 targetProduct.Quantity -= quantity;
@@ -410,12 +505,25 @@ namespace OOP_finalProject
             }
 
             // Save all product types
-            drinkProductData.SaveData(allProducts.OfType<DrinkProduct>().ToList());
-            foodProductData.SaveData(allProducts.OfType<FoodProduct>().ToList());
-            householdProductData.SaveData(allProducts.OfType<HouseholdProduct>().ToList());
-            electronicProductData.SaveData(allProducts.OfType<ElectronicProduct>().ToList());
-            clothingProductData.SaveData(allProducts.OfType<ClothingProduct>().ToList());
-            comboProductData.SaveData(allProducts.OfType<ComboProduct>().ToList());
+            drinkProductData.SaveData(GetProductsOfType<DrinkProduct>(allProducts));
+            foodProductData.SaveData(GetProductsOfType<FoodProduct>(allProducts));
+            householdProductData.SaveData(GetProductsOfType<HouseholdProduct>(allProducts));
+            electronicProductData.SaveData(GetProductsOfType<ElectronicProduct>(allProducts));
+            clothingProductData.SaveData(GetProductsOfType<ClothingProduct>(allProducts));
+            comboProductData.SaveData(GetProductsOfType<ComboProduct>(allProducts));
+        }
+
+        private List<T> GetProductsOfType<T>(List<Product> products) where T : Product
+        {
+            List<T> result = new List<T>();
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i] is T)
+                {
+                    result.Add((T)products[i]);
+                }
+            }
+            return result;
         }
 
         private void UpdateAllDisplays()
@@ -427,15 +535,14 @@ namespace OOP_finalProject
 
         private void UpdateDiscountDisplay()
         {
-            if (_order?.Customer == null) return;
+            if (order == null || order.Customer == null) return;
 
-            lblSubTotalValue.Text = $"{_order.SumTotal:N0} đ";
-            lblDiscountValue.Text = $"{_order.DiscountAmount:N0} đ";
-            lblFinalTotalValue.Text = $"{_order.FinalTotal:N0} đ";
-            lblDiscountPercentValue.Text = $"{_order.DiscountPercentage}%";
-            lblCustomerTypeValue.Text = _order.Customer.CustomerType;
+            lblSubTotalValue.Text = order.SumTotal.ToString("N0") + " đ";
+            lblDiscountValue.Text = order.DiscountAmount.ToString("N0") + " đ";
+            lblFinalTotalValue.Text = order.FinalTotal.ToString("N0") + " đ";
+            lblDiscountPercentValue.Text = order.DiscountPercentage.ToString() + "%";
+            lblCustomerTypeValue.Text = order.Customer.CustomerType;
 
-            // Màu sắc
             lblSubTotalValue.ForeColor = Color.FromArgb(46, 204, 113);
             lblDiscountValue.ForeColor = Color.FromArgb(255, 165, 0);
             lblFinalTotalValue.ForeColor = Color.FromArgb(65, 105, 225);
@@ -443,30 +550,37 @@ namespace OOP_finalProject
 
         private void UpdateStatistics()
         {
-            if (_order == null) return;
+            if (order == null) return;
 
-            lblItemCountValue.Text = _order.OrderDetails.Count.ToString();
-            lblProductCountValue.Text = _order.OrderDetails.Sum(od => (int)od.Quantity).ToString();
-            lblOrderValueValue.Text = $"{_order.SumTotal:N0} đ";
+            lblItemCountValue.Text = order.OrderDetails.Count.ToString();
 
-            var positiveColor = Color.FromArgb(46, 204, 113);
-            var zeroColor = Color.Red;
+            int totalQuantity = 0;
+            for (int i = 0; i < order.OrderDetails.Count; i++)
+            {
+                totalQuantity += (int)order.OrderDetails[i].Quantity;
+            }
+            lblProductCountValue.Text = totalQuantity.ToString();
 
-            lblItemCountValue.ForeColor = _order.OrderDetails.Count > 0 ? positiveColor : zeroColor;
-            lblProductCountValue.ForeColor = _order.OrderDetails.Sum(od => od.Quantity) > 0 ? positiveColor : zeroColor;
-            lblOrderValueValue.ForeColor = _order.SumTotal > 0 ? positiveColor : zeroColor;
+            lblOrderValueValue.Text = order.SumTotal.ToString("N0") + " đ";
+
+            Color positiveColor = Color.FromArgb(46, 204, 113);
+            Color zeroColor = Color.Red;
+
+            lblItemCountValue.ForeColor = order.OrderDetails.Count > 0 ? positiveColor : zeroColor;
+            lblProductCountValue.ForeColor = totalQuantity > 0 ? positiveColor : zeroColor;
+            lblOrderValueValue.ForeColor = order.SumTotal > 0 ? positiveColor : zeroColor;
         }
 
         private void UpdateGridDiscountedPrices()
         {
-            if (_order == null || gridDataDetail.Rows.Count == 0) return;
+            if (order == null || gridDataDetail.Rows.Count == 0) return;
 
             for (int i = 0; i < gridDataDetail.Rows.Count; i++)
             {
-                var row = gridDataDetail.Rows[i];
+                DataGridViewRow row = gridDataDetail.Rows[i];
                 if (row.DataBoundItem is OrderDetails detail && row.Cells["colDiscountedPrice"] != null)
                 {
-                    decimal discountedPrice = _order.GetDiscountedPriceForDetail(detail);
+                    decimal discountedPrice = order.GetDiscountedPriceForDetail(detail);
                     row.Cells["colDiscountedPrice"].Value = discountedPrice;
 
                     // Visual feedback
@@ -494,35 +608,18 @@ namespace OOP_finalProject
         {
             if (cboCustomer.SelectedItem is Customer customer)
             {
-                _order.Customer = customer;
+                order.Customer = customer;
                 UpdateAllDisplays();
             }
         }
 
         private void gridDataDetail_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridDataDetail.CurrentRow?.DataBoundItem is OrderDetails detail)
+            if (gridDataDetail.CurrentRow != null && gridDataDetail.CurrentRow.DataBoundItem is OrderDetails detail)
             {
                 cboProduct.SelectedValue = detail.Product.Id;
                 txtQty.Value = detail.Quantity;
             }
-        }
-
-        private void gridDataDetail_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // Cell formatting sẽ được xử lý trong UpdateGridDiscountedPrices
-        }
-
-        private void TestCurrentOrder()
-        {
-            if (_order == null) return;
-
-            Console.WriteLine("=== DEBUG ORDER INFO ===");
-            Console.WriteLine($"Order ID: {_order.OrderId}");
-            Console.WriteLine($"Customer: {_order.Customer?.Name} - {_order.Customer?.CustomerType}");
-            Console.WriteLine($"Discount: {_order.DiscountPercentage}%");
-            Console.WriteLine($"Total: {_order.SumTotal:N0} -> {_order.FinalTotal:N0}");
-            Console.WriteLine("========================");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -553,7 +650,6 @@ namespace OOP_finalProject
             }
 
             // Cập nhật lại số lượng sản phẩm
-
             List<DrinkProduct> drinkProducts = drinkProductData.GetData();
             List<FoodProduct> foodProducts = foodProductData.GetData();
             List<HouseholdProduct> householdProducts = householdProductData.GetData();
@@ -582,7 +678,6 @@ namespace OOP_finalProject
                         if (foodProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product.Id.ToLower())
                         {
                             foodProducts[j].Quantity = foodProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
-
                             break;
                         }
                     }
@@ -602,11 +697,11 @@ namespace OOP_finalProject
 
                 if (toDelete.OrderDetails[i].Product is ElectronicProduct)
                 {
-                    for (int j = 0; i < electronicProducts.Count; j++)
+                    for (int j = 0; j < electronicProducts.Count; j++)
                     {
-                        if (electronicProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product?.Id.ToLower())
+                        if (electronicProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product.Id.ToLower())
                         {
-                            electronicProducts[j].Quantity = electronicProducts[j].Quantity + toDelete.OrderDetails[i].Quantity; 
+                            electronicProducts[j].Quantity = electronicProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
                             break;
                         }
                     }
@@ -614,9 +709,9 @@ namespace OOP_finalProject
 
                 if (toDelete.OrderDetails[i].Product is ClothingProduct)
                 {
-                    for (int j = 0; i < clothingProducts.Count; j++)
+                    for (int j = 0; j < clothingProducts.Count; j++)
                     {
-                        if (clothingProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product?.Id.ToLower())
+                        if (clothingProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product.Id.ToLower())
                         {
                             clothingProducts[j].Quantity = clothingProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
                             break;
@@ -626,9 +721,9 @@ namespace OOP_finalProject
 
                 if (toDelete.OrderDetails[i].Product is ComboProduct)
                 {
-                    for (int j = 0; i < comboProducts.Count; j++)
+                    for (int j = 0; j < comboProducts.Count; j++)
                     {
-                        if (comboProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product?.Id.ToLower())
+                        if (comboProducts[j].Id.ToLower() == toDelete.OrderDetails[i].Product.Id.ToLower())
                         {
                             comboProducts[j].Quantity = comboProducts[j].Quantity + toDelete.OrderDetails[i].Quantity;
                             break;
@@ -656,7 +751,6 @@ namespace OOP_finalProject
 
             MessageBox.Show("Xoá thông tin đơn hàng thành công ! "
                  , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            return;
         }
 
         private void btnViewInvoice_Click(object sender, EventArgs e)
@@ -683,6 +777,7 @@ namespace OOP_finalProject
             {
                 MessageBox.Show("Không tìm thấy đơn hàng ! "
                , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
             Invoice invoice = new Invoice();
@@ -693,14 +788,12 @@ namespace OOP_finalProject
 
             for (int i = 0; i < order.OrderDetails.Count; i++)
             {
-                invoice.InvoiceDetails.Add(new InvoiceDetails()
-                {
-                    ProductID = order.OrderDetails[i].Product.Id,
-                    ProductName = order.OrderDetails[i].Product.Name,
-                    Quantity = order.OrderDetails[i].Quantity,
-                    UnitPrice = order.OrderDetails[i].Product.Price
-                });
-
+                InvoiceDetails invoiceDetail = new InvoiceDetails();
+                invoiceDetail.ProductID = order.OrderDetails[i].Product.Id;
+                invoiceDetail.ProductName = order.OrderDetails[i].Product.Name;
+                invoiceDetail.Quantity = order.OrderDetails[i].Quantity;
+                invoiceDetail.UnitPrice = order.OrderDetails[i].Product.Price;
+                invoice.InvoiceDetails.Add(invoiceDetail);
             }
 
             InvoiceForm frm = new InvoiceForm(invoice);

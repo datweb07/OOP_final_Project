@@ -1,31 +1,25 @@
 ﻿using OOP_finalProject.Payments;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
 {
     public partial class PaymentForm : Form
     {
-        private Invoice _invoice;
-        private Order _order;
-        private Payment _payment;
-        private decimal _amount;
-        private string _invoiceId;
+        private Invoice invoice;
+        private Order order;
+        private Payment payment;
+        private decimal amount;
+        private string invoiceId;
 
         public PaymentForm(Invoice invoice)
         {
             InitializeComponent();
-            _invoice = invoice;
-            _amount = invoice.FinalTotal;
-            _invoiceId = invoice.Id;
+            this.invoice = invoice;
+            amount = invoice.FinalTotal;
+            invoiceId = invoice.Id;
             InitializeForm();
         }
 
@@ -33,17 +27,17 @@ namespace OOP_finalProject
         public PaymentForm(Order order)
         {
             InitializeComponent();
-            _order = order;
-            _amount = order.FinalTotal;
-            _invoiceId = order.OrderId;
+            this.order = order;
+            amount = order.FinalTotal;
+            invoiceId = order.OrderId;
             InitializeForm();
         }
 
         public PaymentForm(decimal amount, string invoiceId)
         {
             InitializeComponent();
-            _amount = amount;
-            _invoiceId = invoiceId;
+            this.amount = amount;
+            this.invoiceId = invoiceId;
             InitializeForm();
         }
 
@@ -72,8 +66,8 @@ namespace OOP_finalProject
 
         private void DisplayInvoiceInfo()
         {
-            lblInvoiceId.Text = $"Hóa đơn: {_invoiceId}";
-            lblAmount.Text = $"Số tiền: {_amount:N0} đ";
+            lblInvoiceId.Text = $"Hóa đơn: {invoiceId}";
+            lblAmount.Text = $"Số tiền: {amount:N0} đ";
             lblAmount.ForeColor = Color.FromArgb(192, 0, 0);
             lblAmount.Font = new Font(lblAmount.Font.FontFamily, 14, FontStyle.Bold);
         }
@@ -90,7 +84,7 @@ namespace OOP_finalProject
                 PaymentMethod selectedMethod = GetSelectedPaymentMethod();
 
                 // Tạo payment nếu chưa có
-                if (_payment == null)
+                if (payment == null)
                 {
                     CreatePayment();
                 }
@@ -102,12 +96,12 @@ namespace OOP_finalProject
                     case PaymentMethod.CASH:
                         success = ProcessCashPayment();
                         break;
-                    //case PaymentMethod.CARD:
-                    //    success = ProcessCardPayment();
-                    //    break;
-                    //case PaymentMethod.QR_CODE:
-                    //    success = ProcessQRPayment();
-                    //    break;
+                        //case PaymentMethod.CARD:
+                        //    success = ProcessCardPayment();
+                        //    break;
+                        //case PaymentMethod.QR_CODE:
+                        //    success = ProcessQRPayment();
+                        //    break;
                 }
 
                 if (success)
@@ -115,44 +109,58 @@ namespace OOP_finalProject
                     lblStatus.Text = $"Trạng thái: Thanh toán thành công ✓";
                     lblStatus.ForeColor = Color.Green;
 
-                    // Nếu là thanh toán tiền mặt, yêu cầu refresh Dashboard để cập nhật Doanh Thu
+                    // nếu là tiền mặt sẽ cập nhật vào Dashboard
                     if (selectedMethod == PaymentMethod.CASH)
                     {
                         try
                         {
-                            // Nếu form này được mở kèm theo 1 Invoice, lưu/ cập nhật hóa đơn vào dữ liệu
-                            if (_invoice != null)
+                            // nếu form này được mở kèm theo 1 Invoice, lưu/ cập nhật hóa đơn vào dữ liệu
+                            if (invoice != null)
                             {
-                                // Ghi nhận phương thức thanh toán và mã giao dịch lên Invoice (nếu có)
+                                // lưu phương thức thanh toán và mã giao dịch
                                 try
                                 {
-                                    _invoice.PaymentMethod = selectedMethod.ToString();
-                                    _invoice.TransactionId = _payment?.TransactionId;
+                                    invoice.PaymentMethod = selectedMethod.ToString();
+                                    invoice.TransactionId = payment?.TransactionId;
                                 }
                                 catch { }
 
-                                var invoiceData = new InvoiceData();
-                                System.Collections.Generic.List<Invoice> invoices = invoiceData.GetData() ?? new System.Collections.Generic.List<Invoice>();
+                                InvoiceData invoiceData = new InvoiceData();
+                                System.Collections.Generic.List<Invoice> invoices = invoiceData.GetData();
+                                if (invoices == null)
+                                {
+                                    invoices = new System.Collections.Generic.List<Invoice>();
+                                }
 
-                                int existingIndex = invoices.FindIndex(i => i != null && i.Id == _invoice.Id);
+                                int existingIndex = -1;
+                                for (int i = 0; i < invoices.Count; i++)
+                                {
+                                    if (invoices[i] != null && invoices[i].Id == invoice.Id)
+                                    {
+                                        existingIndex = i;
+                                        break;
+                                    }
+                                }
 
                                 if (existingIndex >= 0)
                                 {
-                                    invoices[existingIndex] = _invoice;
+                                    invoices[existingIndex] = invoice;
                                 }
                                 else
                                 {
-                                    invoices.Add(_invoice);
+                                    invoices.Add(invoice);
                                 }
 
                                 invoiceData.SaveData(invoices);
                             }
 
-                            // Tìm MainFormAdmin và yêu cầu refresh dashboard
-                            foreach (Form f in Application.OpenForms)
+                            // tìm MainFormAdmin và yêu cầu refresh dashboard
+                            FormCollection openForms = Application.OpenForms;
+                            foreach (Form f in openForms)
                             {
-                                if (f is MainFormAdmin main)
+                                if (f is MainFormAdmin)
                                 {
+                                    MainFormAdmin main = (MainFormAdmin)f;
                                     main.RefreshDashboardView();
                                     break;
                                 }
@@ -160,15 +168,15 @@ namespace OOP_finalProject
                         }
                         catch
                         {
-                            // Không bắt buộc: nếu không tìm thấy hoặc lỗi thì bỏ qua
+                            
                         }
                     }
 
                     DialogResult result = MessageBox.Show(
                         $"Thanh toán thành công!\n\n" +
-                        $"Số tiền: {_amount:N0} đ\n" +
-                        $"Mã giao dịch: {_payment.TransactionId}\n" +
-                        $"Thời gian: {_payment.TransactionDate:dd/MM/yyyy HH:mm:ss}\n\n" +
+                        $"Số tiền: {amount:N0} đ\n" +
+                        $"Mã giao dịch: {payment.TransactionId}\n" +
+                        $"Thời gian: {payment.TransactionDate:dd/MM/yyyy HH:mm:ss}\n\n" +
                         $"Bạn có muốn đóng form không?",
                         "Thành công",
                         MessageBoxButtons.YesNo,
@@ -186,7 +194,7 @@ namespace OOP_finalProject
                     lblStatus.Text = $"Trạng thái: Thanh toán thất bại ✗";
                     lblStatus.ForeColor = Color.Red;
                     MessageBox.Show(
-                        $"Thanh toán thất bại!\n\n{_payment?.Message ?? "Có lỗi xảy ra"}",
+                        $"Thanh toán thất bại!\n\n{payment?.Message ?? "Có lỗi xảy ra"}",
                         "Lỗi",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
@@ -208,7 +216,7 @@ namespace OOP_finalProject
         private void CreatePayment()
         {
             PaymentMethod selectedMethod = GetSelectedPaymentMethod();
-            _payment = PaymentFactory.CreatePayment(selectedMethod, _amount, _invoiceId);
+            payment = PaymentFactory.CreatePayment(selectedMethod, amount, invoiceId);
         }
 
         private PaymentMethod GetSelectedPaymentMethod()
@@ -230,49 +238,48 @@ namespace OOP_finalProject
         {
             PaymentMethod selectedMethod = GetSelectedPaymentMethod();
 
-            // Ẩn/hiện các controls theo phương thức thanh toán
+            // ẩn/hiện theo phương thức thanh toán (phát triển thêm)
             bool isQR = (selectedMethod == PaymentMethod.QR_CODE);
             bool isCash = (selectedMethod == PaymentMethod.CASH);
             bool isCard = (selectedMethod == PaymentMethod.CARD);
 
-            // If QR or Card selected: show only the coming-soon label and disable payment
+
             if (isQR || isCard)
             {
-                // Show single centered message
+                // hiển thi label coming soon
                 lblComingSoon.Visible = true;
 
-                // Hide Cash controls
+                // ẩn cash
                 lblReceivedAmount.Visible = false;
                 txtReceivedAmount.Visible = false;
                 lblChange.Visible = false;
                 lblChangeAmount.Visible = false;
 
-                // Disable the payment button for not-ready modes
+                // không cho thanh toán
                 btnProcessPayment.Enabled = false;
             }
             else
             {
-                // Hide coming soon label
+                // ẩn label coming soon
                 lblComingSoon.Visible = false;
 
-                // Cash Payment controls
+                // hiện thị cash
                 lblReceivedAmount.Visible = isCash;
                 txtReceivedAmount.Visible = isCash;
                 lblChange.Visible = isCash;
                 lblChangeAmount.Visible = isCash;
 
-                // By default disable payment until received amount is valid (textchanged will enable)
+                // cho thanh toán nếu số tiền hợp lệ
                 btnProcessPayment.Enabled = false;
             }
 
-            // Reset status
+            // reset trạng thái
             lblStatus.Text = "Trạng thái: Chưa thanh toán";
             lblStatus.ForeColor = Color.Black;
 
             // Reset payment
-            _payment = null;
+            payment = null;
 
-            // Reset change display when switching methods
             if (!isCash)
             {
                 lblChangeAmount.Text = "0 đ";
@@ -284,11 +291,15 @@ namespace OOP_finalProject
         {
             try
             {
-                // Only handle when cash is selected
                 if (GetSelectedPaymentMethod() != PaymentMethod.CASH)
                     return;
 
-                string text = txtReceivedAmount.Text?.Trim();
+                string text = txtReceivedAmount.Text;
+                if (text != null)
+                {
+                    text = text.Trim();
+                }
+
                 if (string.IsNullOrEmpty(text))
                 {
                     lblChangeAmount.Text = "0 đ";
@@ -297,7 +308,8 @@ namespace OOP_finalProject
                     return;
                 }
 
-                if (!decimal.TryParse(text, NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture, out decimal receivedAmount))
+                decimal receivedAmount;
+                if (!decimal.TryParse(text, NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture, out receivedAmount))
                 {
                     lblChangeAmount.Text = "Số tiền không hợp lệ";
                     lblChangeAmount.ForeColor = Color.Red;
@@ -305,10 +317,9 @@ namespace OOP_finalProject
                     return;
                 }
 
-                decimal change = receivedAmount - _amount;
+                decimal change = receivedAmount - amount;
                 if (change < 0)
                 {
-                    // Show how much more is needed
                     lblChangeAmount.Text = $"Chưa đủ: {Math.Abs(change):N0} đ";
                     lblChangeAmount.ForeColor = Color.Red;
                     btnProcessPayment.Enabled = false;
@@ -322,26 +333,29 @@ namespace OOP_finalProject
             }
             catch
             {
-                // ignore UI errors
+              
             }
         }
 
         private bool ProcessCashPayment()
         {
-            if (_payment == null || !(_payment is CashPayment))
+            if (payment == null || !(payment is CashPayment))
             {
                 CreatePayment();
             }
 
-            if (_payment is CashPayment cashPayment)
+            if (payment is CashPayment)
             {
+                CashPayment cashPayment = (CashPayment)payment;
+
                 if (string.IsNullOrEmpty(txtReceivedAmount.Text))
                 {
                     MessageBox.Show("Vui lòng nhập số tiền khách đưa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
-                if (!decimal.TryParse(txtReceivedAmount.Text, out decimal receivedAmount))
+                decimal receivedAmount;
+                if (!decimal.TryParse(txtReceivedAmount.Text, out receivedAmount))
                 {
                     MessageBox.Show("Số tiền không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
