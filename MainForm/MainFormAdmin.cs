@@ -142,10 +142,6 @@ namespace OOP_finalProject
             dashboardForm.Show();
         }
 
-        /// <summary>
-        /// Public helper so child forms (or dialogs) can request the dashboard to refresh its data.
-        /// This will recreate dashboard content (including updated Doanh Thu) when invoices change.
-        /// </summary>
         public void RefreshDashboardView()
         {
             if (dashboardForm != null && !dashboardForm.IsDisposed)
