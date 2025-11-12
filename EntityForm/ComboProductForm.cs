@@ -5,7 +5,6 @@ using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject.EntityForm
@@ -14,13 +13,8 @@ namespace OOP_finalProject.EntityForm
     {
         private ComboProductData compositeProductData = new ComboProductData();
         private List<ComboProduct> compositeProducts = new List<ComboProduct>();
-
-        // Danh sách tất cả sản phẩm có sẵn để thêm vào combo
         private List<Product> availableProducts = new List<Product>();
-
-        // Combo hiện tại đang chỉnh sửa
         private ComboProduct currentComposite = null;
-
         private List<Product> allAvailableProducts = new List<Product>();
 
         BindingSource comboBindingSource = new BindingSource();
@@ -34,7 +28,7 @@ namespace OOP_finalProject.EntityForm
 
         private void CompositeProductForm_Load(object sender, EventArgs e)
         {
-            // Cấu hình DataGridView
+            // tùy chỉnh hiển thị DataGridView
             gridComboList.DataSource = comboBindingSource;
             gridComboList.AllowUserToAddRows = false;
             gridComboList.ReadOnly = true;
@@ -47,18 +41,16 @@ namespace OOP_finalProject.EntityForm
             gridAvailableProducts.AllowUserToAddRows = false;
             gridAvailableProducts.ReadOnly = true;
 
-            // Tùy chỉnh giao diện DataGridView
             CustomizeDataGridView(gridComboList);
             CustomizeDataGridView(gridProductsInCombo);
             CustomizeDataGridView(gridAvailableProducts);
 
-            // Load dữ liệu
+            // load dữ liệu của combo và product
             LoadCompositeProducts();
             LoadAvailableProducts();
 
-            // Thiết lập mặc định
             numQuantity.Value = 1;
-            numComboQuantity.Value = 1; // Số lượng combo mặc định
+            numComboQuantity.Value = 1; // mặc định là 1 combo
             statusLabel.Text = "Sẵn sàng";
         }
 
@@ -77,9 +69,7 @@ namespace OOP_finalProject.EntityForm
             gridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         }
 
-        /// <summary>
-        /// Load danh sách composite products
-        /// </summary>
+        // lấy dữ liệu combo từ database
         private void LoadCompositeProducts()
         {
             compositeProducts = compositeProductData.GetData();
@@ -88,9 +78,7 @@ namespace OOP_finalProject.EntityForm
             UpdateStatistics();
         }
 
-        /// <summary>
-        /// Load danh sách sản phẩm có sẵn từ tất cả các loại
-        /// </summary>
+        // lấy dữ liệu sản phẩm từ database
         private void LoadAvailableProducts()
         {
             availableProducts.Clear();
@@ -103,32 +91,61 @@ namespace OOP_finalProject.EntityForm
             ElectronicProductData electronicData = new ElectronicProductData();
             ClothingProductData clothingData = new ClothingProductData();
 
-            allAvailableProducts.AddRange(drinkData.GetData());
-            allAvailableProducts.AddRange(foodData.GetData());
-            allAvailableProducts.AddRange(householdData.GetData());
-            allAvailableProducts.AddRange(electronicData.GetData());
-            allAvailableProducts.AddRange(clothingData.GetData());
+            List<DrinkProduct> drinkProducts = drinkData.GetData();
+            for (int i = 0; i < drinkProducts.Count; i++)
+            {
+                allAvailableProducts.Add(drinkProducts[i]);
+            }
 
-            // Chỉ hiển thị sản phẩm có số lượng > 0
-            allAvailableProducts = allAvailableProducts.Where(p => p.Quantity > 0).ToList();
+            List<FoodProduct> foodProducts = foodData.GetData();
+            for (int i = 0; i < foodProducts.Count; i++)
+            {
+                allAvailableProducts.Add(foodProducts[i]);
+            }
 
-            // Copy sang availableProducts để hiển thị
+            List<HouseholdProduct> householdProducts = householdData.GetData();
+            for (int i = 0; i < householdProducts.Count; i++)
+            {
+                allAvailableProducts.Add(householdProducts[i]);
+            }
+
+            List<ElectronicProduct> electronicProducts = electronicData.GetData();
+            for (int i = 0; i < electronicProducts.Count; i++)
+            {
+                allAvailableProducts.Add(electronicProducts[i]);
+            }
+
+            List<ClothingProduct> clothingProducts = clothingData.GetData();
+            for (int i = 0; i < clothingProducts.Count; i++)
+            {
+                allAvailableProducts.Add(clothingProducts[i]);
+            }
+
+            List<Product> filteredProducts = new List<Product>();
+            for (int i = 0; i < allAvailableProducts.Count; i++)
+            {
+                // thêm những sản phẩm có số lượng > 0
+                if (allAvailableProducts[i].Quantity > 0)
+                {
+                    filteredProducts.Add(allAvailableProducts[i]);
+                }
+            }
+            allAvailableProducts = filteredProducts;
+
+            // gắn sang availableProducts để hiển thị
             availableProducts = new List<Product>(allAvailableProducts);
 
             availableProductsBindingSource.DataSource = availableProducts;
             availableProductsBindingSource.ResetBindings(true);
         }
 
-        /// <summary>
-        /// Tạo combo mới
-        /// </summary>
         private void btnNewCombo_Click(object sender, EventArgs e)
         {
             txtComboId.Text = "";
             txtComboName.Text = "";
             txtDescription.Text = "";
             numDiscount.Value = 0;
-            numComboQuantity.Value = 1; // Số lượng combo mặc định
+            numComboQuantity.Value = 1;
             numQuantity.Value = 1;
 
             currentComposite = new ComboProduct();
@@ -139,12 +156,8 @@ namespace OOP_finalProject.EntityForm
             statusLabel.Text = "Đã tạo combo mới";
         }
 
-        /// <summary>
-        /// Lưu combo
-        /// </summary>
         private void btnSaveCombo_Click(object sender, EventArgs e)
         {
-            // Validation
             if (string.IsNullOrWhiteSpace(txtComboId.Text))
             {
                 MessageBox.Show("Mã combo không được để trống!", "Thông báo",
@@ -168,7 +181,6 @@ namespace OOP_finalProject.EntityForm
                 return;
             }
 
-            // Kiểm tra số lượng combo
             if (numComboQuantity.Value < 0)
             {
                 MessageBox.Show("Số lượng combo không được âm!", "Thông báo",
@@ -177,9 +189,19 @@ namespace OOP_finalProject.EntityForm
                 return;
             }
 
-            // Kiểm tra trùng mã combo
+            // kiểm tra trùng mã
             bool isNew = string.IsNullOrEmpty(currentComposite.Id);
-            if (isNew && compositeProducts.Any(c => c.Id.ToLower() == txtComboId.Text.ToLower()))
+            bool exists = false;
+            for (int i = 0; i < compositeProducts.Count; i++)
+            {
+                if (compositeProducts[i].Id.ToLower() == txtComboId.Text.ToLower())
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (isNew && exists)
             {
                 MessageBox.Show("Mã combo đã tồn tại! Vui lòng chọn mã khác.", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -187,12 +209,12 @@ namespace OOP_finalProject.EntityForm
                 return;
             }
 
-            // Tạo hoặc cập nhật composite
+            // tạo mới hoặc cập nhật combo
             currentComposite.Id = txtComboId.Text;
             currentComposite.Name = txtComboName.Text;
             currentComposite.Description = txtDescription.Text;
             currentComposite.DiscountPercentage = numDiscount.Value;
-            currentComposite.Quantity = (int)numComboQuantity.Value; // Cập nhật số lượng combo
+            currentComposite.Quantity = (int)numComboQuantity.Value; 
 
             bool success;
             if (isNew)
@@ -225,9 +247,6 @@ namespace OOP_finalProject.EntityForm
             }
         }
 
-        /// <summary>
-        /// Xóa combo
-        /// </summary>
         private void btnDeleteCombo_Click(object sender, EventArgs e)
         {
             if (currentComposite == null || string.IsNullOrEmpty(currentComposite.Id))
@@ -238,7 +257,7 @@ namespace OOP_finalProject.EntityForm
             }
 
             DialogResult result = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa combo '{currentComposite.Name}'?\n\nThao tác này không thể hoàn tác!",
+                "Bạn có chắc chắn muốn xóa combo '" + currentComposite.Name + "'?\n\nThao tác này không thể hoàn tác!",
                 "Xác nhận xóa",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -265,9 +284,7 @@ namespace OOP_finalProject.EntityForm
             }
         }
 
-        /// <summary>
-        /// Thêm sản phẩm vào combo với số lượng
-        /// </summary>
+        // thêm sản phẩm vào combo
         private void btnAddToCombo_Click(object sender, EventArgs e)
         {
             if (currentComposite == null)
@@ -295,25 +312,35 @@ namespace OOP_finalProject.EntityForm
             Product selectedProduct = (Product)gridAvailableProducts.CurrentRow.DataBoundItem;
             if (selectedProduct != null)
             {
-                // Kiểm tra xem sản phẩm đã có trong combo chưa
-                var existingProduct = currentComposite.GetChildren()
-                    .OfType<Product>()
-                    .FirstOrDefault(p => p.Id == selectedProduct.Id);
+                
+                List<IProductComponent> children = currentComposite.GetChildren();
+                Product existingProduct = null;
+
+                for (int i = 0; i < children.Count; i++)
+                {
+                    // kiểm tra xem sản phẩm đã có trong combo chưa
+                    if (children[i] is Product product && product.Id == selectedProduct.Id)
+                    {
+                        existingProduct = product;
+                        break;
+                    }
+                }
 
                 if (existingProduct != null)
                 {
-                    // Nếu đã có, cập nhật số lượng
-                    var productInCombo = currentComposite.GetChildren()
-                        .FirstOrDefault(c => c.Id == selectedProduct.Id);
-
-                    if (productInCombo is Product product)
+                    // cập nhật lại số lượng nếu đã có
+                    for (int i = 0; i < children.Count; i++)
                     {
-                        product.Quantity += (int)numQuantity.Value;
+                        if (children[i].Id == selectedProduct.Id && children[i] is Product product)
+                        {
+                            product.Quantity += (int)numQuantity.Value;
+                            break;
+                        }
                     }
                 }
                 else
                 {
-                    // Nếu chưa có, tạo bản sao của sản phẩm với số lượng mới
+                    // tạo bản sao sản phẩm với số lượng mới và thêm vào combo
                     Product productToAdd = CloneProductWithQuantity(selectedProduct, (int)numQuantity.Value);
                     currentComposite.Add(productToAdd);
                 }
@@ -321,16 +348,13 @@ namespace OOP_finalProject.EntityForm
                 RefreshProductsInCombo();
                 UpdatePriceDisplay();
 
-                statusLabel.Text = $"Đã thêm {numQuantity.Value} {selectedProduct.Name} vào combo";
+                statusLabel.Text = "Đã thêm " + numQuantity.Value + " " + selectedProduct.Name + " vào combo";
             }
         }
 
-        /// <summary>
-        /// Tạo bản sao sản phẩm với số lượng mới
-        /// </summary>
+        // tạo bản sao của tất cả các sản phẩm với số lượng mới
         private Product CloneProductWithQuantity(Product original, int quantity)
         {
-            // Tạo bản sao dựa trên loại sản phẩm
             Product cloned = null;
 
             if (original is DrinkProduct drink)
@@ -353,18 +377,10 @@ namespace OOP_finalProject.EntityForm
             {
                 cloned = new ClothingProduct(clothing.Id, clothing.Name, clothing.Price, quantity, clothing.Size);
             }
-            else
-            {
-                //// Fallback cho các loại sản phẩm khác
-                //cloned = new Product(original.Id, original.Name, original.Price, quantity);
-            }
 
             return cloned;
         }
 
-        /// <summary>
-        /// Xóa sản phẩm khỏi combo
-        /// </summary>
         private void btnRemoveFromCombo_Click(object sender, EventArgs e)
         {
             if (currentComposite == null)
@@ -389,25 +405,21 @@ namespace OOP_finalProject.EntityForm
                 RefreshProductsInCombo();
                 UpdatePriceDisplay();
 
-                statusLabel.Text = $"Đã xóa {productName} khỏi combo";
+                statusLabel.Text = "Đã xóa " + productName + " khỏi combo";
             }
         }
 
-        /// <summary>
-        /// Refresh danh sách sản phẩm trong combo
-        /// </summary>
         private void RefreshProductsInCombo()
         {
             if (currentComposite != null)
             {
-                productsInComboBindingSource.DataSource = currentComposite.GetChildren().ToList();
+                List<IProductComponent> children = currentComposite.GetChildren();
+                productsInComboBindingSource.DataSource = children;
                 productsInComboBindingSource.ResetBindings(true);
             }
         }
 
-        /// <summary>
-        /// Cập nhật hiển thị giá
-        /// </summary>
+        // cập nhật hiển thị giá
         private void UpdatePriceDisplay()
         {
             if (currentComposite != null)
@@ -417,17 +429,17 @@ namespace OOP_finalProject.EntityForm
                 decimal savings = originalPrice - finalPrice;
                 decimal inventoryValue = currentComposite.GetInventoryValue();
 
-                lblOriginalPrice.Text = $"Giá gốc: {originalPrice:N0} đ";
-                lblFinalPrice.Text = $"Giá sau giảm: {finalPrice:N0} đ";
-                lblSavings.Text = $"Tiết kiệm: {savings:N0} đ";
+                lblOriginalPrice.Text = "Giá gốc: " + originalPrice.ToString("N0") + " đ";
+                lblFinalPrice.Text = "Giá sau giảm: " + finalPrice.ToString("N0") + " đ";
+                lblSavings.Text = "Tiết kiệm: " + savings.ToString("N0") + " đ";
 
-                // Hiển thị thông tin tồn kho
+                // hàng tồn
                 if (currentComposite.Quantity > 0)
                 {
-                    lblSavings.Text += $"\nTồn kho: {currentComposite.Quantity} combo\nGiá trị tồn kho: {inventoryValue:N0} đ";
+                    lblSavings.Text += "\nTồn kho: " + currentComposite.Quantity + " combo\nGiá trị tồn kho: " + inventoryValue.ToString("N0") + " đ";
                 }
 
-                // Đổi màu theo giá trị
+                // đổi màu theo giá trị
                 lblOriginalPrice.ForeColor = originalPrice > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
                 lblFinalPrice.ForeColor = finalPrice > 0 ? Color.FromArgb(65, 105, 225) : Color.Red;
                 lblSavings.ForeColor = savings > 0 ? Color.FromArgb(46, 204, 113) : Color.Gray;
@@ -444,9 +456,6 @@ namespace OOP_finalProject.EntityForm
             }
         }
 
-        /// <summary>
-        /// Khi chọn combo trong danh sách
-        /// </summary>
         private void gridComboList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gridComboList.CurrentRow == null || gridComboList.CurrentRow.IsNewRow)
@@ -456,28 +465,23 @@ namespace OOP_finalProject.EntityForm
             if (currentComposite != null)
             {
                 DisplayComposite(currentComposite);
-                statusLabel.Text = $"Đang chỉnh sửa combo: {currentComposite.Name}";
+                statusLabel.Text = "Đang chỉnh sửa combo: " + currentComposite.Name;
             }
         }
 
-        /// <summary>
-        /// Hiển thị thông tin combo
-        /// </summary>
         private void DisplayComposite(ComboProduct composite)
         {
             txtComboId.Text = composite.Id;
             txtComboName.Text = composite.Name;
             txtDescription.Text = composite.Description;
             numDiscount.Value = composite.DiscountPercentage;
-            numComboQuantity.Value = composite.Quantity; // Hiển thị số lượng combo
+            numComboQuantity.Value = composite.Quantity; 
 
             RefreshProductsInCombo();
             UpdatePriceDisplay();
         }
 
-        /// <summary>
-        /// Khi thay đổi % giảm giá
-        /// </summary>
+        // thay đổi phần trăm giảm giá
         private void numDiscount_ValueChanged(object sender, EventArgs e)
         {
             if (currentComposite != null)
@@ -487,9 +491,7 @@ namespace OOP_finalProject.EntityForm
             }
         }
 
-        /// <summary>
-        /// Khi thay đổi số lượng combo
-        /// </summary>
+        // thay đổi số lượng combo
         private void numComboQuantity_ValueChanged(object sender, EventArgs e)
         {
             if (currentComposite != null)
@@ -497,7 +499,7 @@ namespace OOP_finalProject.EntityForm
                 currentComposite.Quantity = (int)numComboQuantity.Value;
                 UpdatePriceDisplay();
 
-                // Cập nhật trạng thái
+                // cập nhật lại trạng thái
                 if (currentComposite.Quantity == 0)
                 {
                     statusLabel.Text = "Combo đã hết hàng";
@@ -505,20 +507,18 @@ namespace OOP_finalProject.EntityForm
                 }
                 else if (currentComposite.Quantity < 10)
                 {
-                    statusLabel.Text = $"Cảnh báo: Chỉ còn {currentComposite.Quantity} combo";
+                    statusLabel.Text = "Cảnh báo: Chỉ còn " + currentComposite.Quantity + " combo";
                     statusLabel.ForeColor = Color.Orange;
                 }
                 else
                 {
-                    statusLabel.Text = $"Số lượng combo: {currentComposite.Quantity}";
+                    statusLabel.Text = "Số lượng combo: " + currentComposite.Quantity;
                     statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
                 }
             }
         }
 
-        /// <summary>
-        /// Xem chi tiết combo
-        /// </summary>
+        // chi tiết combo
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
             if (currentComposite == null)
@@ -533,47 +533,61 @@ namespace OOP_finalProject.EntityForm
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        /// <summary>
-        /// Cập nhật thống kê (có tính số lượng combo)
-        /// </summary>
+        // thống kê
         private void UpdateStatistics()
         {
             int totalCombos = compositeProducts.Count;
-            int totalProductsInCombos = compositeProducts.Sum(c => c.GetChildCount());
-            decimal totalValue = compositeProducts.Sum(c => c.GetInventoryValue()); // Tính theo giá trị tồn kho
-            int activeCombos = compositeProducts.Count(c => c.GetChildCount() > 0);
-            decimal totalComboQuantity = compositeProducts.Sum(c => c.Quantity); // Tổng số lượng combo
+
+            int totalProductsInCombos = 0;
+            for (int i = 0; i < compositeProducts.Count; i++)
+            {
+                totalProductsInCombos += compositeProducts[i].GetChildCount();
+            }
+
+            decimal totalValue = 0;
+            for (int i = 0; i < compositeProducts.Count; i++)
+            {
+                totalValue += compositeProducts[i].GetInventoryValue();
+            }
+
+            int activeCombos = 0;
+            for (int i = 0; i < compositeProducts.Count; i++)
+            {
+                if (compositeProducts[i].GetChildCount() > 0)
+                {
+                    activeCombos++;
+                }
+            }
+
+            decimal totalComboQuantity = 0;
+            for (int i = 0; i < compositeProducts.Count; i++)
+            {
+                totalComboQuantity += compositeProducts[i].Quantity;
+            }
 
             lblTotalCombosValue.Text = totalCombos.ToString();
             lblTotalProductsValue.Text = totalProductsInCombos.ToString();
-            lblTotalValueValue.Text = $"{totalValue:N0} đ";
+            lblTotalValueValue.Text = totalValue.ToString("N0") + " đ";
             lblActiveCombosValue.Text = activeCombos.ToString();
 
-            // Hiển thị thêm thông tin tổng số lượng combo
+
             if (totalComboQuantity > 0)
             {
-                lblActiveCombosValue.Text += $"\nTổng SL: {totalComboQuantity}";
+                lblActiveCombosValue.Text += "\nTổng SL: " + totalComboQuantity;  // tống số combo
             }
 
-            // Đổi màu theo số lượng
             lblTotalCombosValue.ForeColor = totalCombos > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalProductsValue.ForeColor = totalProductsInCombos > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalValueValue.ForeColor = totalValue > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblActiveCombosValue.ForeColor = activeCombos > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
         }
 
-        /// <summary>
-        /// Làm mới danh sách sản phẩm
-        /// </summary>
         private void btnRefreshProducts_Click(object sender, EventArgs e)
         {
             LoadAvailableProducts();
             statusLabel.Text = "Đã làm mới danh sách sản phẩm";
         }
 
-        /// <summary>
-        /// Khi chọn sản phẩm trong danh sách có sẵn
-        /// </summary>
         private void gridAvailableProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gridAvailableProducts.CurrentRow != null)
@@ -581,7 +595,7 @@ namespace OOP_finalProject.EntityForm
                 Product selectedProduct = (Product)gridAvailableProducts.CurrentRow.DataBoundItem;
                 if (selectedProduct != null)
                 {
-                    lblSelectedProduct.Text = $"Đã chọn: {selectedProduct.Name} (Tồn: {selectedProduct.Quantity})";
+                    lblSelectedProduct.Text = "Đã chọn: " + selectedProduct.Name + " (Tồn: " + selectedProduct.Quantity + ")";
                     numQuantity.Maximum = selectedProduct.Quantity;
                     numQuantity.Value = Math.Min(1, selectedProduct.Quantity);
                 }
@@ -599,7 +613,7 @@ namespace OOP_finalProject.EntityForm
             LoadCompositeProducts();
             statusLabel.Text = "Đã xóa bộ lọc tìm kiếm";
         }
-        
+
         // tìm kiếm combo
         private void PerformSearch()
         {
@@ -607,7 +621,7 @@ namespace OOP_finalProject.EntityForm
 
             if (string.IsNullOrWhiteSpace(keyword))
             {
-                // Nếu không có từ khóa, hiển thị tất cả
+                // hiển thị tất cả
                 LoadCompositeProducts();
                 return;
             }
@@ -617,27 +631,23 @@ namespace OOP_finalProject.EntityForm
 
             if (searchResults.Count == 0)
             {
-                // Không tìm thấy kết quả
                 comboBindingSource.DataSource = new List<ComboProduct>();
                 comboBindingSource.ResetBindings(true);
-                statusLabel.Text = $"Không tìm thấy combo nào với từ khóa '{keyword}'";
+                statusLabel.Text = "Không tìm thấy combo nào với từ khóa '" + keyword + "'";
             }
             else
             {
-                // Hiển thị kết quả tìm kiếm
                 comboBindingSource.DataSource = searchResults;
                 comboBindingSource.ResetBindings(true);
-                statusLabel.Text = $"Tìm thấy {searchResults.Count} combo";
+                statusLabel.Text = "Tìm thấy " + searchResults.Count + " combo";
             }
         }
 
-        // Thêm method tìm kiếm sản phẩm:
         private void btnSearchProduct_Click(object sender, EventArgs e)
         {
             PerformProductSearch();
         }
 
-        // Thêm method xóa tìm kiếm:
         private void btnClearSearchProduct_Click(object sender, EventArgs e)
         {
             txtSearchProduct.Text = "";
@@ -647,7 +657,7 @@ namespace OOP_finalProject.EntityForm
             statusLabel.Text = "Đã xóa bộ lọc tìm kiếm sản phẩm";
         }
 
-        // Thêm method thực hiện tìm kiếm:
+        // tìm kiếm sản phẩm
         private void PerformProductSearch()
         {
             string keyword = txtSearchProduct.Text.Trim().ToLower();
@@ -662,18 +672,23 @@ namespace OOP_finalProject.EntityForm
                 return;
             }
 
-            // Tìm kiếm theo tên hoặc mã sản phẩm
-            var searchResults = allAvailableProducts.Where(p =>
-                p.Name.ToLower().Contains(keyword) ||
-                p.Id.ToLower().Contains(keyword)
-            ).ToList();
+
+            List<Product> searchResults = new List<Product>();
+            for (int i = 0; i < allAvailableProducts.Count; i++)
+            {
+                Product product = allAvailableProducts[i];
+                if (product.Name.ToLower().Contains(keyword) || product.Id.ToLower().Contains(keyword))
+                {
+                    searchResults.Add(product);
+                }
+            }
 
             if (searchResults.Count == 0)
             {
                 availableProducts.Clear();
                 availableProductsBindingSource.DataSource = availableProducts;
                 availableProductsBindingSource.ResetBindings(true);
-                statusLabel.Text = $"Không tìm thấy sản phẩm nào với từ khóa '{keyword}'";
+                statusLabel.Text = "Không tìm thấy sản phẩm nào với từ khóa '" + keyword + "'";
                 statusLabel.ForeColor = Color.Red;
             }
             else
@@ -681,18 +696,8 @@ namespace OOP_finalProject.EntityForm
                 availableProducts = searchResults;
                 availableProductsBindingSource.DataSource = availableProducts;
                 availableProductsBindingSource.ResetBindings(true);
-                statusLabel.Text = $"Tìm thấy {searchResults.Count} sản phẩm";
+                statusLabel.Text = "Tìm thấy " + searchResults.Count + " sản phẩm";
                 statusLabel.ForeColor = Color.FromArgb(46, 204, 113);
-            }
-        }
-
-        // Thêm event để tìm kiếm khi nhấn Enter:
-        private void txtSearchProduct_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                PerformProductSearch();
-                e.Handled = true; // Ngăn tiếng beep
             }
         }
     }

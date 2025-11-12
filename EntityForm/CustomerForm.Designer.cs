@@ -225,12 +225,12 @@ namespace OOP_finalProject
             rbRegular.Location = new Point(10, 22);
             rbRegular.AutoSize = true;
             rbRegular.Checked = true;
-            rbRegular.CheckedChanged += (s, e) => UpdateDiscountLabelForSelection();
+            rbRegular.CheckedChanged += RbRegular_CheckedChanged;
 
             rbVIP.Text = "VIP";
             rbVIP.Location = new Point(120, 22);
             rbVIP.AutoSize = true;
-            rbVIP.CheckedChanged += (s, e) => UpdateDiscountLabelForSelection();
+            rbVIP.CheckedChanged += RbVIP_CheckedChanged;
 
             groupBoxCustomerType.Controls.Add(rbRegular);
             groupBoxCustomerType.Controls.Add(rbVIP);

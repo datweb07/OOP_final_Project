@@ -3,7 +3,7 @@
   <Class Name="OOP_finalProject.Invoice" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="37.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEGCAQDAAAJAABACAAAQAAgQAoACAQAAAAGACACggA=</HashCode>
+      <HashCode>AAEHCAQDAAAJIABACCAAQAAgQAoACAQAAAAGACACgwA=</HashCode>
       <FileName>Base\Invoice.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -180,7 +180,7 @@
   <Class Name="OOP_finalProject.InvoiceData" Collapsed="true">
     <Position X="37.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAoAEAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAEAQAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Data\InvoiceData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -194,7 +194,7 @@
   <Class Name="OOP_finalProject.OrderData" Collapsed="true">
     <Position X="34" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAoAEAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAEAAAAAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
       <FileName>Data\OrderData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -229,7 +229,7 @@
   <Class Name="OOP_finalProject.CustomerForm" Collapsed="true">
     <Position X="30.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAgAgIBCSIWCBAACEKAQQCDCAIAAB4hECAAkAICFSY=</HashCode>
+      <HashCode>AIAgAgIBCSIWCBAACEKAQQCDCAIAgB4hECAIkAICFSY=</HashCode>
       <FileName>EntityForm\CustomerForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -271,14 +271,14 @@
   <Class Name="OOP_finalProject.InvoiceForm" Collapsed="true">
     <Position X="37.5" Y="12.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAABAAADAECNAAEKSgCCDCQEg4BhREQCgBIAIGsAE=</HashCode>
+      <HashCode>IAAAABAAgDAECNAAEKSgCCDCQEg4BhREQCgBIAIHsAE=</HashCode>
       <FileName>EntityForm\InvoiceForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.ListInvoiceForm" Collapsed="true">
     <Position X="37.5" Y="13.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YAIAQAAACGAQCAAAAACCAIACADS4ZwAlACMAABQCMQY=</HashCode>
+      <HashCode>YAIAQAAACGAQCAAAAACDAIACADS4ZwAlACMAABQCMQY=</HashCode>
       <FileName>EntityForm\ListInvoiceForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -334,7 +334,7 @@
   <Class Name="OOP_finalProject.MainFormAdmin" Collapsed="true">
     <Position X="38.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAQYKYgBFCZgBQgYAAiEIBUKAeCALRAAAAZQUBmZAAU=</HashCode>
+      <HashCode>GAQYKYgBFCZgBQgYAAiEIBUKAeCALRAAAAZQUBmZAAU=</HashCode>
       <FileName>MainForm\MainFormAdmin.cs</FileName>
     </TypeIdentifier>
   </Class>

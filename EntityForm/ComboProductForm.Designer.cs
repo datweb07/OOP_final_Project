@@ -764,7 +764,6 @@ namespace OOP_finalProject.EntityForm
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.Size = new System.Drawing.Size(200, 23);
             this.txtSearchProduct.TabIndex = 7;
-            this.txtSearchProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchProduct_KeyPress);
             // 
             // btnSearchProduct
             // 

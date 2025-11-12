@@ -26,7 +26,7 @@ namespace OOP_finalProject
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
-            // Tùy chỉnh giao diện DataGridView
+            // tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -48,6 +48,18 @@ namespace OOP_finalProject
             UpdateDiscountLabelForSelection();
         }
 
+        // hiển thị thông tin khuyến mãi theo từng loại khách hàng
+        private void RbRegular_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateDiscountLabelForSelection();
+        }
+
+        private void RbVIP_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateDiscountLabelForSelection();
+        }
+
+        // tìm kiếm khách hàng
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -89,6 +101,7 @@ namespace OOP_finalProject
             _src.ResetBindings(true);
         }
 
+        // hiển thị theo loại khách hàng
         private void DisplayFilteredByType(Type customerType)
         {
             List<Customer> filtered = new List<Customer>();
@@ -134,7 +147,6 @@ namespace OOP_finalProject
             txtAddress.Text = customer.Address;
             txtPhone.Text = customer.PhoneNumber;
 
-            // Display customer type and discount info
             if (customer is VIPCustomer)
             {
                 rbVIP.Checked = true;
@@ -206,7 +218,7 @@ namespace OOP_finalProject
 
             Customer customer = null;
 
-            // Tìm customer có sẵn
+            // tìm customer theo mã
             for (int i = 0; i < customers.Count; i++)
             {
                 if (customers[i].Id.ToLower() == txtCode.Text.ToLower())
@@ -220,7 +232,7 @@ namespace OOP_finalProject
 
             if (customer == null)
             {
-                // Tạo customer mới
+                // tạo mới
                 if (rbVIP.Checked)
                 {
                     customer = new VIPCustomer(txtCode.Text, txtName.Text, gender, txtPhone.Text, txtAddress.Text);
@@ -233,13 +245,13 @@ namespace OOP_finalProject
             }
             else
             {
-                // Update customer hiện tại
+                // update customer hiện tại
                 customer.Name = txtName.Text;
                 customer.Gender = gender;
                 customer.PhoneNumber = txtPhone.Text;
                 customer.Address = txtAddress.Text;
 
-                // Nếu thay đổi loại customer, cần tạo mới
+                // nếu thay đổi loại customer, cần tạo mới
                 bool needReplace = false;
                 Customer newCustomer = null;
 
