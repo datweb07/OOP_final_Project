@@ -9,7 +9,6 @@ using System.Runtime.Serialization;
 namespace OOP_finalProject
 {
     [Serializable]
-
     public class Order : ISerializable
     {
         private string orderId;
@@ -18,110 +17,89 @@ namespace OOP_finalProject
         private Customer customer;
         private List<OrderDetails> orderDetails;
 
-
         public string OrderId { get { return orderId; } set { orderId = value; } }
-
 
         public DateTime OrderDate { get { return orderDate; } set { orderDate = value; } }
 
-
         public Cashier Cashier { get { return cashier; } set { cashier = value; } }
-
 
         public Customer Customer { get { return customer; } set { customer = value; } }
 
-
-        public List<OrderDetails> OrderDetails
-        {
-            get 
-            { 
+        public List<OrderDetails> OrderDetails {
+            get { 
                 return orderDetails ?? (orderDetails = new List<OrderDetails>()); 
             }
-            set 
-            { 
-                orderDetails = value; 
-            }
+            set { orderDetails = value; }
         }
 
-        public string CashierName
-        {
-            get
-            {
+        public string CashierName {
+            get {
                 return Cashier?.Name ?? "Không xác định";
             }
         }
 
-        public string CustomerName
-        {
-            get
-            {
+        public string CustomerName {
+            get {
                 return Customer?.Name ?? "Không xác định";
             }
         }
 
-        public string CustomerTypeDisplay
-        {
-            get
-            {
+        public string CustomerTypeDisplay{
+            get {
                 return Customer?.CustomerType ?? "Không xác định";
             }
         }
 
-
-        public decimal SumTotal
-        {
-            get
-            {
+        public decimal SumTotal {
+            get {
                 decimal total = 0;
-                foreach (var detail in OrderDetails)
-                {
+                foreach (var detail in OrderDetails) {
                     total += detail.TotalPrice;
                 }
                 return total;
             }
         }
-        public decimal DiscountPercentage
-        {
-            get
-            {
-                if (Customer != null)
+
+        public decimal DiscountPercentage {
+            get {
+                if (Customer != null) {
                     return Customer.GetDiscountPercentage();
+                }
+                    
                 return 0;
             }
         }
-        public decimal DiscountAmount
-        {
-            get
-            {
-                if (Customer != null)
-                    return Customer.CalculateDiscount(SumTotal);
+
+        public decimal DiscountAmount {
+            get {
+                if (Customer != null) { 
+                    return Customer.CalculateDiscount(SumTotal); 
+                }
                 return 0;
             }
         }
-        public decimal FinalTotal
-        {
+
+        public decimal FinalTotal {
             get { return SumTotal - DiscountAmount; }
         }
-        public string DiscountInfo
-        {
-            get
-            {
-                if (Customer != null)
-                    return Customer.GetDiscountInfo();
+
+        public string DiscountInfo {
+            get {
+                if (Customer != null){ 
+                    return Customer.GetDiscountInfo(); 
+                }
                 return "Không có giảm giá";
             }
         }
 
-        public Order()
-        {
+        public Order() {
             OrderDetails = new List<OrderDetails>();
             OrderDate = DateTime.Now;
         }
 
-        public Order(SerializationInfo info, StreamingContext context)
-        {
-            // Xử lý tất cả trường hợp lỗi
-            try 
+        public Order(SerializationInfo info, StreamingContext context) {
+            // có thể có lỗi ở một số trường hợp
+            try
             { 
                 OrderId = info.GetString("OrderId") ?? GenerateOrderId(); 
             }
@@ -139,7 +117,7 @@ namespace OOP_finalProject
                 OrderDate = DateTime.Now; 
             }
 
-            // Xử lý Cashier
+            // Cashier
             try 
             { 
                 Cashier = (Cashier)info.GetValue("Cashier", typeof(Cashier)); 
@@ -157,7 +135,7 @@ namespace OOP_finalProject
                 }
             }
 
-            // Xử lý Customer 
+            // Customer 
             try 
             { 
                 Customer = (Customer)info.GetValue("Customer", typeof(Customer)); 
@@ -167,13 +145,13 @@ namespace OOP_finalProject
                 Customer = CreateCustomerFromAvailableData(info);
             }
 
-            // Đảm bảo Customer có discount strategy
+            // đảm bảo Customer có discount strategy
             if (Customer != null)
             {
                 RestoreCustomerDiscountStrategy(Customer);
             }
 
-            // Xử lý OrderDetails
+            // OrderDetails
             try 
             { 
                 OrderDetails = (List<OrderDetails>)info.GetValue("OrderDetails", typeof(List<OrderDetails>)); 
@@ -184,13 +162,14 @@ namespace OOP_finalProject
             }
         }
 
-        private Customer CreateCustomerFromAvailableData(SerializationInfo info)
-        {
+        private Customer CreateCustomerFromAvailableData(SerializationInfo info) {
             try
             {
-                // Thử lấy Customer object trực tiếp
                 var customer = (Customer)info.GetValue("Customer", typeof(Customer));
-                if (customer != null) return customer;
+                if (customer != null) 
+                {
+                    return customer;
+                }
             }
             catch { }
 
@@ -199,7 +178,10 @@ namespace OOP_finalProject
 
         private void RestoreCustomerDiscountStrategy(Customer customer)
         {
-            if (customer == null) return;
+            if (customer == null)
+            {
+                return;
+            }
 
             if (customer is VIPCustomer || customer.CustomerType?.Contains("VIP") == true)
             {
@@ -213,7 +195,8 @@ namespace OOP_finalProject
 
         private Cashier CreateCashierFromName(string name)
         {
-            return new Cashier { 
+            return new Cashier 
+            { 
                 Name = name ?? "Nhân viên" 
             };
         }
@@ -234,7 +217,8 @@ namespace OOP_finalProject
 
         private Cashier GetDefaultCashier()
         {
-            return new Cashier { 
+            return new Cashier 
+            { 
                 Name = "Nhân viên" 
             };
         }

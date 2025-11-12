@@ -73,9 +73,7 @@ namespace OOP_finalProject.Base
             Quantity = quantity;
         }
 
-        public Product()
-        {
-        }
+        public Product() { }
 
         public Product(SerializationInfo info, StreamingContext context)
         {
@@ -127,12 +125,12 @@ namespace OOP_finalProject.Base
 
         public virtual bool IsComposite()
         {
-            return false; // Sản phẩm đơn lẻ không phải composite
+            return false; // sản phẩm đơn lẻ thì không phải là composite
         }
 
         public virtual List<IProductComponent> GetChildren()
         {
-            return new List<IProductComponent>(); // Sản phẩm đơn lẻ không có con
+            return new List<IProductComponent>(); // sản phẩm đơn lẻ không có con
         }
     }
 }

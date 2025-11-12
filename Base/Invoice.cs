@@ -19,21 +19,15 @@ namespace OOP_finalProject
         private string paymentMethod;
         private string transactionId;
 
-
         public string Id { get { return id; } set { id = value; } }
-
 
         public DateTime DateCreated { get { return dateCreated; } set { dateCreated = value; } }
 
-
-        public Customer Customer
-        {
+        public Customer Customer {
             get { return customer; }
-            set
-            {
+            set {
                 customer = value;
-                if (customer != null)
-                {
+                if (customer != null) {
                     RestoreCustomerDiscountStrategy(customer);
                 }
             }
@@ -41,9 +35,7 @@ namespace OOP_finalProject
 
         public Cashier Cashier { get { return cashier; } set { cashier = value; } }
 
-
-        public List<InvoiceDetails> InvoiceDetails
-        {
+        public List<InvoiceDetails> InvoiceDetails {
             get { return invoiceDetails ?? (invoiceDetails = new List<InvoiceDetails>()); }
             set { invoiceDetails = value; }
         }
@@ -52,84 +44,66 @@ namespace OOP_finalProject
 
         public string TransactionId { get { return transactionId; } set { transactionId = value; } }
 
-        public string CashierName
-        {
+        public string CashierName {
             get { return Cashier?.Name ?? "Không xác định"; }
         }
 
-        public string CustomerName
-        {
+        public string CustomerName {
             get { return Customer?.Name ?? "Không xác định"; }
         }
 
-        public string CustomerTypeDisplay
-        {
+        public string CustomerTypeDisplay {
             get { return Customer?.CustomerType ?? "Không xác định"; }
         }
 
-        public decimal SumTotal
-        {
-            get
-            {
+        public decimal SumTotal {
+            get {
                 decimal total = 0;
-                foreach (var detail in InvoiceDetails)
-                {
+                foreach (var detail in InvoiceDetails) {
                     total += detail.TotalPrice;
                 }
                 return total;
             }
         }
 
-        public decimal DiscountPercentage
-        {
-            get
-            {
-                if (Customer != null)
-                {
+        public decimal DiscountPercentage{
+            get {
+                if (Customer != null) {
                     return Customer.GetDiscountPercentage();
                 }
                 return 0;
             }
         }
 
-        public decimal DiscountAmount
-        {
-            get
-            {
-                if (Customer != null)
-                {
+        public decimal DiscountAmount {
+            get {
+                if (Customer != null) {
                     return Customer.CalculateDiscount(SumTotal);
                 }
                 return 0;
             }
         }
 
-        public decimal FinalTotal
-        {
+        public decimal FinalTotal {
             get { return SumTotal - DiscountAmount; }
         }
 
-        public string DiscountInfo
-        {
-            get
-            {
-                if (Customer != null)
-                {
+        public string DiscountInfo {
+            get {
+                if (Customer != null) {
                     return Customer.GetDiscountInfo();
                 }
                 return "Không có giảm giá";
             }
         }
 
-        public Invoice()
-        {
+        public Invoice() {
             InvoiceDetails = new List<InvoiceDetails>();
             DateCreated = DateTime.Now;
         }
 
-        public Invoice(SerializationInfo info, StreamingContext context)
-        {
-            // Xử lý tất cả trường hợp lỗi
+        public Invoice(SerializationInfo info, StreamingContext context) {
+            // có thể lỗi ở một số trường hợp
             try
             {
                 Id = info.GetString("Id") ?? GenerateInvoiceId();
@@ -166,7 +140,7 @@ namespace OOP_finalProject
                 }
             }
 
-            // Xử lý Customer
+            // Customer
             try
             {
                 Customer = (Customer)info.GetValue("Customer", typeof(Customer));
@@ -176,13 +150,13 @@ namespace OOP_finalProject
                 Customer = CreateCustomerFromAvailableData(info);
             }
 
-            // Đảm bảo Customer có discount strategy
+            // đảm bảo Customer có discount strategy
             if (Customer != null)
             {
                 RestoreCustomerDiscountStrategy(Customer);
             }
 
-            // Xử lý InvoiceDetails
+            // InvoiceDetails
             try
             {
                 InvoiceDetails = (List<InvoiceDetails>)info.GetValue("InvoiceDetails", typeof(List<InvoiceDetails>));
@@ -192,7 +166,7 @@ namespace OOP_finalProject
                 InvoiceDetails = new List<InvoiceDetails>();
             }
 
-            // Payment info (không bắt buộc)
+            // Payment info
             try
             {
                 PaymentMethod = info.GetString("PaymentMethod");
@@ -206,14 +180,11 @@ namespace OOP_finalProject
             catch { TransactionId = null; }
         }
 
-        private Customer CreateCustomerFromAvailableData(SerializationInfo info)
-        {
+        private Customer CreateCustomerFromAvailableData(SerializationInfo info) {
             try
             {
-                // Thử lấy Customer object trực tiếp
                 Customer customer = (Customer)info.GetValue("Customer", typeof(Customer));
-                if (customer != null)
-                {
+                if (customer != null) {
                     return customer;
                 }
             }
@@ -222,52 +193,42 @@ namespace OOP_finalProject
             return GetDefaultCustomer();
         }
 
-        private void RestoreCustomerDiscountStrategy(Customer customer)
-        {
-            if (customer == null)
-            {
+        private void RestoreCustomerDiscountStrategy(Customer customer) {
+            if (customer == null) {
                 return;
             }
 
-            if (customer is VIPCustomer || customer.CustomerType?.Contains("VIP") == true)
-            {
+            if (customer is VIPCustomer || customer.CustomerType?.Contains("VIP") == true) {
                 customer.SetDiscountStrategy(new VIPCustomerDiscountStrategy());
             }
-            else
-            {
+            else {
                 customer.SetDiscountStrategy(new RegularCustomerDiscountStrategy());
             }
         }
 
-        private Cashier CreateCashierFromName(string name)
-        {
+        private Cashier CreateCashierFromName(string name) {
             return new Cashier { Name = name ?? "Nhân viên" };
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
+        public void GetObjectData(SerializationInfo info, StreamingContext context) {
             info.AddValue("Id", Id);
             info.AddValue("DateCreated", DateCreated);
             info.AddValue("Cashier", Cashier);
             info.AddValue("Customer", Customer);
             info.AddValue("InvoiceDetails", InvoiceDetails);
-            // Payment info (optional)
             info.AddValue("PaymentMethod", PaymentMethod);
             info.AddValue("TransactionId", TransactionId);
         }
 
-        private string GenerateInvoiceId()
-        {
+        private string GenerateInvoiceId() {
             return $"HD{DateTime.Now:yyyyMMddHHmmss}";
         }
 
-        private Cashier GetDefaultCashier()
-        {
+        private Cashier GetDefaultCashier() {
             return new Cashier { Name = "Nhân viên" };
         }
 
-        private Customer GetDefaultCustomer()
-        {
+        private Customer GetDefaultCustomer() {
             RegularCustomer customer = new RegularCustomer
             {
                 Name = "Khách lẻ",

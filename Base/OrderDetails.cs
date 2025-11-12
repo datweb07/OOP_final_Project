@@ -11,6 +11,7 @@ namespace OOP_finalProject
         private decimal quantity = 0;
 
         public Product Product { get { return product; } set { product = value; } }
+
         public string ProductID
         {
             get
@@ -36,6 +37,7 @@ namespace OOP_finalProject
         }
 
         public decimal Quantity { get { return quantity; } set { quantity = value; } }
+
         public decimal UnitPrice
         {
             get
@@ -47,6 +49,7 @@ namespace OOP_finalProject
                 return Product.Price;
             }
         }
+
         public decimal TotalPrice
         {
             get
@@ -59,9 +62,7 @@ namespace OOP_finalProject
             }
         }
 
-        public OrderDetails()
-        {
-        }
+        public OrderDetails() { }
 
         public OrderDetails(SerializationInfo info, StreamingContext context)
         {

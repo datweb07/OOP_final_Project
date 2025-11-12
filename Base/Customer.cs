@@ -14,95 +14,62 @@ namespace OOP_finalProject.Base
         private string address;
         private string customerType;
         private IDiscountStrategy discountStrategy;
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
+
+        public string Id { 
+            get { return id; } 
+            set {
+                if (string.IsNullOrWhiteSpace(value)){
                     throw new ArgumentException("ID khách hàng không được để trống hoặc rỗng!");
                 }
                 id = value;
             }
         }
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
+
+        public string Name { 
+            get { return name; } 
+            set {
+                if (string.IsNullOrWhiteSpace(value)){
                     throw new ArgumentException("Tên khách hàng không được để trống hoặc rỗng!");
                 }
                 name = value;
             }
         }
-        public string Gender
-        {
-            get
-            {
-                return gender;
-            }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
+
+        public string Gender { 
+            get { return gender; } 
+            set {
+                if (string.IsNullOrWhiteSpace(value)){
                     throw new ArgumentException("Giới tính khách hàng không được để trống hoặc rỗng!");
                 }
                 gender = value;
             }
         }
-        public string PhoneNumber
-        {
-            get
-            {
-                return phoneNumber;
-            }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
+
+        public string PhoneNumber { 
+            get { return phoneNumber; } 
+            set {
+                if (string.IsNullOrWhiteSpace(value)){
                     throw new ArgumentException("Số điện thoại khách hàng không được để trống hoặc rỗng!");
                 }
                 phoneNumber = value;
             }
         }
-        public string Address
-        {
-            get
-            {
-                return address;
-            }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
+
+        public string Address { 
+            get { return address; } 
+            set {
+                if (string.IsNullOrWhiteSpace(value)){
                     throw new ArgumentException("Địa chỉ khách hàng không được để trống hoặc rỗng!");
                 }
                 address = value;
             }
         }
-        public virtual string CustomerType
-        {
-            get
-            {
-                return customerType;
-            }
-            set
-            {
-                customerType = value;
-            }
-        }
+
+        public virtual string CustomerType { get { return customerType; } set { customerType = value; } }
+
         public Customer() { }
-        public Customer(string id, string name, string gender, string phoneNumber, string address)
-        {
+
+        public Customer(string id, string name, string gender, string phoneNumber, string address) {
             Id = id;
             Name = name;
             Gender = gender;
@@ -110,8 +77,8 @@ namespace OOP_finalProject.Base
             Address = address;
 
         }
-        public Customer(SerializationInfo info, StreamingContext context)
-        {
+
+        public Customer(SerializationInfo info, StreamingContext context) {
             Id = info.GetString("Id");
             Name = info.GetString("Name");
             Gender = info.GetString("Gender");
@@ -119,8 +86,8 @@ namespace OOP_finalProject.Base
             Address = info.GetString("Address");
             CustomerType = info.GetString("CustomerType");
         }
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context) {
             info.AddValue("Id", Id);
             info.AddValue("Name", Name);
             info.AddValue("Gender", Gender);
@@ -130,20 +97,17 @@ namespace OOP_finalProject.Base
         }
 
         // thiết lập chiến lược giảm giá
-        public virtual void SetDiscountStrategy(IDiscountStrategy strategy)
-        {
+        public virtual void SetDiscountStrategy(IDiscountStrategy strategy) {
             discountStrategy = strategy;
         }
 
         // lấy chiến lược giảm giá hiện tại
-        public virtual IDiscountStrategy GetDiscountStrategy()
-        {
+        public virtual IDiscountStrategy GetDiscountStrategy() {
             return discountStrategy;
         }
 
         // tính số tiền giảm giá dựa trên chiến lược
-        public virtual decimal CalculateDiscount(decimal totalAmount)
-        {
+        public virtual decimal CalculateDiscount(decimal totalAmount) {
             if (discountStrategy == null)
             {
                 return 0;
@@ -153,8 +117,7 @@ namespace OOP_finalProject.Base
         }
 
         // lấy phần trăm giảm giá
-        public virtual decimal GetDiscountPercentage()
-        {
+        public virtual decimal GetDiscountPercentage() {
             if (discountStrategy == null)
             {
                 return 0;
@@ -164,8 +127,7 @@ namespace OOP_finalProject.Base
         }
 
         // lấy thông tin về loại giảm giá
-        public virtual string GetDiscountInfo()
-        {
+        public virtual string GetDiscountInfo() {
             if (discountStrategy == null)
             {
                 return "Không có giảm giá";
