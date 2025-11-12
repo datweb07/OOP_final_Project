@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -29,7 +27,7 @@ namespace OOP_finalProject
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
-            // Tùy chỉnh giao diện DataGridView
+            // tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -44,9 +42,8 @@ namespace OOP_finalProject
 
             chkIsAlcoholic.Checked = false;
             drinkProducts = drinkProductData.GetData();
-            filteredProducts = drinkProducts.ToList();
+            filteredProducts = new List<DrinkProduct>(drinkProducts);
 
-            // Mặc định chọn option đầu tiên trong comboBox sắp xếp
             cmbSort.SelectedIndex = 0;
 
             DisplayInGrid();
@@ -70,13 +67,13 @@ namespace OOP_finalProject
             _src.DataSource = filteredProducts;
             _src.ResetBindings(true);
             UpdateStatistics();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+            statusLabel.Text = "Tìm thấy " + filteredProducts.Count + " sản phẩm";
         }
-       
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             isRefresh = true;
-            
+
             txtCode.Text = "";
             txtName.Text = "";
             txtPrice.Value = 0;
@@ -85,14 +82,15 @@ namespace OOP_finalProject
             txtSearch.Text = "";
             rdoAll.Checked = true;
             cmbSort.SelectedIndex = 0;
-          
 
-            filteredProducts = drinkProducts.ToList();
-            // Reset về danh sách đầy đủ
+
+            filteredProducts = new List<DrinkProduct>(drinkProducts);
+
+            // reset về danh sách ban đầu
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
             isRefresh = false;
-            
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -153,7 +151,6 @@ namespace OOP_finalProject
                 drinkProduct.Carbonated = chkIsAlcoholic.Checked;
             }
 
-            // Cập nhật danh sách lọc
             ApplyFiltersAndSearch();
 
             drinkProductData.SaveData(drinkProducts);
@@ -175,7 +172,7 @@ namespace OOP_finalProject
             }
 
             DialogResult result = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa sản phẩm '{txtName.Text}'?",
+                "Bạn có chắc chắn muốn xóa sản phẩm '" + txtName.Text + "'?",
                 "Xác nhận xóa",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -233,61 +230,73 @@ namespace OOP_finalProject
             chkIsAlcoholic.Checked = drinkProduct.Carbonated;
         }
 
-        #region Các chức năng mới
-
-        /// <summary>
-        /// Lọc sản phẩm theo gas
-        /// </summary>
+        // lọc sản phẩm theo gas/không gas
         private void FilterProducts(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
 
-        /// <summary>
-        /// Sắp xếp sản phẩm
-        /// </summary>
         private void SortProducts(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
 
-        /// <summary>
-        /// Áp dụng tất cả bộ lọc và tìm kiếm
-        /// </summary>
         private void ApplyFiltersAndSearch()
         {
-            // Bắt đầu từ danh sách đầy đủ
-            filteredProducts = drinkProducts.ToList();
+            // gắn vào danh sách đầy đủ
+            filteredProducts = new List<DrinkProduct>(drinkProducts);
 
-            // Áp dụng tìm kiếm
+            // tìm kiếm
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                filteredProducts = filteredProducts.Where(p =>
-                    p.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                List<DrinkProduct> searchResults = new List<DrinkProduct>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    DrinkProduct product = filteredProducts[i];
+                    if (product.Id.ToLower().Contains(searchText) || product.Name.ToLower().Contains(searchText))
+                    {
+                        searchResults.Add(product);
+                    }
+                }
+                filteredProducts = searchResults;
             }
 
-            // Áp dụng lọc gas
+            // lọc gas/không gas
             if (rdoWithGas.Checked)
             {
-                filteredProducts = filteredProducts.Where(p => p.Carbonated).ToList();
+                List<DrinkProduct> gasResults = new List<DrinkProduct>();
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    if (filteredProducts[i].Carbonated)
+                    {
+                        gasResults.Add(filteredProducts[i]);
+                    }
+                }
+                filteredProducts = gasResults;
             }
             else if (rdoWithoutGas.Checked)
             {
-                filteredProducts = filteredProducts.Where(p => !p.Carbonated).ToList();
+                List<DrinkProduct> noGasResults = new List<DrinkProduct>();
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    if (!filteredProducts[i].Carbonated)
+                    {
+                        noGasResults.Add(filteredProducts[i]);
+                    }
+                }
+                filteredProducts = noGasResults;
             }
 
-            // Áp dụng sắp xếp
+            // sắp xếp
             ApplySorting();
 
             DisplayInGrid();
 
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
+            statusLabel.Text = "Tìm thấy " + filteredProducts.Count + " kết quả";
         }
 
-        /// <summary>
-        /// Áp dụng sắp xếp theo lựa chọn trong comboBox
-        /// </summary>
         private void ApplySorting()
         {
             if (cmbSort.SelectedIndex == -1) return;
@@ -295,49 +304,48 @@ namespace OOP_finalProject
             switch (cmbSort.SelectedIndex)
             {
                 case 0: // Mã SP (A-Z)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Id).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Id.CompareTo(p2.Id));
                     break;
                 case 1: // Mã SP (Z-A)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Id).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Id.CompareTo(p1.Id));
                     break;
                 case 2: // Tên SP (A-Z)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Name).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Name.CompareTo(p2.Name));
                     break;
                 case 3: // Tên SP (Z-A)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Name).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Name.CompareTo(p1.Name));
                     break;
                 case 4: // Giá (Thấp-Cao)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Price).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Price.CompareTo(p2.Price));
                     break;
                 case 5: // Giá (Cao-Thấp)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Price).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Price.CompareTo(p1.Price));
                     break;
                 case 6: // Số lượng (Thấp-Cao)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Quantity).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Quantity.CompareTo(p2.Quantity));
                     break;
                 case 7: // Số lượng (Cao-Thấp)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Quantity).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Quantity.CompareTo(p1.Quantity));
                     break;
             }
         }
 
-        /// <summary>
-        /// Cập nhật thống kê tổng sản phẩm và giá trị
-        /// </summary>
+        // thống kê
         private void UpdateStatistics()
         {
             int totalProducts = filteredProducts.Count;
-            decimal totalValue = filteredProducts.Sum(p => p.Price * p.Quantity);
+
+            decimal totalValue = 0;
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                totalValue += filteredProducts[i].Price * filteredProducts[i].Quantity;
+            }
 
             lblTotalProductsValue.Text = totalProducts.ToString();
-            lblTotalValueValue.Text = $"{totalValue:N0} đ";
+            lblTotalValueValue.Text = totalValue.ToString("N0") + " đ";
 
-            // Đổi màu theo số lượng
             lblTotalProductsValue.ForeColor = totalProducts > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalValueValue.ForeColor = totalValue > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
         }
-
-        #endregion
     }
 }
-

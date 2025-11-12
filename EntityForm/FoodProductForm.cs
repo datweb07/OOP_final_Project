@@ -2,7 +2,6 @@ using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OOP_finalProject
@@ -29,7 +28,7 @@ namespace OOP_finalProject
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
 
-            // Tùy chỉnh giao diện DataGridView
+            // tùy chỉnh giao diện DataGridView
             gridData.BorderStyle = BorderStyle.None;
             gridData.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 245);
             gridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -42,17 +41,15 @@ namespace OOP_finalProject
             gridData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             gridData.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
-            // Cấu hình để gridData rộng hết cỡ
             gridData.Dock = DockStyle.Fill;
             gridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Thiết lập mặc định
             cmbSort.SelectedIndex = 0;
             cmbExpiryFilter.SelectedIndex = 0;
-            dtExpirationDate.Value = DateTime.Now.AddDays(30); // Mặc định 30 ngày
+            dtExpirationDate.Value = DateTime.Now.AddDays(30);
 
             foodProducts = foodProductData.GetData();
-            filteredProducts = foodProducts.ToList();
+            filteredProducts = new List<FoodProduct>(foodProducts);
             DisplayInGrid();
         }
 
@@ -62,7 +59,7 @@ namespace OOP_finalProject
             _src.ResetBindings(true);
             UpdateStatistics();
             UpdateExpiryWarnings();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} sản phẩm";
+            statusLabel.Text = "Tìm thấy " + filteredProducts.Count + " sản phẩm";
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -79,7 +76,7 @@ namespace OOP_finalProject
             cmbExpiryFilter.SelectedIndex = 0;
             chkLowStockOnly.Checked = false;
 
-            filteredProducts = foodProducts.ToList();
+            filteredProducts = new List<FoodProduct>(foodProducts);
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
             isFresh = false;
@@ -90,7 +87,7 @@ namespace OOP_finalProject
             if (!ValidateInput())
                 return;
 
-            // Mặc định hết hạn vào cuối ngày
+            // hết hạn vào cuối ngày
             DateTime expirationDateTime = dtExpirationDate.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
 
             FoodProduct foodProduct = null;
@@ -189,7 +186,7 @@ namespace OOP_finalProject
             }
 
             DialogResult result = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa sản phẩm '{txtName.Text}'?",
+                "Bạn có chắc chắn muốn xóa sản phẩm '" + txtName.Text + "'?",
                 "Xác nhận xóa",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -251,19 +248,11 @@ namespace OOP_finalProject
                 dtExpirationDate.Value = foodProduct.ExpirationDate;
         }
 
-        #region Các chức năng mới
-
-        /// <summary>
-        /// Tìm kiếm sản phẩm
-        /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
 
-        /// <summary>
-        /// Thêm mới sản phẩm
-        /// </summary>
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             btnRefresh_Click(null, null);
@@ -271,41 +260,54 @@ namespace OOP_finalProject
             statusLabel.Text = "Nhập thông tin sản phẩm mới";
         }
 
-        /// <summary>
-        /// Áp dụng tất cả bộ lọc và tìm kiếm
-        /// </summary>
+        // lọc và tìm kiếm
         private void ApplyFiltersAndSearch()
         {
-            // Bắt đầu từ danh sách đầy đủ
-            filteredProducts = foodProducts.ToList();
+            // gắn từ danh sách ban đầu
+            filteredProducts = new List<FoodProduct>(foodProducts);
 
-            // Áp dụng tìm kiếm
+            // tìm kiếm
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                filteredProducts = filteredProducts.Where(p =>
-                    p.Id.ToLower().Contains(txtSearch.Text.ToLower()) ||
-                    p.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                List<FoodProduct> searchResults = new List<FoodProduct>();
+                string searchText = txtSearch.Text.ToLower();
+
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    FoodProduct product = filteredProducts[i];
+                    if (product.Id.ToLower().Contains(searchText) || product.Name.ToLower().Contains(searchText))
+                    {
+                        searchResults.Add(product);
+                    }
+                }
+                filteredProducts = searchResults;
             }
 
-            // Áp dụng lọc tồn kho thấp
+            // lọc tồn kho thấp
             if (chkLowStockOnly.Checked)
             {
-                filteredProducts = filteredProducts.Where(p => p.Quantity <= 10).ToList();
+                List<FoodProduct> lowStockResults = new List<FoodProduct>();
+
+                for (int i = 0; i < filteredProducts.Count; i++)
+                {
+                    if (filteredProducts[i].Quantity <= 10)
+                    {
+                        lowStockResults.Add(filteredProducts[i]);
+                    }
+                }
+                filteredProducts = lowStockResults;
             }
 
-            // Áp dụng lọc hạn sử dụng
+            // lọc hạn sử dụng
             ApplyExpiryFilter();
 
-            // Áp dụng sắp xếp
+            // sắp xếp
             ApplySorting();
 
             DisplayInGrid();
-            statusLabel.Text = $"Tìm thấy {filteredProducts.Count} kết quả";
+            statusLabel.Text = "Tìm thấy " + filteredProducts.Count + " kết quả";
         }
 
-        /// <summary>
-        /// Lọc theo hạn sử dụng
-        /// </summary>
         private void ApplyExpiryFilter()
         {
             if (cmbExpiryFilter.SelectedIndex == -1) return;
@@ -317,25 +319,54 @@ namespace OOP_finalProject
                 case 0: // Tất cả
                     break;
                 case 1: // Còn hạn (> 7 ngày)
-                    filteredProducts = filteredProducts.Where(p => p.ExpirationDate > today.AddDays(7)).ToList();
+                    List<FoodProduct> validResults = new List<FoodProduct>();
+                    for (int i = 0; i < filteredProducts.Count; i++)
+                    {
+                        if (filteredProducts[i].ExpirationDate > today.AddDays(7))
+                        {
+                            validResults.Add(filteredProducts[i]);
+                        }
+                    }
+                    filteredProducts = validResults;
                     break;
                 case 2: // Sắp hết hạn (1-7 ngày)
-                    filteredProducts = filteredProducts.Where(p =>
-                        p.ExpirationDate > today && p.ExpirationDate <= today.AddDays(7)).ToList();
+                    List<FoodProduct> expiringResults = new List<FoodProduct>();
+                    for (int i = 0; i < filteredProducts.Count; i++)
+                    {
+                        FoodProduct product = filteredProducts[i];
+                        if (product.ExpirationDate > today && product.ExpirationDate <= today.AddDays(7))
+                        {
+                            expiringResults.Add(product);
+                        }
+                    }
+                    filteredProducts = expiringResults;
                     break;
                 case 3: // Đã hết hạn
-                    filteredProducts = filteredProducts.Where(p => p.ExpirationDate <= today).ToList();
+                    List<FoodProduct> expiredResults = new List<FoodProduct>();
+                    for (int i = 0; i < filteredProducts.Count; i++)
+                    {
+                        if (filteredProducts[i].ExpirationDate <= today)
+                        {
+                            expiredResults.Add(filteredProducts[i]);
+                        }
+                    }
+                    filteredProducts = expiredResults;
                     break;
                 case 4: // Hạn trong 30 ngày
-                    filteredProducts = filteredProducts.Where(p =>
-                        p.ExpirationDate > today && p.ExpirationDate <= today.AddDays(30)).ToList();
+                    List<FoodProduct> monthResults = new List<FoodProduct>();
+                    for (int i = 0; i < filteredProducts.Count; i++)
+                    {
+                        FoodProduct product = filteredProducts[i];
+                        if (product.ExpirationDate > today && product.ExpirationDate <= today.AddDays(30))
+                        {
+                            monthResults.Add(product);
+                        }
+                    }
+                    filteredProducts = monthResults;
                     break;
             }
         }
 
-        /// <summary>
-        /// Áp dụng sắp xếp
-        /// </summary>
         private void ApplySorting()
         {
             if (cmbSort.SelectedIndex == -1) return;
@@ -343,57 +374,84 @@ namespace OOP_finalProject
             switch (cmbSort.SelectedIndex)
             {
                 case 0: // Mã SP (A-Z)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Id).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Id.CompareTo(p2.Id));
                     break;
                 case 1: // Mã SP (Z-A)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Id).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Id.CompareTo(p1.Id));
                     break;
                 case 2: // Tên SP (A-Z)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Name).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Name.CompareTo(p2.Name));
                     break;
                 case 3: // Tên SP (Z-A)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Name).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Name.CompareTo(p1.Name));
                     break;
                 case 4: // Giá (Thấp-Cao)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Price).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Price.CompareTo(p2.Price));
                     break;
                 case 5: // Giá (Cao-Thấp)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Price).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Price.CompareTo(p1.Price));
                     break;
                 case 6: // Số lượng (Thấp-Cao)
-                    filteredProducts = filteredProducts.OrderBy(p => p.Quantity).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.Quantity.CompareTo(p2.Quantity));
                     break;
                 case 7: // Số lượng (Cao-Thấp)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.Quantity).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.Quantity.CompareTo(p1.Quantity));
                     break;
                 case 8: // Hạn sử dụng (Gần nhất)
-                    filteredProducts = filteredProducts.OrderBy(p => p.ExpirationDate).ToList();
+                    filteredProducts.Sort((p1, p2) => p1.ExpirationDate.CompareTo(p2.ExpirationDate));
                     break;
                 case 9: // Hạn sử dụng (Xa nhất)
-                    filteredProducts = filteredProducts.OrderByDescending(p => p.ExpirationDate).ToList();
+                    filteredProducts.Sort((p1, p2) => p2.ExpirationDate.CompareTo(p1.ExpirationDate));
                     break;
             }
         }
 
-        /// <summary>
-        /// Cập nhật thống kê
-        /// </summary>
+        // thống kê
         private void UpdateStatistics()
         {
             int totalProducts = filteredProducts.Count;
-            decimal totalValue = filteredProducts.Sum(p => p.Price * p.Quantity);
-            int lowStockCount = filteredProducts.Count(p => p.Quantity <= 10);
-            int expiredCount = filteredProducts.Count(p => p.ExpirationDate <= DateTime.Today);
-            int expiringSoonCount = filteredProducts.Count(p =>
-                p.ExpirationDate > DateTime.Today && p.ExpirationDate <= DateTime.Today.AddDays(7));
+
+            decimal totalValue = 0;
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                totalValue += filteredProducts[i].Price * filteredProducts[i].Quantity;
+            }
+
+            int lowStockCount = 0;
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                if (filteredProducts[i].Quantity <= 10)
+                {
+                    lowStockCount++;
+                }
+            }
+
+            int expiredCount = 0;
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                if (filteredProducts[i].ExpirationDate <= DateTime.Today)
+                {
+                    expiredCount++;
+                }
+            }
+
+            int expiringSoonCount = 0;
+            for (int i = 0; i < filteredProducts.Count; i++)
+            {
+                FoodProduct product = filteredProducts[i];
+                if (product.ExpirationDate > DateTime.Today && product.ExpirationDate <= DateTime.Today.AddDays(7))
+                {
+                    expiringSoonCount++;
+                }
+            }
 
             lblTotalProductsValue.Text = totalProducts.ToString();
-            lblTotalValueValue.Text = $"{totalValue:N0} đ";
+            lblTotalValueValue.Text = totalValue.ToString("N0") + " đ";
             lblLowStockValue.Text = lowStockCount.ToString();
             lblExpiredValue.Text = expiredCount.ToString();
             lblExpiringSoonValue.Text = expiringSoonCount.ToString();
 
-            // Đổi màu theo trạng thái
+            // màu theo trạng thái
             lblTotalProductsValue.ForeColor = totalProducts > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblTotalValueValue.ForeColor = totalValue > 0 ? Color.FromArgb(46, 204, 113) : Color.Red;
             lblLowStockValue.ForeColor = lowStockCount > 0 ? Color.Red : Color.FromArgb(46, 204, 113);
@@ -401,15 +459,29 @@ namespace OOP_finalProject
             lblExpiringSoonValue.ForeColor = expiringSoonCount > 0 ? Color.Orange : Color.FromArgb(46, 204, 113);
         }
 
-        /// <summary>
-        /// Cập nhật cảnh báo hạn sử dụng
-        /// </summary>
+        // cảnh báo hạn sử dụng
         private void UpdateExpiryWarnings()
         {
             DateTime today = DateTime.Today;
-            var expiredProducts = foodProducts.Where(p => p.ExpirationDate <= today).ToList();
-            var expiringSoonProducts = foodProducts.Where(p =>
-                p.ExpirationDate > today && p.ExpirationDate <= today.AddDays(7)).ToList();
+
+            List<FoodProduct> expiredProducts = new List<FoodProduct>();
+            for (int i = 0; i < foodProducts.Count; i++)
+            {
+                if (foodProducts[i].ExpirationDate <= today)
+                {
+                    expiredProducts.Add(foodProducts[i]);
+                }
+            }
+
+            List<FoodProduct> expiringSoonProducts = new List<FoodProduct>();
+            for (int i = 0; i < foodProducts.Count; i++)
+            {
+                FoodProduct product = foodProducts[i];
+                if (product.ExpirationDate > today && product.ExpirationDate <= today.AddDays(7))
+                {
+                    expiringSoonProducts.Add(product);
+                }
+            }
 
             if (expiredProducts.Count > 0 || expiringSoonProducts.Count > 0)
             {
@@ -417,12 +489,12 @@ namespace OOP_finalProject
 
                 if (expiredProducts.Count > 0)
                 {
-                    warningMessage += $"- Có {expiredProducts.Count} sản phẩm đã hết hạn\n";
+                    warningMessage += "- Có " + expiredProducts.Count + " sản phẩm đã hết hạn\n";
                 }
 
                 if (expiringSoonProducts.Count > 0)
                 {
-                    warningMessage += $"- Có {expiringSoonProducts.Count} sản phẩm sắp hết hạn (trong 7 ngày tới)\n";
+                    warningMessage += "- Có " + expiringSoonProducts.Count + " sản phẩm sắp hết hạn (trong 7 ngày tới)\n";
                 }
 
                 lblExpiryWarning.Text = warningMessage.Trim();
@@ -434,14 +506,9 @@ namespace OOP_finalProject
             }
         }
 
-        /// <summary>
-        /// Sự kiện khi thay đổi lựa chọn lọc
-        /// </summary>
         private void FilterChanged(object sender, EventArgs e)
         {
             ApplyFiltersAndSearch();
         }
-
-        #endregion
     }
 }

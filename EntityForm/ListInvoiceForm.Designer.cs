@@ -91,7 +91,7 @@ namespace OOP_finalProject
             // Column3
             // 
             Column3.DataPropertyName = "CashierName";
-            Column3.HeaderText = "Nhân Viên";
+            Column3.HeaderText = "NV";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             Column3.Width = 250;
@@ -99,7 +99,7 @@ namespace OOP_finalProject
             // Column4
             // 
             Column4.DataPropertyName = "CustomerName";
-            Column4.HeaderText = "Khách Hàng";
+            Column4.HeaderText = "KH";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
             Column4.Width = 250;
@@ -109,10 +109,10 @@ namespace OOP_finalProject
             Column5.DataPropertyName = "FinalTotal";
             dataGridViewCellStyle2.Format = "#,###";
             Column5.DefaultCellStyle = dataGridViewCellStyle2;
-            Column5.HeaderText = "Thành Tiền";
+            Column5.HeaderText = "TT";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
-            Column5.Width = 125;
+            Column5.Width = 250;
             //
             // Column6
             //
@@ -126,7 +126,7 @@ namespace OOP_finalProject
             // Column7
             //
             Column7.DataPropertyName = "DiscountPercentage";
-            Column7.HeaderText = "Phần Trăm";
+            Column7.HeaderText = "%";
             Column7.MinimumWidth = 6;
             Column7.Name = "Column7";
             Column7.Width = 125;
@@ -154,7 +154,7 @@ namespace OOP_finalProject
             Column10.HeaderText = "PTTT";
             Column10.MinimumWidth = 6;
             Column10.Name = "Column10";
-            Column10.Width = 125;
+            Column10.Width = 100;
             //
             // Column11
             //
