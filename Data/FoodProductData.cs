@@ -14,12 +14,12 @@ namespace OOP_finalProject
         {
             try
             {
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file
-                    dataContractSerializer.Serialize(fileStream, foodProductList);
+                    netDataContractSerializer.Serialize(fileStream, foodProductList);
                 }
             }
             catch (Exception ex)
@@ -37,12 +37,13 @@ namespace OOP_finalProject
                     Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
                     return new FoodProductList();
                 }
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
+
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {
                     // Đọc dữ liệu từ file và chuyển đổi thành FoodProductList
-                    FoodProductList foodProductList = (FoodProductList)serializer.Deserialize(fileStream);
+                    FoodProductList foodProductList = (FoodProductList)netDataContractSerializer.Deserialize(fileStream);
                     return foodProductList;
                 }
             }
@@ -71,12 +72,9 @@ namespace OOP_finalProject
             {
                 List<FoodProduct> foodProducts = new List<FoodProduct>
             {
-                new FoodProduct("F001", "Bánh mì", 15000, 100,
-                DateTime.Now.AddDays(7).Date.AddHours(23).AddMinutes(59).AddSeconds(59)),
-            new FoodProduct("F002", "Phở bò", 30000, 50,
-                DateTime.Now.AddDays(3).Date.AddHours(23).AddMinutes(59).AddSeconds(59)),
-            new FoodProduct("F003", "Cơm tấm", 25000, 80,
-                DateTime.Now.AddDays(5).Date.AddHours(23).AddMinutes(59).AddSeconds(59))
+                new FoodProduct("F001", "Bánh mì", 15000, 100, DateTime.Now.AddDays(7).Date.AddHours(23).AddMinutes(59).AddSeconds(59)),
+                new FoodProduct("F002", "Phở bò", 30000, 50, DateTime.Now.AddDays(3).Date.AddHours(23).AddMinutes(59).AddSeconds(59)),
+                new FoodProduct("F003", "Cơm tấm", 25000, 80, DateTime.Now.AddDays(5).Date.AddHours(23).AddMinutes(59).AddSeconds(59))
             };
                 FoodProductList foodProductList = new FoodProductList(foodProducts);
                 WriteObject(foodProductList);

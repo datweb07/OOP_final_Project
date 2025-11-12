@@ -14,12 +14,10 @@ namespace OOP_finalProject
         {
             try
             {
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
-                    // Ghi dữ liệu vào file
-                    dataContractSerializer.Serialize(fileStream, clothingProductList);
+                    netDataContractSerializer.Serialize(fileStream, clothingProductList);
                 }
             }
             catch (Exception ex)
@@ -37,12 +35,12 @@ namespace OOP_finalProject
                     Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
                     return new ClothingProductList();
                 }
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
+
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {
                     // Đọc dữ liệu từ file và chuyển đổi thành ClothingProductList
-                    ClothingProductList clothingProductList = (ClothingProductList)serializer.Deserialize(fileStream);
+                    ClothingProductList clothingProductList = (ClothingProductList)netDataContractSerializer.Deserialize(fileStream);
                     return clothingProductList;
                 }
             }

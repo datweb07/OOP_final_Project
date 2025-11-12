@@ -15,10 +15,10 @@ namespace OOP_finalProject
         {
             try
             {
-                NetDataContractSerializer formatter = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
-                    formatter.Serialize(fileStream, customerList);
+                    netDataContractSerializer.Serialize(fileStream, customerList);
                 }
             }
             catch (Exception ex)
@@ -37,11 +37,11 @@ namespace OOP_finalProject
                     return new CustomerList();
                 }
 
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
 
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {
-                    CustomerList customerList = (CustomerList)serializer.Deserialize(fileStream);
+                    CustomerList customerList = (CustomerList)netDataContractSerializer.Deserialize(fileStream);
                     return customerList;
                 }
 
@@ -68,7 +68,7 @@ namespace OOP_finalProject
         {
             if (!File.Exists(filePath))
             {
-                List<Customer> sampleCustomers = new List<Customer>()
+                List<Customer> customers = new List<Customer>()
                     {
                         new RegularCustomer("KH001", "Nguyễn Văn An", "Nam", "0901234567", "123 Lê Lợi, Quận 1, TP.HCM"),
                         new RegularCustomer("KH002", "Trần Thị Bình", "Nữ", "0912345678", "45 Nguyễn Huệ, Quận 1, TP.HCM"),
@@ -81,7 +81,7 @@ namespace OOP_finalProject
                         new VIPCustomer("KH009", "Bùi Văn Hùng", "Nam", "0989012345", "89 Nguyễn Đình Chiểu, Quận 3, TP.HCM"),
                         new VIPCustomer("KH010", "Lý Thị Kim", "Nữ", "0990123456", "101 Nam Kỳ Khởi Nghĩa, Quận 1, TP.HCM"),
                     };
-                CustomerList customerList = new CustomerList(sampleCustomers);
+                CustomerList customerList = new CustomerList(customers);
                 WriteObject(customerList);
             }
         }

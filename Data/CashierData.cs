@@ -15,13 +15,12 @@ namespace OOP_finalProject
         {
             try
             {
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
 
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file
-                    dataContractSerializer.Serialize(fileStream, cashierList);
+                    netDataContractSerializer.Serialize(fileStream, cashierList);
                 }
             }
             catch (Exception ex)
@@ -39,13 +38,12 @@ namespace OOP_finalProject
                     Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
                     return new CashierList();
                 }
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
 
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {
                     // Đọc dữ liệu từ file và chuyển đổi thành CashierList
-                    CashierList cashierList = (CashierList)serializer.Deserialize(fileStream);
+                    CashierList cashierList = (CashierList)netDataContractSerializer.Deserialize(fileStream);
                     return cashierList;
                 }
             }

@@ -14,12 +14,11 @@ namespace OOP_finalProject
         {
             try
             {
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file
-                    dataContractSerializer.Serialize(fileStream, electronicProductList);
+                    netDataContractSerializer.Serialize(fileStream, electronicProductList);
                 }
             }
             catch (Exception ex)
@@ -37,12 +36,13 @@ namespace OOP_finalProject
                     Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
                     return new ElectronicProductList();
                 }
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
+
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {
                     // Đọc dữ liệu từ file và chuyển đổi thành ElectronicProductList
-                    ElectronicProductList electronicProductList = (ElectronicProductList)serializer.Deserialize(fileStream);
+                    ElectronicProductList electronicProductList = (ElectronicProductList)netDataContractSerializer.Deserialize(fileStream);
                     return electronicProductList;
                 }
             }
@@ -69,7 +69,7 @@ namespace OOP_finalProject
         {
             if (!File.Exists(filePath))
             {
-                List<ElectronicProduct> sampleProducts = new List<ElectronicProduct>
+                List<ElectronicProduct> electronicProducts = new List<ElectronicProduct>
                 {
                     new ElectronicProduct("DT001", "iPhone 15 Pro Max", 32990000, 10, "12 tháng"),
                     new ElectronicProduct("LT002", "MacBook Air M2", 28990000, 5, "24 tháng"),
@@ -77,7 +77,7 @@ namespace OOP_finalProject
                     new ElectronicProduct("TV004", "Sony Bravia 4K", 18990000, 8, "36 tháng"),
                     new ElectronicProduct("HP005", "Dell XPS 13", 24990000, 12, "24 tháng")
                 };
-                ElectronicProductList electronicProductList = new ElectronicProductList(sampleProducts);
+                ElectronicProductList electronicProductList = new ElectronicProductList(electronicProducts);
                 WriteObject(electronicProductList);
 
             }

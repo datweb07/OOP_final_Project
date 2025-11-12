@@ -8,18 +8,18 @@ namespace OOP_finalProject
     [Serializable]
     public class InvoiceData
     {
-        private static string pathXml = Path.Combine(GetPath.path, nameof(Invoice) + ".dat");
+        private static string filaPath = Path.Combine(GetPath.path, nameof(Invoice) + ".dat");
 
         public static void WriteObject(InvoiceList invoiceList)
         {
             try
             {
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
-                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+
+                using (FileStream fileStream = new FileStream(filaPath, FileMode.Create, FileAccess.Write))
                 {
                     // Ghi dữ liệu vào file
-                    dataContractSerializer.Serialize(fileStream, invoiceList);
+                    netDataContractSerializer.Serialize(fileStream, invoiceList);
                 }
             }
             catch (Exception ex)
@@ -32,17 +32,18 @@ namespace OOP_finalProject
         {
             try
             {
-                if (!File.Exists(pathXml))
+                if (!File.Exists(filaPath))
                 {
-                    Console.WriteLine($"File {pathXml} không tồn tại. Trả về danh sách rỗng.");
+                    Console.WriteLine($"File {filaPath} không tồn tại. Trả về danh sách rỗng.");
                     return new InvoiceList();
                 }
-                // Tạo NetDataContractSerializer
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
-                using (FileStream fileStream = new FileStream(pathXml, FileMode.Open))
+         
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+
+                using (FileStream fileStream = new FileStream(filaPath, FileMode.Open))
                 {
                     // Đọc dữ liệu từ file và chuyển đổi thành InvoiceList
-                    InvoiceList invoiceList = (InvoiceList)serializer.Deserialize(fileStream);
+                    InvoiceList invoiceList = (InvoiceList)netDataContractSerializer.Deserialize(fileStream);
                     return invoiceList;
                 }
             }

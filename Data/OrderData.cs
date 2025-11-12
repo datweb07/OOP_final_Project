@@ -7,16 +7,16 @@ namespace OOP_finalProject
 {
     public class OrderData
     {
-        private static string pathXml = Path.Combine(GetPath.path, nameof(Order) + ".dat");
+        private static string filePath = Path.Combine(GetPath.path, nameof(Order) + ".dat");
 
         public static void WriteObject(OrderList orderList)
         {
             try
             {
-                NetDataContractSerializer dataContractSerializer = new NetDataContractSerializer();
-                using (FileStream fileStream = new FileStream(pathXml, FileMode.Create, FileAccess.Write))
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
-                    dataContractSerializer.Serialize(fileStream, orderList);
+                    netDataContractSerializer.Serialize(fileStream, orderList);
                 }
             }
             catch (Exception ex)
@@ -29,15 +29,17 @@ namespace OOP_finalProject
         {
             try
             {
-                if (!File.Exists(pathXml))
+                if (!File.Exists(filePath))
                 {
-                    Console.WriteLine($"File {pathXml} không tồn tại. Trả về danh sách rỗng.");
+                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
                     return new OrderList();
                 }
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
-                using (FileStream fileStream = new FileStream(pathXml, FileMode.Open))
+
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
+
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                 {
-                    OrderList orderList = (OrderList)serializer.Deserialize(fileStream);
+                    OrderList orderList = (OrderList)netDataContractSerializer.Deserialize(fileStream);
                     return orderList;
                 }
             }

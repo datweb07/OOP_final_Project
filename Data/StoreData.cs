@@ -15,13 +15,11 @@ namespace OOP_finalProject
             {
                 try
                 {
-                    // Tạo DataContractSerializer cho Store
-                    NetDataContractSerializer serializer = new NetDataContractSerializer();
+                    NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
 
                     using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                     {
-                        // Đọc dữ liệu từ file XML và chuyển đổi thành Store
-                        Store store = (Store)serializer.Deserialize(fileStream);
+                        Store store = (Store)netDataContractSerializer.Deserialize(fileStream);
                         return store ?? new Store();
                     }
                 }
@@ -37,13 +35,12 @@ namespace OOP_finalProject
         {
             try
             {
-                // Tạo DataContractSerializer cho Store
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
 
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
-                    // Ghi dữ liệu vào file XML
-                    serializer.Serialize(fileStream, store);
+                    // Ghi dữ liệu vào file
+                    netDataContractSerializer.Serialize(fileStream, store);
                 }
             }
             catch (Exception ex)
