@@ -26,7 +26,7 @@ namespace OOP_finalProject.Products
             }
             catch (SerializationException)
             {
-                // Nếu file cũ không có trường Carbonated, set giá trị mặc định
+                // set giá trị mặc định
                 Carbonated = false;
             }
         }

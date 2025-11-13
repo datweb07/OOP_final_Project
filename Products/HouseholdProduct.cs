@@ -30,7 +30,7 @@ namespace OOP_finalProject.Products
             }
             catch (SerializationException)
             {
-                // Nếu file cũ không có trường Brand, set giá trị mặc định
+                // set giá trị mặc định
                 Brand = "Unknown";
             }
         }

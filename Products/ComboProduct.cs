@@ -28,24 +28,21 @@ namespace OOP_finalProject.Products
             this.Quantity = 1;
         }
 
-        // Constructor cho deserialization
         protected ComboProduct(SerializationInfo info, StreamingContext context)
         {
             _isDeserializing = true;
 
             try
             {
-                // Deserialize các properties cơ bản
                 Id = info.GetString("Id");
                 Name = info.GetString("Name");
                 Quantity = info.GetInt32("Quantity");
 
-                // Deserialize các properties đặc thù của ComboProduct
                 children = (List<IProductComponent>)info.GetValue("Children", typeof(List<IProductComponent>));
                 discountPercentage = info.GetDecimal("DiscountPercentage");
                 description = info.GetString("Description");
 
-                // Đảm bảo giá trị hợp lệ
+                // đảm bảo giá trị hợp lệ
                 if (Quantity < 0) Quantity = 0;
                 if (discountPercentage < 0) discountPercentage = 0;
                 if (discountPercentage > 100) discountPercentage = 100;
@@ -53,7 +50,8 @@ namespace OOP_finalProject.Products
             catch (Exception ex)
             {
                 Console.WriteLine($"Lỗi deserialization ComboProduct: {ex.Message}");
-                // Khởi tạo giá trị mặc định nếu có lỗi
+
+                // khởi tạo giá trị mặc định nếu có lỗi
                 children = new List<IProductComponent>();
                 discountPercentage = 0;
                 description = "";
@@ -71,7 +69,7 @@ namespace OOP_finalProject.Products
             set
             {
                 if (value < 0 || value > 100)
-                    throw new ArgumentException("Discount percentage must be between 0 and 100");
+                    throw new ArgumentException("Phần trăm giảm giá phải nằm từ 0 đến 100");
                 discountPercentage = value;
             }
         }
@@ -88,15 +86,12 @@ namespace OOP_finalProject.Products
             set
             {
                 if (value < 0)
-                    throw new ArgumentException("Quantity cannot be negative");
+                    throw new ArgumentException("Số lượng không thể âm");
                 base.Quantity = value;
             }
         }
 
-        /// <summary>
-        /// Override Price - Giá combo sau khi giảm
-        /// Cho phép set trong quá trình deserialization
-        /// </summary>
+        // giá sau khi giảm
         public override decimal Price
         {
             get
@@ -107,19 +102,18 @@ namespace OOP_finalProject.Products
                     decimal discount = originalPrice * (discountPercentage / 100);
                     return originalPrice - discount;
                 }
-                return 0; // Combo không có sản phẩm thì giá = 0
+                return 0; // combo không có sản phẩm thì giá = 0
             }
             set
             {
-                // Chỉ cho phép set giá khi đang deserializing
+                // chỉ cho phép set giá khi đang deserialization
                 if (_isDeserializing)
                 {
-                    // Không làm gì cả, vì giá được tính tự động
-                    // Property này chỉ để tránh exception trong deserialization
+                    // giá tự động tính, chỉ để tránh lỗi trong quá trình deserialization
                 }
                 else
                 {
-                    throw new InvalidOperationException("Cannot set price directly for composite product. Price is calculated automatically.");
+                    throw new InvalidOperationException("Không thể trực tiếp đặt giá cho sản phẩm combo. Giá được tính toán tự động.");
                 }
             }
         }
@@ -130,7 +124,7 @@ namespace OOP_finalProject.Products
                 throw new ArgumentNullException(nameof(component));
 
             if (component == this)
-                throw new InvalidOperationException("Cannot add composite to itself");
+                throw new InvalidOperationException("Không thể add combo vào chính nó");
 
             children.Add(component);
         }
@@ -183,7 +177,7 @@ namespace OOP_finalProject.Products
         public override decimal CalculateDiscount(decimal additionalDiscountPercentage)
         {
             if (additionalDiscountPercentage < 0 || additionalDiscountPercentage > 100)
-                throw new ArgumentException("Discount percentage must be between 0 and 100");
+                throw new ArgumentException("Phần trăm giảm giá phải nằm giữa 0 và 100");
 
             return CalculateTotal() * (additionalDiscountPercentage / 100);
         }

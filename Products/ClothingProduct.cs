@@ -27,7 +27,7 @@ namespace OOP_finalProject.Products
             }
             catch (SerializationException)
             {
-                // Nếu file cũ không có trường Size, set giá trị mặc định
+                // set giá trị mặc định
                 Size = "M";
             }
         }

@@ -32,7 +32,7 @@ namespace OOP_finalProject.Products
             }
             catch (SerializationException)
             {
-                // Nếu file cũ không có trường WarrantyPeriod, set giá trị mặc định
+                // set giá trị mặc định
                 WarrantyPeriod = "12 months";
             }
         }
