@@ -39,7 +39,7 @@ namespace OOP_finalProject.Payments
                 throw new ArgumentException("Phương thức thanh toán không được để trống", nameof(methodString));
             }
 
-            // Chuyển đổi chuỗi thành enum
+            // chuyển đổi chuỗi thành enum
             if (Enum.TryParse<PaymentMethod>(methodString.ToUpper(), out PaymentMethod method))
             {
                 return CreatePayment(method, amount, invoiceId, transactionId);

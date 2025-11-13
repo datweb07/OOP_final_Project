@@ -23,6 +23,7 @@ namespace OOP_finalProject.Payments
             ReceivedAmount = 0;
         }
 
+        // kiểm tra và nhận tiền mặt
         public bool ReceiveCash(decimal receivedAmount)
         {
             if (receivedAmount < 0)
@@ -46,20 +47,19 @@ namespace OOP_finalProject.Payments
         {
             try
             {
-                // Xác thực thông tin thanh toán
+                // xác thực thông tin thanh toán
                 if (!ValidatePayment())
                 {
                     return false;
                 }
 
-                // Kiểm tra đã nhận tiền chưa
+                // kiểm tra đã nhận tiền chưa
                 if (ReceivedAmount < Amount)
                 {
                     MarkAsFailed($"Chưa nhận đủ tiền! Cần: {Amount:N0} đ, Đã nhận: {ReceivedAmount:N0} đ");
                     return false;
                 }
 
-                // Thanh toán tiền mặt luôn thành công (nếu đã nhận đủ tiền)
                 MarkAsSuccess($"Thanh toán tiền mặt thành công! Số tiền: {Amount:N0} đ, Thối lại: {ChangeAmount:N0} đ");
                 return true;
             }
