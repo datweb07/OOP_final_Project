@@ -12,7 +12,7 @@ namespace OOP_finalProject
         public DateTime LoginTime { get; set; }
         public string Email { get; set; }
 
-        // Private constructor để ngăn việc tạo instance từ bên ngoài
+        // private constructor để ngăn việc tạo instance từ bên ngoài
         private UserSession()
         {
             Username = string.Empty;

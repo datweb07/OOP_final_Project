@@ -7,7 +7,7 @@ namespace OOP_finalProject.Strategies
     {
         private const decimal discountPercentage = 10m;
 
-        // tính số tiền giảm giá (10%) dựa trên tổng giá trị đơn hàng
+        // tính số tiền giảm giá 
         public decimal CalculateDiscount(decimal totalAmount)
         {
             if (totalAmount < 0)
@@ -18,19 +18,16 @@ namespace OOP_finalProject.Strategies
             return totalAmount * (discountPercentage / 100);
         }
 
-        // lấy phần trăm giảm giá
         public decimal GetDiscountPercentage()
         {
             return discountPercentage;
         }
 
-        // lấy tên chiến lược
         public string GetStrategyName()
         {
             return "Regular Customer Discount";
         }
 
-        // lấy mô tả chiến lược
         public string GetDescription()
         {
             return $"{discountPercentage}% trên tổng giá trị đơn hàng";
