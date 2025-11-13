@@ -15,13 +15,13 @@ namespace OOP_finalProject
         {
             InitializeComponent();
             SetupMenuEvents();
-            UpdateWelcomeMessage(); // Cập nhật message chào mừng với tên user
-            LoadDashboard(); // Tự động mở Dashboard sau khi đăng nhập
+            UpdateWelcomeMessage(); // cập nhật message chào mừng với tên user
+            LoadDashboard(); // tự động mở Dashboard sau khi đăng nhập
         }
 
         private void SetupMenuEvents()
         {
-            // Setup hover effects cho tất cả menu buttons trừ Exit
+            // thiết lập hiệu ứng hover cho tất cả menu buttons trừ Exit
             foreach (Control ctrl in pnlMenuContainer.Controls)
             {
                 if (ctrl is Button btn && btn != btnExit)
@@ -73,20 +73,18 @@ namespace OOP_finalProject
             if (formToLoad == null)
                 return;
 
-            // Đóng form hiện tại nếu có
+            // đóng form hiện tại nếu có
             if (currentForm != null)
             {
                 currentForm.Close();
                 currentForm.Dispose();
             }
 
-            // Reset active button
             if (currentActiveButton != null)
             {
                 currentActiveButton.BackColor = Color.Transparent;
             }
 
-            // Set active button
             currentActiveButton = clickedButton;
             currentActiveButton.BackColor = Color.FromArgb(41, 128, 185);
 
@@ -96,14 +94,14 @@ namespace OOP_finalProject
             currentForm.FormBorderStyle = FormBorderStyle.None;
             currentForm.Dock = DockStyle.Fill;
 
-            // Clear panel và add form mới
+            // xóa form cũ và add form mới
             pnlContentArea.Controls.Clear();
             pnlContentArea.Controls.Add(currentForm);
 
-            // Update header title
+            // cập nhật tiêu đề
             lblWelcome.Text = title;
 
-            // Update status
+            // cập nhật trạng thái
             lblStatus.Text = $"Đang làm việc với: {title}";
 
             currentForm.Show();
@@ -111,23 +109,22 @@ namespace OOP_finalProject
 
         private void LoadDashboard()
         {
-            // Clear content area
+            // xóa nội dung panel
             pnlContentArea.Controls.Clear();
 
-            // Reset active button
             if (currentActiveButton != null)
             {
                 currentActiveButton.BackColor = Color.Transparent;
                 currentActiveButton = null;
             }
 
-            // Tạo hoặc sử dụng lại DashboardForm
+            // tạo hoặc sử dụng lại DashboardForm
             if (dashboardForm == null || dashboardForm.IsDisposed)
             {
                 dashboardForm = new DashboardForm();
             }
 
-            // Load dashboard form vào panel
+            // load DashboardForm vào panel
             currentForm = dashboardForm;
             dashboardForm.TopLevel = false;
             dashboardForm.FormBorderStyle = FormBorderStyle.None;
@@ -135,8 +132,8 @@ namespace OOP_finalProject
 
             pnlContentArea.Controls.Add(dashboardForm);
 
-            // Update header
-            UpdateWelcomeMessage(); // Sử dụng message chào mừng với tên user
+            // cập nhật tiêu đề và trạng thái
+            UpdateWelcomeMessage(); 
             lblStatus.Text = "Đang xem Dashboard";
 
             dashboardForm.Show();
@@ -168,81 +165,85 @@ namespace OOP_finalProject
             LoadDashboard();
         }
 
-        // Quản lý khách hàng
+        // quản lý khách hàng
         private void btnCustomer_Click(object sender, EventArgs e)
         {
             LoadForm(new CustomerForm(), "Khách Hàng", btnCustomer);
         }
 
-        // Quản lý nhân viên quản lý
+        // quản lý nhân viên quản lý
         private void btnManager_Click(object sender, EventArgs e)
         {
             LoadForm(new ManagerForm(), "Nhân Viên Quản Lý", btnManager);
         }
 
-        // Quản lý nhân viên bán hàng
+        // quản lý nhân viên bán hàng
         private void btnSeller_Click(object sender, EventArgs e)
         {
             LoadForm(new CashierForm(), "Nhân Viên Bán Hàng", btnSeller);
         }
 
-        // Quản lý sản phẩm
+        // quản lý sản phẩm
         private void btnProduct_Click(object sender, EventArgs e)
         {
             LoadForm(new ProductForm(), "Danh Sách Sản Phẩm", btnProduct);
         }
 
-        // Quản lý đồ uống
+        // quản lý đồ uống
         private void btnBeverage_Click(object sender, EventArgs e)
         {
             LoadForm(new DrinkProductForm(), "Đồ Uống", btnBeverage);
         }
 
-        // Quản lý thực phẩm
+        // quản lý thực phẩm
         private void btnFood_Click(object sender, EventArgs e)
         {
             LoadForm(new FoodProductForm(), "Thực Phẩm", btnFood);
         }
 
-        // Quản lý đồ gia dụng
+        // quản lý đồ gia dụng
         private void btnHouseHold_Click(object sender, EventArgs e)
         {
             LoadForm(new HouseholdProductForm(), "Đồ Gia Dụng", btnHouseHold);
         }
 
-        // Danh sách hóa đơn
+        // danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
             LoadForm(new ListInvoiceForm(), "Danh Sách Hóa Đơn", btnInvoiceList);
         }
 
-        // Danh sách đơn hàng
+        // danh sách đơn hàng
         private void btnOrderList_Click(object sender, EventArgs e)
         {
             LoadForm(new ListOrderForm(), "Danh Sách Đơn Hàng", btnOrderList);
         }
 
+        // quản lý đồ điện tử
         private void btnElectronic_Click(object sender, EventArgs e)
         {
             LoadForm(new ElectronicProductForm(), "Đồ Điện Tử", btnElectronic);
         }
 
+        // quản lý đồ thời trang
         private void btnClothing_Click(object sender, EventArgs e)
         {
             LoadForm(new ClothingProductForm(), "Đồ Thời Trang", btnClothing);
         }
 
+        // quản lý combo sản phẩm
         private void btnCombo_Click(object sender, EventArgs e)
         {
             LoadForm(new ComboProductForm(), "Combo Sản Phẩm", btnCombo);
         }
 
+        // thiết lập cửa hàng
         private void btnStore_Click(object sender, EventArgs e)
         {
             LoadForm(new StoreForm(), "Thiết Lập Cửa Hàng", btnStore);
         }
 
-        // Hiển thị thông tin tài khoản
+        // hiển thị thông tin tài khoản
         private void btnAccount_Click(object sender, EventArgs e)
         {
             if (!UserSession.Instance.IsLoggedIn())
@@ -255,17 +256,17 @@ namespace OOP_finalProject
             LoadForm(new AccountForm(), "Thông tin tài khoản", btnAccount);
         }
 
-        // Thoát ứng dụng
+        // thoát ứng dụng
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát khỏi ứng dụng?", "Quản Lý Bán Hàng Siêu Thị - Xác Nhận Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (result == DialogResult.Yes)
             {
-                // Clear user session
+                // xóa phiên đăng nhập
                 UserSession.Instance.ClearUserInfo();
 
-                // Đóng tất cả forms con
+                // đóng tất cả forms con
                 if (currentForm != null)
                 {
                     currentForm.Close();
@@ -296,7 +297,7 @@ namespace OOP_finalProject
                 }
             }
 
-            // Cleanup
+            // xóa tất cả forms con
             if (currentForm != null)
             {
                 currentForm.Close();

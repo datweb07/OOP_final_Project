@@ -29,7 +29,7 @@ namespace OOP_finalProject.LoginForm
                     {
                         sqlConnection.Open();
 
-                        // Lấy thêm thông tin user từ database
+                        // lấy thông tin user từ database
                         String selectData = "SELECT role, username, email FROM users WHERE username = @username AND password = @password";
                         using (SqlCommand cmd = new SqlCommand(selectData, sqlConnection))
                         {
@@ -43,7 +43,7 @@ namespace OOP_finalProject.LoginForm
                                     string role = reader["role"].ToString();
                                     string email = reader["email"]?.ToString() ?? "";
 
-                                    // Lưu thông tin user vào session
+                                    // lưu thông tin user vào session
                                     UserSession.Instance.SetUserInfo(txtUserNameSignIn.Text, role, email);
 
                                     if (role == "admin")

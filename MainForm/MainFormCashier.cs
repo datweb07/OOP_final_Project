@@ -14,12 +14,12 @@ namespace OOP_finalProject
         {
             InitializeComponent();
             SetupMenuEvents();
-            UpdateWelcomeMessage(); // Cập nhật message chào mừng với tên user
+            UpdateWelcomeMessage(); // cập nhật message chào mừng với tên user
         }
 
         private void SetupMenuEvents()
         {
-            // Setup hover effects cho tất cả menu buttons trừ Exit
+            // thiết lập hiệu ứng hover cho tất cả menu buttons trừ Exit
             foreach (Control ctrl in pnlMenuContainer.Controls)
             {
                 if (ctrl is Button btn && btn != btnExit)
@@ -71,37 +71,33 @@ namespace OOP_finalProject
             if (formToLoad == null)
                 return;
 
-            // Đóng form hiện tại nếu có
+            // đóng form hiện tại nếu có
             if (currentForm != null)
             {
                 currentForm.Close();
                 currentForm.Dispose();
             }
 
-            // Reset active button
             if (currentActiveButton != null)
             {
                 currentActiveButton.BackColor = Color.Transparent;
             }
 
-            // Set active button
             currentActiveButton = clickedButton;
             currentActiveButton.BackColor = Color.FromArgb(41, 128, 185);
 
-            // Load form mới vào panel
+            // load form mới vào panel
             currentForm = formToLoad;
             currentForm.TopLevel = false;
             currentForm.FormBorderStyle = FormBorderStyle.None;
             currentForm.Dock = DockStyle.Fill;
 
-            // Clear panel và add form mới
+            // xóa panel và add form mới
             pnlContentArea.Controls.Clear();
             pnlContentArea.Controls.Add(currentForm);
 
-            // Update header title
+            // cập nhật tiêu đề và trạng thái
             lblWelcome.Text = title;
-
-            // Update status
             lblStatus.Text = $"Đang làm việc với: {title}";
 
             currentForm.Show();
@@ -113,31 +109,32 @@ namespace OOP_finalProject
         }
 
         #region Entity Form
-        // Danh sách hóa đơn
+
+        // danh sách hóa đơn
         private void btnInvoiceList_Click(object sender, EventArgs e)
         {
             LoadForm(new ListInvoiceForm(), "Danh Sách Hóa Đơn", btnInvoiceList);
         }
 
-        // Danh sách đơn hàng
+        // danh sách đơn hàng
         private void btnOrderList_Click(object sender, EventArgs e)
         {
             LoadForm(new ListOrderForm(), "Danh Sách Đơn Hàng", btnOrderList);
         }
 
-        // Danh sách sản phẩm
+        // danh sách sản phẩm
         private void btnProduct_Click(object sender, EventArgs e)
         {
             LoadForm(new ProductForm(), "Danh Sách Sản Phẩm", btnProduct);
         }
 
-        // Tạo đơn hàng mới
+        // tạo đơn hàng mới
         private void btnOrder_Click(object sender, EventArgs e)
         {
             LoadForm(new OrderForm(), "Tạo Đơn Hàng Mới", btnOrder);
         }
 
-        // Hiển thị thông tin tài khoản
+        // hiển thị thông tin tài khoản
         private void btnAccount_Click(object sender, EventArgs e)
         {
             if (!UserSession.Instance.IsLoggedIn())
@@ -150,7 +147,7 @@ namespace OOP_finalProject
             LoadForm(new AccountForm(), "Thông Tin Tài Khoản", btnAccount);
         }
 
-        // Thoát ứng dụng
+        // thoát ứng dụng
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -162,10 +159,10 @@ namespace OOP_finalProject
 
             if (result == DialogResult.Yes)
             {
-                // Clear user session
+                // xóa phiên đăng nhập
                 UserSession.Instance.ClearUserInfo();
 
-                // Đóng tất cả forms con
+                // đóng tất cả forms con
                 if (currentForm != null)
                 {
                     currentForm.Close();
@@ -200,7 +197,7 @@ namespace OOP_finalProject
                 }
             }
 
-            // Cleanup
+            // xóa các form con nếu có
             if (currentForm != null)
             {
                 currentForm.Close();

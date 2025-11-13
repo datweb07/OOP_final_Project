@@ -80,7 +80,7 @@ namespace OOP_finalProject.LoginForm
                                     sqlCommand1.ExecuteNonQuery();
                                     MessageBox.Show("Đăng ký thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    // Chuyển về form đăng nhập
+                                    // chuyển về form đăng nhập
                                     SignIn frmSignIn = new SignIn();
                                     frmSignIn.Show();
                                     this.Hide();
