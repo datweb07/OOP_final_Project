@@ -1,105 +1,33 @@
 using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
 
 namespace OOP_finalProject.Data
 {
-    [Serializable]
-    public class ComboProductData
+    public class ComboProductData : BaseDataRepository<ComboProductList, ComboProduct>
     {
-        private string filePath = Path.Combine(GetPath.path, nameof(ComboProduct) + ".dat");
-
-        public List<ComboProduct> GetData()
+        public ComboProductData() : base() { }
+        public override List<ComboProduct> GetData()
         {
-            if (!File.Exists(filePath))
-                return new List<ComboProduct>();
-
-            try
+            ComboProductList comboProductList = Load();
+            // Validate và fix dữ liệu
+            if (comboProductList?.ComboProducts != null)
             {
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                foreach (var combo in comboProductList.ComboProducts)
                 {
-                    List<ComboProduct> compositeProducts = (List<ComboProduct>)serializer.Deserialize(fileStream);
-                    
-                    if (compositeProducts != null)
-                    {
-                        // Validate và fix dữ liệu
-                        foreach (var combo in compositeProducts)
-                        {
-                            if (combo.Quantity < 0) combo.Quantity = 0;
-                            if (combo.DiscountPercentage < 0) combo.DiscountPercentage = 0;
-                            if (combo.DiscountPercentage > 100) combo.DiscountPercentage = 100;
-                        }
-                        return compositeProducts;
-                    }
+                    if (combo.Quantity < 0) combo.Quantity = 0;
+                    if (combo.DiscountPercentage < 0) combo.DiscountPercentage = 0;
+                    if (combo.DiscountPercentage > 100) combo.DiscountPercentage = 100;
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi đọc file ComboProduct: {ex.Message}");
-                // Xóa file bị lỗi và tạo mới
-                TryDeleteCorruptedFile();
-            }
-            
-            return new List<ComboProduct>();
+            return comboProductList.ComboProducts ?? new List<ComboProduct>();
+        }
+        public override void SaveData(List<ComboProduct> items)
+        {
+            ComboProductList comboProductList = new ComboProductList(items);
+            Save(comboProductList);
         }
 
-        public void SaveData(List<ComboProduct> compositeProducts)
-        {
-            try
-            {
-                // Tạo thư mục nếu chưa tồn tại
-                if (!Directory.Exists(GetPath.path))
-                {
-                    Directory.CreateDirectory(GetPath.path);
-                }
-
-                // Tạo file tạm để tránh mất dữ liệu nếu có lỗi
-                string tempFilePath = filePath + ".tmp";
-
-                NetDataContractSerializer serializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write))
-                {
-                    serializer.Serialize(fileStream, compositeProducts ?? new List<ComboProduct>());
-                }
-
-                // Xóa file cũ và đổi tên file tạm thành file chính
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-                File.Move(tempFilePath, filePath);
-
-                Console.WriteLine($"Đã lưu {compositeProducts?.Count ?? 0} combo vào file.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi ghi file ComboProduct: {ex.Message}");
-                throw;
-            }
-        }
-
-        private void TryDeleteCorruptedFile()
-        {
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                    Console.WriteLine("Đã xóa file ComboProduct bị lỗi.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Không thể xóa file bị lỗi: {ex.Message}");
-            }
-        }
-
-        // ... giữ nguyên các phương thức khác (AddCompositeProduct, UpdateCompositeProduct, etc.)
         public bool AddCompositeProduct(ComboProduct compositeProduct)
         {
             try

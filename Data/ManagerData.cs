@@ -1,71 +1,24 @@
-﻿using OOP_finalProject.Employees;
-using System;
+﻿using OOP_finalProject.Data;
+using OOP_finalProject.Employees;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class ManagerData
+    public class ManagerData : BaseDataRepository<ManagerList, Manager>
     {
-        private static string filePath = Path.Combine(GetPath.path, nameof(Manager) + ".dat");
-
-        public static void WriteObject(ManagerList managerList)
+        public ManagerData() : base() { }
+        public override List<Manager> GetData()
         {
-            try
-            {
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                    // Ghi dữ liệu vào file
-                    netDataContractSerializer.Serialize(fileStream, managerList);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi ghi file: {ex.Message}");
-            }
-        }
-
-        public ManagerList ReadObject()
-        {
-            try
-            {
-                if (!File.Exists(filePath))
-                {
-                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
-                    return new ManagerList();
-                }
-
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
-                {
-                    // Đọc dữ liệu từ file và chuyển đổi thành ManagerList
-                    ManagerList managerList = (ManagerList)netDataContractSerializer.Deserialize(fileStream);
-                    return managerList;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi đọc file: {ex.Message}");
-                return new ManagerList();
-            }
-        }
-
-        public List<Manager> GetData()
-        {
-            ManagerList managerList = ReadObject();
+            ManagerList managerList = Load();
             return managerList.Managers ?? new List<Manager>();
         }
-
-        public void SaveData(List<Manager> managers)
+        public override void SaveData(List<Manager> managers)
         {
             ManagerList managerList = new ManagerList(managers);
-            WriteObject(managerList);
+            Save(managerList);
         }
-        public static void CreateSampleData()
+        public override void CreateSampleData()
         {
             if (!File.Exists(filePath))
             {
@@ -75,8 +28,7 @@ namespace OOP_finalProject
                     new Manager("MG002", "Trần Văn Nam", "Nam", "0912234567", "456 Nguyễn Huệ, Q3, TP.HCM", "Không có cửa hàng"),
                 };
 
-                ManagerList managerList = new ManagerList(managers);
-                WriteObject(managerList);
+                SaveData(managers);
             }
         }
     }

@@ -1,84 +1,35 @@
-﻿using OOP_finalProject.Products;
-using System;
+﻿using OOP_finalProject.Data;
+using OOP_finalProject.Products;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class DrinkProductData
+    public class DrinkProductData : BaseDataRepository<DrinkProductList, DrinkProduct>
     {
-        private static string filePath = Path.Combine(GetPath.path, nameof(DrinkProduct) + ".dat");
-
-        public static void WriteObject(DrinkProductList drinkProductList)
+        public DrinkProductData() : base() { }
+        public override List<DrinkProduct> GetData()
         {
-            try
-            {
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                    // Ghi dữ liệu vào file
-                    netDataContractSerializer.Serialize(fileStream, drinkProductList);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi ghi file: {ex.Message}");
-            }
-        }
-
-        public DrinkProductList ReadObject()
-        {
-            try
-            {
-                if (!File.Exists(filePath))
-                {
-                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
-                    return new DrinkProductList();
-                }
-
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
-                {
-                    // Đọc dữ liệu từ file và chuyển đổi thành DrinkProductList
-                    DrinkProductList drinkProductList = (DrinkProductList)netDataContractSerializer.Deserialize(fileStream);
-                    return drinkProductList;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi đọc file: {ex.Message}");
-                return new DrinkProductList();
-            }
-        }
-
-        public List<DrinkProduct> GetData()
-        {
-            DrinkProductList drinkProductList = ReadObject();
+            DrinkProductList drinkProductList = Load();
             return drinkProductList.DrinkProducts ?? new List<DrinkProduct>();
         }
-
-        public void SaveData(List<DrinkProduct> drinkProducts)
+        public override void SaveData(List<DrinkProduct> drinkProducts)
         {
             DrinkProductList drinkProductList = new DrinkProductList(drinkProducts);
-            WriteObject(drinkProductList);
+            Save(drinkProductList);
         }
-
-        public static void CreateSampleData()
+        public override void CreateSampleData()
         {
             if (!File.Exists(filePath))
             {
-                List<DrinkProduct> drinkProducts = new List<DrinkProduct>() 
+                List<DrinkProduct> drinkProducts = new List<DrinkProduct>()
                 {
                     new DrinkProduct("DP001", "Coca-Cola", 15000, 100, true),
                     new DrinkProduct("DP002", "Pepsi", 14000, 120, true),
                     new DrinkProduct("DP003", "Fanta", 13000, 80, true)
                 };
-                DrinkProductList drinkProductList = new DrinkProductList(drinkProducts);
-                WriteObject(drinkProductList);
+                SaveData(drinkProducts);
             }
-            
         }
     }
 }

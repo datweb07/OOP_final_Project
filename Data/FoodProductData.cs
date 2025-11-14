@@ -1,72 +1,25 @@
+using OOP_finalProject.Data;
 using OOP_finalProject.Products;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class FoodProductData
+    public class FoodProductData : BaseDataRepository<FoodProductList, FoodProduct>
     {
-        private static string filePath = Path.Combine(GetPath.path, nameof(FoodProduct) + ".dat");
-
-        public static void WriteObject(FoodProductList foodProductList)
+        public FoodProductData() : base() { }
+        public override List<FoodProduct> GetData()
         {
-            try
-            {
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                    // Ghi dữ liệu vào file
-                    netDataContractSerializer.Serialize(fileStream, foodProductList);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi ghi file: {ex.Message}");
-            }
-        }
-
-        public FoodProductList ReadObject()
-        {
-            try
-            {
-                if (!File.Exists(filePath))
-                {
-                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
-                    return new FoodProductList();
-                }
-
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
-                {
-                    // Đọc dữ liệu từ file và chuyển đổi thành FoodProductList
-                    FoodProductList foodProductList = (FoodProductList)netDataContractSerializer.Deserialize(fileStream);
-                    return foodProductList;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi đọc file: {ex.Message}");
-                return new FoodProductList();
-            }
-        }
-
-        public List<FoodProduct> GetData()
-        {
-            FoodProductList foodProductList = ReadObject();
+            FoodProductList foodProductList = Load();
             return foodProductList.FoodProducts ?? new List<FoodProduct>();
         }
-
-        public void SaveData(List<FoodProduct> foodProducts)
+        public override void SaveData(List<FoodProduct> items)
         {
-            FoodProductList foodProductList = new FoodProductList(foodProducts);
-            WriteObject(foodProductList);
+            FoodProductList foodProductList = new FoodProductList(items);
+            Save(foodProductList);
         }
-
-        public static void CreateSampleData()
+        public override void CreateSampleData()
         {
             if (!File.Exists(filePath))
             {
@@ -76,8 +29,7 @@ namespace OOP_finalProject
                 new FoodProduct("F002", "Phở bò", 30000, 50, DateTime.Now.AddDays(3).Date.AddHours(23).AddMinutes(59).AddSeconds(59)),
                 new FoodProduct("F003", "Cơm tấm", 25000, 80, DateTime.Now.AddDays(5).Date.AddHours(23).AddMinutes(59).AddSeconds(59))
             };
-                FoodProductList foodProductList = new FoodProductList(foodProducts);
-                WriteObject(foodProductList);
+                SaveData(foodProducts);
             }
         }
     }

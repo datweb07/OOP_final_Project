@@ -21,7 +21,7 @@ namespace OOP_finalProject
 
         private void ClothingProductForm_Load(object sender, System.EventArgs e)
         {
-            ClothingProductData.CreateSampleData();
+            clothingProductData.CreateSampleData();
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;

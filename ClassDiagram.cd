@@ -56,14 +56,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="OOP_finalProject.ComboProductList" Collapsed="true">
-    <Position X="29.5" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ComponentListData\ComboProductList.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="OOP_finalProject.CustomerList" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="26.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
@@ -128,73 +120,52 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="OOP_finalProject.CashierData" Collapsed="true">
-    <Position X="20.75" Y="11.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
-      <FileName>Data\CashierData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="OOP_finalProject.ClothingProductData" Collapsed="true">
-    <Position X="27.25" Y="4.25" Width="1.5" />
+    <Position X="33.25" Y="15.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\ClothingProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="OOP_finalProject.CustomerData" Collapsed="true">
-    <Position X="28.5" Y="11.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
-      <FileName>Data\CustomerData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="OOP_finalProject.DrinkProductData" Collapsed="true">
-    <Position X="31.75" Y="4.25" Width="1.5" />
+    <Position X="38.25" Y="15.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\DrinkProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.ElectronicProductData" Collapsed="true">
-    <Position X="20.5" Y="4.25" Width="1.5" />
+    <Position X="30.25" Y="15.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\ElectronicProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.FoodProductData" Collapsed="true">
-    <Position X="22.75" Y="4.25" Width="1.5" />
+    <Position X="24.75" Y="15.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\FoodProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.HouseholdProductData" Collapsed="true">
-    <Position X="25" Y="4.25" Width="1.5" />
+    <Position X="27.5" Y="15.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\HouseholdProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.InvoiceData" Collapsed="true">
-    <Position X="37.5" Y="11.25" Width="1.5" />
+    <Position X="36.5" Y="19" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAEAQAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\InvoiceData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="OOP_finalProject.ManagerData" Collapsed="true">
-    <Position X="23" Y="11.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAEAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
-      <FileName>Data\ManagerData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="OOP_finalProject.OrderData" Collapsed="true">
-    <Position X="34" Y="11.25" Width="1.5" />
+    <Position X="34.25" Y="19" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAEAAAAAAAAAAAAAAQAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\OrderData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -220,7 +191,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.ClothingProductForm" Collapsed="true">
-    <Position X="27.25" Y="5.5" Width="1.5" />
+    <Position X="27.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QCAhCEAiCGoQCBAACAiAAQELABQABBYhACEoEBISFQc=</HashCode>
       <FileName>EntityForm\ClothingProductForm.cs</FileName>
@@ -241,49 +212,49 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.DrinkProductForm" Collapsed="true">
-    <Position X="31.75" Y="5.5" Width="1.5" />
+    <Position X="31.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAhACEACmoQCBBAAAKAAQGDIARAABYjACEoEBISFQc=</HashCode>
       <FileName>EntityForm\DrinkProductForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.ElectronicProductForm" Collapsed="true">
-    <Position X="20.5" Y="5.5" Width="1.5" />
+    <Position X="20.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAhAAACCGoQCBAACAiQAQErABVAAhYhADEgFFJSFQc=</HashCode>
+      <HashCode>QAAhAAACCGoQCBAACAiQASErABVAAhYhBCEgEFJSFQc=</HashCode>
       <FileName>EntityForm\ElectronicProductForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.FoodProductForm" Collapsed="true">
-    <Position X="22.75" Y="5.5" Width="1.5" />
+    <Position X="22.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAhAAACiGoQCBgACRCQAQELAFQAAB4hECE4cBoSFQc=</HashCode>
       <FileName>EntityForm\FoodProductForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.HouseholdProductForm" Collapsed="true">
-    <Position X="25" Y="5.5" Width="1.5" />
+    <Position X="25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAhJAACCGoQSBAUCASAAQELABQAABYhACEokBISFQc=</HashCode>
       <FileName>EntityForm\HouseholdProductForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.InvoiceForm" Collapsed="true">
-    <Position X="37.5" Y="12.5" Width="1.5" />
+    <Position X="37.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAgRAAhDAECJAEWKSgCCDCQEg4BhAEwCAAIAIHsBA=</HashCode>
       <FileName>EntityForm\InvoiceForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.ListInvoiceForm" Collapsed="true">
-    <Position X="37.5" Y="13.75" Width="1.5" />
+    <Position X="37.5" Y="12.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>YAIAQAAACGAQCAAAAACDAIACADS4ZwAlACMAABQCMQY=</HashCode>
       <FileName>EntityForm\ListInvoiceForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.ListOrderForm" Collapsed="true">
-    <Position X="34" Y="13.75" Width="1.5" />
+    <Position X="34" Y="12.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QBIAiAABCGAQCCBAAQyKAKCCADS45wA1ASMAABwCMQY=</HashCode>
       <FileName>EntityForm\ListOrderForm.cs</FileName>
@@ -304,7 +275,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_finalProject.OrderForm" Collapsed="true">
-    <Position X="34" Y="12.5" Width="1.5" />
+    <Position X="34" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>RGAFJAIFCCAYGJTAMU+IHCACDhQ4BhI9ASgJBR7AAZU=</HashCode>
       <FileName>EntityForm\OrderForm.cs</FileName>
@@ -413,13 +384,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="OOP_finalProject.Data.ComboProductData" Collapsed="true">
-    <Position X="29.5" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAAAEAAAAAAAAAAABAAQAAQBAEABIAAAAAAAAAA=</HashCode>
-      <FileName>Data\ComboProductData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="OOP_finalProject.Employees.Cashier" Collapsed="true">
     <Position X="20.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
@@ -437,7 +401,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="OOP_finalProject.EntityForm.ComboProductForm" Collapsed="true">
-    <Position X="29.5" Y="5.5" Width="1.5" />
+    <Position X="29.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>YkF1A7EYCOlBABAGgATUE1EWqMQwjAItQCDBBRKDxIM=</HashCode>
       <FileName>EntityForm\ComboProductForm.cs</FileName>
@@ -552,6 +516,49 @@
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Payments\PaymentFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_finalProject.CustomerData" Collapsed="true">
+    <Position X="27" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\CustomerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_finalProject.CashierData" Collapsed="true">
+    <Position X="29.5" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\CashierData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_finalProject.ManagerData" Collapsed="true">
+    <Position X="31.75" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\ManagerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_finalProject.ComboProductList" Collapsed="true">
+    <Position X="29.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAIAAAAAQAAAAAgABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ComponentListData\ComboProductList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOP_finalProject.Data.ComboProductData" Collapsed="true">
+    <Position X="35.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAEAAAAAAAAAAABAAQAAABAAABIAAAAAAAAAA=</HashCode>
+      <FileName>Data\ComboProductData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_finalProject.Data.BaseDataRepository&lt;TList, TItem&gt;" Collapsed="true">
+    <Position X="31.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAEAAAEAAAAAAAAAAQAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\BaseDataRepository.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="OOP_finalProject.ISalaryCalculable" Collapsed="true">

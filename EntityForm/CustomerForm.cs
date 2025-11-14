@@ -20,7 +20,7 @@ namespace OOP_finalProject
 
         private void FormCustomer_Load(object sender, EventArgs e)
         {
-            CustomerData.CreateSampleData();
+            customerData.CreateSampleData();
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;

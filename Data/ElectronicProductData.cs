@@ -1,71 +1,24 @@
-﻿using OOP_finalProject.Products;
-using System;
+﻿using OOP_finalProject.Data;
+using OOP_finalProject.Products;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class ElectronicProductData
+    public class ElectronicProductData : BaseDataRepository<ElectronicProductList, ElectronicProduct>
     {
-        private static string filePath = Path.Combine(GetPath.path, nameof(ElectronicProduct) + ".dat");
-
-        public static void WriteObject(ElectronicProductList electronicProductList)
+        public ElectronicProductData() : base() { }
+        public override List<ElectronicProduct> GetData()
         {
-            try
-            {
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                    // Ghi dữ liệu vào file
-                    netDataContractSerializer.Serialize(fileStream, electronicProductList);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi ghi file: {ex.Message}");
-            }
-        }
-
-        public ElectronicProductList ReadObject()
-        {
-            try
-            {
-                if (!File.Exists(filePath))
-                {
-                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
-                    return new ElectronicProductList();
-                }
-
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
-                {
-                    // Đọc dữ liệu từ file và chuyển đổi thành ElectronicProductList
-                    ElectronicProductList electronicProductList = (ElectronicProductList)netDataContractSerializer.Deserialize(fileStream);
-                    return electronicProductList;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi đọc file: {ex.Message}");
-                return new ElectronicProductList();
-            }
-        }
-
-        public List<ElectronicProduct> GetData()
-        {
-            ElectronicProductList electronicProductList = ReadObject();
+            ElectronicProductList electronicProductList = Load();
             return electronicProductList.ElectronicProducts ?? new List<ElectronicProduct>();
         }
-
-        public void SaveData(List<ElectronicProduct> electronicProducts)
+        public override void SaveData(List<ElectronicProduct> electronicProducts)
         {
             ElectronicProductList electronicProductList = new ElectronicProductList(electronicProducts);
-            WriteObject(electronicProductList);
+            Save(electronicProductList);
         }
-
-        public static void CreateSampleData()
+        public override void CreateSampleData()
         {
             if (!File.Exists(filePath))
             {
@@ -77,8 +30,7 @@ namespace OOP_finalProject
                     new ElectronicProduct("TV004", "Sony Bravia 4K", 18990000, 8, "36 tháng"),
                     new ElectronicProduct("HP005", "Dell XPS 13", 24990000, 12, "24 tháng")
                 };
-                ElectronicProductList electronicProductList = new ElectronicProductList(electronicProducts);
-                WriteObject(electronicProductList);
+                SaveData(electronicProducts);
 
             }
         }

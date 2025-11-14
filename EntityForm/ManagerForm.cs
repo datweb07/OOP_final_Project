@@ -23,7 +23,7 @@ namespace OOP_finalProject
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
-            ManagerData.CreateSampleData();
+            managerData.CreateSampleData();
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;

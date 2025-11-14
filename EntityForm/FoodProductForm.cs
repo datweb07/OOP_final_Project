@@ -22,7 +22,7 @@ namespace OOP_finalProject
 
         private void FormFood_Load(object sender, EventArgs e)
         {
-            FoodProductData.CreateSampleData();
+            foodProductData.CreateSampleData();
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;

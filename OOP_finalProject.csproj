@@ -97,6 +97,7 @@
     <Compile Include="ComponentListData\ComboProductList.cs" />
     <Compile Include="ComponentListData\ClothingProductList.cs" />
     <Compile Include="ComponentListData\ElectronicProductList.cs" />
+    <Compile Include="Data\BaseDataRepository.cs" />
     <Compile Include="EntityForm\ClothingProductForm.cs">
       <SubType>Form</SubType>
     </Compile>

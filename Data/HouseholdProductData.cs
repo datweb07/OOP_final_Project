@@ -1,72 +1,24 @@
+using OOP_finalProject.Data;
 using OOP_finalProject.Products;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class HouseholdProductData
+    public class HouseholdProductData : BaseDataRepository<HouseholdProductList, HouseholdProduct>
     {
-        private static string filePath = Path.Combine(GetPath.path, nameof(HouseholdProduct) + ".dat");
-
-        public static void WriteObject(HouseholdProductList householdProductList)
+        public HouseholdProductData() : base() { }
+        public override List<HouseholdProduct> GetData()
         {
-            try
-            {
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                    // Ghi dữ liệu vào file
-                    netDataContractSerializer.Serialize(fileStream, householdProductList);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi ghi file: {ex.Message}");
-            }
-        }
-
-        public HouseholdProductList ReadObject()
-        {
-            try
-            {
-                if (!File.Exists(filePath))
-                {
-                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
-                    return new HouseholdProductList();
-                }
-
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
-                {
-                    // Đọc dữ liệu từ file và chuyển đổi thành HouseholdProductList
-                    HouseholdProductList householdProductList = (HouseholdProductList)netDataContractSerializer.Deserialize(fileStream);
-                    return householdProductList;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi đọc file: {ex.Message}");
-                return new HouseholdProductList();
-            }
-        }
-
-        public List<HouseholdProduct> GetData()
-        {
-            HouseholdProductList householdProductList = ReadObject();
+            HouseholdProductList householdProductList = Load();
             return householdProductList.HouseholdProducts ?? new List<HouseholdProduct>();
         }
-
-        public void SaveData(List<HouseholdProduct> householdProducts)
+        public override void SaveData(List<HouseholdProduct> items)
         {
-            HouseholdProductList householdProductList = new HouseholdProductList(householdProducts);
-            WriteObject(householdProductList);
+            HouseholdProductList householdProductList = new HouseholdProductList(items);
+            Save(householdProductList);
         }
-
-        public static void CreateSampleData()
+        public override void CreateSampleData()
         {
             if (!File.Exists(filePath))
             {
@@ -78,8 +30,7 @@ namespace OOP_finalProject
                     new HouseholdProduct("HP004", "Nước lau sàn Mr. Muscle", 40000m, 120m, "Nature Hike"),
                     new HouseholdProduct("HP005", "Khăn giấy ăn Hảo Hảo", 15000m, 250m, "IKIA")
                 };
-                HouseholdProductList householdProductList = new HouseholdProductList(householdProducts);
-                WriteObject(householdProductList);
+                SaveData(householdProducts);
             }
         }
     }

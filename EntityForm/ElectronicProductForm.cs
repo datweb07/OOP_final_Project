@@ -13,8 +13,8 @@ namespace OOP_finalProject
             InitializeComponent();
         }
 
-        private ElectronicProductData productData = new ElectronicProductData();
-        private List<ElectronicProduct> products = new List<ElectronicProduct>();
+        private ElectronicProductData electronicProductData = new ElectronicProductData();
+        private List<ElectronicProduct> electronicProducts = new List<ElectronicProduct>();
         private List<ElectronicProduct> filteredProducts = new List<ElectronicProduct>();
         private bool isFresh = false;
 
@@ -22,7 +22,7 @@ namespace OOP_finalProject
 
         private void ElectronicForm_Load(object sender, EventArgs e)
         {
-            ElectronicProductData.CreateSampleData();
+            electronicProductData.CreateSampleData();
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;
@@ -49,8 +49,8 @@ namespace OOP_finalProject
             cmbSort.SelectedIndex = 0;
             cmbWarrantyFilter.SelectedIndex = 0;
 
-            products = productData.GetData();
-            filteredProducts = new List<ElectronicProduct>(products);
+            electronicProducts = electronicProductData.GetData();
+            filteredProducts = new List<ElectronicProduct>(electronicProducts);
             DisplayInGrid();
         }
 
@@ -95,7 +95,7 @@ namespace OOP_finalProject
             chkLowStockOnly.Checked = false;
             cmbSort.SelectedIndex = 0;
 
-            filteredProducts = new List<ElectronicProduct>(products);
+            filteredProducts = new List<ElectronicProduct>(electronicProducts);
             ApplyFiltersAndSearch();
             statusLabel.Text = "Đã làm mới danh sách";
             isFresh = false;
@@ -108,11 +108,11 @@ namespace OOP_finalProject
 
             ElectronicProduct product = null;
 
-            for (int i = 0; i < products.Count; i++)
+            for (int i = 0; i < electronicProducts.Count; i++)
             {
-                if (products[i].Id.ToLower() == txtId.Text.ToLower())
+                if (electronicProducts[i].Id.ToLower() == txtId.Text.ToLower())
                 {
-                    product = products[i];
+                    product = electronicProducts[i];
                     break;
                 }
             }
@@ -125,7 +125,7 @@ namespace OOP_finalProject
                     txtPrice.Value,
                     txtQuantity.Value,
                     (string)cboWarranty.SelectedItem);
-                products.Add(product);
+                electronicProducts.Add(product);
             }
             else
             {
@@ -135,11 +135,11 @@ namespace OOP_finalProject
                 product.WarrantyPeriod = (string)cboWarranty.SelectedItem;
             }
 
-            filteredProducts = new List<ElectronicProduct>(products);
+            filteredProducts = new List<ElectronicProduct>(electronicProducts);
             DisplayInGrid();
 
             // lưu file dữ liệu
-            productData.SaveData(products);
+            electronicProductData.SaveData(electronicProducts);
 
             MessageBox.Show("Cập nhật thông tin sản phẩm điện tử thành công !",
                 "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -213,20 +213,20 @@ namespace OOP_finalProject
 
             ElectronicProduct product = null;
 
-            for (int i = 0; i < products.Count; i++)
+            for (int i = 0; i < electronicProducts.Count; i++)
             {
-                if (products[i].Id.ToLower() == txtId.Text.ToLower())
+                if (electronicProducts[i].Id.ToLower() == txtId.Text.ToLower())
                 {
-                    product = products[i];
+                    product = electronicProducts[i];
                     break;
                 }
             }
 
             if (product != null)
             {
-                products.Remove(product);
+                electronicProducts.Remove(product);
                 ApplyFiltersAndSearch();
-                productData.SaveData(products);
+                electronicProductData.SaveData(electronicProducts);
 
                 MessageBox.Show("Xoá thông tin sản phẩm điện tử thành công !"
                     , "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -276,7 +276,7 @@ namespace OOP_finalProject
         private void ApplyFiltersAndSearch()
         {
             // gắn lại danh sách ban đầu
-            filteredProducts = new List<ElectronicProduct>(products);
+            filteredProducts = new List<ElectronicProduct>(electronicProducts);
 
             // tìm kiếm
             if (!string.IsNullOrEmpty(txtSearch.Text))

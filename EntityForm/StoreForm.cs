@@ -33,7 +33,7 @@ namespace OOP_finalProject
         {
             try
             {
-                ManagerData.CreateSampleData();
+                managerData.CreateSampleData();
 
                 // lấy danh sách quản lý
                 managers = managerData.GetData();

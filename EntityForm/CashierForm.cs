@@ -58,7 +58,7 @@ namespace OOP_finalProject
 
         private void FormSeller_Load(object sender, EventArgs e)
         {
-            CashierData.CreateSampleData();
+            cashierData.CreateSampleData();
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;

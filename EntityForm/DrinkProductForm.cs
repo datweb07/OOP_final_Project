@@ -22,7 +22,7 @@ namespace OOP_finalProject
 
         private void FormBeverage_Load(object sender, EventArgs e)
         {
-            DrinkProductData.CreateSampleData();
+            drinkProductData.CreateSampleData();
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;
             gridData.ReadOnly = true;

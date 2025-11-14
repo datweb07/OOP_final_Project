@@ -22,7 +22,7 @@ namespace OOP_finalProject
 
         private void FormHouseHoldItem_Load(object sender, EventArgs e)
         {
-            HouseholdProductData.CreateSampleData();
+            householdProductData.CreateSampleData();
 
             gridData.DataSource = _src;
             gridData.AllowUserToAddRows = false;

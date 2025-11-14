@@ -1,65 +1,20 @@
-using System;
+using OOP_finalProject.Data;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
 
 namespace OOP_finalProject
 {
-    public class OrderData
+    public class OrderData : BaseDataRepository<OrderList, Order>
     {
-        private static string filePath = Path.Combine(GetPath.path, nameof(Order) + ".dat");
-
-        public static void WriteObject(OrderList orderList)
+        public OrderData() : base() { }
+        public override List<Order> GetData()
         {
-            try
-            {
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                    netDataContractSerializer.Serialize(fileStream, orderList);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi ghi file: {ex.Message}");
-            }
-        }
-
-        public OrderList ReadObject()
-        {
-            try
-            {
-                if (!File.Exists(filePath))
-                {
-                    Console.WriteLine($"File {filePath} không tồn tại. Trả về danh sách rỗng.");
-                    return new OrderList();
-                }
-
-                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
-
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
-                {
-                    OrderList orderList = (OrderList)netDataContractSerializer.Deserialize(fileStream);
-                    return orderList;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi đọc file: {ex.Message}");
-                return new OrderList();
-            }
-        }
-
-        public List<Order> GetData()
-        {
-            OrderList orderList = ReadObject();
+            OrderList orderList = Load();
             return orderList.Orders ?? new List<Order>();
         }
-
-        public void SaveData(List<Order> orders)
+        public override void SaveData(List<Order> items)
         {
-            OrderList orderList = new OrderList(orders);
-            WriteObject(orderList);
+            OrderList orderList = new OrderList(items);
+            Save(orderList);
         }
     }
 }
