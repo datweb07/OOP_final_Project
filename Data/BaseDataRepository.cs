@@ -23,11 +23,11 @@ namespace OOP_finalProject.Data
                 if (!File.Exists(filePath))
                     return new TList();
 
-                var serializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
 
-                using (var fs = new FileStream(filePath, FileMode.Open))
+                using (FileStream fs = new FileStream(filePath, FileMode.Open))
                 {
-                    return (TList)serializer.Deserialize(fs);
+                    return (TList)netDataContractSerializer.Deserialize(fs);
                 }
             }
             catch
@@ -40,11 +40,11 @@ namespace OOP_finalProject.Data
         {
             try
             {
-                var serializer = new NetDataContractSerializer();
+                NetDataContractSerializer netDataContractSerializer = new NetDataContractSerializer();
 
-                using (var fs = new FileStream(filePath, FileMode.Create))
+                using (FileStream fs = new FileStream(filePath, FileMode.Create))
                 {
-                    serializer.Serialize(fs, list);
+                    netDataContractSerializer.Serialize(fs, list);
                 }
             }
             catch(Exception ex)
