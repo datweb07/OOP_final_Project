@@ -138,6 +138,12 @@ Lỗi này xuất hiện vì Windowns chặn các file ```.resx``` (download t�
 ```bash
 Get-ChildItem -Recurse | Unblock-File
 ```
+<br>
+
+![z7228885679135_e959e715ce93ede36a75be09a2ce99e3](https://github.com/user-attachments/assets/036d51ec-2e6a-4a0b-9984-5022f482a3b1)
+
+Lỗi màn hình hiển thị không hết Form giao diện, fix như sau:
+- Vào Settings, chọn System -> Display -> chọn Scale bằng 100%
 
 ## Nhóm Phát Triển
 
